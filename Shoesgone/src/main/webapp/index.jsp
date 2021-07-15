@@ -41,11 +41,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	Hello
-=======
-	
->>>>>>> refs/remotes/origin/master
+
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
