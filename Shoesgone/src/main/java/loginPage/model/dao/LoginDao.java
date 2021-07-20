@@ -57,13 +57,12 @@ public class LoginDao {
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into user_info (user_no, user_id, user_pwd) "
-				+ "values (?, ?, ?)";
+				+ "values (user_seq.nextval, ?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, login.getUserNo());
-			pstmt.setString(2, login.getUserId());
-			pstmt.setString(3, login.getUserPwd());
+			pstmt.setString(1, login.getUserId());
+			pstmt.setString(2, login.getUserPwd());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -74,5 +73,32 @@ public class LoginDao {
 		
 		return result;
 	}
-	
+
+	public Login idValidate(Connection conn, String userid) {
+		Login login = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select user_id from user_info where user_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userid);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				login = new Login();
+				
+				login.setUserId(userid);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return login;
+	}
 }

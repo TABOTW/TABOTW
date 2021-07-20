@@ -31,4 +31,12 @@ public class LoginService {
 		close(conn);
 		return result;
 	}
+
+	public Login idValidate(String userid) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		Login login = ldao.idValidate(conn, userid);
+		close(conn);
+		return login;
+	}
 }
