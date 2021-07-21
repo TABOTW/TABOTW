@@ -341,7 +341,7 @@ border-top-right-radius: 10px;
 					
 								<tr>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeNo() %></td>
-								 <td style = "text-align:center"><a href="/Shoesgone/ndetail?noticeNo=<%= list.get(i).getNoticeNo() %>"><%= list.get(i).getNoticeTitle() %></td>
+								 <td style = "text-align:center"><%= list.get(i).getNoticeTitle() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeWriter() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeDate() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeReadcount() %></td> 

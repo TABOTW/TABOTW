@@ -17,11 +17,10 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>회원정보수정</title>
+	<title>주문상세보기</title>
 	<!--
             CSS
             ============================================= -->
-         ============================================= -->
 	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
@@ -31,7 +30,62 @@
 <link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 	<style type="text/css">
+	.orderdetail{
+	align : center;
+	}
+.th{
+ text-align : center;
+}
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation .none {
+	display:none;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+.page_nation .arrow {
+	border:1px solid #ccc;
+}
+.page_nation .pprev {
+	background:#f8f8f8 url('img/page_pprev.png') no-repeat center center;
+	margin-left:0;
+}
+.page_nation .prev {
+	background:#f8f8f8 url('img/page_prev.png') no-repeat center center;
+	margin-right:7px;
+}
+.page_nation .next {
+	background:#f8f8f8 url('img/page_next.png') no-repeat center center;
+	margin-left:7px;
+}
+.page_nation .nnext {
+	background:#f8f8f8 url('img/page_nnext.png') no-repeat center center;
+	margin-right:0;
+}
+.page_nation a.active {
+	background-color:#42454c;
+	color:#fff;
+	border:1px solid #42454c;
+}
 	</style>
+	
 </head>
 
 <body>
@@ -121,43 +175,57 @@
 	</section>
 	
 	<!--================Contact Area =================-->
-	<section>
-	<div><br><br><br>
-<h2 align="center">회원정보수정</h2><br>
-<hr>
-<form method="post" action="" onsubmit="return validate();">
-<!-- 제출시(전송시 : submit 버튼 눌렀을 때)에 
-유효성검사 실행되도록 함 
-결과가 false 일 때 전송을 취소되게 해야 하므로 
-return 함수명() 으로 실행해야 됨. -->
-<table align="center" width="600">
-<tr><th width="180">이름</th>
-<td><input type="text" id="email" name="name"></td></tr>
-<tr><th width="180">아이디</th>
-<td><input type="text" id="email" name="userid" readonly></td></tr>
-<tr><th width="180">이메일</th>
-<td><input type="email" id="email" name="email"></td></tr>
-<tr><th width="180">*비밀번호</th>
-<td><input type="password" id="userpwd" name="userpwd" required></td></tr>
-<tr><th width="180">*비밀번호확인</th>
-<td><input type="password" id="userpwd2" required></td></tr>
-<tr><th width="180">휴대폰번호</th>
-<td><input type="text" id="email" name="phone"></td></tr>
-<tr><th width="180">주 소</th>
-<td><input type="text" id="post" name="post" size="10" maxLength="5"> &nbsp; 
-<input type="button" value="우편번호검색" onclick="return false;" class="genric-btn primary small"><br>
-<input type="text" name="address" id="address" size="50">
-<input type="text" name="address2" id="address" size="50">
-</td></tr>
+	<section><br><br><br>
+		<article>
 
-<tr><th colspan="2">
-<br><br>
-	<center><input type="submit" value="수정하기" class="genric-btn primary small">&nbsp;
-	<input type="submit" value="목록보기" class="genric-btn primary small"> </center> 
-</th></tr>
-</table><hr><br><br><br>
-</form>
-</div>
+		<div class="container" role="main">
+
+			<h2>1:1문의</h2>
+
+			<div class="row" >
+			<form method="post" action="writeAction.jsp" >
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 1000px;" >
+				
+					<thead>
+						<tr>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="questionTitle" maxlength="50" style="width:950px ;"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="글 내용" name="questionContent" maxlength="2048" style="width:950px ;height: 350px;"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 글쓰기 버튼 생성 -->
+				<center>
+				<button type="submit" class="genric-btn primary small" id="btnSave">저장</button>
+
+				<button type="button" class="genric-btn primary small" id="btnList">목록</button>
+</center>
+			</form>
+		</div>
+
+			</div>	
+
+			
+
+			
+
+			
+			<div>
+				
+			</div><br><br><br>
+
+		</div>
+
+	</article>
+
+
+  
 </section>
 	<!--================Contact Area =================-->
 
@@ -274,7 +342,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!--================End Contact Success and Error message Area =================-->
 
 
-	
 		<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
@@ -289,6 +356,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
-
 </body>
+
 </html>

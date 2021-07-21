@@ -1,4 +1,4 @@
-/board/
+/.DS_Store
 /common/
 /faq/
 /information/
@@ -7,6 +7,5 @@
 /notice/
 /orderlist/
 /point/
-/qna/
 /question/
 /wishlist/
