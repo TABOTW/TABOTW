@@ -101,4 +101,35 @@ public class LoginDao {
 		
 		return login;
 	}
+
+	public Login selectNaverLogin(Connection conn, String userid) {
+		Login login = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select user_id, user_pwd, login_ok from user_info where user_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userid);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				login = new Login();
+				
+				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
+				login.setUserId(userid);
+				login.setUserPwd(rset.getString("user_pwd"));
+				login.setLoginOk(rset.getString("login_ok"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return login;
+	}
 }

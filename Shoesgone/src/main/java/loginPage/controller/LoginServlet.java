@@ -1,12 +1,12 @@
 package loginPage.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -101,22 +101,19 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 
 		} else { // 로그인 실패
-			// 뷰로 내보낼 메세지 지정과 뷰 파일 지정
-
-			// 상대경로만 사용할 수 있음.
-			// 모든 서블릿을 root 에서 실행됨
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			// 지정한 뷰(error.jsp)로 내보낼 값이 있다면
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+			
 			if (login != null && login.getLoginOk().equals("N")) {
-				request.setAttribute("message", "로그인 제한된 회원입니다. 관리자에게 문의하세요.");
+				out.println("<script>alert('로그인 제한된 회원입니다. 관리자에게 문의하세요.'); location.href='/Shoesgone/views/loginPage/login.jsp';</script>");
 			}
 
 			if (login == null) {
-				request.setAttribute("message", "로그인 실패! 아이디 또는 암호를 다시 확인하고 로그인하세요.");
+				out.println("<script>alert('로그인 실패! 아이디 또는 암호를 다시 확인하고 로그인하세요.'); location.href='/Shoesgone/views/loginPage/login.jsp';</script>");
 			}
 
-			// 요청한 클라이언트로 응답 처리함
-			view.forward(request, response);
+			out.flush();
 		}
 	}
 

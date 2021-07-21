@@ -39,4 +39,11 @@ public class LoginService {
 		close(conn);
 		return login;
 	}
+
+	public Login selectNaverLogin(String userid) {
+		Connection conn = getConnection();
+		Login login = ldao.selectNaverLogin(conn, userid);
+		close(conn);
+		return login;
+	}
 }

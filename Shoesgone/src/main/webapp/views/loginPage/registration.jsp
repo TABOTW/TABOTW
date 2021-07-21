@@ -144,7 +144,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" id="submit" class="primary-btn">가입하기</button>
+								<button type="submit" value="submit" class="primary-btn">가입하기</button>
 							</div>
 						</form>
 					</div>
@@ -328,10 +328,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			  },
 			  errorClass: "error-info"
 		});
-		
-		$("#submit").validate({
-			onfocusout: false
-		})
 		
 		$.validator.addMethod("pw_regexp",  function( value, element ) {
 			return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);

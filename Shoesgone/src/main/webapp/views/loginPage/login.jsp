@@ -125,14 +125,14 @@
 								<button type="submit" value="submit" class="primary-btn">로그인</button>
 								  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
 								  <div id="naver_id_login"></div>
-								  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
+								  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
 								  <script type="text/javascript">
-								  	var naver_id_login = new naver_id_login("pLtvMVEvTQdyI5iaulw9", "http://localhost:8080/Shoesgone/naverlogin");
+								  	var naver_id_login = new naver_id_login("pLtvMVEvTQdyI5iaulw9", "http://localhost:8080/Shoesgone/views/loginPage/naverCallback.jsp");
 								  	var state = naver_id_login.getUniqState();
 								  	naver_id_login.setButton("green", 3, 40);
 								  	naver_id_login.setDomain("http://localhost:8080/Shoesgone/views/loginPage/login.jsp");
 								  	naver_id_login.setState(state);
-								  	//naver_id_login.setPopup();
+								  	naver_id_login.setPopup();
 								  	naver_id_login.init_naver_id_login();
 								  </script>
 							</div>
