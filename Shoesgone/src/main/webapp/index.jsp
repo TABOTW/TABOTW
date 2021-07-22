@@ -16,7 +16,7 @@
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
-	<meta name="description" content="">
+	<m eta name="description" content="">
 	<!-- Meta Keyword -->
 	<meta name="keywords" content="">
 	<!-- meta character set -->

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
+    pageEncoding="UTF-8" import="itemPage.model.vo.Item, loginPage.model.vo.Login, itemPage.model.vo.Picture, java.util.ArrayList"%>
 <%
-	// 로그인 확인을 위해서 내장된 session 객체를 이용
+	//Item 객체를 가져옴
+	Item item = (Item) request.getAttribute("item");
 	Login loginMember = (Login)session.getAttribute("loginMember");
+	ArrayList<Picture> plist = (ArrayList<Picture>)request.getAttribute("plist");
 %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -36,9 +38,9 @@
 	<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/plugins/slick/slick.css?after">
 	<link rel="stylesheet" href="/Shoesgone/resources/plugins/slick/slick-theme.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/itemDetailView.css?after">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/itemDetailView.css">
 </head>
 <body id="itemdetail">
 	<!-- Start Header Area -->
@@ -106,104 +108,85 @@
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="your-class" >
-    					<div><img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt=""></div>
-    					<div><img class="img-fluid" src="/Shoesgone/resources/img/category/c1.jpg" alt=""></div>
-    					<div><img class="img-fluid" src="/Shoesgone/resources/img/category/c2.jpg" alt=""></div>
+					<div class="your-class">
+						<% for(Picture p : plist){ %>
+    					<div>
+    						<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= p.getPicturepath() %>" alt="">
+    					</div>
+    					<% } %>
   					</div>
-					<!-- <div class="s_Product_carousel">
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
-					</div> -->
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text" style="margin-top: 0px">
-						<h3>nike_dunk_low_black</h3>
-						<h2>$149.99</h2>
-						<ul class="list">
-							<li><a class="active" href="#"><span>카테고리</span> : nike_dunk_low</a></li>
-							<li><a href="#"><span>사이즈</span> : In 180mm</a></li>
-							<li><a href="#"><span>발매년도</span> : 2021-06-07</a></li>
-						</ul>
+						<h3><%= item.getItemEngName() %></h3>
+						<h4><%= item.getItemKrName() %></h4>
+						<div class="detail_size lg">
+							<div class="title">
+								<span class="title_txt">사이즈</span>
+							</div>
+							<div class="size">
+								<a href="#" class="btn_size">
+									<span class="btn_text">모든사이즈</span>
+								</a>
+							</div>
+						</div>
+						<div class="detail_price lg">
+							<div class="title">
+								<span class="title_txt">최근 거래가</span>
+							</div>
+							<div class="price">
+								<span class="price_txt">minimum price</span>
+							</div>
+						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">Add to Cart</a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="primary-btn" href="#">구매하기</a>
+							<a class="primary-btn" href="#">판매하기</a>
+							<!-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+							<a class="icon_btn" href="#"><i]\ class="lnr lnr lnr-heart"></i></a> -->
 						</div>
 						<br>
 						<div class="s_product_table">
-						<h3>Specifications</h3>
-						<table class="table">
+						<h3>제품 상세정보</h3>
+						<table class="table_specification">
 							<tbody>
 								<tr>
 									<td>
-										<h5>Width</h5>
+										<h5>브랜드</h5>
 									</td>
 									<td>
-										<h5>128mm</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Height</h5>
-									</td>
-									<td>
-										<h5>508mm</h5>
+										<h5><%= item.getBrand() %></h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>Depth</h5>
+										<h5>모델 번호</h5>
 									</td>
 									<td>
-										<h5>85mm</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Weight</h5>
-									</td>
-									<td>
-										<h5>52gm</h5>
+										<h5><%= item.getModelNo() %></h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>Quality checking</h5>
+										<h5>신발 색상</h5>
 									</td>
 									<td>
-										<h5>yes</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Freshness Duration</h5>
-									</td>
-									<td>
-										<h5>03days</h5>
+										<h5><%= item.getShoesColors() %></h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>When packeting</h5>
+										<h5>발매가</h5>
 									</td>
 									<td>
-										<h5>Without touch of hand</h5>
+										<h5><%= item.getPrice() %></h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>Each Box contains</h5>
+										<h5>발매일</h5>
 									</td>
 									<td>
-										<h5>60pcs</h5>
+										<h5><%= item.getDropDate() %></h5>
 									</td>
 								</tr>
 							</tbody>
@@ -223,35 +206,38 @@
 				<div class="col-lg-6">
 					<div class="shoes_statistics" >
     					<div>
-    					<h5>거래추이</h5>
+    					<h4>거래추이</h4>
+    					<table class="graph_options">
+    						<tr>
+    							<td>
+    								<select>
+										<option>사이즈별</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+								</td>
+								<td>
+									<select>
+										<option>기간별</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+    							</td>
+    						</tr>
+    					</table>
     					<img class="sales_graph" src="/Shoesgone/resources/img/product_detail_example/kream_yeezy_graph.png">
     					</div>
     					<br>
     					<h5>거래기록</h5>
-    					<div class="col-2" style="float: right;"></div>
-    					<div class="col-2" style="float: right;">
-    						<select>
-								<option>사이즈별</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select>
-							<select>
-								<option>기간별</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select>
-						</div>
-    					<div class="col-2" style="float: right;"></div>
-    					<div class="col-2" style="float: right;"></div>
-    					<div class="col-2" style="float: right;"></div>
-    					<div class="col-2" style="float: right;"></div>
     					<br>
     					<div><img class="sales_record" src="product_detail_example/resources/img/product_detail_example/yeezy_sales_record.png" ></div>
     					<br>
   					</div>
-  					<a class="primary-btn" href="#" style="text-align: center; margin: auto;">거래내역 자세히 보기</a>
+  					<div class="sales_detail">
+  						<a class="primary-btn" href="#" style="text-align: center; margin: auto;">거래내역 자세히 보기</a>
+  					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="size_recommend_box">
