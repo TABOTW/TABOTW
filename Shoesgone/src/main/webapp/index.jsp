@@ -130,48 +130,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- <section class="banner-area">
-		<div class="container">
-			<div class="row fullscreen align-items-center justify-content-start">
-				<div class="col-lg-12">
-					<div class="active-banner-slider owl-carousel">
-						single-slide
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1>공지사항</h1>
-									<p>공지사항입니다.</p>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="#" alt="">
-								</div>
-							</div>
-						</div>
-						single-slide
-						<div class="row single-slide">
-							<div class="col-lg-5">
-								<div class="banner-content">
-									<h1>공지사항</h1>
-									<p>공지사항입니다.</p>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> -->
 	<!-- End banner Area -->
 	
 	<!-- start product Area -->
