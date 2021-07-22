@@ -22,9 +22,3 @@
 <a href="/first/index.jsp">시작페이지 가기</a>
 </body>
 </html>
-
-
-
-
-
-
