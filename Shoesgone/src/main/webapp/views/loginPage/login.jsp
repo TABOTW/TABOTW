@@ -19,9 +19,8 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>로그인</title>
-
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
- 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<!--
 		CSS
 		============================================= -->
@@ -123,9 +122,10 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">로그인</button>
-								  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
+	<!-- 							<button type="submit" value="submit" class="primary-btn">네이버 로그인</button> -->
+								<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 								  <div id="naver_id_login"></div>
-								  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
+								  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
 								  <script type="text/javascript">
 								  	var naver_id_login = new naver_id_login("pLtvMVEvTQdyI5iaulw9", "http://localhost:8080/Shoesgone/views/loginPage/naverCallback.jsp");
 								  	var state = naver_id_login.getUniqState();
