@@ -23,6 +23,23 @@
 	<!-- Site Title -->
 	<title>회원가입</title>
 
+	<style>
+		.error-info{
+			font-size:1px;
+			color: red;
+		}
+		.register-info{
+			text-align: left;
+			color: black;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+		.agree-check{
+			color: black;
+			margin-left: 5px;
+		}
+	</style>
+	
 	<!--
 		CSS
 		============================================= -->
@@ -108,21 +125,22 @@
 						<form class="row login_form" action="/Shoesgone/enroll" method="post" id="contactForm" novalidate="novalidate">
 							
 							<div class="col-md-12 form-group">
-							<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">이메일 주소 *</h6>
-								<input type="text" class="form-control" id="userid" name="userid" placeholder="예) ShoesGone@shoes.co.kr" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) ShoesGone@shoes.co.kr'">
+							<h6 class="register-info">이메일 주소 *</h6>
+								<input type="email" class="form-control" id="userid" name="userid" placeholder="예) ShoesGone@shoes.co.kr" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) ShoesGone@shoes.co.kr'">
 							</div>
 							<div class="col-md-12 form-group">
-							<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">비밀번호 *</h6>
+							<h6 class="register-info">비밀번호 *</h6>
 								<input type="password" class="form-control" id="upwd" name="userpwd" placeholder="영문, 숫자, 특수문자 조합 8-16자" onfocus="this.placeholder = ''" onblur="this.placeholder = '영문, 숫자, 특수문자 조합 8-16자'">
+								<!-- <p style="font-size:1px; color: red; margin-right:110px;">영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)</p> -->
 							</div>
 							<div class="col-md-12 form-group">
-							<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">신발 사이즈(선택)</h6>
-								<input type="text" class="form-control" id="name" name="name" placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
+							<h6 class="register-info">신발 사이즈(선택)</h6>
+								<input type="text" class="form-control" id="shoesSize" name="shoesSize" placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-									<h6 style="color: black; margin-left: 5px;"><label><input type="checkbox">[필수] 만14세 이상이며 모두 동의합니다.</label></h6>
-									<h6 style="color: black; margin-left: 5px;"><label><input type="checkbox">[선택] 광고성 정보 수신에 모두 동의합니다.</label></h6>					
+									<h6 class="agree-check"><label><input type="checkbox" id="ageAgree" name="ageAgree">[필수] 만14세 이상이며 모두 동의합니다.</label></h6>
+									<h6 class="agree-check"><label><input type="checkbox" id="adAgree" name="adAgree">[선택] 광고성 정보 수신에 모두 동의합니다.</label></h6>			
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
@@ -259,7 +277,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- End footer Area -->
 
 
-	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
@@ -273,6 +292,47 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
+	<script type="text/javascript">
+		$("#contactForm").validate({
+			rules: {
+			    userid: {
+			      required: true,
+			      email: true,
+			      remote: {type: "post", url:"/Shoesgone/validate" }
+			    },
+			    userpwd: {
+			    	required: true,
+			    	pw_regexp: true,
+			    	minlength: 8,
+			    	maxlength: 16
+				},
+				ageAgree: {
+					required: true
+				}
+			  },
+			  messages: {
+			    userid: {
+			      required: "이메일 주소를 정확히 입력해주세요.",
+			      email: "이메일 주소를 정확히 입력해주세요.",
+			      remote : "이미 사용 중인 이메일입니다."
+			    },
+			    userpwd: {
+			    	required: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	pw_regexp: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	minlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	maxlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)"
+			    },
+			    ageAgree: {
+			    	required: ""
+			    }
+			  },
+			  errorClass: "error-info"
+		});
+		
+		$.validator.addMethod("pw_regexp",  function( value, element ) {
+			return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+	   });
+	</script>
 </body>
 
 </html>
