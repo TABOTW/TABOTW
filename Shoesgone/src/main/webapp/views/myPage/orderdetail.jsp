@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="orderlist.model.vo.Orderlist, loginPage.model.vo.Login" %>    
+<%
+Orderlist orderlist = (Orderlist)request.getAttribute("orderlist");
+Login loginMember = (Login)session.getAttribute("loginMember");
+int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+%> 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -185,9 +191,9 @@
    
     <div class="order_detail_1" align="center">
     <div class="order_detail_2">
-				<h3 class="order_detail_tit" text-align="center" align="center">주문자 정보</h3>
+				<h3 class="order_detail_tit" text-align="center" align="center" >주문 정보</h3>
 				
-				<table class="tbl" cellspacing="0" border="1" summary="정보">
+				<table class="tbl" cellspacing="0" border="1" summary="정보" width="600px" style="text-align:center;">
 					
 						<colgroup>
 						<col width="140">
@@ -195,20 +201,16 @@
 						</colgroup>
 					<tbody>
 					<tr>
-						<th>주문자</th>
-						<td></td>
+						<th>주문번호 </th>
+						<td><%= orderlist.getOrdersNo() %></td>
 					</tr>
 					<tr>
 						<th>주문일</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th>결제수단</th>
-						<td></td>
+						<td><%= orderlist.getPurDate() %></td>
 					</tr>
 					<tr class="last">
-						<th>연락처</th>
-						<td></td>
+						<th>결제수단</th>
+						<td><%= orderlist.getPayment() %></td>
 					</tr>
 					</tbody>
 					</table>
@@ -220,28 +222,24 @@
 				<h3 class="order_detail_tit">배송지 정보
 					
 				</h3>
-				<table class="tbl" cellspacing="0" border="1" summary="정보">
+				<table class="tbl" cellspacing="0" border="1" summary="정보" width="600px" style="text-align:center;">
 					
 						<colgroup>
 						<col width="140">
 						<col width="*">
 						</colgroup>
 					<tbody>
-					<tr>
-						<th>받으실분</th>
-						<td></td>
-					</tr>
 
 					<tr>
 						<th>배송지 주소</th>
-						<td></td>
+						<td><%= orderlist.getAddress() %></td>
 					</tr>
 
 					<tr class="last">
 						<th>
 						<span>연락처</span>
 						</th>
-						<td>010</td>
+						<td><%= orderlist.getPhone() %></td>
 					</tr>
 					</tbody>
 					</table><br><br>
@@ -249,24 +247,21 @@
 			  <div class="order_detail_2">
 				<h3 class="order_detail_tit" text-align="center" align="center">상품정보</h3>
 				
-				<table class="tbl" cellspacing="0" border="1" summary="정보">
+				<table class="tbl" cellspacing="0" border="1" summary="정보" width="600px" style="text-align:center;">
 					
 						<colgroup>
 						<col width="140">
 						<col width="*">
 						</colgroup>
 					<tbody>
-					<tr>
-						<th>주문번호 </th>
-						<td></td>
-					</tr>
+			
 					<tr>
 						<th>주문상품</th>
-						<td></td>
+						<td colspan = 2><%= orderlist.getItemEngName() %><br><%= orderlist.getItemKrName() %></td>
 					</tr>
 					<tr class="last">
 						<th>사이즈</th>
-						<td></td>
+						<td><%= orderlist.getShoesSize() %></td>
 					</tr>
 					</tbody>
 					</table>
@@ -282,7 +277,7 @@
 							<strong>총 상품금액</strong>
 							</div>
 							<div class="order_result_area_n">
-							<em><span>76,900</span></em>
+							<em><span><%= orderlist.getPrice() %></span></em>
 							<span class="won">원</span>
 							</div>
 							
@@ -297,7 +292,7 @@
 							<strong><span class="cart_fcT2">추가할인(적립금)</span></strong>
 							</div>
 							<div class="order_result_area_n">
-								<em><span class="cart_fcT2">2,000</span></em>
+								<em><span class="cart_fcT2"><%= orderlist.getPoint() %></span></em>
 								<span class="won"><span class="cart_fcT2">원</span></span>
 							</div>
 						</div>
@@ -309,7 +304,7 @@
 							<strong>총 배송비</strong>
 							</div>
 							<div class="order_result_area_n">
-							<em><span>3,000</span></em>
+							<em><span><%= orderlist.getDelFee() %></span></em>
 							<span class="won">원</span>
 							</div>
 						</div>
@@ -321,7 +316,7 @@
 							<strong><em class="cart_fcT3">총 결제금액</em></strong>
 							</div>
 							<div class="order_result_area_n">
-								<em><span class="cart_fcT3">68,900</span></em>
+								<em><span class="cart_fcT3"><%= orderlist.getPrice() - orderlist.getPoint() + orderlist.getDelFee() %></span></em>
 								<span class="won"><span class="cart_fcT3">원</span></span><br><br>
 							</div>
 						</div>

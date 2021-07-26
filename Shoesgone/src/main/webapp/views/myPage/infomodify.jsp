@@ -131,12 +131,18 @@
 결과가 false 일 때 전송을 취소되게 해야 하므로 
 return 함수명() 으로 실행해야 됨. -->
 <table align="center" width="600">
+<tr><th width="180">이름</th>
+<td><input type="text" id="email" name="name"></td></tr>
+<tr><th width="180">아이디</th>
+<td><input type="text" id="email" name="userid" readonly></td></tr>
 <tr><th width="180">이메일</th>
 <td><input type="email" id="email" name="email"></td></tr>
 <tr><th width="180">*비밀번호</th>
 <td><input type="password" id="userpwd" name="userpwd" required></td></tr>
 <tr><th width="180">*비밀번호확인</th>
 <td><input type="password" id="userpwd2" required></td></tr>
+<tr><th width="180">휴대폰번호</th>
+<td><input type="text" id="email" name="phone"></td></tr>
 <tr><th width="180">주 소</th>
 <td><input type="text" id="post" name="post" size="10" maxLength="5"> &nbsp; 
 <input type="button" value="우편번호검색" onclick="return false;" class="genric-btn primary small"><br>

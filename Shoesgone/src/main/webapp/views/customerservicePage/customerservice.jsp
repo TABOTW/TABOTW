@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="notice.model.vo.Notice, java.util.ArrayList, java.io.PrintWriter,java.sql.Date, notice.model.dao.NoticeDao, notice.model.service.NoticeService" %>    
+<% 
+
+ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+	%>
+	
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -39,6 +50,49 @@ $(function(){
 <link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 <style type="text/css">
+ul#menubar {
+	text-align: center;
+	align: center;
+	list-style: none;
+	position: relative;
+	
+	/* top: -30px; */
+}
+ul#menubar li {
+	algin: center;
+	text-align: center;
+	display:inline-block;
+	width: 120px;
+	height: 30px;
+	
+	padding: 0;
+}
+ul#menubar li a {
+	text-decoration: none;
+	width: 120px;
+	height: 30px;
+	display: block;
+	background: orange;
+	color: white;
+	text-align: center;
+	
+	margin: 0;
+	
+	padding-top: 5px;
+}
+ul#menubar li a:hover {
+	text-decoration: none;
+	width: 120px;
+	height: 30px;
+	display: block;
+	background: white;
+	color: orange;
+	text-align: center;
+	font-weight: bold;
+	margin: 0;
+	padding-top: 5px;
+}
+
 #floatdiv {
 
     position:fixed; _position:absolute; _z-index:-1;
@@ -279,28 +333,21 @@ border-top-right-radius: 10px;
 	</section>
 
 	<!--================Contact Area =================-->
-	<section><br><br><br>
-	<h2 align="center">고객센터</h2><hr>
+	<section><br><br>
+	<h2 align="center">고객센터</h2>
+	
+	<ul id="menubar" style="align:center;">
+	<li><a href="/Shoesgone/nlist">공지사항</a></li>
+	<li><a href="/Shoesgone/flist">자주묻는질문</a></li>
+	<li><a href="/Shoesgone/qulist">1:1문의</a></li>
+</ul>
+<br>
+<hr>
 		<section class="product_description_area">
 			<div class="container">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item"><a class="nav-link" id="home-tab"
-						data-toggle="tab" href="#home" role="tab" aria-controls="home"
-						aria-selected="true">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile" aria-selected="false">자주묻는질문</a></li>
-					<li class="nav-item"><a class="nav-link" id="contact-tab"
-						data-toggle="tab" href="#contact" role="tab"
-						aria-controls="contact" aria-selected="false">1:1문의</a></li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade" id="home" role="tabpanel"
-						aria-labelledby="home-tab">
-						<!-- 리스트 게시판 시작-->
-						
+						<center><h3>공지사항</h3></center><br>
 						<table class="sub_news" border="0" cellpadding="7px"
-							summary="게시판의 글제목 리스트" align="center">
+							summary="게시판의 글제목 리스트" align="center" text-align="center">
 							
 							<colgroup>
 								<col width="50" >
@@ -310,10 +357,9 @@ border-top-right-radius: 10px;
 								<col width="100">
 							</colgroup>
 							<thead style="border-bottom:0.5px solid #444444 ; border-collapse : collapse;
-							"
-							>
-								<tr >
-								    <th scope="col" style = "text-align:center; font-color:orange;">번호</th>
+							">
+								<tr>
+								    <th scope="col" style = "text-align:center">번호</th>
 									<th scope="col" style = "text-align:center">제목</th>
 									<th scope="col" style = "text-align:center">작성자</th>
 									<th scope="col" style = "text-align:center">작성일</th>
@@ -322,399 +368,74 @@ border-top-right-radius: 10px;
 								</tr>
 							</thead>
 							<tbody>
+							<%
+							
+						
+							
+						for(int i = 0; i < list.size(); i++){
+					%>
+					
 								<tr>
+								 <td style = "text-align:center"><%= list.get(i).getNoticeNo() %></td>
+								 <td style = "text-align:center"><a href="/Shoesgone/ndetail?noticeNo=<%= list.get(i).getNoticeNo() %>"><%= list.get(i).getNoticeTitle() %></a></td>
+								 <td style = "text-align:center"><%= list.get(i).getNoticeWriter() %></td>
+								 <td style = "text-align:center"><%= list.get(i).getNoticeDate() %></td>
+								 <td style = "text-align:center"><%= list.get(i).getNoticeReadcount() %></td> 
 								
-								<td class="number" style = "text-align:center">1</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
 								</tr>
-								<td class="number" style = "text-align:center">2</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목2</a></td>
-									<td class="name" style = "text-align:center">글쓴이이름2</td>
-									<td class="date" style = "text-align:center">2008-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">3</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">4</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">5</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
+								<% }
+								%>
 								<!-- -->
 								
 							</tbody>
 						</table><br><br>
-  <div class="page_wrap">
-   <div class="page_nation">
-      <a class="arrow pprev" href="#"></a>
-      <a class="arrow prev" href="#"></a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
-      <a href="#">10</a>
-      <a class="arrow next" href="#"></a>
-      <a class="arrow nnext" href="#"></a>
-   </div>
+
+<%-- 페이징 처리 --%>
+<div style="text-align:center;">
+	<% if(currentPage <= 1){ %>
+		[맨처음] &nbsp;
+	<% }else{ %>
+		<a href="/Shoesgone/nlist?page=1">[맨처음]</a> &nbsp;
+	<% } %>
+	<!-- 이전 페이지 그룹으로 이동 -->
+	<% if((currentPage - 10) < startPage && 
+			(currentPage - 10) > 1){ %>
+		<a href="/Shoesgone/nlist?page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+	<% }else{ %>
+		[이전그룹] &nbsp;
+	<% } %>
+	
+	<!-- 현재 페이지 그룹의 페이지 숫자 출력 -->
+	<% for(int p = startPage; p <= endPage; p++){ 
+			if(p == currentPage){
+	%>
+		 <font color="red" size="4"><b>[<%= p %>]</b></font>
+		<% }else{ %>
+			<a href="/Shoesgone/nlist?page=<%= p %>"><%= p %></a>
+	<% }} %>
+	
+	<!-- 다음 페이지 그룹으로 이동 -->
+	<% if((currentPage + 10) > endPage && 
+			(currentPage + 10) < maxPage){ %>
+		<a href="/Shoesgone/nlist?page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+	<% }else{ %>
+		[다음그룹] &nbsp;
+	<% } %>
+	
+	<% if(currentPage >= maxPage){ %>
+		[맨끝] &nbsp;
+	<% }else{ %>
+		<a href="/Shoesgone/nlist?page=<%= maxPage %>">[맨끝]</a> &nbsp;
+	<% } %>
 </div>
-						<!-- 리스트 게시판 끝-->
-					</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel"
-						aria-labelledby="profile-tab">
-						<table class="sub_news" border="0" cellpadding="7px"
-							summary="게시판의 글제목 리스트" align="center">
-							
-							<colgroup>
-								<col width="50" >
-								<col width="450">
-								<col width="150">
-								<col width="100">
-								<col width="100">
-							</colgroup>
-							<thead style="border-bottom:0.5px solid #444444 ; border-collapse : collapse;
-							"
-							>
-								<tr >
-								    <th scope="col" style = "text-align:center; font-color:orange;">번호</th>
-									<th scope="col" style = "text-align:center">제목</th>
-									<th scope="col" style = "text-align:center">작성자</th>
-									<th scope="col" style = "text-align:center">작성일</th>
-									<th scope="col" style = "text-align:center">조회수</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								
-								<td class="number" style = "text-align:center">1</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<td class="number" style = "text-align:center">2</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목2</a></td>
-									<td class="name" style = "text-align:center">profile</td>
-									<td class="date" style = "text-align:center">2008-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">3</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">4</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">5</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<!-- -->
-							</tbody>
-						</table><br><br>
-  <div class="page_wrap">
-   <div class="page_nation">
-      <a class="arrow pprev" href="#"></a>
-      <a class="arrow prev" href="#"></a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
-      <a href="#">10</a>
-      <a class="arrow next" href="#"></a>
-      <a class="arrow nnext" href="#"></a>
-   </div>
-</div>
-						<!-- 리스트 게시판 끝-->
-					</div>
-					
-					
-					<div class="tab-pane fade" id="contact" role="tabpanel"
-						aria-labelledby="contact-tab">
-						<table class="sub_news" border="0" cellpadding="7px"
-							summary="게시판의 글제목 리스트" align="center">
-							
-							<colgroup>
-								<col width="50" >
-								<col width="450">
-								<col width="150">
-								<col width="100">
-								<col width="100">
-							</colgroup>
-							<thead style="border-bottom:0.5px solid #444444 ; border-collapse : collapse;
-							"
-							>
-								<tr >
-								    <th scope="col" style = "text-align:center; font-color:orange;">번호</th>
-									<th scope="col" style = "text-align:center">제목</th>
-									<th scope="col" style = "text-align:center">작성자</th>
-									<th scope="col" style = "text-align:center">작성일</th>
-									<th scope="col" style = "text-align:center">조회수</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								
-								<td class="number" style = "text-align:center">1</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<td class="number" style = "text-align:center">2</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목2</a></td>
-									<td class="name" style = "text-align:center">글쓴이이름2</td>
-									<td class="date" style = "text-align:center">2008-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">3</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">4</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">5</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<tr>
-								
-								<td class="number" style = "text-align:center">6</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
-								</tr>
-								<!-- -->
-							</tbody>
-							
-						</table><br>
-						<center><a href="customerwrite.html"><input type="submit" value="작성하기" class="genric-btn primary small"></a>
-						</center>
-						
-						 <br>
-						  <div class="page_wrap">
-   <div class="page_nation">
-      <a class="arrow pprev" href="#"></a>
-      <a class="arrow prev" href="#"></a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
-      <a href="#">10</a>
-      <a class="arrow next" href="#"></a>
-      <a class="arrow nnext" href="#"></a>
-   </div>
-</div>
-						</div>
+				<hr>
+						<br><center><a href="/Shoesgone/contact.html" class="genric-btn primary">목록보기</a></center>
 							 
 						
 						
 						
-						</div>
-					<br><center><a href="#" class="genric-btn primary">목록보기</a></center>
+						</div></section>
+					
 						<!-- 리스트 게시판 끝-->
 					<div id="floatdiv">
 
@@ -740,7 +461,7 @@ border-top-right-radius: 10px;
 
 </div>
 
-</div>
+
 
 <!-- //floatMenu -->
 		</section>
