@@ -40,8 +40,34 @@ public class OrdersService {
 	// 주문 취소용 메소드
 	
 	// 배송현황 갱신용 메소드
+	public int updateProgress(Orders upProgress) {
+		Connection conn = getConnection();
+		int result = odao.updateProgress(conn, upProgress);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 	
 	// 배송지 변경용 메소드
+	public int updateOrder(Orders upOrder) {
+		Connection conn = getConnection();
+		int result = odao.updateOrder(conn, upOrder);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 	
 	// 전체 주문목록 갯수 출력용 메소드
 	public int getOrdersListCount() {

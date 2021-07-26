@@ -1,20 +1,20 @@
--- ÀüÃ¼ »óÇ° Á¶È¸(ÃÖ½Å µî·Ï ¼ø)
+-- ì „ì²´ ìƒí’ˆ ì¡°íšŒ(ìµœì‹  ë“±ë¡ ìˆœ)
 select * from item_reg_sta
 order by item_reg_sta_no desc;
 
--- ÀüÃ¼ »óÇ° Á¶È¸ + ¼øÀ§ Á¶È¸
+-- ì „ì²´ ìƒí’ˆ ì¡°íšŒ + ìˆœìœ„ ì¡°íšŒ
 select rownum rnum, item_reg_sta_no, user_no, user_id, item_no, shoes_size, reg_date, price
 from (select * from item_reg_sta
       order by item_reg_sta_no desc);
 
--- ÆäÀÌÂ¡ Ã³¸®¿ë ±¸¹®
+-- í˜ì´ì§• ì²˜ë¦¬ìš© êµ¬ë¬¸
 select * 
 from (select rownum rnum, item_reg_sta_no, user_no, user_id, item_no, shoes_size, reg_date, price
       from (select * from item_reg_sta
       order by item_reg_sta_no desc))
 where rnum >= 1 and rnum <= 10;
 
--- µî·Ï »óÇ° ¼ø¹ø Ã³¸®¿ë ½ÃÄö½º
+-- ë“±ë¡ ìƒí’ˆ ìˆœë²ˆ ì²˜ë¦¬ìš© ì‹œí€€ìŠ¤
 create sequence reg_seq
 start with 1
 INCREMENT BY 1
@@ -22,7 +22,7 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
--- item_reg_sta¿¡ ¹İ¼ÛÁÖ¼Ò ÄÃ·³ Ãß°¡
+-- item_reg_staì— ë°˜ì†¡ì£¼ì†Œ ì»¬ëŸ¼ ì¶”ê°€
 alter table item_reg_sta
 add (
     address varchar2(1000) not null
@@ -30,7 +30,7 @@ add (
 
 commit;
 
--- orders Å×ÀÌºí¿¡ Ãß°¡ ¿äÃ»»çÇ× ÄÃ·³ Ãß°¡
+-- orders í…Œì´ë¸”ì— ì¶”ê°€ ìš”ì²­ì‚¬í•­ ì»¬ëŸ¼ ì¶”ê°€
 alter table orders
 add (
     etc varchar2(3000)
