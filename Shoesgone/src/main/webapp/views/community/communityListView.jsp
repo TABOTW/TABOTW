@@ -107,7 +107,7 @@
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
 					<h1><% 
-						String category = request.getParameter("/communityListView.jsp?boardCategory=");
+						String category = request.getParameter("boardCategory");
 							if(category.equals("Best")) {
 								out.print("Best게시판");
 							}else if(category.equals("review")) {
