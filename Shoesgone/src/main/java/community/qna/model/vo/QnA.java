@@ -5,7 +5,7 @@ import java.sql.Date;
 public class QnA implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int QnANum;  //게시글번호
+	private int QnANo;  //게시글번호
 	private String QnAWriter; //게시글 작성자 아이디
 	private String QnATitle;  //게시글 제목
 	private String QnAContent;  //게시글 내용
@@ -38,11 +38,11 @@ public class QnA implements java.io.Serializable {
 		this.QnARenameFilename = QnARenameFilename;
 	}
 
-	public QnA(int QnANum, String QnAWriter, String QnATitle, String QnAContent, String QnAOriginalFilename,
+	public QnA(int QnANo, String QnAWriter, String QnATitle, String QnAContent, String QnAOriginalFilename,
 			String QnARenameFilename, int QnARef, int QnALevel, int QnAReplyRef, int QnAReplySeq,
 			int QnAReadCount, Date QnADate) {
 		super();
-		this.QnANum = QnANum;
+		this.QnANo = QnANo;
 		this.QnAWriter = QnAWriter;
 		this.QnATitle = QnATitle;
 		this.QnAContent = QnAContent;
@@ -56,12 +56,12 @@ public class QnA implements java.io.Serializable {
 		this.QnADate = QnADate;
 	}
 
-	public int getQnANum() {
-		return QnANum;
+	public int getQnANo() {
+		return QnANo;
 	}
 
-	public void setQnANum(int QnANum) {
-		this.QnANum = QnANum;
+	public void setQnANo(int QnANo) {
+		this.QnANo = QnANo;
 	}
 
 	public String getQnAWriter() {
@@ -158,7 +158,7 @@ public class QnA implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "QnA [QnANum=" + QnANum + ", QnAWriter=" + QnAWriter + ", QnATitle=" + QnATitle
+		return "QnA [QnANo=" + QnANo + ", QnAWriter=" + QnAWriter + ", QnATitle=" + QnATitle
 				+ ", QnAContent=" + QnAContent + ", QnAOriginalFilename=" + QnAOriginalFilename
 				+ ", QnARenameFilename=" + QnARenameFilename + ", QnARef=" + QnARef + ", QnALevel="
 				+ QnALevel + ", QnAReplyRef=" + QnAReplyRef + ", QnAReplySeq=" + QnAReplySeq

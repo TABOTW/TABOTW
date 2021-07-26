@@ -24,7 +24,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewOriginUpdateServlet
  */
-@WebServlet("/Revieworiginupdate")
+@WebServlet("/revieworiginupdate")
 public class ReviewOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class ReviewOriginUpdateServlet extends HttpServlet {
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Review_upfiles");
+						"/resources/community_upfiles/review");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -72,8 +72,8 @@ public class ReviewOriginUpdateServlet extends HttpServlet {
 		// mrequest 사용해야 함 (request 사용 못 함)
 		Review Review = new Review();
 
-		Review.setReviewNum(Integer.parseInt(
-				mrequest.getParameter("bnum")));
+		Review.setReviewNo(Integer.parseInt(
+				mrequest.getParameter("rNo")));
 		Review.setReviewTitle(mrequest.getParameter("title"));
 		Review.setReviewWriter(mrequest.getParameter("writer"));
 		Review.setReviewContent(mrequest.getParameter("content"));
@@ -176,14 +176,14 @@ public class ReviewOriginUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ Review.getReviewNum()+ "&page="
+			response.sendRedirect("reviewdetail?rNo=" 
+						+ Review.getReviewNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					Review.getReviewNum() + "번 게시 원글 수정 실패!");
+					Review.getReviewNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

@@ -33,17 +33,17 @@ public class BestDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
-		int BestNum = Integer.parseInt(request.getParameter("cnum"));
+		int BestNo = Integer.parseInt(request.getParameter("bNo"));
 		int BestLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new BestService().deleteBest(BestNum, BestLevel) > 0) {
+		if(new BestService().deleteBest(BestNo, BestLevel) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {
 				String savePath = request.getSession()
 						.getServletContext().getRealPath(
-								"/resources/community_upfiles");
+								"/resources/community_upfiles/best");
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
@@ -51,7 +51,7 @@ public class BestDeleteServlet extends HttpServlet {
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
-			request.setAttribute("message", BestNum + "번 글 삭제 실패.");
+			request.setAttribute("message", BestNo + "번 글 삭제 실패.");
 			view.forward(request, response);
 		}
 	}

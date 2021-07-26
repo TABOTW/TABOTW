@@ -33,7 +33,7 @@ public class BestDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 (원글, 댓글, 대댓글) 상세보기 처리용 컨트롤러
 		
-		int BestNum = Integer.parseInt(request.getParameter("bnum"));
+		int BestNo = Integer.parseInt(request.getParameter("bNo"));
 		
 		//페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
@@ -45,15 +45,15 @@ public class BestDetailServlet extends HttpServlet {
 		BestService bservice = new BestService();
 		
 		//해당 글에 대한 조회수 1증가 : update
-		bservice.addReadCount(BestNum);
+		bservice.addReadCount(BestNo);
 		
 		//해당 게시글 리턴 받음 : select
-		Best Best = bservice.selectBest(BestNum);
+		Best Best = bservice.selectBest(BestNo);
 		
 		RequestDispatcher view = null;
 		if(Best != null) {
 			view = request.getRequestDispatcher(
-					"views/Best/BestDetailView.jsp");
+					"views/community/communityDetailView.jsp");
 			request.setAttribute("Best", Best);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
@@ -61,7 +61,7 @@ public class BestDetailServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					BestNum + "번 게시글 상세조회 실패!");
+					BestNo + "번 게시글 상세조회 실패!");
 			view.forward(request, response);
 		}
 		

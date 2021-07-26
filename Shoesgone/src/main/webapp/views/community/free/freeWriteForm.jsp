@@ -151,9 +151,9 @@
 								</select>
 							</div>
 							<div class="button-group-area mt-40"> 
-							<a href="#" class="genric-btn primary circle arrow">취소<span class="lnr lnr-arrow-right"></span></a>
+							<a onclick="javascript:history.go(-1); return false;" class="genric-btn primary circle arrow">이전<span class="lnr lnr-arrow-right"></span></a>
 							<a type="submit" class="genric-btn primary circle arrow">등록<span class="lnr lnr-arrow-right"></span></a> 
-							<a onclick="javascript:history.go(-1); return false;" class="genric-btn primary circle arrow">목록<span class="lnr lnr-arrow-right"></span></a>
+							<a href="#" class="genric-btn primary circle arrow">목록<span class="lnr lnr-arrow-right"></span></a>
 							</div>
 							<div class="col-md-12 form-group p_star">
 								<input type="text" class="form-control" id="first" name="name">

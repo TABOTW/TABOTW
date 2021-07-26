@@ -17,16 +17,16 @@ public class QnAService {
 		close(conn);
 		return list;
 	}
-	public QnA selectQnA(int QnANum) {
+	public QnA selectQnA(int QnANo) {
 		Connection conn = getConnection();
-		QnA QnA = bdao.selectQnA(conn, QnANum);
+		QnA QnA = bdao.selectQnA(conn, QnANo);
 		close(conn);
 		return QnA;
 	}
 	
-	public void addReadCount(int QnANum) {
+	public void addReadCount(int QnANo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, QnANum);
+		int result = bdao.updateReadCount(conn, QnANo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -108,9 +108,9 @@ public class QnAService {
 		return result;
 	}
 
-	public int deleteQnA(int QnANum, int QnALevel) {
+	public int deleteQnA(int QnANo, int QnALevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteQnA(conn, QnANum, QnALevel);
+		int result = bdao.deleteQnA(conn, QnANo, QnALevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

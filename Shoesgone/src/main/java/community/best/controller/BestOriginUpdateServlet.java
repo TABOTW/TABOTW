@@ -58,8 +58,7 @@ public class BestOriginUpdateServlet extends HttpServlet {
 
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
-				.getServletContext().getRealPath(
-						"/resources/Best_upfiles");
+				.getServletContext().getRealPath("/resources/community_upfiles/best");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -72,8 +71,8 @@ public class BestOriginUpdateServlet extends HttpServlet {
 		// mrequest 사용해야 함 (request 사용 못 함)
 		Best Best = new Best();
 
-		Best.setBestNum(Integer.parseInt(
-				mrequest.getParameter("bnum")));
+		Best.setBestNo(Integer.parseInt(
+				mrequest.getParameter("bNo")));
 		Best.setBestTitle(mrequest.getParameter("title"));
 		Best.setBestWriter(mrequest.getParameter("writer"));
 		Best.setBestContent(mrequest.getParameter("content"));
@@ -176,14 +175,14 @@ public class BestOriginUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ Best.getBestNum()+ "&page="
+			response.sendRedirect("bestdetail?bNo=" 
+						+ Best.getBestNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					Best.getBestNum() + "번 게시 원글 수정 실패!");
+					Best.getBestNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

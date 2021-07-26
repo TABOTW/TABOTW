@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="community.free.model.vo.Free"%>
-<%
-	Free free = (Free)request.getAttribute("free");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="resources/img/fav.png">
+	<link rel="shortcut icon" href="../../resources/img/fav.png">
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
@@ -25,14 +21,14 @@
 	<!--
             CSS
             ============================================= -->
-	<link rel="stylesheet" href="resources/css/linearicons.css">
-	<link rel="stylesheet" href="resources/css/owl.carousel.css">
-	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/css/themify-icons.css">
-	<link rel="stylesheet" href="resources/css/nice-select.css">
-	<link rel="stylesheet" href="resources/css/nouislider.min.css">
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/css/main.css">
+	<link rel="stylesheet" href="../../resources/css/linearicons.css">
+	<link rel="stylesheet" href="../../resources/css/owl.carousel.css">
+	<link rel="stylesheet" href="../../resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../resources/css/themify-icons.css">
+	<link rel="stylesheet" href="../../resources/css/nice-select.css">
+	<link rel="stylesheet" href="../../resources/css/nouislider.min.css">
+	<link rel="stylesheet" href="../../resources/css/bootstrap.css">
+	<link rel="stylesheet" href="../../resources/css/main.css">
 </head>
 
 <body id="category">
@@ -43,7 +39,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="resources/img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="index.jsp"><img src="../../resources/img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -53,13 +49,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="blog.jsp">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-blog.jsp">Blog Details</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown active">
@@ -110,11 +106,11 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>리뷰 게시판</h1>
+					<h1>Best 게시판</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.jsp">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Community Category<span class="lnr lnr-arrow-right"></span></a>
-						<a href="review.jsp">리뷰 게시판</a>
+						<a href="Best.jsp">Best 게시판</a>
 					</nav>
 				</div>
 			</div>
@@ -127,84 +123,103 @@
 				<div class="sidebar-categories">
 					<div class="head">커뮤니티</div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/SProject/views/community/Best.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
 						</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/review.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/gallery.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>갤러리</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/free.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>자유게시판</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/QnA.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>Q&A</a>
 							</li>
 					</ul>
 				</div>
+				
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
-				<div class="order_details_table">
-				<h2 align="center"><%= free.getFreeNo() %>번 게시글 상세보기</h2>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							
-						</thead>
-						<tbody>
-							<tr><th width="120">제 목</th>
-							<%= free.getFreeTitle() %>
-							<tr>
-								<th width="120">작성자</th>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<th width="100">작성일</th>
-								</td>
-								<td>
-									<th width="80">조회수</th>
-								</td>
-							</tr>
-							
-
-							
-
-
-
-
-
-							</tbody>
-					</table>
+				<div class="filter-bar d-flex flex-wrap align-items-center">
+					<div class="mr-auto">
+					</div>
+					<div class="default-select" id="default-select">
+						<select style="display: none;">
+							<option value="1">정렬</option>
+							<option value="1">인기순↓</option>
+							<option value="1">인기순↑</option>
+							<option value="1">최신순↓</option>
+							<option value="1">최신순↑</option>
+							<option value="1">사진글</option>
+						</select><div class="nice-select" tabindex="0"><span class="current">정렬</span><ul class="list"><li data-value=" 1" class="option selected focus">정렬</li><li data-value="1" class="option">인기순↓</li><li data-value="1" class="option">인기순↑</li><li data-value="1" class="option">최신순↓</li><li data-value="1" class="option">최신순↑</li><li data-value="1" class="option">사진글</li></ul></div>
+					</div>
 				</div>
-			</div>
-				
-				
-				
-				
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
-				<div class="WritingWrp">
-					
-                	
-                </div>
+					<div class="progress-table-wrap">
+						<div class="progress-table">
+							<div class="table-head">
+								<div class="boardno">번호</div>
+								<div class="boardtitle">제목</div>
+								<div class="register">작성자</div>
+								<div class="registdate">작성일</div>
+								<div class="hitcount">조회수</div>
+							</div>
+
+							<div class="table-row">
+								<div class="boardno">1</div>
+								<div class="boardtitle">제목이 길어서 슬픈 밤</div>
+								<div class="register">작성식</div>
+								<div class="registdate">2021-07-11</div>
+								<div class="hitcount">645032</div>
+							</div>
+							<div class="table-row">
+								<div class="boardno">2</div>
+								<div class="boardtitle">asdf</div>
+								<div class="register">정혜인</div>
+								<div class="registdate">2021-06-20</div>
+								<div class="hitcount">2350</div>
+							</div>
+						</div>
+					</div>
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				
-				
-				
+				<div class="filter-bar d-flex flex-wrap align-items-center">
+					<div class="sorting mr-auto">
+						<select>
+							<option value="1">Show 5</option>
+							<option value="1">Show 10</option>
+							<option value="1">Show 20</option>
+						</select>
+					</div>
+					<div class="pagination">
+						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+						<a href="#" class="active">1</a>
+						<a href="#">2</a>
+						<a href="#">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+						<a href="#">9</a>
+						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</div>
+					<div class="button-group-area mt-40 ml-auto">
+						<a href="#" class="genric-btn primary default circle">글쓰기</a>
+					</div>
+				</div>
 				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
 
-	
-<br><br><br><br><br>
+	<br><br><br><br><br>
+
 	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
@@ -251,14 +266,14 @@
 					<div class="single-footer-widget mail-chimp">
 						<h6 class="mb-20">Instragram Feed</h6>
 						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="resources/img/i1.jpg" alt=""></li>
-							<li><img src="resources/img/i2.jpg" alt=""></li>
-							<li><img src="resources/img/i3.jpg" alt=""></li>
-							<li><img src="resources/img/i4.jpg" alt=""></li>
-							<li><img src="resources/img/i5.jpg" alt=""></li>
-							<li><img src="resources/img/i6.jpg" alt=""></li>
-							<li><img src="resources/img/i7.jpg" alt=""></li>
-							<li><img src="resources/img/i8.jpg" alt=""></li>
+							<li><img src="../../resources/img/i1.jpg" alt=""></li>
+							<li><img src="../../resources/img/i2.jpg" alt=""></li>
+							<li><img src="../../resources/img/i3.jpg" alt=""></li>
+							<li><img src="../../resources/img/i4.jpg" alt=""></li>
+							<li><img src="../../resources/img/i5.jpg" alt=""></li>
+							<li><img src="../../resources/img/i6.jpg" alt=""></li>
+							<li><img src="../../resources/img/i7.jpg" alt=""></li>
+							<li><img src="../../resources/img/i8.jpg" alt=""></li>
 						</ul>
 					</div>
 				</div>
@@ -354,19 +369,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-	<script src="resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="../../resources/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
-	<script src="resources/js/vendor/bootstrap.min.js"></script>
-	<script src="resources/js/jquery.ajaxchimp.min.js"></script>
-	<script src="resources/js/jquery.nice-select.min.js"></script>
-	<script src="resources/js/jquery.sticky.js"></script>
-	<script src="resources/js/nouislider.min.js"></script>
-	<script src="resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="../../resources/js/vendor/bootstrap.min.js"></script>
+	<script src="../../resources/js/jquery.ajaxchimp.min.js"></script>
+	<script src="../../resources/js/jquery.nice-select.min.js"></script>
+	<script src="../../resources/js/jquery.sticky.js"></script>
+	<script src="../../resources/js/nouislider.min.js"></script>
+	<script src="../../resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="../../resources/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="resources/js/gmaps.min.js"></script>
-	<script src="resources/js/main.js"></script>
+	<script src="../../resources/js/gmaps.min.js"></script>
+	<script src="../../resources/js/main.js"></script>
 </body>
 </html>

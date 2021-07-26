@@ -24,7 +24,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryOriginInsertServlet
  */
-@WebServlet("/Galleryinsert")
+@WebServlet("/galleryinsert")
 public class GalleryOriginInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -61,7 +61,7 @@ public class GalleryOriginInsertServlet extends HttpServlet {
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Gallery_upfiles");
+						"/resources/community_upfiles/gallery");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -140,7 +140,7 @@ public class GalleryOriginInsertServlet extends HttpServlet {
 
 		// 7. 받은 결과로 성공/실패 페이지 내보내기
 		if (result > 0) {
-			response.sendRedirect("blist?page=1");
+			response.sendRedirect("gallerylist?page=1");
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "새 게시 원글 등록 실패!");

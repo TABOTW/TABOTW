@@ -15,7 +15,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeDetailServlet
  */
-@WebServlet("/Freedetail")
+@WebServlet("/freedetail")
 public class FreeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class FreeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 (원글, 댓글, 대댓글) 상세보기 처리용 컨트롤러
 		
-		int FreeNum = Integer.parseInt(request.getParameter("bnum"));
+		int FreeNo = Integer.parseInt(request.getParameter("fNo"));
 		
 		//페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
@@ -45,16 +45,16 @@ public class FreeDetailServlet extends HttpServlet {
 		FreeService bservice = new FreeService();
 		
 		//해당 글에 대한 조회수 1증가 : update
-		bservice.addReadCount(FreeNum);
+		bservice.addReadCount(FreeNo);
 		
 		//해당 게시글 리턴 받음 : select
-		Free free = bservice.selectFree(FreeNum);
+		Free free = bservice.selectFree(FreeNo);
 		
 		RequestDispatcher view = null;
 		if(free != null) {
 			view = request.getRequestDispatcher(
 					//"views/Free/FreeDetailView.jsp");
-					"views/community/categoryBlinkForm2.jsp");
+					"views/community/communityDetailView.jsp");
 			request.setAttribute("free", free);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
@@ -62,7 +62,7 @@ public class FreeDetailServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					FreeNum + "번 게시글 상세조회 실패!");
+					FreeNo + "번 게시글 상세조회 실패!");
 			view.forward(request, response);
 		}
 		

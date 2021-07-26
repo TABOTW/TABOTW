@@ -17,16 +17,16 @@ public class GalleryService {
 		close(conn);
 		return list;
 	}
-	public Gallery selectGallery(int GalleryNum) {
+	public Gallery selectGallery(int GalleryNo) {
 		Connection conn = getConnection();
-		Gallery Gallery = bdao.selectGallery(conn, GalleryNum);
+		Gallery Gallery = bdao.selectGallery(conn, GalleryNo);
 		close(conn);
 		return Gallery;
 	}
 	
-	public void addReadCount(int GalleryNum) {
+	public void addReadCount(int GalleryNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, GalleryNum);
+		int result = bdao.updateReadCount(conn, GalleryNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -108,9 +108,9 @@ public class GalleryService {
 		return result;
 	}
 
-	public int deleteGallery(int GalleryNum, int GalleryLevel) {
+	public int deleteGallery(int GalleryNo, int GalleryLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteGallery(conn, GalleryNum, GalleryLevel);
+		int result = bdao.deleteGallery(conn, GalleryNo, GalleryLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

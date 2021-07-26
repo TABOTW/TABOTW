@@ -18,7 +18,7 @@ public class FreeDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Free_no, Free_TITLE, Free_READCOUNT "
+				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_READCOUNT "
 				+ "        FROM (SELECT * FROM Free "
 				+ "                WHERE Free_LEVEL = 1 "
 				+ "                ORDER BY Free_READCOUNT DESC)) "
@@ -31,7 +31,7 @@ public class FreeDao {
 			while(rset.next()) {
 				Free Free = new Free();
 				
-				Free.setFreeNo(rset.getInt("Free_no"));
+				Free.setFreeNo(rset.getInt("Free_n"));
 				Free.setFreeTitle(rset.getString("Free_title"));
 				Free.setFreeReadCount(rset.getInt("Free_readcount"));
 				
@@ -47,24 +47,24 @@ public class FreeDao {
 		
 		return list;
 	}
-	public Free selectFree(Connection conn, int FreeNo) {
+	public Free selectFree(Connection conn, int FreeNO) {
 		Free Free = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from Free "
-				+ "where Free_no = ?";
+				+ "where Free_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, FreeNo);
+			pstmt.setInt(1, FreeNO);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				Free = new Free();
 				
-				Free.setFreeNo(FreeNo);
+				Free.setFreeNo(FreeNO);
 				Free.setFreeTitle(rset.getString("Free_title"));
 				Free.setFreeWriter(rset.getString("Free_writer"));
 				Free.setFreeContent(rset.getString("Free_content"));
@@ -89,17 +89,17 @@ public class FreeDao {
 		return Free;
 	}
 
-	public int updateReadCount(Connection conn, int FreeNo) {
+	public int updateReadCount(Connection conn, int FreeNO) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		String query = "update Free set "
 				+ "Free_readcount = Free_readcount + 1 "
-				+ "where Free_no = ?";
+				+ "where Free_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, FreeNo);
+			pstmt.setInt(1, FreeNO);
 			
 			result = pstmt.executeUpdate();
 			
@@ -143,7 +143,7 @@ public class FreeDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Free_no, Free_TITLE, Free_WRITER,  "
+				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
 				+ "                Free_ORIGINAL_FILENAME, Free_RENAME_FILENAME,  "
 				+ "                Free_DATE, Free_LEVEL, Free_REF, Free_REPLY_REF,  "
 				+ "                Free_REPLY_SEQ, Free_READCOUNT, Free_content "
@@ -192,9 +192,9 @@ public class FreeDao {
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into Free values ("
-				+ "(select max(Free_no) + 1 from Free), "
+				+ "(select max(Free_NO) + 1 from Free), "
 				+ "?, ?, ?, ?, ?, sysdate, 1, "
-				+ "(select max(Free_no) + 1 from Free), "
+				+ "(select max(Free_NO) + 1 from Free), "
 				+ "null, default, default)";		
 		
 		try {
@@ -225,7 +225,7 @@ public class FreeDao {
 				+ "Free_content = ?, "
 				+ "Free_original_filename = ?, "
 				+ "Free_rename_filename = ? "
-				+ "where Free_no = ?";
+				+ "where Free_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -252,7 +252,7 @@ public class FreeDao {
 		String query = "update Free set "
 				+ "Free_title = ?, "
 				+ "Free_content = ? "
-				+ "where Free_no = ?";
+				+ "where Free_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -319,15 +319,15 @@ public class FreeDao {
 		
 		if(reply.getFreeLevel()  == 2) {
 			query = "insert into Free values ("
-				+ "(select max(Free_no) + 1 from Free), "
+				+ "(select max(Free_NO) + 1 from Free), "
 				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Free_no) + 1 from Free), "
+				+ "(select max(Free_NO) + 1 from Free), "
 				+ "?, default)";
 		}		
 		
 		if(reply.getFreeLevel()  == 3) {
 			query = "insert into Free values ("
-					+ "(select max(Free_no) + 1 from Free), "
+					+ "(select max(Free_NO) + 1 from Free), "
 					+ "?, ?, ?, null, null, sysdate, 3, ?, "
 					+ "?, ?, default)";
 		}
@@ -360,7 +360,7 @@ public class FreeDao {
 	}
 
 	public int deleteFree(Connection conn, 
-			int FreeNo, int FreeLevel) {
+			int FreeNO, int FreeLevel) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -378,12 +378,12 @@ public class FreeDao {
 		
 		if(FreeLevel == 3) {
 			//대댓글은 자기글만 삭제
-			query += "where Free_no = ?";
+			query += "where Free_NO = ?";
 		}
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, FreeNo);
+			pstmt.setInt(1, FreeNO);
 			
 			result = pstmt.executeUpdate();
 			

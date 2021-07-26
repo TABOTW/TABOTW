@@ -24,7 +24,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeOriginUpdateServlet
  */
-@WebServlet("/Freeoriginupdate")
+@WebServlet("/freeoriginupdate")
 public class FreeOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class FreeOriginUpdateServlet extends HttpServlet {
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Free_upfiles");
+						"/resources/community_upfiles/free");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -72,8 +72,8 @@ public class FreeOriginUpdateServlet extends HttpServlet {
 		// mrequest 사용해야 함 (request 사용 못 함)
 		Free Free = new Free();
 
-		Free.setFreeNum(Integer.parseInt(
-				mrequest.getParameter("bnum")));
+		Free.setFreeNo(Integer.parseInt(
+				mrequest.getParameter("fNo")));
 		Free.setFreeTitle(mrequest.getParameter("title"));
 		Free.setFreeWriter(mrequest.getParameter("writer"));
 		Free.setFreeContent(mrequest.getParameter("content"));
@@ -176,14 +176,14 @@ public class FreeOriginUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ Free.getFreeNum()+ "&page="
+			response.sendRedirect("freedetail?fNo=" 
+						+ Free.getFreeNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					Free.getFreeNum() + "번 게시 원글 수정 실패!");
+					Free.getFreeNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

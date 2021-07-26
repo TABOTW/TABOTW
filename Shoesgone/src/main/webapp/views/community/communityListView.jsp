@@ -134,19 +134,19 @@
 				<div class="sidebar-categories">
 					<div class="head">커뮤니티</div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/SProject/views/community/Best.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
 						</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/review.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/gallery.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>갤러리</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/free.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>자유게시판</a>
 							</li>
-						<li class="main-nav-list"><a href="/SProject/views/community/QnA.jsp" aria-expanded="false"><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>Q&A</a>
 							</li>
 					</ul>

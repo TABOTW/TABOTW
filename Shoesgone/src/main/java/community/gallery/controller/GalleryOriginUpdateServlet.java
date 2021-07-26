@@ -24,7 +24,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryOriginUpdateServlet
  */
-@WebServlet("/Galleryoriginupdate")
+@WebServlet("/galleryoriginupdate")
 public class GalleryOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class GalleryOriginUpdateServlet extends HttpServlet {
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Gallery_upfiles");
+						"/resources/community_upfiles/gallery");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -72,8 +72,8 @@ public class GalleryOriginUpdateServlet extends HttpServlet {
 		// mrequest 사용해야 함 (request 사용 못 함)
 		Gallery Gallery = new Gallery();
 
-		Gallery.setGalleryNum(Integer.parseInt(
-				mrequest.getParameter("bnum")));
+		Gallery.setGalleryNo(Integer.parseInt(
+				mrequest.getParameter("gNo")));
 		Gallery.setGalleryTitle(mrequest.getParameter("title"));
 		Gallery.setGalleryWriter(mrequest.getParameter("writer"));
 		Gallery.setGalleryContent(mrequest.getParameter("content"));
@@ -176,14 +176,14 @@ public class GalleryOriginUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ Gallery.getGalleryNum()+ "&page="
+			response.sendRedirect("gallerydetail?gNo=" 
+						+ Gallery.getGalleryNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					Gallery.getGalleryNum() + "번 게시 원글 수정 실패!");
+					Gallery.getGalleryNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

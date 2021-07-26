@@ -20,7 +20,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnATop3Servlet
  */
-@WebServlet("/QnAtop3")
+@WebServlet("/qnatop3")
 public class QnATop3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class QnATop3Servlet extends HttpServlet {
 		for(QnA QnA : list) {
 			JSONObject job = new JSONObject();
 			
-			job.put("bnum", QnA.getQnANum());
+			job.put("qNo", QnA.getQnANo());
 			job.put("btitle", URLEncoder.encode(QnA.getQnATitle(), "utf-8"));
 			job.put("rcount", QnA.getQnAReadCount());
 			

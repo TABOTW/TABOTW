@@ -15,7 +15,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAReplyInsertServlet
  */
-@WebServlet("/QnAreply")
+@WebServlet("/qnareply")
 public class QnAReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class QnAReplyInsertServlet extends HttpServlet {
 		
 		//2.
 		//댓글에 대한 원글 번호 추출
-		int QnANum = Integer.parseInt(request.getParameter("bnum"));
+		int QnANo = Integer.parseInt(request.getParameter("qNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		//댓글에 대한 값 추출해서 객체에 저장
@@ -49,7 +49,7 @@ public class QnAReplyInsertServlet extends HttpServlet {
 		
 		//원글 조회
 		QnAService bservice = new QnAService();
-		QnA origin = bservice.selectQnA(QnANum);
+		QnA origin = bservice.selectQnA(QnANo);
 		
 		//댓글에 QnA_level(댓글레벨), QnA_ref (참조 원글번호)
 		reply.setQnALevel(origin.getQnALevel() + 1);
@@ -72,12 +72,12 @@ public class QnAReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyQnA(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/blist?page=" + currentPage);
+			response.sendRedirect("/first/qnalist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					QnANum + "번 게시글 댓글 등록 실패!");
+					QnANo + "번 게시글 댓글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

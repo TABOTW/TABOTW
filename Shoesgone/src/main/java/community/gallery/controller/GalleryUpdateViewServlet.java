@@ -15,7 +15,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryUpdateViewServlet
  */
-@WebServlet("/Galleryupview")
+@WebServlet("/galleryupview")
 public class GalleryUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,10 +33,10 @@ public class GalleryUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
-		int GalleryNum = Integer.parseInt(request.getParameter("cnum"));
+		int GalleryNo = Integer.parseInt(request.getParameter("gNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Gallery Gallery = new GalleryService().selectGallery(GalleryNum);
+		Gallery Gallery = new GalleryService().selectGallery(GalleryNo);
 		
 		RequestDispatcher view = null;
 		if(Gallery != null) {
@@ -49,7 +49,7 @@ public class GalleryUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					GalleryNum + "번 게시글 수정페이지로 이동 실패!");
+					GalleryNo + "번 게시글 수정페이지로 이동 실패!");
 			view.forward(request, response);
 		}
 	}

@@ -15,7 +15,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAReplyUpdateServlet
  */
-@WebServlet("/QnAreplyupdate")
+@WebServlet("/qnareplyupdate")
 public class QnAReplyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,8 +36,8 @@ public class QnAReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		QnA reply = new QnA();
-		reply.setQnANum(Integer.parseInt(
-				request.getParameter("bnum")));
+		reply.setQnANo(Integer.parseInt(
+				request.getParameter("qNo")));
 		reply.setQnATitle(request.getParameter("title"));
 		reply.setQnAContent(request.getParameter("content"));
 		
@@ -50,14 +50,14 @@ public class QnAReplyUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ reply.getQnANum()+ "&page="
+			response.sendRedirect("qnadetail?qNo=" 
+						+ reply.getQnANo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					reply.getQnANum() + "번 게시 원글 수정 실패!");
+					reply.getQnANo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

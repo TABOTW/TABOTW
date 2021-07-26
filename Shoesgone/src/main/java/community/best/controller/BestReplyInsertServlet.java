@@ -37,7 +37,7 @@ public class BestReplyInsertServlet extends HttpServlet {
 		
 		//2.
 		//댓글에 대한 원글 번호 추출
-		int BestNum = Integer.parseInt(request.getParameter("bnum"));
+		int BestNo = Integer.parseInt(request.getParameter("bNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		//댓글에 대한 값 추출해서 객체에 저장
@@ -49,7 +49,7 @@ public class BestReplyInsertServlet extends HttpServlet {
 		
 		//원글 조회
 		BestService bservice = new BestService();
-		Best origin = bservice.selectBest(BestNum);
+		Best origin = bservice.selectBest(BestNo);
 		
 		//댓글에 Best_level(댓글레벨), Best_ref (참조 원글번호)
 		reply.setBestLevel(origin.getBestLevel() + 1);
@@ -72,12 +72,12 @@ public class BestReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyBest(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/blist?page=" + currentPage);
+			response.sendRedirect("/first/bestlist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					BestNum + "번 게시글 댓글 등록 실패!");
+					BestNo + "번 게시글 댓글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

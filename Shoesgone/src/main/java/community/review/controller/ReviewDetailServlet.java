@@ -15,7 +15,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewDetailServlet
  */
-@WebServlet("/Reviewdetail")
+@WebServlet("/reviewdetail")
 public class ReviewDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class ReviewDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 (원글, 댓글, 대댓글) 상세보기 처리용 컨트롤러
 		
-		int ReviewNum = Integer.parseInt(request.getParameter("bnum"));
+		int ReviewNo = Integer.parseInt(request.getParameter("rNo"));
 		
 		//페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
@@ -45,15 +45,15 @@ public class ReviewDetailServlet extends HttpServlet {
 		ReviewService bservice = new ReviewService();
 		
 		//해당 글에 대한 조회수 1증가 : update
-		bservice.addReadCount(ReviewNum);
+		bservice.addReadCount(ReviewNo);
 		
 		//해당 게시글 리턴 받음 : select
-		Review Review = bservice.selectReview(ReviewNum);
+		Review Review = bservice.selectReview(ReviewNo);
 		
 		RequestDispatcher view = null;
 		if(Review != null) {
 			view = request.getRequestDispatcher(
-					"views/Review/ReviewDetailView.jsp");
+					"views/community/communityDetailView.jsp");
 			request.setAttribute("Review", Review);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
@@ -61,7 +61,7 @@ public class ReviewDetailServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					ReviewNum + "번 게시글 상세조회 실패!");
+					ReviewNo + "번 게시글 상세조회 실패!");
 			view.forward(request, response);
 		}
 		

@@ -18,7 +18,7 @@ public class GalleryDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Gallery_NUM, Gallery_TITLE, Gallery_READCOUNT "
+				+ "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_READCOUNT "
 				+ "        FROM (SELECT * FROM Gallery "
 				+ "                WHERE Gallery_LEVEL = 1 "
 				+ "                ORDER BY Gallery_READCOUNT DESC)) "
@@ -31,7 +31,7 @@ public class GalleryDao {
 			while(rset.next()) {
 				Gallery Gallery = new Gallery();
 				
-				Gallery.setGalleryNum(rset.getInt("Gallery_num"));
+				Gallery.setGalleryNo(rset.getInt("Gallery_No"));
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
 				Gallery.setGalleryReadCount(rset.getInt("Gallery_readcount"));
 				
@@ -47,24 +47,24 @@ public class GalleryDao {
 		
 		return list;
 	}
-	public Gallery selectGallery(Connection conn, int GalleryNum) {
+	public Gallery selectGallery(Connection conn, int GalleryNo) {
 		Gallery Gallery = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from Gallery "
-				+ "where Gallery_num = ?";
+				+ "where Gallery_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, GalleryNum);
+			pstmt.setInt(1, GalleryNo);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				Gallery = new Gallery();
 				
-				Gallery.setGalleryNum(GalleryNum);
+				Gallery.setGalleryNo(GalleryNo);
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
 				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
 				Gallery.setGalleryContent(rset.getString("Gallery_content"));
@@ -88,17 +88,17 @@ public class GalleryDao {
 		return Gallery;
 	}
 
-	public int updateReadCount(Connection conn, int GalleryNum) {
+	public int updateReadCount(Connection conn, int GalleryNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		String query = "update Gallery set "
 				+ "Gallery_readcount = Gallery_readcount + 1 "
-				+ "where Gallery_num = ?";
+				+ "where Gallery_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, GalleryNum);
+			pstmt.setInt(1, GalleryNo);
 			
 			result = pstmt.executeUpdate();
 			
@@ -142,14 +142,14 @@ public class GalleryDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Gallery_NUM, Gallery_TITLE, Gallery_WRITER,  "
+				+ "FROM (SELECT ROWNo RNo, Gallery_No, Gallery_TITLE, Gallery_WRITER,  "
 				+ "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  "
 				+ "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
 				+ "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content "
 				+ "        FROM (SELECT * FROM Gallery "
 				+ "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, "
 				+ "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "WHERE RNo >= ? AND RNo <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -161,7 +161,7 @@ public class GalleryDao {
 			while(rset.next()) {
 				Gallery Gallery  = new Gallery();
 				
-				Gallery.setGalleryNum(rset.getInt("Gallery_num"));
+				Gallery.setGalleryNo(rset.getInt("Gallery_No"));
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
 				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
 				Gallery.setGalleryContent(rset.getString("Gallery_content"));				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
@@ -191,9 +191,9 @@ public class GalleryDao {
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into Gallery values ("
-				+ "(select max(Gallery_num) + 1 from Gallery), "
+				+ "(select max(Gallery_No) + 1 from Gallery), "
 				+ "?, ?, ?, ?, ?, sysdate, 1, "
-				+ "(select max(Gallery_num) + 1 from Gallery), "
+				+ "(select max(Gallery_No) + 1 from Gallery), "
 				+ "null, default, default)";		
 		
 		try {
@@ -224,7 +224,7 @@ public class GalleryDao {
 				+ "Gallery_content = ?, "
 				+ "Gallery_original_filename = ?, "
 				+ "Gallery_rename_filename = ? "
-				+ "where Gallery_num = ?";
+				+ "where Gallery_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -232,7 +232,7 @@ public class GalleryDao {
 			pstmt.setString(2, origin.getGalleryContent());
 			pstmt.setString(3, origin.getGalleryOriginalFilename());
 			pstmt.setString(4, origin.getGalleryRenameFilename());
-			pstmt.setInt(5, origin.getGalleryNum());
+			pstmt.setInt(5, origin.getGalleryNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -251,13 +251,13 @@ public class GalleryDao {
 		String query = "update Gallery set "
 				+ "Gallery_title = ?, "
 				+ "Gallery_content = ? "
-				+ "where Gallery_num = ?";
+				+ "where Gallery_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getGalleryTitle());
 			pstmt.setString(2, reply.getGalleryContent());
-			pstmt.setInt(3, reply.getGalleryNum());
+			pstmt.setInt(3, reply.getGalleryNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -318,15 +318,15 @@ public class GalleryDao {
 		
 		if(reply.getGalleryLevel()  == 2) {
 			query = "insert into Gallery values ("
-				+ "(select max(Gallery_num) + 1 from Gallery), "
+				+ "(select max(Gallery_No) + 1 from Gallery), "
 				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Gallery_num) + 1 from Gallery), "
+				+ "(select max(Gallery_No) + 1 from Gallery), "
 				+ "?, default)";
 		}		
 		
 		if(reply.getGalleryLevel()  == 3) {
 			query = "insert into Gallery values ("
-					+ "(select max(Gallery_num) + 1 from Gallery), "
+					+ "(select max(Gallery_No) + 1 from Gallery), "
 					+ "?, ?, ?, null, null, sysdate, 3, ?, "
 					+ "?, ?, default)";
 		}
@@ -359,7 +359,7 @@ public class GalleryDao {
 	}
 
 	public int deleteGallery(Connection conn, 
-			int GalleryNum, int GalleryLevel) {
+			int GalleryNo, int GalleryLevel) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -377,12 +377,12 @@ public class GalleryDao {
 		
 		if(GalleryLevel == 3) {
 			//대댓글은 자기글만 삭제
-			query += "where Gallery_num = ?";
+			query += "where Gallery_No = ?";
 		}
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, GalleryNum);
+			pstmt.setInt(1, GalleryNo);
 			
 			result = pstmt.executeUpdate();
 			

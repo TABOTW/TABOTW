@@ -16,7 +16,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeListServlet
  */
-@WebServlet("/Freelist")
+@WebServlet("/freelist")
 public class FreeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -15,7 +15,7 @@ import community.gallery.model.service.GalleryService;
 /**
  * Servlet implementation class GalleryDeleteServlet
  */
-@WebServlet("/Gallerydelete")
+@WebServlet("/gallerydelete")
 public class GalleryDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,25 +33,25 @@ public class GalleryDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
-		int GalleryNum = Integer.parseInt(request.getParameter("cnum"));
+		int GalleryNo = Integer.parseInt(request.getParameter("gNo"));
 		int GalleryLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new GalleryService().deleteGallery(GalleryNum, GalleryLevel) > 0) {
+		if(new GalleryService().deleteGallery(GalleryNo, GalleryLevel) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {
 				String savePath = request.getSession()
 						.getServletContext().getRealPath(
-								"/resources/community_upfiles");
+								"/resources/community_upfiles/gallery");
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
-			response.sendRedirect("/first/clist?page=1");
+			response.sendRedirect("/first/gallerylist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
-			request.setAttribute("message", GalleryNum + "번 글 삭제 실패.");
+			request.setAttribute("message", GalleryNo + "번 글 삭제 실패.");
 			view.forward(request, response);
 		}
 	}

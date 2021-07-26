@@ -18,7 +18,7 @@ public class QnADao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, QnA_NUM, QnA_TITLE, QnA_READCOUNT "
+				+ "FROM (SELECT ROWNUM RNUM, QnA_No, QnA_TITLE, QnA_READCOUNT "
 				+ "        FROM (SELECT * FROM QnA "
 				+ "                WHERE QnA_LEVEL = 1 "
 				+ "                ORDER BY QnA_READCOUNT DESC)) "
@@ -31,7 +31,7 @@ public class QnADao {
 			while(rset.next()) {
 				QnA QnA = new QnA();
 				
-				QnA.setQnANum(rset.getInt("QnA_num"));
+				QnA.setQnANo(rset.getInt("QnA_No"));
 				QnA.setQnATitle(rset.getString("QnA_title"));
 				QnA.setQnAReadCount(rset.getInt("QnA_readcount"));
 				
@@ -47,24 +47,24 @@ public class QnADao {
 		
 		return list;
 	}
-	public QnA selectQnA(Connection conn, int QnANum) {
+	public QnA selectQnA(Connection conn, int QnANo) {
 		QnA QnA = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from QnA "
-				+ "where QnA_num = ?";
+				+ "where QnA_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, QnANum);
+			pstmt.setInt(1, QnANo);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				QnA = new QnA();
 				
-				QnA.setQnANum(QnANum);
+				QnA.setQnANo(QnANo);
 				QnA.setQnATitle(rset.getString("QnA_title"));
 				QnA.setQnAWriter(rset.getString("QnA_writer"));
 				QnA.setQnAContent(rset.getString("QnA_content"));
@@ -88,17 +88,17 @@ public class QnADao {
 		return QnA;
 	}
 
-	public int updateReadCount(Connection conn, int QnANum) {
+	public int updateReadCount(Connection conn, int QnANo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		String query = "update QnA set "
 				+ "QnA_readcount = QnA_readcount + 1 "
-				+ "where QnA_num = ?";
+				+ "where QnA_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, QnANum);
+			pstmt.setInt(1, QnANo);
 			
 			result = pstmt.executeUpdate();
 			
@@ -142,14 +142,14 @@ public class QnADao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, QnA_NUM, QnA_TITLE, QnA_WRITER,  "
+				+ "FROM (SELECT ROWNo RNo, QnA_No, QnA_TITLE, QnA_WRITER,  "
 				+ "                QnA_ORIGINAL_FILENAME, QnA_RENAME_FILENAME,  "
 				+ "                QnA_DATE, QnA_LEVEL, QnA_REF, QnA_REPLY_REF,  "
 				+ "                QnA_REPLY_SEQ, QnA_READCOUNT, QnA_content "
 				+ "        FROM (SELECT * FROM QnA "
 				+ "                ORDER BY QnA_REF DESC, QnA_REPLY_REF DESC, "
 				+ "                          QnA_LEVEL ASC, QnA_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "WHERE RNo >= ? AND RNo <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -161,7 +161,7 @@ public class QnADao {
 			while(rset.next()) {
 				QnA QnA  = new QnA();
 				
-				QnA.setQnANum(rset.getInt("QnA_num"));
+				QnA.setQnANo(rset.getInt("QnA_No"));
 				QnA.setQnATitle(rset.getString("QnA_title"));
 				QnA.setQnAWriter(rset.getString("QnA_writer"));
 				QnA.setQnAContent(rset.getString("QnA_content"));				QnA.setQnADate(rset.getDate("QnA_date"));
@@ -191,9 +191,9 @@ public class QnADao {
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into QnA values ("
-				+ "(select max(QnA_num) + 1 from QnA), "
+				+ "(select max(QnA_No) + 1 from QnA), "
 				+ "?, ?, ?, ?, ?, sysdate, 1, "
-				+ "(select max(QnA_num) + 1 from QnA), "
+				+ "(select max(QnA_No) + 1 from QnA), "
 				+ "null, default, default)";		
 		
 		try {
@@ -224,7 +224,7 @@ public class QnADao {
 				+ "QnA_content = ?, "
 				+ "QnA_original_filename = ?, "
 				+ "QnA_rename_filename = ? "
-				+ "where QnA_num = ?";
+				+ "where QnA_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -232,7 +232,7 @@ public class QnADao {
 			pstmt.setString(2, origin.getQnAContent());
 			pstmt.setString(3, origin.getQnAOriginalFilename());
 			pstmt.setString(4, origin.getQnARenameFilename());
-			pstmt.setInt(5, origin.getQnANum());
+			pstmt.setInt(5, origin.getQnANo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -251,13 +251,13 @@ public class QnADao {
 		String query = "update QnA set "
 				+ "QnA_title = ?, "
 				+ "QnA_content = ? "
-				+ "where QnA_num = ?";
+				+ "where QnA_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getQnATitle());
 			pstmt.setString(2, reply.getQnAContent());
-			pstmt.setInt(3, reply.getQnANum());
+			pstmt.setInt(3, reply.getQnANo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -318,15 +318,15 @@ public class QnADao {
 		
 		if(reply.getQnALevel()  == 2) {
 			query = "insert into QnA values ("
-				+ "(select max(QnA_num) + 1 from QnA), "
+				+ "(select max(QnA_No) + 1 from QnA), "
 				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(QnA_num) + 1 from QnA), "
+				+ "(select max(QnA_No) + 1 from QnA), "
 				+ "?, default)";
 		}		
 		
 		if(reply.getQnALevel()  == 3) {
 			query = "insert into QnA values ("
-					+ "(select max(QnA_num) + 1 from QnA), "
+					+ "(select max(QnA_No) + 1 from QnA), "
 					+ "?, ?, ?, null, null, sysdate, 3, ?, "
 					+ "?, ?, default)";
 		}
@@ -359,7 +359,7 @@ public class QnADao {
 	}
 
 	public int deleteQnA(Connection conn, 
-			int QnANum, int QnALevel) {
+			int QnANo, int QnALevel) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -377,12 +377,12 @@ public class QnADao {
 		
 		if(QnALevel == 3) {
 			//대댓글은 자기글만 삭제
-			query += "where QnA_num = ?";
+			query += "where QnA_No = ?";
 		}
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, QnANum);
+			pstmt.setInt(1, QnANo);
 			
 			result = pstmt.executeUpdate();
 			

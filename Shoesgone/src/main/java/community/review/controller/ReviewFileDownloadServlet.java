@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ReviewFileDownloadServlet
  */
-@WebServlet("/Reviewfdown")
+@WebServlet("/reviewfdown")
 public class ReviewFileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,7 @@ public class ReviewFileDownloadServlet extends HttpServlet {
 		// 현재 파일이 저장된 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Review_upfiles");
+						"/resources/community_upfiles/review");
 
 		// 전송온 파일명에 한글이 있다면 인코딩처리함
 		request.setCharacterEncoding("utf-8");

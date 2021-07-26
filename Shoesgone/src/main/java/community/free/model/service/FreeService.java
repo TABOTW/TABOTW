@@ -17,16 +17,16 @@ public class FreeService {
 		close(conn);
 		return list;
 	}
-	public Free selectFree(int FreeNum) {
+	public Free selectFree(int FreeNo) {
 		Connection conn = getConnection();
-		Free Free = bdao.selectFree(conn, FreeNum);
+		Free Free = bdao.selectFree(conn, FreeNo);
 		close(conn);
 		return Free;
 	}
 	
-	public void addReadCount(int FreeNum) {
+	public void addReadCount(int FreeNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, FreeNum);
+		int result = bdao.updateReadCount(conn, FreeNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -108,9 +108,9 @@ public class FreeService {
 		return result;
 	}
 
-	public int deleteFree(int FreeNum, int FreeLevel) {
+	public int deleteFree(int FreeNo, int FreeLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteFree(conn, FreeNum, FreeLevel);
+		int result = bdao.deleteFree(conn, FreeNo, FreeLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

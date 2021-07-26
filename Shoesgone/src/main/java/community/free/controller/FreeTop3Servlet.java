@@ -20,7 +20,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeTop3Servlet
  */
-@WebServlet("/Freetop3")
+@WebServlet("/freetop3")
 public class FreeTop3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class FreeTop3Servlet extends HttpServlet {
 		for(Free Free : list) {
 			JSONObject job = new JSONObject();
 			
-			job.put("bnum", Free.getFreeNum());
+			job.put("fNo", Free.getFreeNo());
 			job.put("btitle", URLEncoder.encode(Free.getFreeTitle(), "utf-8"));
 			job.put("rcount", Free.getFreeReadCount());
 			

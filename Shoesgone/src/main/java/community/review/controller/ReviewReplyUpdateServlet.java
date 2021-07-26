@@ -15,7 +15,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewReplyUpdateServlet
  */
-@WebServlet("/Reviewreplyupdate")
+@WebServlet("/reviewreplyupdate")
 public class ReviewReplyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,8 +36,8 @@ public class ReviewReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		Review reply = new Review();
-		reply.setReviewNum(Integer.parseInt(
-				request.getParameter("bnum")));
+		reply.setReviewNo(Integer.parseInt(
+				request.getParameter("rNo")));
 		reply.setReviewTitle(request.getParameter("title"));
 		reply.setReviewContent(request.getParameter("content"));
 		
@@ -50,14 +50,14 @@ public class ReviewReplyUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ reply.getReviewNum()+ "&page="
+			response.sendRedirect("reviewdetail?rNo=" 
+						+ reply.getReviewNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					reply.getReviewNum() + "번 게시 원글 수정 실패!");
+					reply.getReviewNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

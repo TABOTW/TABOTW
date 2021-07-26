@@ -15,7 +15,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeReplyUpdateServlet
  */
-@WebServlet("/Freereplyupdate")
+@WebServlet("/freereplyupdate")
 public class FreeReplyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,8 +36,8 @@ public class FreeReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		Free reply = new Free();
-		reply.setFreeNum(Integer.parseInt(
-				request.getParameter("bnum")));
+		reply.setFreeNo(Integer.parseInt(
+				request.getParameter("fNo")));
 		reply.setFreeTitle(request.getParameter("title"));
 		reply.setFreeContent(request.getParameter("content"));
 		
@@ -50,14 +50,14 @@ public class FreeReplyUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ reply.getFreeNum()+ "&page="
+			response.sendRedirect("freedetail?fNo=" 
+						+ reply.getFreeNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					reply.getFreeNum() + "번 게시 원글 수정 실패!");
+					reply.getFreeNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

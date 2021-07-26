@@ -24,7 +24,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAOriginUpdateServlet
  */
-@WebServlet("/QnAoriginupdate")
+@WebServlet("/qnaoriginupdate")
 public class QnAOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class QnAOriginUpdateServlet extends HttpServlet {
 		// 3. 업로드되는 파일의 저장 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/QnA_upfiles");
+						"/resources/community_upfiles/qna");
 
 		// 4. request 를 MultipartRequest 로 변환해야 함
 		// cos.jar 가 제공하는 클래스를 사용
@@ -72,8 +72,8 @@ public class QnAOriginUpdateServlet extends HttpServlet {
 		// mrequest 사용해야 함 (request 사용 못 함)
 		QnA QnA = new QnA();
 
-		QnA.setQnANum(Integer.parseInt(
-				mrequest.getParameter("bnum")));
+		QnA.setQnANo(Integer.parseInt(
+				mrequest.getParameter("qNo")));
 		QnA.setQnATitle(mrequest.getParameter("title"));
 		QnA.setQnAWriter(mrequest.getParameter("writer"));
 		QnA.setQnAContent(mrequest.getParameter("content"));
@@ -176,14 +176,14 @@ public class QnAOriginUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ QnA.getQnANum()+ "&page="
+			response.sendRedirect("qnadetail?qNo=" 
+						+ QnA.getQnANo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					QnA.getQnANum() + "번 게시 원글 수정 실패!");
+					QnA.getQnANo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

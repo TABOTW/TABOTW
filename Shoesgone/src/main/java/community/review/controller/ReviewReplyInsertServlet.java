@@ -15,7 +15,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewReplyInsertServlet
  */
-@WebServlet("/Reviewreply")
+@WebServlet("/reviewreply")
 public class ReviewReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class ReviewReplyInsertServlet extends HttpServlet {
 		
 		//2.
 		//댓글에 대한 원글 번호 추출
-		int ReviewNum = Integer.parseInt(request.getParameter("bnum"));
+		int ReviewNo = Integer.parseInt(request.getParameter("rNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		//댓글에 대한 값 추출해서 객체에 저장
@@ -49,7 +49,7 @@ public class ReviewReplyInsertServlet extends HttpServlet {
 		
 		//원글 조회
 		ReviewService bservice = new ReviewService();
-		Review origin = bservice.selectReview(ReviewNum);
+		Review origin = bservice.selectReview(ReviewNo);
 		
 		//댓글에 Review_level(댓글레벨), Review_ref (참조 원글번호)
 		reply.setReviewLevel(origin.getReviewLevel() + 1);
@@ -72,12 +72,12 @@ public class ReviewReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyReview(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/blist?page=" + currentPage);
+			response.sendRedirect("/first/reviewlist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					ReviewNum + "번 게시글 댓글 등록 실패!");
+					ReviewNo + "번 게시글 댓글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

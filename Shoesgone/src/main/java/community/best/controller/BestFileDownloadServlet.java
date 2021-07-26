@@ -37,7 +37,7 @@ public class BestFileDownloadServlet extends HttpServlet {
 		// 현재 파일이 저장된 폴더 지정
 		String savePath = request.getSession()
 				.getServletContext().getRealPath(
-						"/resources/Best_upfiles");
+						"/resources/community_upfiles/best");
 
 		// 전송온 파일명에 한글이 있다면 인코딩처리함
 		request.setCharacterEncoding("utf-8");

@@ -18,7 +18,7 @@ public class BestDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Best_NUM, Best_TITLE, Best_READCOUNT "
+				+ "FROM (SELECT ROWNUM RNUM, Best_No, Best_TITLE, Best_READCOUNT "
 				+ "        FROM (SELECT * FROM Best "
 				+ "                WHERE Best_LEVEL = 1 "
 				+ "                ORDER BY Best_READCOUNT DESC)) "
@@ -31,7 +31,7 @@ public class BestDao {
 			while(rset.next()) {
 				Best Best = new Best();
 				
-				Best.setBestNum(rset.getInt("Best_num"));
+				Best.setBestNo(rset.getInt("Best_No"));
 				Best.setBestTitle(rset.getString("Best_title"));
 				Best.setBestReadCount(rset.getInt("Best_readcount"));
 				
@@ -47,24 +47,24 @@ public class BestDao {
 		
 		return list;
 	}
-	public Best selectBest(Connection conn, int BestNum) {
+	public Best selectBest(Connection conn, int BestNo) {
 		Best Best = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from Best "
-				+ "where Best_num = ?";
+				+ "where Best_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, BestNum);
+			pstmt.setInt(1, BestNo);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				Best = new Best();
 				
-				Best.setBestNum(BestNum);
+				Best.setBestNo(BestNo);
 				Best.setBestTitle(rset.getString("Best_title"));
 				Best.setBestWriter(rset.getString("Best_writer"));
 				Best.setBestContent(rset.getString("Best_content"));
@@ -88,17 +88,17 @@ public class BestDao {
 		return Best;
 	}
 
-	public int updateReadCount(Connection conn, int BestNum) {
+	public int updateReadCount(Connection conn, int BestNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		String query = "update Best set "
 				+ "Best_readcount = Best_readcount + 1 "
-				+ "where Best_num = ?";
+				+ "where Best_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, BestNum);
+			pstmt.setInt(1, BestNo);
 			
 			result = pstmt.executeUpdate();
 			
@@ -142,14 +142,14 @@ public class BestDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNUM RNUM, Best_NUM, Best_TITLE, Best_WRITER,  "
+				+ "FROM (SELECT ROWNo RNo, Best_No, Best_TITLE, Best_WRITER,  "
 				+ "                Best_ORIGINAL_FILENAME, Best_RENAME_FILENAME,  "
 				+ "                Best_DATE, Best_LEVEL, Best_REF, Best_REPLY_REF,  "
 				+ "                Best_REPLY_SEQ, Best_READCOUNT, Best_content "
 				+ "        FROM (SELECT * FROM Best "
 				+ "                ORDER BY Best_REF DESC, Best_REPLY_REF DESC, "
 				+ "                          Best_LEVEL ASC, Best_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "WHERE RNo >= ? AND RNo <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -161,7 +161,7 @@ public class BestDao {
 			while(rset.next()) {
 				Best Best  = new Best();
 				
-				Best.setBestNum(rset.getInt("Best_num"));
+				Best.setBestNo(rset.getInt("Best_No"));
 				Best.setBestTitle(rset.getString("Best_title"));
 				Best.setBestWriter(rset.getString("Best_writer"));
 				Best.setBestContent(rset.getString("Best_content"));				Best.setBestDate(rset.getDate("Best_date"));
@@ -191,9 +191,9 @@ public class BestDao {
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into Best values ("
-				+ "(select max(Best_num) + 1 from Best), "
+				+ "(select max(Best_No) + 1 from Best), "
 				+ "?, ?, ?, ?, ?, sysdate, 1, "
-				+ "(select max(Best_num) + 1 from Best), "
+				+ "(select max(Best_No) + 1 from Best), "
 				+ "null, default, default)";		
 		
 		try {
@@ -224,7 +224,7 @@ public class BestDao {
 				+ "Best_content = ?, "
 				+ "Best_original_filename = ?, "
 				+ "Best_rename_filename = ? "
-				+ "where Best_num = ?";
+				+ "where Best_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -232,7 +232,7 @@ public class BestDao {
 			pstmt.setString(2, origin.getBestContent());
 			pstmt.setString(3, origin.getBestOriginalFilename());
 			pstmt.setString(4, origin.getBestRenameFilename());
-			pstmt.setInt(5, origin.getBestNum());
+			pstmt.setInt(5, origin.getBestNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -251,13 +251,13 @@ public class BestDao {
 		String query = "update Best set "
 				+ "Best_title = ?, "
 				+ "Best_content = ? "
-				+ "where Best_num = ?";
+				+ "where Best_No = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getBestTitle());
 			pstmt.setString(2, reply.getBestContent());
-			pstmt.setInt(3, reply.getBestNum());
+			pstmt.setInt(3, reply.getBestNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -318,15 +318,15 @@ public class BestDao {
 		
 		if(reply.getBestLevel()  == 2) {
 			query = "insert into Best values ("
-				+ "(select max(Best_num) + 1 from Best), "
+				+ "(select max(Best_No) + 1 from Best), "
 				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Best_num) + 1 from Best), "
+				+ "(select max(Best_No) + 1 from Best), "
 				+ "?, default)";
 		}		
 		
 		if(reply.getBestLevel()  == 3) {
 			query = "insert into Best values ("
-					+ "(select max(Best_num) + 1 from Best), "
+					+ "(select max(Best_No) + 1 from Best), "
 					+ "?, ?, ?, null, null, sysdate, 3, ?, "
 					+ "?, ?, default)";
 		}
@@ -359,7 +359,7 @@ public class BestDao {
 	}
 
 	public int deleteBest(Connection conn, 
-			int BestNum, int BestLevel) {
+			int BestNo, int BestLevel) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -377,12 +377,12 @@ public class BestDao {
 		
 		if(BestLevel == 3) {
 			//대댓글은 자기글만 삭제
-			query += "where Best_num = ?";
+			query += "where Best_No = ?";
 		}
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, BestNum);
+			pstmt.setInt(1, BestNo);
 			
 			result = pstmt.executeUpdate();
 			

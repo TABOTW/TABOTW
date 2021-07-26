@@ -20,7 +20,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryTop3Servlet
  */
-@WebServlet("/Gallerytop3")
+@WebServlet("/gallerytop3")
 public class GalleryTop3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class GalleryTop3Servlet extends HttpServlet {
 		for(Gallery Gallery : list) {
 			JSONObject job = new JSONObject();
 			
-			job.put("bnum", Gallery.getGalleryNum());
+			job.put("gNo", Gallery.getGalleryNo());
 			job.put("btitle", URLEncoder.encode(Gallery.getGalleryTitle(), "utf-8"));
 			job.put("rcount", Gallery.getGalleryReadCount());
 			

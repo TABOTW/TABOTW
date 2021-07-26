@@ -17,16 +17,16 @@ public class BestService {
 		close(conn);
 		return list;
 	}
-	public Best selectBest(int BestNum) {
+	public Best selectBest(int BestNo) {
 		Connection conn = getConnection();
-		Best Best = bdao.selectBest(conn, BestNum);
+		Best Best = bdao.selectBest(conn, BestNo);
 		close(conn);
 		return Best;
 	}
 	
-	public void addReadCount(int BestNum) {
+	public void addReadCount(int BestNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, BestNum);
+		int result = bdao.updateReadCount(conn, BestNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -108,9 +108,9 @@ public class BestService {
 		return result;
 	}
 
-	public int deleteBest(int BestNum, int BestLevel) {
+	public int deleteBest(int BestNo, int BestLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteBest(conn, BestNum, BestLevel);
+		int result = bdao.deleteBest(conn, BestNo, BestLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

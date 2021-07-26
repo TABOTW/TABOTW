@@ -15,7 +15,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAUpdateViewServlet
  */
-@WebServlet("/QnAupview")
+@WebServlet("/qnaupview")
 public class QnAUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,10 +33,10 @@ public class QnAUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
-		int QnANum = Integer.parseInt(request.getParameter("cnum"));
+		int QnANo = Integer.parseInt(request.getParameter("qNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		QnA QnA = new QnAService().selectQnA(QnANum);
+		QnA QnA = new QnAService().selectQnA(QnANo);
 		
 		RequestDispatcher view = null;
 		if(QnA != null) {
@@ -49,7 +49,7 @@ public class QnAUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					QnANum + "번 게시글 수정페이지로 이동 실패!");
+					QnANo + "번 게시글 수정페이지로 이동 실패!");
 			view.forward(request, response);
 		}
 	}

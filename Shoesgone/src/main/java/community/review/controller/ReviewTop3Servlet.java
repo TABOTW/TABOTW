@@ -20,7 +20,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewTop3Servlet
  */
-@WebServlet("/Reviewtop3")
+@WebServlet("/reviewtop3")
 public class ReviewTop3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class ReviewTop3Servlet extends HttpServlet {
 		for(Review Review : list) {
 			JSONObject job = new JSONObject();
 			
-			job.put("bnum", Review.getReviewNum());
+			job.put("rNo", Review.getReviewNo());
 			job.put("btitle", URLEncoder.encode(Review.getReviewTitle(), "utf-8"));
 			job.put("rcount", Review.getReviewReadCount());
 			

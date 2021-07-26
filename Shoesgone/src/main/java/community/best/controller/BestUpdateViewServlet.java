@@ -33,10 +33,10 @@ public class BestUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
-		int BestNum = Integer.parseInt(request.getParameter("cnum"));
+		int BestNo = Integer.parseInt(request.getParameter("bNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Best Best = new BestService().selectBest(BestNum);
+		Best Best = new BestService().selectBest(BestNo);
 		
 		RequestDispatcher view = null;
 		if(Best != null) {
@@ -49,7 +49,7 @@ public class BestUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					BestNum + "번 게시글 수정페이지로 이동 실패!");
+					BestNo + "번 게시글 수정페이지로 이동 실패!");
 			view.forward(request, response);
 		}
 	}

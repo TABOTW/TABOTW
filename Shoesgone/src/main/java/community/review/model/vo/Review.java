@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Review implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int ReviewNum;  //게시글번호
+	private int ReviewNo;  //게시글번호
 	private String ReviewWriter; //게시글 작성자 아이디
 	private String ReviewTitle;  //게시글 제목
 	private String ReviewContent;  //게시글 내용
@@ -38,11 +38,11 @@ public class Review implements java.io.Serializable {
 		this.ReviewRenameFilename = ReviewRenameFilename;
 	}
 
-	public Review(int ReviewNum, String ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
+	public Review(int ReviewNo, String ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
 			String ReviewRenameFilename, int ReviewRef, int ReviewLevel, int ReviewReplyRef, int ReviewReplySeq,
 			int ReviewReadCount, Date ReviewDate) {
 		super();
-		this.ReviewNum = ReviewNum;
+		this.ReviewNo = ReviewNo;
 		this.ReviewWriter = ReviewWriter;
 		this.ReviewTitle = ReviewTitle;
 		this.ReviewContent = ReviewContent;
@@ -56,12 +56,12 @@ public class Review implements java.io.Serializable {
 		this.ReviewDate = ReviewDate;
 	}
 
-	public int getReviewNum() {
-		return ReviewNum;
+	public int getReviewNo() {
+		return ReviewNo;
 	}
 
-	public void setReviewNum(int ReviewNum) {
-		this.ReviewNum = ReviewNum;
+	public void setReviewNo(int ReviewNo) {
+		this.ReviewNo = ReviewNo;
 	}
 
 	public String getReviewWriter() {
@@ -158,7 +158,7 @@ public class Review implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Review [ReviewNum=" + ReviewNum + ", ReviewWriter=" + ReviewWriter + ", ReviewTitle=" + ReviewTitle
+		return "Review [ReviewNo=" + ReviewNo + ", ReviewWriter=" + ReviewWriter + ", ReviewTitle=" + ReviewTitle
 				+ ", ReviewContent=" + ReviewContent + ", ReviewOriginalFilename=" + ReviewOriginalFilename
 				+ ", ReviewRenameFilename=" + ReviewRenameFilename + ", ReviewRef=" + ReviewRef + ", ReviewLevel="
 				+ ReviewLevel + ", ReviewReplyRef=" + ReviewReplyRef + ", ReviewReplySeq=" + ReviewReplySeq

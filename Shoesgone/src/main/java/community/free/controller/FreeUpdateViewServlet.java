@@ -15,7 +15,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeUpdateViewServlet
  */
-@WebServlet("/Freeupview")
+@WebServlet("/freeupview")
 public class FreeUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,10 +33,10 @@ public class FreeUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
-		int FreeNum = Integer.parseInt(request.getParameter("cnum"));
+		int FreeNo = Integer.parseInt(request.getParameter("fNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Free Free = new FreeService().selectFree(FreeNum);
+		Free Free = new FreeService().selectFree(FreeNo);
 		
 		RequestDispatcher view = null;
 		if(Free != null) {
@@ -49,7 +49,7 @@ public class FreeUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					FreeNum + "번 게시글 수정페이지로 이동 실패!");
+					FreeNo + "번 게시글 수정페이지로 이동 실패!");
 			view.forward(request, response);
 		}
 	}

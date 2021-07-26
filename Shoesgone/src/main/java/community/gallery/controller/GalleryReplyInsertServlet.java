@@ -15,7 +15,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryReplyInsertServlet
  */
-@WebServlet("/Galleryreply")
+@WebServlet("/galleryreply")
 public class GalleryReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class GalleryReplyInsertServlet extends HttpServlet {
 		
 		//2.
 		//댓글에 대한 원글 번호 추출
-		int GalleryNum = Integer.parseInt(request.getParameter("bnum"));
+		int GalleryNo = Integer.parseInt(request.getParameter("gNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		//댓글에 대한 값 추출해서 객체에 저장
@@ -49,7 +49,7 @@ public class GalleryReplyInsertServlet extends HttpServlet {
 		
 		//원글 조회
 		GalleryService bservice = new GalleryService();
-		Gallery origin = bservice.selectGallery(GalleryNum);
+		Gallery origin = bservice.selectGallery(GalleryNo);
 		
 		//댓글에 Gallery_level(댓글레벨), Gallery_ref (참조 원글번호)
 		reply.setGalleryLevel(origin.getGalleryLevel() + 1);
@@ -72,12 +72,12 @@ public class GalleryReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyGallery(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/blist?page=" + currentPage);
+			response.sendRedirect("/first/gallerylist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					GalleryNum + "번 게시글 댓글 등록 실패!");
+					GalleryNo + "번 게시글 댓글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

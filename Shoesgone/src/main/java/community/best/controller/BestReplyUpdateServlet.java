@@ -36,8 +36,8 @@ public class BestReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		Best reply = new Best();
-		reply.setBestNum(Integer.parseInt(
-				request.getParameter("bnum")));
+		reply.setBestNo(Integer.parseInt(
+				request.getParameter("bNo")));
 		reply.setBestTitle(request.getParameter("title"));
 		reply.setBestContent(request.getParameter("content"));
 		
@@ -50,14 +50,14 @@ public class BestReplyUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ reply.getBestNum()+ "&page="
+			response.sendRedirect("bestdetail?bNo=" 
+						+ reply.getBestNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					reply.getBestNum() + "번 게시 원글 수정 실패!");
+					reply.getBestNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

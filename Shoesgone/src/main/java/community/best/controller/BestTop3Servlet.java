@@ -45,7 +45,7 @@ public class BestTop3Servlet extends HttpServlet {
 		for(Best Best : list) {
 			JSONObject job = new JSONObject();
 			
-			job.put("bnum", Best.getBestNum());
+			job.put("bNo", Best.getBestNo());
 			job.put("btitle", URLEncoder.encode(Best.getBestTitle(), "utf-8"));
 			job.put("rcount", Best.getBestReadCount());
 			

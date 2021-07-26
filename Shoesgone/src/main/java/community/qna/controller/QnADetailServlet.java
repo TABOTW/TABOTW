@@ -15,7 +15,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnADetailServlet
  */
-@WebServlet("/QnAdetail")
+@WebServlet("/qnadetail")
 public class QnADetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class QnADetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 (원글, 댓글, 대댓글) 상세보기 처리용 컨트롤러
 		
-		int QnANum = Integer.parseInt(request.getParameter("bnum"));
+		int QnANo = Integer.parseInt(request.getParameter("qNo"));
 		
 		//페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
@@ -45,15 +45,15 @@ public class QnADetailServlet extends HttpServlet {
 		QnAService bservice = new QnAService();
 		
 		//해당 글에 대한 조회수 1증가 : update
-		bservice.addReadCount(QnANum);
+		bservice.addReadCount(QnANo);
 		
 		//해당 게시글 리턴 받음 : select
-		QnA QnA = bservice.selectQnA(QnANum);
+		QnA QnA = bservice.selectQnA(QnANo);
 		
 		RequestDispatcher view = null;
 		if(QnA != null) {
 			view = request.getRequestDispatcher(
-					"views/QnA/QnADetailView.jsp");
+					"views/community/communityDetailView.jsp");
 			request.setAttribute("QnA", QnA);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
@@ -61,7 +61,7 @@ public class QnADetailServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					QnANum + "번 게시글 상세조회 실패!");
+					QnANo + "번 게시글 상세조회 실패!");
 			view.forward(request, response);
 		}
 		

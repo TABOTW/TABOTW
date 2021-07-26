@@ -15,7 +15,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryReplyUpdateServlet
  */
-@WebServlet("/Galleryreplyupdate")
+@WebServlet("/galleryreplyupdate")
 public class GalleryReplyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,8 +36,8 @@ public class GalleryReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		Gallery reply = new Gallery();
-		reply.setGalleryNum(Integer.parseInt(
-				request.getParameter("bnum")));
+		reply.setGalleryNo(Integer.parseInt(
+				request.getParameter("gNo")));
 		reply.setGalleryTitle(request.getParameter("title"));
 		reply.setGalleryContent(request.getParameter("content"));
 		
@@ -50,14 +50,14 @@ public class GalleryReplyUpdateServlet extends HttpServlet {
 			//response.sendRedirect("blist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("bdetail?bnum=" 
-						+ reply.getGalleryNum()+ "&page="
+			response.sendRedirect("gallerydetail?gNo=" 
+						+ reply.getGalleryNo()+ "&page="
 						+ currentPage);
 			
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", 
-					reply.getGalleryNum() + "번 게시 원글 수정 실패!");
+					reply.getGalleryNo() + "번 게시 원글 수정 실패!");
 			view.forward(request, response);
 		}
 	}

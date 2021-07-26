@@ -15,7 +15,7 @@ import community.review.model.service.ReviewService;
 /**
  * Servlet implementation class ReviewDeleteServlet
  */
-@WebServlet("/Reviewdelete")
+@WebServlet("/reviewdelete")
 public class ReviewDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,11 +33,11 @@ public class ReviewDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
-		int ReviewNum = Integer.parseInt(request.getParameter("cnum"));
+		int ReviewNo = Integer.parseInt(request.getParameter("rNo"));
 		int ReviewLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new ReviewService().deleteReview(ReviewNum, ReviewLevel) > 0) {
+		if(new ReviewService().deleteReview(ReviewNo, ReviewLevel) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {
@@ -47,11 +47,11 @@ public class ReviewDeleteServlet extends HttpServlet {
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
-			response.sendRedirect("/first/clist?page=1");
+			response.sendRedirect("/first/reviewlist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
-			request.setAttribute("message", ReviewNum + "번 글 삭제 실패.");
+			request.setAttribute("message", ReviewNo + "번 글 삭제 실패.");
 			view.forward(request, response);
 		}
 	}

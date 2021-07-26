@@ -16,7 +16,7 @@ import community.gallery.model.vo.Gallery;
 /**
  * Servlet implementation class GalleryListServlet
  */
-@WebServlet("/Gallerylist")
+@WebServlet("/gallerylist")
 public class GalleryListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

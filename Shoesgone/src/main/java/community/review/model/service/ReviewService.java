@@ -17,16 +17,16 @@ public class ReviewService {
 		close(conn);
 		return list;
 	}
-	public Review selectReview(int ReviewNum) {
+	public Review selectReview(int ReviewNo) {
 		Connection conn = getConnection();
-		Review Review = bdao.selectReview(conn, ReviewNum);
+		Review Review = bdao.selectReview(conn, ReviewNo);
 		close(conn);
 		return Review;
 	}
 	
-	public void addReadCount(int ReviewNum) {
+	public void addReadCount(int ReviewNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, ReviewNum);
+		int result = bdao.updateReadCount(conn, ReviewNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -108,9 +108,9 @@ public class ReviewService {
 		return result;
 	}
 
-	public int deleteReview(int ReviewNum, int ReviewLevel) {
+	public int deleteReview(int ReviewNo, int ReviewLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteReview(conn, ReviewNum, ReviewLevel);
+		int result = bdao.deleteReview(conn, ReviewNo, ReviewLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

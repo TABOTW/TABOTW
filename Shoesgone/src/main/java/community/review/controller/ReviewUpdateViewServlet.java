@@ -15,7 +15,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewUpdateViewServlet
  */
-@WebServlet("/Reviewupview")
+@WebServlet("/feviewupview")
 public class ReviewUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,10 +33,10 @@ public class ReviewUpdateViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
-		int ReviewNum = Integer.parseInt(request.getParameter("cnum"));
+		int ReviewNo = Integer.parseInt(request.getParameter("fNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Review Review = new ReviewService().selectReview(ReviewNum);
+		Review Review = new ReviewService().selectReview(ReviewNo);
 		
 		RequestDispatcher view = null;
 		if(Review != null) {
@@ -49,7 +49,7 @@ public class ReviewUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					ReviewNum + "번 게시글 수정페이지로 이동 실패!");
+					ReviewNo + "번 게시글 수정페이지로 이동 실패!");
 			view.forward(request, response);
 		}
 	}

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Best implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int BestNum;  //게시글번호
+	private int BestNo;  //게시글번호
 	private String BestWriter; //게시글 작성자 아이디
 	private String BestTitle;  //게시글 제목
 	private String BestContent;  //게시글 내용
@@ -38,11 +38,11 @@ public class Best implements java.io.Serializable {
 		this.BestRenameFilename = BestRenameFilename;
 	}
 
-	public Best(int BestNum, String BestWriter, String BestTitle, String BestContent, String BestOriginalFilename,
+	public Best(int BestNo, String BestWriter, String BestTitle, String BestContent, String BestOriginalFilename,
 			String BestRenameFilename, int BestRef, int BestLevel, int BestReplyRef, int BestReplySeq,
 			int BestReadCount, Date BestDate) {
 		super();
-		this.BestNum = BestNum;
+		this.BestNo = BestNo;
 		this.BestWriter = BestWriter;
 		this.BestTitle = BestTitle;
 		this.BestContent = BestContent;
@@ -56,12 +56,12 @@ public class Best implements java.io.Serializable {
 		this.BestDate = BestDate;
 	}
 
-	public int getBestNum() {
-		return BestNum;
+	public int getBestNo() {
+		return BestNo;
 	}
 
-	public void setBestNum(int BestNum) {
-		this.BestNum = BestNum;
+	public void setBestNo(int BestNo) {
+		this.BestNo = BestNo;
 	}
 
 	public String getBestWriter() {
@@ -158,7 +158,7 @@ public class Best implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Best [BestNum=" + BestNum + ", BestWriter=" + BestWriter + ", BestTitle=" + BestTitle
+		return "Best [BestNo=" + BestNo + ", BestWriter=" + BestWriter + ", BestTitle=" + BestTitle
 				+ ", BestContent=" + BestContent + ", BestOriginalFilename=" + BestOriginalFilename
 				+ ", BestRenameFilename=" + BestRenameFilename + ", BestRef=" + BestRef + ", BestLevel="
 				+ BestLevel + ", BestReplyRef=" + BestReplyRef + ", BestReplySeq=" + BestReplySeq

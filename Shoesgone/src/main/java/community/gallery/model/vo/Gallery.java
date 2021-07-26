@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Gallery implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int GalleryNum;  //게시글번호
+	private int GalleryNo;  //게시글번호
 	private String GalleryWriter; //게시글 작성자 아이디
 	private String GalleryTitle;  //게시글 제목
 	private String GalleryContent;  //게시글 내용
@@ -38,11 +38,11 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryRenameFilename = GalleryRenameFilename;
 	}
 
-	public Gallery(int GalleryNum, String GalleryWriter, String GalleryTitle, String GalleryContent, String GalleryOriginalFilename,
+	public Gallery(int GalleryNo, String GalleryWriter, String GalleryTitle, String GalleryContent, String GalleryOriginalFilename,
 			String GalleryRenameFilename, int GalleryRef, int GalleryLevel, int GalleryReplyRef, int GalleryReplySeq,
 			int GalleryReadCount, Date GalleryDate) {
 		super();
-		this.GalleryNum = GalleryNum;
+		this.GalleryNo = GalleryNo;
 		this.GalleryWriter = GalleryWriter;
 		this.GalleryTitle = GalleryTitle;
 		this.GalleryContent = GalleryContent;
@@ -56,12 +56,12 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryDate = GalleryDate;
 	}
 
-	public int getGalleryNum() {
-		return GalleryNum;
+	public int getGalleryNo() {
+		return GalleryNo;
 	}
 
-	public void setGalleryNum(int GalleryNum) {
-		this.GalleryNum = GalleryNum;
+	public void setGalleryNo(int GalleryNo) {
+		this.GalleryNo = GalleryNo;
 	}
 
 	public String getGalleryWriter() {
@@ -158,7 +158,7 @@ public class Gallery implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Gallery [GalleryNum=" + GalleryNum + ", GalleryWriter=" + GalleryWriter + ", GalleryTitle=" + GalleryTitle
+		return "Gallery [GalleryNo=" + GalleryNo + ", GalleryWriter=" + GalleryWriter + ", GalleryTitle=" + GalleryTitle
 				+ ", GalleryContent=" + GalleryContent + ", GalleryOriginalFilename=" + GalleryOriginalFilename
 				+ ", GalleryRenameFilename=" + GalleryRenameFilename + ", GalleryRef=" + GalleryRef + ", GalleryLevel="
 				+ GalleryLevel + ", GalleryReplyRef=" + GalleryReplyRef + ", GalleryReplySeq=" + GalleryReplySeq

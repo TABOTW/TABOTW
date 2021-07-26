@@ -15,7 +15,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeReplyInsertServlet
  */
-@WebServlet("/Freereply")
+@WebServlet("/freereply")
 public class FreeReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class FreeReplyInsertServlet extends HttpServlet {
 		
 		//2.
 		//댓글에 대한 원글 번호 추출
-		int FreeNum = Integer.parseInt(request.getParameter("bnum"));
+		int FreeNo = Integer.parseInt(request.getParameter("fNo"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		//댓글에 대한 값 추출해서 객체에 저장
@@ -49,7 +49,7 @@ public class FreeReplyInsertServlet extends HttpServlet {
 		
 		//원글 조회
 		FreeService bservice = new FreeService();
-		Free origin = bservice.selectFree(FreeNum);
+		Free origin = bservice.selectFree(FreeNo);
 		
 		//댓글에 Free_level(댓글레벨), Free_ref (참조 원글번호)
 		reply.setFreeLevel(origin.getFreeLevel() + 1);
@@ -72,12 +72,12 @@ public class FreeReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyFree(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/blist?page=" + currentPage);
+			response.sendRedirect("/first/freelist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					FreeNum + "번 게시글 댓글 등록 실패!");
+					FreeNo + "번 게시글 댓글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

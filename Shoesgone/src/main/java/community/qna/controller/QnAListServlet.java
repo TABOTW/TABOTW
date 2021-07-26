@@ -16,7 +16,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAListServlet
  */
-@WebServlet("/QnAlist")
+@WebServlet("/qnalist")
 public class QnAListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -82,7 +82,7 @@ public class QnAListServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(list.size() > 0) {
 			view = request.getRequestDispatcher(
-					"views/QnA/QnAListView.jsp");
+					"views/qna/qnaListView.jsp");
 			
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
