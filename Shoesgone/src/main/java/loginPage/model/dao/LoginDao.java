@@ -132,4 +132,33 @@ public class LoginDao {
 		
 		return login;
 	}
+
+	public Login selectPhone(Connection conn, String phone) {
+		Login login = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select user_id from user_info where phone = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, phone);
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				login = new Login();
+				
+				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
+				login.setUserId(rset.getString("user_id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return login;
+	}
 }

@@ -46,4 +46,11 @@ public class LoginService {
 		close(conn);
 		return login;
 	}
+
+	public Login selectPhone(String phone) {
+		Connection conn = getConnection();
+		Login login = ldao.selectPhone(conn, phone);
+		close(conn);
+		return login;
+	}
 }

@@ -21,29 +21,8 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>회원가입</title>
+	<title>아이디 찾기</title>
 
-	<style>
-		#userid-error{
-			font-size:1px;
-			color: red;
-		}
-		#upwd-error{
-			font-size:1px;
-			color: red;
-		}
-		.register-info{
-			text-align: left;
-			color: black;
-			font-weight: bold;
-			margin-left: 10px;
-		}
-		.agree-check{
-			color: black;
-			margin-left: 5px;
-		}
-	</style>
-	
 	<!--
 		CSS
 		============================================= -->
@@ -78,11 +57,7 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/itemPage/category.jsp">SHOP</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
-							<% if(loginMember == null){ %>
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
-							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
-							<% } %>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item">
@@ -110,7 +85,7 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>회원가입</h1>
+					<h1>아이디 찾기</h1>
 					<nav class="d-flex align-items-center">
 					</nav>
 				</div>
@@ -125,31 +100,22 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="login_form_inner">
-						<h1>회원가입</h1><br>
-						<form class="row login_form" action="/Shoesgone/enroll" method="post" id="contactForm" novalidate="novalidate">
-							
+						<p style="font-size: 20px; color: black; font-weight: bold;">이메일 주소 찾기에 성공하였습니다.</p>
+						<hr style="height: 1px;" width="30%" color="black"><br>
+						<form class="row login_form" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-							<h6 class="register-info">이메일 주소 *</h6>
-								<input type="email" class="form-control" id="userid" name="userid" placeholder="예) ShoesGone@shoes.co.kr" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) ShoesGone@shoes.co.kr'">
+								<h6 style="text-align: center; color: grey; margin-left: 10px;">이메일 주소</h6>
 							</div>
 							<div class="col-md-12 form-group">
-							<h6 class="register-info">비밀번호 *</h6>
-								<input type="password" class="form-control" id="upwd" name="userpwd" placeholder="영문, 숫자, 특수문자 조합 8-16자" onfocus="this.placeholder = ''" onblur="this.placeholder = '영문, 숫자, 특수문자 조합 8-16자'">
-								<!-- <p style="font-size:1px; color: red; margin-right:110px;">영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)</p> -->
+								<p style="font-size: 15px; color: black; font-weight: bold;"><%= loginMember.getUserId() %></p>
+								<% session.invalidate(); %>
+ 							</div>
+							<div class="col-md-12 form-group">
+								<button type="button" value="submit" class="primary-btn" onclick="location.href = 'http://localhost:8080/Shoesgone/views/loginPage/searchPassword.jsp';">비밀번호 찾기</button>
 							</div>
 							<div class="col-md-12 form-group">
-							<h6 class="register-info">신발 사이즈(선택)</h6>
-								<input type="text" class="form-control" id="shoesSize" name="shoesSize" placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
-							</div>
-							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<h6 class="agree-check"><label><input type="checkbox" id="ageAgree" name="ageAgree">[필수] 만14세 이상이며 모두 동의합니다.</label></h6>
-									<h6 class="agree-check"><label><input type="checkbox" id="adAgree" name="adAgree">[선택] 광고성 정보 수신에 모두 동의합니다.</label></h6>			
-								</div>
-							</div>
-							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">가입하기</button>
-							</div>
+								<button type="button" value="submit" class="primary-btn" onclick="location.href = 'http://localhost:8080/Shoesgone/views/loginPage/login.jsp';">로그인</button>
+ 							</div>
 						</form>
 					</div>
 				</div>
@@ -174,7 +140,7 @@
 				<div class="col-lg-6 no-padding exclusive-right">
 						<!-- single exclusive carousel -->
 						<div class="single-exclusive-slider">
-							<img  class="img-fluid" src="/Shoesgone/resources/img/product/e-p1.png" alt="">
+							<img  class="img-fluid" src="img/product/e-p1.png" alt="">
 							<div class="product-details">
 								<div class="price">
 									<h6>$150.00</h6>
@@ -281,8 +247,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- End footer Area -->
 
 
-	<script src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
+	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
@@ -296,47 +261,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
-	<script type="text/javascript">
-		$("#contactForm").validate({
-			rules: {
-			    userid: {
-			      required: true,
-			      email: true,
-			      remote: {type: "post", url:"/Shoesgone/validate" }
-			    },
-			    userpwd: {
-			    	required: true,
-			    	pw_regexp: true,
-			    	minlength: 8,
-			    	maxlength: 16
-				},
-				ageAgree: {
-					required: true
-				}
-			  },
-			  messages: {
-			    userid: {
-			      required: "이메일 주소를 정확히 입력해주세요.",
-			      email: "이메일 주소를 정확히 입력해주세요.",
-			      remote : "이미 사용 중인 이메일입니다."
-			    },
-			    userpwd: {
-			    	required: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
-			    	pw_regexp: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
-			    	minlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
-			    	maxlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)"
-			    },
-			    ageAgree: {
-			    	required: ""
-			    }
-			  },
-			  errorClass: "error-info"
-		});
-		
-		$.validator.addMethod("pw_regexp",  function( value, element ) {
-			return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
-	   });
-	</script>
 </body>
 
 </html>

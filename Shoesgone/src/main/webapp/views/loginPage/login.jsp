@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name ="google-signin-client_id" content="540834478487-vvraum41mldvcdjbtk30eb3t2llupmur.apps.googleusercontent.com">
 	<!-- Favicon-->
 	<link rel="shortcut icon" href="/Shoesgone/resources/img/fav.png">
 	<!-- Author Meta -->
@@ -21,6 +22,8 @@
 	<title>로그인</title>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<!--
 		CSS
 		============================================= -->
@@ -33,6 +36,23 @@
 	<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/newMine.css">
+	
+	<style>
+		#uid-error{
+			font-size:1px;
+			color: red;
+		}
+		#upwd-error{
+			font-size:1px;
+			color: red;
+		}
+		.register-info{
+			text-align: left;
+			color: black;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+	</style>
 </head>
 
 <body>
@@ -111,7 +131,7 @@
 						<h3>슈즈곤</h3>
 						<form class="row login_form" action="/Shoesgone/login" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="uid" name="userid" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
+								<input type="email" class="form-control" id="uid" name="userid" placeholder="아이디" onfocus="this.placeholder = ''" onblur="this.placeholder = '아이디'">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="upwd" name="userpwd" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
@@ -122,19 +142,11 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">로그인</button>
-	<!-- 							<button type="submit" value="submit" class="primary-btn">네이버 로그인</button> -->
 								<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-								  <div id="naver_id_login"></div>
-								  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
-								  <script type="text/javascript">
-								  	var naver_id_login = new naver_id_login("pLtvMVEvTQdyI5iaulw9", "http://localhost:8080/Shoesgone/views/loginPage/naverCallback.jsp");
-								  	var state = naver_id_login.getUniqState();
-								  	naver_id_login.setButton("green", 3, 40);
-								  	naver_id_login.setDomain("http://localhost:8080/Shoesgone/views/loginPage/login.jsp");
-								  	naver_id_login.setState(state);
-								  	naver_id_login.setPopup();
-								  	naver_id_login.init_naver_id_login();
-								  </script>
+								<div id="naver_id_login"></div>
+								<a href="https://kauth.kakao.com/oauth/authorize?client_id=999b3da31dfc63667c43a9de93bdc59d&redirect_uri=http://localhost:8080/Shoesgone/kakaologin&response_type=code">
+									<img src="/Shoesgone/resources/img/kakao_login_medium_narrow.png">
+								</a>
 							</div>
 							<div class="col-md-12">
 								  <a href="/Shoesgone/views/loginPage/searchId.jsp" style="color: grey; margin-right: 50px">아이디 찾기 </a>
@@ -270,8 +282,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!-- End footer Area -->
 
-
-	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
@@ -285,6 +297,51 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
+	<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+	<script>
+		var naver_id_login = new naver_id_login("pLtvMVEvTQdyI5iaulw9",
+				"http://localhost:8080/Shoesgone/views/loginPage/naverCallback.jsp");
+		var state = naver_id_login.getUniqState();
+		naver_id_login.setButton("green", 3, 40);
+		naver_id_login
+				.setDomain("http://localhost:8080/Shoesgone/views/loginPage/login.jsp");
+		naver_id_login.setState(state);
+		naver_id_login.setPopup();
+		naver_id_login.init_naver_id_login();
+	</script>
+	<script type="text/javascript">
+		$("#contactForm").validate({
+			rules: {
+			    userid: {
+			      required: true,
+			      email: true
+			    },
+			    userpwd: {
+			    	required: true,
+			    	pw_regexp: true,
+			    	minlength: 8,
+			    	maxlength: 16
+				}
+			  },
+			  messages: {
+			    userid: {
+			      required: "이메일 주소를 정확히 입력해주세요.",
+			      email: "이메일 주소를 정확히 입력해주세요."
+			    },
+			    userpwd: {
+			    	required: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	pw_regexp: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	minlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)",
+			    	maxlength: "영문, 숫자, 특수문자를 조합하여 입력해주세요. (8-16자)"
+			    }
+			  },
+			  errorClass: "error-info"
+		});
+		
+		$.validator.addMethod("pw_regexp",  function( value, element ) {
+			return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+	   });
+	</script>
 </body>
 
 </html>

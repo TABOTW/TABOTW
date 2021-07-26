@@ -98,14 +98,14 @@
 					<div class="login_form_inner">
 						<h1>아이디 찾기</h1><br>
 						<hr style="height: 1px;" width="30%" color="black"><br>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="/Shoesgone/searchid" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
 								<h6 style="text-align: left; color: black; margin-left: 10px;">가입 시 등록한 휴대폰 번호를 입력하면</h6>
 								<h6 style="text-align: left; color: black; margin-left: 10px;">이메일 주소의 일부를 알려드립니다.</h6>
 							</div>
 							<div class="col-md-12 form-group">
 								<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">휴대폰 번호</h6>
-								<input type="text" class="form-control" id="name" name="name" placeholder="가입하신 휴대폰 번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '가입하신 휴대폰 번호'">
+								<input type="tel" class="form-control" id="phone" name="phone" placeholder="가입하신 휴대폰 번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '가입하신 휴대폰 번호'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">					
@@ -245,7 +245,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- End footer Area -->
 
 
-	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
@@ -259,6 +260,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
+	<script type="text/javascript">
+		$("#contactForm").validate({
+			rules: {
+			    phone: {
+			      required: true,
+			      telnum: true
+			    }
+			  },
+			  messages: {
+			    phone: {
+			      required: "",
+			      telnum: ""
+			    }
+			  }
+		});
+		
+		$.validator.addMethod("telnum", function(telnum, element){
+		      var pattern = /^01[016789]{1}[0-9]{3,4}[0-9]{4}$/;
+
+		      if(!pattern.test(telnum)){
+		        return this.optional(element)||false;
+		      }
+		      return true;
+		});
+	</script>
 </body>
 
 </html>
