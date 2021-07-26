@@ -11,20 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import itemPage.model.service.ItemDetailService;
-import itemPage.model.vo.Item;
-import itemPage.model.vo.Picture;
+import orders.model.vo.SalesList;
 
 /**
- * Servlet implementation class ItemDetailViewServlet
+ * Servlet implementation class ItemDetailGraphServlet
  */
-@WebServlet("/ItemDV")
-public class ItemDetailViewServlet extends HttpServlet {
+@WebServlet("/ItemDG")
+public class ItemDetailGraphServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemDetailViewServlet() {
+    public ItemDetailGraphServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +32,16 @@ public class ItemDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//제품 상세보기 페이지 redirect용 서블렛
-		//물품객체 가져오기
 		int itemNo = Integer.parseInt(request.getParameter("itemno"));
-		Item item = new ItemDetailService().selectOne(itemNo);
-		//사진 어레이 가져오기
-		ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
-		//사이즈 어레이 가져오기
-		String[] ssizes = item.getShoesSizes().split(",");
-		ArrayList<Integer> isizes = new ArrayList<Integer>(ssizes.length);
-		for(String s:ssizes){
-			isizes.add(Integer.parseInt(s));
-		}
-		//판매정보 가져오기
-		//페이지로 이동
+		int size = Integer.parseInt(request.getParameter("option1"));
+		int days = Integer.parseInt(request.getParameter("option2"));
+		
+		ArrayList<SalesList> orderlist = new ItemDetailService().selectOrderList(itemNo, size, days);
 		RequestDispatcher view = null;
-		if(item != null && plist != null) {
-			view = request.getRequestDispatcher("views/itemPage/itemDetailView.jsp");
-			request.setAttribute("item", item);
-			request.setAttribute("plist", plist);
-			request.setAttribute("isizes", isizes);
+		if(orderlist != null) {
+			view = request.getRequestDispatcher("views/itemPage/graphView.jsp");
+			request.setAttribute("olist", orderlist);
+			request.setAttribute("sortno", days);
 			view.forward(request, response);
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
