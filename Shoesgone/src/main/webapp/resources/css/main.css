@@ -1367,14 +1367,12 @@ h1, h2, h3, h4, h5, h6 {
       border-right: none;
       margin-bottom: 30px; } }
   .single-features .f-icon {
-    margin-bottom: 20px;
-     }
+    margin-bottom: 20px; }
     .single-features .f-icon img {
       -webkit-transition: all 0.3s ease 0s;
       -moz-transition: all 0.3s ease 0s;
       -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s; 
-    }
+      transition: all 0.3s ease 0s; }
   .single-features h6 {
     font-size: 16px;
     margin-bottom: 0; }
