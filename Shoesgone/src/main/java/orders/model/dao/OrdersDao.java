@@ -101,6 +101,22 @@ public class OrdersDao {
 	// 배송현황 갱신용 메소드
 	public int updateProgress(Connection conn, Orders upProgress) {
 		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "update orders set progress = ? where orders_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, upProgress.getProgress());
+			ps.setInt(2, upProgress.getOrdersNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
 		
 		return result;
 	}
