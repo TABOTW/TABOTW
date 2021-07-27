@@ -10,6 +10,7 @@ import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import orders.model.vo.SalesList;
+import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
@@ -34,6 +35,18 @@ public class ItemDetailService {
 		Connection conn = getConnection();
 		ArrayList<SalesList> orderlist = iddao.selectOrderList(conn, itemNo, size, days);
 		return orderlist;
+	}
+
+	public ArrayList<Review> selectRlist(int itemNo) {
+		Connection conn = getConnection();
+		ArrayList<Review> reviewlist = iddao.selectReviewList(conn, itemNo);
+		return reviewlist;
+	}
+
+	public ArrayList<Picture> selectRPList(int itemNo, String brand) {
+		Connection conn = getConnection();
+		ArrayList<Picture> rplist = iddao.selectRPList(conn, itemNo, brand);
+		return rplist;
 	}
 
 	

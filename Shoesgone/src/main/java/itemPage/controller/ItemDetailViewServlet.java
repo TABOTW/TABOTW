@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import review.model.vo.Review;
 
 /**
  * Servlet implementation class ItemDetailViewServlet
@@ -45,6 +46,17 @@ public class ItemDetailViewServlet extends HttpServlet {
 		for(String s:ssizes){
 			isizes.add(Integer.parseInt(s));
 		}
+		//리뷰 목록 가져오기
+		ArrayList<Review> rlist = new ItemDetailService().selectRlist(itemNo);
+		
+		//관련 제품 가져오기
+		ArrayList<Picture> rplist = new ItemDetailService().selectRPList(itemNo, item.getBrand());
+		ArrayList<String> rpnames = new ArrayList<String>();
+		for(Picture rp:rplist) {
+			Item rpitem = new ItemDetailService().selectOne(rp.getModelno());
+			String rpname = rpitem.getItemEngName();
+			rpnames.add(rpname);
+		}
 		//판매정보 가져오기
 		//페이지로 이동
 		RequestDispatcher view = null;
@@ -53,6 +65,9 @@ public class ItemDetailViewServlet extends HttpServlet {
 			request.setAttribute("item", item);
 			request.setAttribute("plist", plist);
 			request.setAttribute("isizes", isizes);
+			request.setAttribute("rlist", rlist);
+			request.setAttribute("rplist", rplist);
+			request.setAttribute("rpnames", rpnames);
 			view.forward(request, response);
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

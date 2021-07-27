@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import orders.model.vo.SalesList;
+import review.model.vo.Review;
 
 public class ItemDetailDao {
 
@@ -67,9 +68,8 @@ public class ItemDetailDao {
 				Picture picture = new Picture();
 				
 				picture.setPictureno(rset.getInt("pictures_no"));
-				picture.setModelno(rset.getString("pictures_itemno"));
+				picture.setModelno(rset.getInt("pictures_itemno"));
 				picture.setPicturepath(rset.getString("pictures_path"));
-				System.out.println(picture.getPicturepath());
 				plist.add(picture);
 			}
 		} catch (Exception e) {
@@ -149,6 +149,80 @@ public class ItemDetailDao {
 		}
 		
 		return olist;
+	}
+
+	public ArrayList<Review> selectReviewList(Connection conn, int itemNo) {
+		// 모델번호로 사진들 가져오기
+		ArrayList<Review> rlist = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * FROM REVIEW WHERE REVIEW_ITEMNO = ? ORDER BY REVIEW_COUNT DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review review = new Review();
+				
+				review.setReviewNum(rset.getInt("review_no"));
+				review.setReviewWriter(rset.getInt("REVIEW_WRITERNO"));
+				review.setReviewItemNo(rset.getInt("REVIEW_ITEMNO"));
+				review.setReviewTitle(rset.getString("REVIEW_TITLE"));
+				review.setReviewStar(rset.getInt("REVIEW_STAR"));
+				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				review.setreviewOriginalFilename(rset.getString("REVIEW_OFILE"));
+				review.setreviewRenameFilename(rset.getString("REVIEW_RFILE"));
+				review.setReviewReadCount(rset.getInt("REVIEW_COUNT"));
+				review.setReviewDate(rset.getDate("REVIEW_DATE"));
+				rlist.add(review);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return rlist;
+	}
+
+	public ArrayList<Picture> selectRPList(Connection conn, int itemNo, String brand) {
+		// 모델번호로 사진들 가져오기
+		ArrayList<Picture> rplist = new ArrayList<Picture>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT PICTURES_NO, PICTURES_ITEMNO, PICTURES_PATH "
+				+ "FROM (SELECT PICTURES_NO, PICTURES_ITEMNO, PICTURES_PATH, ITEM_BRAND "
+			            + "FROM PICTURES P, ITEM I "
+			            + "WHERE P.PICTURES_ITEMNO = I.ITEM_NO) "
+			    + "WHERE PICTURES_ITEMNO != ? AND ITEM_BRAND = ? AND PICTURES_PATH LIKE '%0.png'";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+			pstmt.setString(2, brand);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Picture picture = new Picture();
+				
+				picture.setPictureno(rset.getInt("PICTURES_NO"));
+				picture.setModelno(rset.getInt("PICTURES_ITEMNO"));
+				picture.setPicturepath(rset.getString("PICTURES_PATH"));
+				rplist.add(picture);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return rplist;
 	}
 
 }

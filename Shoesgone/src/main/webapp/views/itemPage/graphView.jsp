@@ -72,7 +72,10 @@ for(int i=0; i<endIndex; i++){
 				    		beginAtZero: true
 				    	}
 				    }]
-			    }
+			    },
+			    layout: {
+		            padding: 5
+		        }
 			  }
 			};
 	

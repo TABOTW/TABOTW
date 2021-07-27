@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="itemPage.model.vo.Item, loginPage.model.vo.Login, itemPage.model.vo.Picture, java.util.ArrayList"%>
+	import="itemPage.model.vo.Item, loginPage.model.vo.Login, itemPage.model.vo.Picture, java.util.ArrayList, review.model.vo.Review"%>
 <%
 //Item 객체를 가져옴
 Item item = (Item) request.getAttribute("item");
 Login loginMember = (Login) session.getAttribute("loginMember");
 ArrayList<Picture> plist = (ArrayList<Picture>) request.getAttribute("plist");
 ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
+ArrayList<Review> rlist = (ArrayList<Review>) request.getAttribute("rlist");
+ArrayList<Picture> rplist = (ArrayList<Picture>) request.getAttribute("rplist");
+ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
+
 %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -50,7 +54,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 <link rel="stylesheet"
 	href="/Shoesgone/resources/plugins/slick/slick-theme.css">
 <link rel="stylesheet"
-	href="/Shoesgone/resources/css/itemDetailView.css">
+	href="/Shoesgone/resources/css/itemDetailView.css?after">
 </head>
 <body id="itemdetail">
 	<!-- Start Header Area -->
@@ -253,7 +257,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 								</tr>
 							</table>
 							<div>
-								<iframe id="iframecontext" src="" width="100%" height="280px"></iframe>
+								<iframe id="iframecontext" src="" width="100%" height="280px" frameborder=0 framespacing=0></iframe>
 							</div>
 						</div>
 						<br>
@@ -274,10 +278,17 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 					<div class="size_recommend_box">
 						<strong>사이즈 추천</strong>
 						<p class="box_recommend_size">고객의 추천사이즈로 주관적입니다.</p>
-						<div class="size_recommend_table"
-							style="overflow-y: scroll; height: 150px;">
-							<table id="newnotice" border="1" cellspacing="0">
-								<tr><th>번호</th><th>제목</th><th>날짜</th></tr>
+						<div class="size_recommend_table" style="overflow-y: scroll; height: 150px;">
+							<table class="idpagereview" border="1" cellspacing="0">
+								<tr><th>번호</th><th>제목</th><th>별점</th><th>조회수</th></tr>
+								<% for(Review r : rlist){ %>
+								<tr>
+									<td><%= r.getReviewNum() %></td>
+									<td><%= r.getReviewTitle() %></td>
+									<td><%= r.getReviewStar() %>/10</td>
+									<td><%= r.getReviewReadCount() %></td>
+								</tr>
+								<% } %>
 							</table>
 						</div>
 					</div>
@@ -286,7 +297,21 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 		</div>
 	</div>
 	<!--================End Product Description Area =================-->
-
+	<hr>
+	<!--================ Start Related Product Area =================-->
+	<div class="product_extra_area">
+		<div class="container">
+			<div class="slick-related">
+			  	<% for (int i=0; i<rplist.size(); i++) { %>
+					<div>
+						<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= rplist.get(i).getPicturepath() %>" alt="">
+						<p> <%= rpnames.get(i) %>
+					</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
+	<!--================ End Related Product Area =================-->
 	<!-- End related-product Area -->
 
 	<!-- start footer Area -->
@@ -408,7 +433,6 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 			$('.your-class').slick({
 				slide : 'div',
 				infinite : true,
-				slidesToshow : 1,
 				dots : true,
 				infinite : true,
 				speed : 500,
@@ -418,6 +442,41 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 				nextArrow : "<button type='button' class='slick-next'>Next</button>", // 다음 화살표 모양 설정
 				draggable : true
 			});
+			$('.slick-related').slick({
+				  dots: true,
+				  infinite: false,
+				  speed: 300,
+				  slidesToShow: 4,
+				  slidesToScroll: 4,
+				  responsive: [
+				    {
+				      breakpoint: 1024,
+				      settings: {
+				        slidesToShow: 3,
+				        slidesToScroll: 3,
+				        infinite: true,
+				        dots: true
+				      }
+				    },
+				    {
+				      breakpoint: 600,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 2
+				      }
+				    },
+				    {
+				      breakpoint: 480,
+				      settings: {
+				        slidesToShow: 1,
+				        slidesToScroll: 1
+				      }
+				    }
+				    // You can unslick at a given breakpoint now by adding:
+				    // settings: "unslick"
+				    // instead of a settings object
+				  ]
+				});
 		});
 				
 	</script>
@@ -442,39 +501,6 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 		
 		document.getElementById("iframecontext").src = "/Shoesgone/ItemDG?itemno="+itemno+"&option1="+option1+"&option2="+option2;
 	}
-	</script>
-	<script type="text/javascript">
-	$(function(){
-		//최근 등록된 공지글 3개 전송받아서 출력되게 함
-		$.ajax({
-			url: "/first/ntop3",
-			type: "get",
-			dataType: "json",
-			success: function(data){
-				console.log("success : " + data);
-				
-				//object --> string
-				var str = JSON.stringify(data);
-				//string --> json 
-				var json = JSON.parse(str);
-				
-				values = "";
-				for(var i in json.list){
-					values += "<tr><td>" + json.list[i].no
-							+ "</td><td><a href='/first/ndetail?noticeno="
-							+ json.list[i].no +	"'>" 
-							+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-							+ "</a></td><td>" + json.list[i].date
-							+ "</td></tr>";
-				}
-				
-				$('#newnotice').html($('#newnotice').html() + values);
-			},
-			error: function(jqXHR, textstatus, errorthrown){
-				console.log("error : " + jqXHR + ", " + textstatus
-						+ ", " + errorthrown);
-			}
-		});  //ajax (notice top3)
 	</script>
 </body>
 </html>
