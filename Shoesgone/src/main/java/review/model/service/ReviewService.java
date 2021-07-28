@@ -13,11 +13,4 @@ import review.model.vo.Review;
 public class ReviewService {
 	private ReviewDao rdao = new ReviewDao();
 	
-	public ArrayList<Review> selectList(int itemNo) {
-		Connection conn = getConnection();
-		ArrayList<Review> list = rdao.selectList(conn);
-		close(conn);
-		return list;
-	}
-
 }
