@@ -7,6 +7,20 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>비밀번호 찾기</title>
+	
+	<style>
+		#temp-pwd{
+			text-align: left;
+			color: black;
+			margin-left: 10px;
+		}
+		#put-phone-email{
+			text-align: left;
+			color: black;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+	</style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -35,15 +49,15 @@
 						<hr style="height: 1px;" width="30%" color="black"><br>
 						<form class="row login_form" action="/Shoesgone/searchpwd" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<h6 style="text-align: left; color: black; margin-left: 10px;">가입 시 등록하신 휴대폰 번호와 이메일을 입력하시면,</h6>
-								<h6 style="text-align: left; color: black; margin-left: 10px;">휴대폰으로 임시 비밀번호를 전송해 드립니다.</h6>
+								<h6 id="temp-pwd">가입 시 등록하신 휴대폰 번호와 이메일을 입력하시면,</h6>
+								<h6 id="temp-pwd">휴대폰으로 임시 비밀번호를 전송해 드립니다.</h6>
 							</div>
 							<div class="col-md-12 form-group">
-								<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">휴대폰 번호</h6>
+								<h6 id="put-phone-email">휴대폰 번호</h6>
 								<input type="tel" class="form-control" id="phone" name="phone" placeholder="가입하신 휴대폰 번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '가입하신 휴대폰 번호'">
 							</div>
 							<div class="col-md-12 form-group">
-								<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">이메일 주소</h6>
+								<h6 id="put-phone-email">이메일 주소</h6>
 								<input type="email" class="form-control" id="email" name="email" placeholder="예) ShoesGone@shoes.co.kr" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) ShoesGone@shoes.co.kr'">
 							</div>
 							<div class="col-md-12 form-group">

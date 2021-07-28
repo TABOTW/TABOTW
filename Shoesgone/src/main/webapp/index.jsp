@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Shoesgone/resources/css/magnific-popup.css">
 </head>
-
 <body>
 	<%@ include file="views/common/menubar.jsp" %>
 
@@ -787,7 +786,5 @@
 	<!-- end product Area -->
 
 	<%@ include file="views/common/footer.jsp" %>
-
 </body>
-
 </html>

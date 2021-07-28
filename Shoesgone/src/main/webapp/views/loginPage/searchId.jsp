@@ -7,6 +7,21 @@
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>아이디 찾기</title>
+	
+	<style>
+		#temp-email{
+			text-align: left;
+			color: black;
+			margin-left: 10px;
+		}
+		
+		#put-phone{
+			text-align: left;
+			color: black;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+	</style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -35,11 +50,11 @@
 						<hr style="height: 1px;" width="30%" color="black"><br>
 						<form class="row login_form" action="/Shoesgone/searchid" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<h6 style="text-align: left; color: black; margin-left: 10px;">가입 시 등록한 휴대폰 번호를 입력하면</h6>
-								<h6 style="text-align: left; color: black; margin-left: 10px;">이메일 주소의 일부를 알려드립니다.</h6>
+								<h6 id="temp-email">가입 시 등록한 휴대폰 번호를 입력하면</h6>
+								<h6 id="temp-email">이메일 주소의 일부를 알려드립니다.</h6>
 							</div>
 							<div class="col-md-12 form-group">
-								<h6 style="text-align: left; color: black; font-weight: bold; margin-left: 10px;">휴대폰 번호</h6>
+								<h6 id="put-phone">휴대폰 번호</h6>
 								<input type="tel" class="form-control" id="phone" name="phone" placeholder="가입하신 휴대폰 번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '가입하신 휴대폰 번호'">
 							</div>
 							<div class="col-md-12 form-group">

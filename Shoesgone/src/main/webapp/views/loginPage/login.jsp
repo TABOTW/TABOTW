@@ -85,10 +85,7 @@
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="upwd" name="userpwd" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'">
 							</div>
-							<div class="col-md-12 form-group">
-								<div class="creat_account">								
-								</div>
-							</div>
+							
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">로그인</button>
 								<!-- 네이버아이디로로그인 버튼 노출 영역 -->
