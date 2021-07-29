@@ -36,33 +36,25 @@ public class SearchIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 전송온 값에 한글이 있다면 인코딩 처리함
 		request.setCharacterEncoding("utf-8");
 
-		// 2. 전송온 값 꺼내서, 변수 또는 객체에 기록하기
-		// String 변수 = request.getParameter("input의 이름");
 		String phone = request.getParameter("phone");
-		// System.out.println(userid + ", " + userpwd);
-
-		// 3. 서비스 메소드로 전달해서 실행하고 결과받기
-		// Member member = new MemberService().selectLogin(userid, userpwd);
 		Login login = new LoginService().searchId(phone);
 
-		// 4. 받은 결과에 따라 성공/실패 페이지 내보내기
-		if (login != null) { // 로그인 성공
+		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
+		if (login != null) { 
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("loginMember", login);
 			
 			response.sendRedirect("/Shoesgone/views/loginPage/resultId.jsp");
 
-		} else { // 로그인 실패
+		} else { 
 			response.setContentType("text/html; charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
 
-			out.println(
-						"<script>alert('일치하는 사용자 정보를 찾을 수 없습니다.'); location.href='/Shoesgone/views/loginPage/searchId.jsp';</script>");
+			out.println("<script>alert('일치하는 사용자 정보를 찾을 수 없습니다.'); location.href='/Shoesgone/views/loginPage/searchId.jsp';</script>");
 
 			out.flush();
 		}
