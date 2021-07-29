@@ -9,6 +9,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,14 +49,15 @@ public class SearchPasswordServlet extends HttpServlet {
 
 		// 해당 전화번호와 이메일을 가지고 있는 사용자 유무 판별 조건식
 		if (login != null) { 
-			HttpSession session = request.getSession();
+			RequestDispatcher view = null;
+			
+			view = request.getRequestDispatcher("views/loginPage/resultPassword.jsp");
 			
 			// 임시 비밀번호로 업데이트
 			new LoginService().tempPassword(getRandomPassword(), phone, email);
 			
 			// 변경된 비밀번호 정보 다시 가져오기
 			login = new LoginService().searchPassword(phone, email);
-			session.setAttribute("loginMember", login);
 			
 			String userpwd = login.getUserPwd();
 			String cryptoUserpwd = null;
@@ -78,7 +80,9 @@ public class SearchPasswordServlet extends HttpServlet {
 			// 임시 비밀번호를 찾아 SHA-512 적용한 비밀번호로 업데이트
 			new LoginService().updateLogin(newLogin, cryptoUserpwd);
 			
-			response.sendRedirect("/Shoesgone/views/loginPage/resultPassword.jsp");
+			request.setAttribute("login", login);
+	        
+	        view.forward(request, response);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% Login login = (Login)request.getAttribute("login"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,8 +58,7 @@
 								<h6 id=email-address>이메일 주소</h6>
 							</div>
 							<div class="col-md-12 form-group">
-								<p id=email-address-print><%= loginMember.getUserId() %></p>
-								<% session.invalidate(); %>
+								<p id=email-address-print><%= login.getUserId() %></p>
  							</div>
 							<div class="col-md-12 form-group">
 								<button type="button" value="submit" class="primary-btn" onclick="location.href = 'http://localhost:8080/Shoesgone/views/loginPage/searchPassword.jsp';">비밀번호 찾기</button>

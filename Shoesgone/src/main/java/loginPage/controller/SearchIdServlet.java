@@ -2,11 +2,9 @@ package loginPage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,13 +40,14 @@ public class SearchIdServlet extends HttpServlet {
 		Login login = new LoginService().searchId(phone);
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (login != null) { 
-			HttpSession session = request.getSession();
+		if (login != null) {
+			RequestDispatcher view = null;
 			
-			session.setAttribute("loginMember", login);
+			view = request.getRequestDispatcher("views/loginPage/resultId.jsp");
 			
-			response.sendRedirect("/Shoesgone/views/loginPage/resultId.jsp");
-
+	        request.setAttribute("login", login);
+	        
+	        view.forward(request, response);
 		} else { 
 			response.setContentType("text/html; charset=UTF-8");
 

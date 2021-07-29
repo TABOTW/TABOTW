@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% Login login = (Login)request.getAttribute("login"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,7 @@
 								<h6 id="temp-email">전송 받은 임시 비밀번호로 로그인해주세요.</h6>
 							</div>
 							<div class="col-md-12 form-group">
-								<p id="pwd-print"><%= loginMember.getUserPwd() %></p>
-								<% session.invalidate(); %>
+								<p id="pwd-print"><%= login.getUserPwd() %></p>
  							</div>
 							<div class="col-md-12 form-group">
 								<button type="button" value="submit" class="primary-btn" onclick="location.href = 'http://localhost:8080/Shoesgone/views/loginPage/login.jsp';">로그인</button>
