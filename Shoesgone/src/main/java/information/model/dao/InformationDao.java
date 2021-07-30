@@ -41,7 +41,7 @@ public class InformationDao {
 				information.setMgr(rset.getString("mgr"));
 				information.setBankName(rset.getString("bank_name"));
 				information.setAccountNo(rset.getString("account_no"));
-				information.setLoginOk(rset.getString("information_ok"));
+				information.setLoginOk(rset.getString("login_ok"));
 			}
 			
 		} catch (Exception e) {
@@ -78,10 +78,10 @@ public class InformationDao {
 			pstmt.setString(3, information.getEmail());
 			pstmt.setString(4, information.getPhone());
 			pstmt.setString(5, information.getAddress());
-			pstmt.setInt(5, information.getShoesSize());
-			pstmt.setString(6, information.getBankName());
-			pstmt.setString(7, information.getAccountNo());
-			pstmt.setString(8, information.getUserId());
+			pstmt.setInt(6, information.getShoesSize());
+			pstmt.setString(7, information.getBankName());
+			pstmt.setString(8, information.getAccountNo());
+			pstmt.setString(9, information.getUserId());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -92,4 +92,30 @@ public class InformationDao {
 		
 		return result;
 	}
+
+	public int updateName(Connection conn, Information information) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update user_info "
+				+ "set "
+				+ "USER_NAME = ?, "
+				+ "where user_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, information.getUserName());
+			pstmt.setString(2, information.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
 }

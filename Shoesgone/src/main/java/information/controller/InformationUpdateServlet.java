@@ -46,11 +46,11 @@ public class InformationUpdateServlet extends HttpServlet {
 				information.setUserName(request.getParameter("username"));
 				information.setEmail(request.getParameter("email"));
 				information.setPhone(request.getParameter("phone"));
-				information.setAddress(request.getParameter("address"));
+				information.setAddress(String.join(",", request.getParameterValues("address")));
 				information.setShoesSize(Integer.parseInt(request.getParameter("shoesize")));
 				information.setBankName(request.getParameter("bankname"));
 				information.setAccountNo(request.getParameter("accountno"));
-	
+				
 
 				// 웹에서는 단방향 알고리즘 적용 : SHA-512
 				// 단방향 : 암호화만 하고, 복호화가 안되는 알고리즘

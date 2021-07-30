@@ -69,6 +69,7 @@ public class OrderlistDao {
 		
 		try {
 			stm = conn.createStatement();
+		
 			rs = stm.executeQuery(query);
 			
 			if(rs.next()) {
