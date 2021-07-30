@@ -2,6 +2,8 @@ package itemPage.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.commit;
+import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -14,7 +16,13 @@ import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
-
+	
+	public ArrayList<Item> selectList() {
+		Connection conn = getConnection();
+		ArrayList<Item> ilist = iddao.selectList(conn);
+		return ilist;
+	}
+	
 	public Item selectOne(int itemNo) {
 		//주어진 제품번호로 제품의 내용을 갖고 오는 method
 		Connection conn = getConnection();
@@ -48,6 +56,20 @@ public class ItemDetailService {
 		ArrayList<Picture> rplist = iddao.selectRPList(conn, itemNo, brand);
 		return rplist;
 	}
+
+	public int updateItem(Item item) {
+		Connection conn = getConnection();
+		int result = iddao.updateItem(conn, item);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	
 
 	
 

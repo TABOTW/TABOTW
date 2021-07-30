@@ -60,6 +60,8 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/itemPage/category.jsp">SHOP</a></li>
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.html">고객센터</a></li>
+							<!-- 매니저 페이지 연결용 테스트 구문 -->
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">매니저페이지</a></li>
 							<% if(loginMember == null){ %>
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
 							<% }else{ %>

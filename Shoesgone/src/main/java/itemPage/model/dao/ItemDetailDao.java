@@ -5,6 +5,7 @@ import static common.JDBCTemp.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import itemPage.model.vo.Item;
@@ -13,7 +14,43 @@ import orders.model.vo.SalesList;
 import review.model.vo.Review;
 
 public class ItemDetailDao {
-
+	
+	public ArrayList<Item> selectList(Connection conn) {
+		ArrayList<Item> ilist = new ArrayList<Item>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * FROM ITEM";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Item item = new Item();
+				
+				item.setItemNo(rset.getInt("item_no"));
+				item.setItemEngName(rset.getString("ITEM_ENG_NAME"));
+				item.setItemKrName(rset.getString("ITEM_KR_NAME"));
+				item.setBrand(rset.getString("ITEM_BRAND"));
+				item.setModelNo(rset.getString("item_modelno"));
+				item.setShoesColors(rset.getString("item_colors"));
+				item.setPrice(rset.getInt("item_price"));
+				item.setRegDate(rset.getDate("item_reg_date"));
+				item.setDropDate(rset.getDate("item_drop_date"));
+				item.setShoesSizes(rset.getString("item_sizes"));
+				ilist.add(item);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return ilist;
+	}
+	
 	public Item selectOne(Connection conn, int itemNo) {
 		// 제품 하나의 정보를 전달하는 메소드
 		Item item = null;
@@ -224,5 +261,43 @@ public class ItemDetailDao {
 		
 		return rplist;
 	}
+
+	public int updateItem(Connection conn, Item item) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "UPDATE ITEM SET "
+				+ "ITEM_ENG_NAME = ?, "
+				+ "ITEM_KR_NAME = ?, "
+				+ "ITEM_BRAND = ?, "
+				+ "ITEM_MODELNO = ?, "
+				+ "ITEM_COLORS = ?, "
+				+ "ITEM_PRICE = ?, "
+				+ "ITEM_REG_DATE = SYSDATE, "
+				+ "ITEM_DROP_DATE = ?, "
+				+ "ITEM_SIZES = ? "
+				+ "WHERE ITEM_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, item.getItemEngName());
+			pstmt.setString(2, item.getItemKrName());
+			pstmt.setString(3, item.getBrand());
+			pstmt.setString(4, item.getModelNo());
+			pstmt.setString(5, item.getShoesColors());
+			pstmt.setString(6, member.getEtc());
+			pstmt.setString(7, member.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 
 }
