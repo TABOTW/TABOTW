@@ -142,14 +142,14 @@ public class ReviewDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNo RNo, Review_No, Review_TITLE, Review_WRITER,  "
+				+ "FROM (SELECT ROWNUM RNUM, Review_No, Review_TITLE, Review_WRITER,  "
 				+ "                Review_ORIGINAL_FILENAME, Review_RENAME_FILENAME,  "
 				+ "                Review_DATE, Review_LEVEL, Review_REF, Review_REPLY_REF,  "
 				+ "                Review_REPLY_SEQ, Review_READCOUNT, Review_content "
 				+ "        FROM (SELECT * FROM Review "
 				+ "                ORDER BY Review_REF DESC, Review_REPLY_REF DESC, "
 				+ "                          Review_LEVEL ASC, Review_REPLY_SEQ ASC)) "
-				+ "WHERE RNo >= ? AND RNo <= ?";
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

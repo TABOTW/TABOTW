@@ -142,14 +142,14 @@ public class QnADao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNo RNo, QnA_No, QnA_TITLE, QnA_WRITER,  "
+				+ "FROM (SELECT ROWNUM RNUM, QnA_No, QnA_TITLE, QnA_WRITER,  "
 				+ "                QnA_ORIGINAL_FILENAME, QnA_RENAME_FILENAME,  "
 				+ "                QnA_DATE, QnA_LEVEL, QnA_REF, QnA_REPLY_REF,  "
 				+ "                QnA_REPLY_SEQ, QnA_READCOUNT, QnA_content "
 				+ "        FROM (SELECT * FROM QnA "
 				+ "                ORDER BY QnA_REF DESC, QnA_REPLY_REF DESC, "
 				+ "                          QnA_LEVEL ASC, QnA_REPLY_SEQ ASC)) "
-				+ "WHERE RNo >= ? AND RNo <= ?";
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

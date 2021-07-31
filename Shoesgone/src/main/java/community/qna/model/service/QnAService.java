@@ -9,24 +9,24 @@ import community.qna.model.dao.QnADao;
 import community.qna.model.vo.QnA;
 
 public class QnAService {
-	private QnADao bdao = new QnADao();
+	private QnADao qdao = new QnADao();
 	
 	public ArrayList<QnA> selectTop3(){
 		Connection conn = getConnection();
-		ArrayList<QnA> list = bdao.selectTop3(conn);
+		ArrayList<QnA> list = qdao.selectTop3(conn);
 		close(conn);
 		return list;
 	}
 	public QnA selectQnA(int QnANo) {
 		Connection conn = getConnection();
-		QnA QnA = bdao.selectQnA(conn, QnANo);
+		QnA QnA = qdao.selectQnA(conn, QnANo);
 		close(conn);
 		return QnA;
 	}
 	
 	public void addReadCount(int QnANo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, QnANo);
+		int result = qdao.updateReadCount(conn, QnANo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -37,21 +37,21 @@ public class QnAService {
 
 	public int getListCount() {
 		Connection conn = getConnection();
-		int listCount = bdao.getListCount(conn);
+		int listCount = qdao.getListCount(conn);
 		close(conn);
 		return listCount;
 	}
 
 	public ArrayList<QnA> selectList(int startRow, int endRow) {
 		Connection conn = getConnection();
-		ArrayList<QnA> list = bdao.selectList(conn, startRow, endRow);
+		ArrayList<QnA> list = qdao.selectList(conn, startRow, endRow);
 		close(conn);
 		return list;
 	}
 
 	public int insertOriginQnA(QnA QnA) {
 		Connection conn = getConnection();
-		int result = bdao.insertOriginQnA(conn, QnA);
+		int result = qdao.insertOriginQnA(conn, QnA);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -63,7 +63,7 @@ public class QnAService {
 
 	public int updateOrigin(QnA QnA) {
 		Connection conn = getConnection();
-		int result = bdao.updateOrigin(conn, QnA);
+		int result = qdao.updateOrigin(conn, QnA);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -75,7 +75,7 @@ public class QnAService {
 	
 	public int updateReply(QnA QnA) {
 		Connection conn = getConnection();
-		int result = bdao.updateReply(conn, QnA);
+		int result = qdao.updateReply(conn, QnA);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -87,7 +87,7 @@ public class QnAService {
 
 	public void updateReplySeq(QnA reply) {
 		Connection conn = getConnection();
-		int result = bdao.updateReplySeq(conn, reply);
+		int result = qdao.updateReplySeq(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -98,7 +98,7 @@ public class QnAService {
 
 	public int insertReplyQnA(QnA reply) {
 		Connection conn = getConnection();
-		int result = bdao.insertReplyQnA(conn, reply);
+		int result = qdao.insertReplyQnA(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -110,7 +110,7 @@ public class QnAService {
 
 	public int deleteQnA(int QnANo, int QnALevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteQnA(conn, QnANo, QnALevel);
+		int result = qdao.deleteQnA(conn, QnANo, QnALevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

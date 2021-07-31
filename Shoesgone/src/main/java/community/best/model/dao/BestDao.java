@@ -142,14 +142,14 @@ public class BestDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNo RNo, Best_No, Best_TITLE, Best_WRITER,  "
+				+ "FROM (SELECT ROWNUM RNUM, Best_No, Best_TITLE, Best_WRITER,  "
 				+ "                Best_ORIGINAL_FILENAME, Best_RENAME_FILENAME,  "
 				+ "                Best_DATE, Best_LEVEL, Best_REF, Best_REPLY_REF,  "
 				+ "                Best_REPLY_SEQ, Best_READCOUNT, Best_content "
 				+ "        FROM (SELECT * FROM Best "
 				+ "                ORDER BY Best_REF DESC, Best_REPLY_REF DESC, "
 				+ "                          Best_LEVEL ASC, Best_REPLY_SEQ ASC)) "
-				+ "WHERE RNo >= ? AND RNo <= ?";
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

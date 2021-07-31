@@ -142,14 +142,14 @@ public class GalleryDao {
 		ResultSet rset = null;
 		
 		String query = "SELECT * "
-				+ "FROM (SELECT ROWNo RNo, Gallery_No, Gallery_TITLE, Gallery_WRITER,  "
+				+ "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_WRITER,  "
 				+ "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  "
 				+ "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
 				+ "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content "
 				+ "        FROM (SELECT * FROM Gallery "
 				+ "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, "
 				+ "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) "
-				+ "WHERE RNo >= ? AND RNo <= ?";
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

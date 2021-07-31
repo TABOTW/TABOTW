@@ -9,24 +9,24 @@ import community.gallery.model.dao.GalleryDao;
 import community.gallery.model.vo.Gallery;
 
 public class GalleryService {
-	private GalleryDao bdao = new GalleryDao();
+	private GalleryDao gdao = new GalleryDao();
 	
 	public ArrayList<Gallery> selectTop3(){
 		Connection conn = getConnection();
-		ArrayList<Gallery> list = bdao.selectTop3(conn);
+		ArrayList<Gallery> list = gdao.selectTop3(conn);
 		close(conn);
 		return list;
 	}
 	public Gallery selectGallery(int GalleryNo) {
 		Connection conn = getConnection();
-		Gallery Gallery = bdao.selectGallery(conn, GalleryNo);
+		Gallery Gallery = gdao.selectGallery(conn, GalleryNo);
 		close(conn);
 		return Gallery;
 	}
 	
 	public void addReadCount(int GalleryNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, GalleryNo);
+		int result = gdao.updateReadCount(conn, GalleryNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -37,21 +37,21 @@ public class GalleryService {
 
 	public int getListCount() {
 		Connection conn = getConnection();
-		int listCount = bdao.getListCount(conn);
+		int listCount = gdao.getListCount(conn);
 		close(conn);
 		return listCount;
 	}
 
 	public ArrayList<Gallery> selectList(int startRow, int endRow) {
 		Connection conn = getConnection();
-		ArrayList<Gallery> list = bdao.selectList(conn, startRow, endRow);
+		ArrayList<Gallery> list = gdao.selectList(conn, startRow, endRow);
 		close(conn);
 		return list;
 	}
 
 	public int insertOriginGallery(Gallery Gallery) {
 		Connection conn = getConnection();
-		int result = bdao.insertOriginGallery(conn, Gallery);
+		int result = gdao.insertOriginGallery(conn, Gallery);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -63,7 +63,7 @@ public class GalleryService {
 
 	public int updateOrigin(Gallery Gallery) {
 		Connection conn = getConnection();
-		int result = bdao.updateOrigin(conn, Gallery);
+		int result = gdao.updateOrigin(conn, Gallery);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -75,7 +75,7 @@ public class GalleryService {
 	
 	public int updateReply(Gallery Gallery) {
 		Connection conn = getConnection();
-		int result = bdao.updateReply(conn, Gallery);
+		int result = gdao.updateReply(conn, Gallery);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -87,7 +87,7 @@ public class GalleryService {
 
 	public void updateReplySeq(Gallery reply) {
 		Connection conn = getConnection();
-		int result = bdao.updateReplySeq(conn, reply);
+		int result = gdao.updateReplySeq(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -98,7 +98,7 @@ public class GalleryService {
 
 	public int insertReplyGallery(Gallery reply) {
 		Connection conn = getConnection();
-		int result = bdao.insertReplyGallery(conn, reply);
+		int result = gdao.insertReplyGallery(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -110,7 +110,7 @@ public class GalleryService {
 
 	public int deleteGallery(int GalleryNo, int GalleryLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteGallery(conn, GalleryNo, GalleryLevel);
+		int result = gdao.deleteGallery(conn, GalleryNo, GalleryLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

@@ -9,24 +9,24 @@ import community.review.model.dao.ReviewDao;
 import community.review.model.vo.Review;
 
 public class ReviewService {
-	private ReviewDao bdao = new ReviewDao();
+	private ReviewDao rdao = new ReviewDao();
 	
 	public ArrayList<Review> selectTop3(){
 		Connection conn = getConnection();
-		ArrayList<Review> list = bdao.selectTop3(conn);
+		ArrayList<Review> list = rdao.selectTop3(conn);
 		close(conn);
 		return list;
 	}
 	public Review selectReview(int ReviewNo) {
 		Connection conn = getConnection();
-		Review Review = bdao.selectReview(conn, ReviewNo);
+		Review Review = rdao.selectReview(conn, ReviewNo);
 		close(conn);
 		return Review;
 	}
 	
 	public void addReadCount(int ReviewNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, ReviewNo);
+		int result = rdao.updateReadCount(conn, ReviewNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -37,21 +37,21 @@ public class ReviewService {
 
 	public int getListCount() {
 		Connection conn = getConnection();
-		int listCount = bdao.getListCount(conn);
+		int listCount = rdao.getListCount(conn);
 		close(conn);
 		return listCount;
 	}
 
 	public ArrayList<Review> selectList(int startRow, int endRow) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = bdao.selectList(conn, startRow, endRow);
+		ArrayList<Review> list = rdao.selectList(conn, startRow, endRow);
 		close(conn);
 		return list;
 	}
 
 	public int insertOriginReview(Review Review) {
 		Connection conn = getConnection();
-		int result = bdao.insertOriginReview(conn, Review);
+		int result = rdao.insertOriginReview(conn, Review);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -63,7 +63,7 @@ public class ReviewService {
 
 	public int updateOrigin(Review Review) {
 		Connection conn = getConnection();
-		int result = bdao.updateOrigin(conn, Review);
+		int result = rdao.updateOrigin(conn, Review);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -75,7 +75,7 @@ public class ReviewService {
 	
 	public int updateReply(Review Review) {
 		Connection conn = getConnection();
-		int result = bdao.updateReply(conn, Review);
+		int result = rdao.updateReply(conn, Review);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -87,7 +87,7 @@ public class ReviewService {
 
 	public void updateReplySeq(Review reply) {
 		Connection conn = getConnection();
-		int result = bdao.updateReplySeq(conn, reply);
+		int result = rdao.updateReplySeq(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -98,7 +98,7 @@ public class ReviewService {
 
 	public int insertReplyReview(Review reply) {
 		Connection conn = getConnection();
-		int result = bdao.insertReplyReview(conn, reply);
+		int result = rdao.insertReplyReview(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -110,7 +110,7 @@ public class ReviewService {
 
 	public int deleteReview(int ReviewNo, int ReviewLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteReview(conn, ReviewNo, ReviewLevel);
+		int result = rdao.deleteReview(conn, ReviewNo, ReviewLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {

@@ -9,24 +9,24 @@ import community.free.model.dao.FreeDao;
 import community.free.model.vo.Free;
 
 public class FreeService {
-	private FreeDao bdao = new FreeDao();
+	private FreeDao fdao = new FreeDao();
 	
 	public ArrayList<Free> selectTop3(){
 		Connection conn = getConnection();
-		ArrayList<Free> list = bdao.selectTop3(conn);
+		ArrayList<Free> list = fdao.selectTop3(conn);
 		close(conn);
 		return list;
 	}
 	public Free selectFree(int FreeNo) {
 		Connection conn = getConnection();
-		Free Free = bdao.selectFree(conn, FreeNo);
+		Free Free = fdao.selectFree(conn, FreeNo);
 		close(conn);
 		return Free;
 	}
 	
 	public void addReadCount(int FreeNo) {
 		Connection conn = getConnection();
-		int result = bdao.updateReadCount(conn, FreeNo);
+		int result = fdao.updateReadCount(conn, FreeNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -37,21 +37,21 @@ public class FreeService {
 
 	public int getListCount() {
 		Connection conn = getConnection();
-		int listCount = bdao.getListCount(conn);
+		int listCount = fdao.getListCount(conn);
 		close(conn);
 		return listCount;
 	}
 
 	public ArrayList<Free> selectList(int startRow, int endRow) {
 		Connection conn = getConnection();
-		ArrayList<Free> list = bdao.selectList(conn, startRow, endRow);
+		ArrayList<Free> list = fdao.selectList(conn, startRow, endRow);
 		close(conn);
 		return list;
 	}
 
 	public int insertOriginFree(Free Free) {
 		Connection conn = getConnection();
-		int result = bdao.insertOriginFree(conn, Free);
+		int result = fdao.insertOriginFree(conn, Free);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -63,7 +63,7 @@ public class FreeService {
 
 	public int updateOrigin(Free Free) {
 		Connection conn = getConnection();
-		int result = bdao.updateOrigin(conn, Free);
+		int result = fdao.updateOrigin(conn, Free);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -75,7 +75,7 @@ public class FreeService {
 	
 	public int updateReply(Free Free) {
 		Connection conn = getConnection();
-		int result = bdao.updateReply(conn, Free);
+		int result = fdao.updateReply(conn, Free);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -87,7 +87,7 @@ public class FreeService {
 
 	public void updateReplySeq(Free reply) {
 		Connection conn = getConnection();
-		int result = bdao.updateReplySeq(conn, reply);
+		int result = fdao.updateReplySeq(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -98,7 +98,7 @@ public class FreeService {
 
 	public int insertReplyFree(Free reply) {
 		Connection conn = getConnection();
-		int result = bdao.insertReplyFree(conn, reply);
+		int result = fdao.insertReplyFree(conn, reply);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -110,7 +110,7 @@ public class FreeService {
 
 	public int deleteFree(int FreeNo, int FreeLevel) {
 		Connection conn = getConnection();
-		int result = bdao.deleteFree(conn, FreeNo, FreeLevel);
+		int result = fdao.deleteFree(conn, FreeNo, FreeLevel);
 		if(result > 0) {
 			commit(conn);
 		}else {
