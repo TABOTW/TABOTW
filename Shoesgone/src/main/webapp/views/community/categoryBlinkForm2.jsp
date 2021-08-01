@@ -1,14 +1,17 @@
 <<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="community.best.model.vo.Board"%>
+<%@page import="community.free.model.vo.Free"%>
+<%
+	Free free = (Free)request.getAttribute("free");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="../../resources/img/fav.png">
+	<link rel="shortcut icon" href="resources/img/fav.png">
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
@@ -23,14 +26,14 @@
 	<!--
             CSS
             ============================================= -->
-	<link rel="stylesheet" href="../../resources/css/linearicons.css">
-	<link rel="stylesheet" href="../../resources/css/owl.carousel.css">
-	<link rel="stylesheet" href="../../resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../../resources/css/themify-icons.css">
-	<link rel="stylesheet" href="../../resources/css/nice-select.css">
-	<link rel="stylesheet" href="../../resources/css/nouislider.min.css">
-	<link rel="stylesheet" href="../../resources/css/bootstrap.css">
-	<link rel="stylesheet" href="../../resources/css/main.css">
+	<link rel="stylesheet" href="resources/css/linearicons.css">
+	<link rel="stylesheet" href="resources/css/owl.carousel.css">
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/css/themify-icons.css">
+	<link rel="stylesheet" href="resources/css/nice-select.css">
+	<link rel="stylesheet" href="resources/css/nouislider.min.css">
+	<link rel="stylesheet" href="resources/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/css/main.css">
 </head>
 
 <body id="category">
@@ -41,7 +44,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="../../resources/img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="index.html"><img src="resources/img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -146,7 +149,7 @@
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="order_details_table">
-				<h2 align="center"><%= board.getBoardNum() %>번 게시글 상세보기</h2>
+				<h2 align="center"><%= free.getFreeNo() %>번 게시글 상세보기</h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -154,7 +157,7 @@
 						</thead>
 						<tbody>
 							<tr><th width="120">제 목</th>
-							
+							<%= free.getFreeTitle() %>
 							<tr>
 								<th width="120">작성자</th>
 								<td>
@@ -249,14 +252,14 @@
 					<div class="single-footer-widget mail-chimp">
 						<h6 class="mb-20">Instragram Feed</h6>
 						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="../../resources/img/i1.jpg" alt=""></li>
-							<li><img src="../../resources/img/i2.jpg" alt=""></li>
-							<li><img src="../../resources/img/i3.jpg" alt=""></li>
-							<li><img src="../../resources/img/i4.jpg" alt=""></li>
-							<li><img src="../../resources/img/i5.jpg" alt=""></li>
-							<li><img src="../../resources/img/i6.jpg" alt=""></li>
-							<li><img src="../../resources/img/i7.jpg" alt=""></li>
-							<li><img src="../../resources/img/i8.jpg" alt=""></li>
+							<li><img src="resources/img/i1.jpg" alt=""></li>
+							<li><img src="resources/img/i2.jpg" alt=""></li>
+							<li><img src="resources/img/i3.jpg" alt=""></li>
+							<li><img src="resources/img/i4.jpg" alt=""></li>
+							<li><img src="resources/img/i5.jpg" alt=""></li>
+							<li><img src="resources/img/i6.jpg" alt=""></li>
+							<li><img src="resources/img/i7.jpg" alt=""></li>
+							<li><img src="resources/img/i8.jpg" alt=""></li>
 						</ul>
 					</div>
 				</div>
@@ -352,20 +355,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-	<script src="../../resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="resources/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
-	<script src="../../resources/js/vendor/bootstrap.min.js"></script>
-	<script src="../../resources/js/jquery.ajaxchimp.min.js"></script>
-	<script src="../../resources/js/jquery.nice-select.min.js"></script>
-	<script src="../../resources/js/jquery.sticky.js"></script>
-	<script src="../../resources/js/nouislider.min.js"></script>
-	<script src="../../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../../resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/vendor/bootstrap.min.js"></script>
+	<script src="resources/js/jquery.ajaxchimp.min.js"></script>
+	<script src="resources/js/jquery.nice-select.min.js"></script>
+	<script src="resources/js/jquery.sticky.js"></script>
+	<script src="resources/js/nouislider.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="../../resources/js/gmaps.min.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="resources/js/gmaps.min.js"></script>
+	<script src="resources/js/main.js"></script>
 </body>
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
