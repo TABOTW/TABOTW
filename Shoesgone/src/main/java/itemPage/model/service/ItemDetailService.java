@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import orders.model.vo.SalesList;
+import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
@@ -21,11 +23,30 @@ public class ItemDetailService {
 		return item;
 	}
 
-	public ArrayList<Picture> selectPList(String modelNo) {
+	public ArrayList<Picture> selectPList(int itemNo) {
 		// 주어진 모델번호로 이에 맞는 사진 리스트 가져오기
 		Connection conn = getConnection();
-		ArrayList<Picture> plist = iddao.selectPList(conn, modelNo);
+		ArrayList<Picture> plist = iddao.selectPList(conn, itemNo);
 		return plist;
+	}
+
+	public ArrayList<SalesList> selectOrderList(int itemNo, int size, int days) {
+		// 주어진 정보로 맞는 정보 가져오기
+		Connection conn = getConnection();
+		ArrayList<SalesList> orderlist = iddao.selectOrderList(conn, itemNo, size, days);
+		return orderlist;
+	}
+
+	public ArrayList<Review> selectRlist(int itemNo) {
+		Connection conn = getConnection();
+		ArrayList<Review> reviewlist = iddao.selectReviewList(conn, itemNo);
+		return reviewlist;
+	}
+
+	public ArrayList<Picture> selectRPList(int itemNo, String brand) {
+		Connection conn = getConnection();
+		ArrayList<Picture> rplist = iddao.selectRPList(conn, itemNo, brand);
+		return rplist;
 	}
 
 	
