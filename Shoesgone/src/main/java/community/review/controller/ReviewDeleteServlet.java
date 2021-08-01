@@ -47,7 +47,7 @@ public class ReviewDeleteServlet extends HttpServlet {
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
-			response.sendRedirect("/first/reviewlist?page=1");
+			response.sendRedirect("/Shoesgone/reviewlist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

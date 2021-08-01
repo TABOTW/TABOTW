@@ -53,7 +53,7 @@ public class QnADetailServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(QnA != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityDetailView.jsp");
+					"views/community/qna/qnaDetailView.jsp");
 			request.setAttribute("QnA", QnA);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);

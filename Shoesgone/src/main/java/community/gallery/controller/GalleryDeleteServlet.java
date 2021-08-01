@@ -47,7 +47,7 @@ public class GalleryDeleteServlet extends HttpServlet {
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
-			response.sendRedirect("/first/gallerylist?page=1");
+			response.sendRedirect("/Shoesgone/gallerylist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

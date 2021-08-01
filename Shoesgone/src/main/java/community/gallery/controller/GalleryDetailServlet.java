@@ -53,7 +53,7 @@ public class GalleryDetailServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(Gallery != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityDetailView.jsp");
+					"views/community/gallery/galleryDetailView.jsp");
 			request.setAttribute("Gallery", Gallery);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);

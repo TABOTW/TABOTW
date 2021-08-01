@@ -17,6 +17,8 @@ public class Review implements java.io.Serializable {
 	private int ReviewReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int ReviewReadCount; //읽은 조회수
 	private java.sql.Date ReviewDate;  //게시글 등록 날짜
+	private int reviewItemNo; //리뷰하는 물품 번호
+	private int reviewStar; //추천수?
 	
 	public Review() {}
 
@@ -40,7 +42,7 @@ public class Review implements java.io.Serializable {
 
 	public Review(int ReviewNo, String ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
 			String ReviewRenameFilename, int ReviewRef, int ReviewLevel, int ReviewReplyRef, int ReviewReplySeq,
-			int ReviewReadCount, Date ReviewDate) {
+			int ReviewReadCount, Date ReviewDate, int reviewItemNo, int reviewStar) {
 		super();
 		this.ReviewNo = ReviewNo;
 		this.ReviewWriter = ReviewWriter;
@@ -54,6 +56,8 @@ public class Review implements java.io.Serializable {
 		this.ReviewReplySeq = ReviewReplySeq;
 		this.ReviewReadCount = ReviewReadCount;
 		this.ReviewDate = ReviewDate;
+		this.reviewItemNo = reviewItemNo;
+		this.reviewStar = reviewStar;
 	}
 
 	public int getReviewNo() {
@@ -155,6 +159,21 @@ public class Review implements java.io.Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public int getReviewItemNo() {
+		return reviewItemNo;
+	}
+
+	public void setReviewItemNo(int reviewItemNo) {
+		this.reviewItemNo = reviewItemNo;
+	}
+	public int getReviewStar() {
+		return reviewStar;
+	}
+
+	public void setReviewStar(int reviewStar) {
+		this.reviewStar = reviewStar;
+	}
 
 	@Override
 	public String toString() {
@@ -162,7 +181,8 @@ public class Review implements java.io.Serializable {
 				+ ", ReviewContent=" + ReviewContent + ", ReviewOriginalFilename=" + ReviewOriginalFilename
 				+ ", ReviewRenameFilename=" + ReviewRenameFilename + ", ReviewRef=" + ReviewRef + ", ReviewLevel="
 				+ ReviewLevel + ", ReviewReplyRef=" + ReviewReplyRef + ", ReviewReplySeq=" + ReviewReplySeq
-				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + "]";
+				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + ", reviewItemNo="
+				+ reviewItemNo + ", reviewStar=" + reviewStar + "]";
 	}
 	
 }

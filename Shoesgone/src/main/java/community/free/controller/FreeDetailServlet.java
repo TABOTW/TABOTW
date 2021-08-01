@@ -33,7 +33,7 @@ public class FreeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 (원글, 댓글, 대댓글) 상세보기 처리용 컨트롤러
 		
-		int FreeNo = Integer.parseInt(request.getParameter("fNo"));
+		int FreeNo = Integer.parseInt(request.getParameter("fNo")); // 주소창의 fNo 값
 		
 		//페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
@@ -54,7 +54,7 @@ public class FreeDetailServlet extends HttpServlet {
 		if(free != null) {
 			view = request.getRequestDispatcher(
 					//"views/Free/FreeDetailView.jsp");
-					"views/community/communityDetailView.jsp");
+					"views/community/free/freeDetailView.jsp");
 			request.setAttribute("free", free);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);

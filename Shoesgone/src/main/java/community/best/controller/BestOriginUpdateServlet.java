@@ -172,7 +172,7 @@ public class BestOriginUpdateServlet extends HttpServlet {
 		// 7. 받은 결과로 성공/실패 페이지 내보내기
 		if (result > 0) {
 			//수정 성공시 목록 보기의 해당 페이지 출력 요청
-			//response.sendRedirect("blist?page=" + currentPage);
+			//response.sendRedirect("bestlist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
 			response.sendRedirect("bestdetail?bNo=" 

@@ -43,6 +43,9 @@ public class FreeListServlet extends HttpServlet {
 		
 		//한 페이지당 출력할 목록 갯수 지정
 		int limit = 10;
+		if(request.getParameter("limit") != null) {
+			limit = Integer.parseInt(request.getParameter("limit"));
+		}
 		
 		//조회용 서비스 객체 생성
 		FreeService bservice = new FreeService();
@@ -82,7 +85,7 @@ public class FreeListServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(list.size() > 0) {
 			view = request.getRequestDispatcher(
-					"views/Free/FreeListView.jsp");
+					"views/community/free/freeListView.jsp");
 			
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
@@ -90,6 +93,7 @@ public class FreeListServlet extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
+			request.setAttribute("limit", limit);
 			
 			view.forward(request, response);
 		}else {

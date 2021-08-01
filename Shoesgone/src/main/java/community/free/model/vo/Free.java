@@ -1,6 +1,7 @@
 package community.free.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Free implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
@@ -16,7 +17,7 @@ public class Free implements java.io.Serializable {
 	private int FreeReplyRef;  //원글 0, 댓글은 자기번호, 대댓글은 참조하는 댓글번호
 	private int FreeReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int FreeReadCount; //읽은 조회수
-	private java.sql.Date FreeDate;  //게시글 등록 날짜
+	private String FreeDate;  //게시글 등록 날짜
 	
 	public Free() {}
 
@@ -40,7 +41,7 @@ public class Free implements java.io.Serializable {
 
 	public Free(int FreeNo, String FreeWriter, String FreeTitle, String FreeContent, String FreeOriginalFilename,
 			String FreeRenameFilename, int FreeRef, int FreeLevel, int FreeReplyRef, int FreeReplySeq,
-			int FreeReadCount, Date FreeDate) {
+			int FreeReadCount, String FreeDate) {
 		super();
 		this.FreeNo = FreeNo;
 		this.FreeWriter = FreeWriter;
@@ -144,11 +145,11 @@ public class Free implements java.io.Serializable {
 		this.FreeReadCount = FreeReadCount;
 	}
 
-	public java.sql.Date getFreeDate() {
+	public String getFreeDate() {
 		return FreeDate;
 	}
 
-	public void setFreeDate(java.sql.Date FreeDate) {
+	public void setFreeDate(String FreeDate) {
 		this.FreeDate = FreeDate;
 	}
 

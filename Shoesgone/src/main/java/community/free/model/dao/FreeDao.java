@@ -12,6 +12,10 @@ import community.free.model.vo.Free;
 
 public class FreeDao {
 
+	/*
+	 * 조회수 많은 순서로 최대 3개의 글을 가져오는 selectTop3
+	 * SQL쿼리는 정상적으로 작동하는 것을 확인
+	 */
 	public ArrayList<Free> selectTop3(Connection conn) {
 		ArrayList<Free> list = new ArrayList<Free>();
 		Statement stmt = null;
@@ -31,7 +35,7 @@ public class FreeDao {
 			while(rset.next()) {
 				Free Free = new Free();
 				
-				Free.setFreeNo(rset.getInt("Free_n"));
+				Free.setFreeNo(rset.getInt("Free_no"));
 				Free.setFreeTitle(rset.getString("Free_title"));
 				Free.setFreeReadCount(rset.getInt("Free_readcount"));
 				
@@ -47,12 +51,20 @@ public class FreeDao {
 		
 		return list;
 	}
+	
+	/*
+	 * 게시판 번호(FreeNO)로 게시물 조회
+	 * SQL 쿼리 정상 작동
+	 * 제목, 작성자, 내용, 작성일자, 조회수만 가져오면 되나요?
+	 * 나머지는 아직 컬럼을 안만들어서 가져올수가 없어요 ㅇㅋ
+	 */
 	public Free selectFree(Connection conn, int FreeNO) {
 		Free Free = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from Free "
+		String query = "select free_no, free_title, free_content, free_writer, to_char(free_date, 'YYYY-MM-DD HH24:MI:SS') as free_date"
+				+ ", free_readcount from Free "
 				+ "where Free_NO = ?";
 		
 		try {
@@ -68,10 +80,9 @@ public class FreeDao {
 				Free.setFreeTitle(rset.getString("Free_title"));
 				Free.setFreeWriter(rset.getString("Free_writer"));
 				Free.setFreeContent(rset.getString("Free_content"));
-				// TODO 여기.. 컬럼 정리해야 함
 				//Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
 				//Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
-				Free.setFreeDate(rset.getDate("Free_date"));
+				Free.setFreeDate(rset.getString("Free_date"));
 				//Free.setFreeLevel(rset.getInt("Free_level"));
 				//Free.setFreeRef(rset.getInt("Free_ref"));
 				//Free.setFreeReplyRef(rset.getInt("Free_reply_ref"));
@@ -89,6 +100,10 @@ public class FreeDao {
 		return Free;
 	}
 
+	/*
+	 * 조회수 1 증가하는 메소드
+	 * SQL 쿼리 정상 작동 확인
+	 */
 	public int updateReadCount(Connection conn, int FreeNO) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -112,6 +127,10 @@ public class FreeDao {
 		return result;
 	}
 
+	/*
+	 * 자유게시판(Free 테이블)의 전체 갯수 확인
+	 * 
+	 */
 	public int getListCount(Connection conn) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -136,12 +155,19 @@ public class FreeDao {
 		return listCount;
 	}
 
+	/*
+	 * 게시판 목록 메소드인 것 같은데..
+	 * 컬럼이 빠진게 많네요? 얘는 테이블에 컬럼을 먼저 추가하던가 해야 할 것 같은데
+	 * 음.. 근데제가궁금한게 여기에 데이터를 추가하는 방법이 뭘까요?
+	 * 여기에 나타나게 하고싶어요
+	 */
 	public ArrayList<Free> selectList(Connection conn, 
 			int startRow, int endRow) {
 		ArrayList<Free> list = new ArrayList<Free>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
+		/*
 		String query = "SELECT * "
 				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
 				+ "                Free_ORIGINAL_FILENAME, Free_RENAME_FILENAME,  "
@@ -151,6 +177,13 @@ public class FreeDao {
 				+ "                ORDER BY Free_REF DESC, Free_REPLY_REF DESC, "
 				+ "                          Free_LEVEL ASC, Free_REPLY_SEQ ASC)) "
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
+		*/
+		String query = "SELECT *"
+				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
+				+ "				 Free_DATE, Free_READCOUNT, Free_content "
+				+ "        FROM FREE ORDER BY Free_NO DESC"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -165,13 +198,14 @@ public class FreeDao {
 				Free.setFreeNo(rset.getInt("Free_no"));
 				Free.setFreeTitle(rset.getString("Free_title"));
 				Free.setFreeWriter(rset.getString("Free_writer"));
-				Free.setFreeContent(rset.getString("Free_content"));				Free.setFreeDate(rset.getDate("Free_date"));
-				Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
-				Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
-				Free.setFreeRef(rset.getInt("Free_ref"));
-				Free.setFreeLevel(rset.getInt("Free_level"));
-				Free.setFreeReplyRef(rset.getInt("Free_reply_ref"));
-				Free.setFreeReplySeq(rset.getInt("Free_reply_seq"));
+				Free.setFreeContent(rset.getString("Free_content"));				
+				Free.setFreeDate(rset.getString("Free_date"));
+				//Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
+				//Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
+				//Free.setFreeRef(rset.getInt("Free_ref"));
+				//Free.setFreeLevel(rset.getInt("Free_level"));
+				//Free.setFreeReplyRef(rset.getInt("Free_reply_ref"));
+				//Free.setFreeReplySeq(rset.getInt("Free_reply_seq"));
 				Free.setFreeReadCount(rset.getInt("Free_readcount"));
 				
 				list.add(Free);

@@ -53,7 +53,7 @@ public class BestDetailServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(Best != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityDetailView.jsp");
+					"views/community/best/bestDetailView.jsp");
 			request.setAttribute("Best", Best);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);

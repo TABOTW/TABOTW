@@ -72,7 +72,7 @@ public class BestReplyInsertServlet extends HttpServlet {
 		int result = bservice.insertReplyBest(reply);
 		
 		if(result > 0) {
-			response.sendRedirect("/first/bestlist?page=" + currentPage);
+			response.sendRedirect("/Shoesgone/bestlist?page=" + currentPage);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

@@ -53,7 +53,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(Review != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityDetailView.jsp");
+					"views/community/review/reviewDetailView.jsp");
 			request.setAttribute("Review", Review);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);

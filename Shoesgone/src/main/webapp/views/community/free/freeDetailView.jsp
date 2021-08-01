@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="community.free.model.vo.Free"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.ArrayList"%>
 <%
-	//Free free = (Free)request.getAttribute("free");
-	ArrayList freeList = (ArrayList) request.getAttribute("list");
-	int limit = Integer.parseInt(request.getAttribute("limit").toString());
-	int currentPage = Integer.parseInt(request.getAttribute("currentPage").toString());
-	int maxPage = Integer.parseInt(request.getAttribute("maxPage").toString());
-	int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
-	int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
-	int listCount = Integer.parseInt(request.getAttribute("listCount").toString());
+	Free free = (Free)request.getAttribute("free");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,9 +22,7 @@
 	<!-- Site Title -->
 	<title>슈즈곤</title>
 
-	<!--
-            CSS
-            ============================================= -->
+	<!-- CSS ============================================= -->
 	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
@@ -52,7 +41,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.jsp"><img src="/Shoesgone/resources/img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="index.html"><img src="/Shoesgone/resources/img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -62,13 +51,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.jsp">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.jsp">Blog Details</a></li>
+									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown active">
@@ -114,16 +103,20 @@
 	</header>
 	<!-- End Header Area -->
 
+
+	
+	
+
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>자유게시판</h1>
+					<h1>리뷰 게시판</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.jsp">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Community Category<span class="lnr lnr-arrow-right"></span></a>
-						<a href="free.jsp">자유게시판</a>
+						<a href="review.jsp">리뷰 게시판</a>
 					</nav>
 				</div>
 			</div>
@@ -153,86 +146,66 @@
 							</li>
 					</ul>
 				</div>
-				
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="mr-auto">
-					</div>
-					<div class="default-select" id="default-select">
-						<select style="display: none;">
-							<option value="1">정렬</option>
-							<option value="1">인기순↓</option>
-							<option value="1">인기순↑</option>
-							<option value="1">최신순↓</option>
-							<option value="1">최신순↑</option>
-							<option value="1">사진글</option>
-						</select><div class="nice-select" tabindex="0"><span class="current">정렬</span><ul class="list"><li data-value=" 1" class="option selected focus">정렬</li><li data-value="1" class="option">인기순↓</li><li data-value="1" class="option">인기순↑</li><li data-value="1" class="option">최신순↓</li><li data-value="1" class="option">최신순↑</li><li data-value="1" class="option">사진글</li></ul></div>
-					</div>
+				<div class="order_details_table">
+				
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							
+							<th width="10%">제목</th>
+							<td width="60%" colspan="3"><%= free.getFreeTitle() %></td><!-- 제목 -->
+							<th width="10%">번호</th>
+							<td width="5%"><%= free.getFreeNo() %></td> <!-- 번호 -->
+						</tr>
+						
+						<tr>
+							<th width="10%">작성자</th>
+							<td width="10%"><%= free.getFreeWriter() %></td>
+							<th width="10%">작성일</th>
+							<td width="15%"><%= free.getFreeDate()%></td> <!-- 작성일 you can do it! -->
+							<th>조회수</th>
+							<td width=""><%= free.getFreeReadCount() %></td>
+						</tr>
+						<tr>
+							<th colspan="1">내용</th>
+							<th colspan="5"><%= free.getFreeContent() %></th>
+						</tr>
+						<tr align="center">
+						<th colspan="6">
+							<button>신고</button>
+							<button>추천</button>
+						</th>
+						</tr>
+					</table>
 				</div>
+			</div>
+				
+						
+				
+				
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
-					<div class="progress-table-wrap">
-						<div class="progress-table">
-							<div class="table-head">
-								<div class="boardno">번호</div>
-								<div class="boardtitle">제목</div>
-								<div class="register">작성자</div>
-								<div class="registdate">작성일</div>
-								<div class="hitcount">조회수</div>
-							</div>
-							<%
-								for(int i = 0; i < freeList.size(); i++) {
-									Free free = (Free)freeList.get(i);
-							%>
-							<div class="table-row">
-								<div class="boardno"><%= free.getFreeNo() %></div>
-								<div class="boardtitle"><%= free.getFreeTitle() %></div>
-								<div class="register"><%= free.getFreeWriter() %></div>
-								<div class="registdate"><%= free.getFreeDate()%></div>
-								<div class="hitcount"><%= free.getFreeReadCount() %></div>
-							</div>
-							<%
-								}
-							%>
-						</div>
-					</div>
+				<div class="WritingWrp">
+					
+                	
+                </div>
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="sorting mr-auto">
-						<select id="limit">
-							<option value="5">Show 5</option>
-							<option value="10">Show 10</option>
-							<option value="20">Show 20</option>
-						</select>
-					</div>
-					<div class="pagination">
-						<a href="/Shoesgone/freelist?page=1" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="/Shoesgone/freelist?page=1" class="active">1</a>
-						<a href="/Shoesgone/freelist?page=2">2</a>
-						<a href="/Shoesgone/freelist?page=3">3</a>
-						<a href="/Shoesgone/freelist?page=4">4</a>
-						<a href="/Shoesgone/freelist?page=5">5</a>
-						<a href="" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="/Shoesgone/freelist?page=9">9</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-					</div>
-					<div class="button-group-area mt-40 ml-auto">
-						<a href="#" class="genric-btn primary default circle">글쓰기</a>
-					</div>
-					
-				</div>
+				
+				
+				
 				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
-<br><br><br><br><br>
- 
 
+	
+<br><br><br><br><br>
 	<!-- start footer Area -->
 	<footer class="footer-area section_gap">
 		<div class="container">
@@ -396,11 +369,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
-	<script type="text/javascript">
-    $(document).ready(function(){
-    	$("select[id='limit'").val("10").prop("selected", true);
-    	console.log("셀렉터");
-    });
-	</script>
 </body>
 </html>
