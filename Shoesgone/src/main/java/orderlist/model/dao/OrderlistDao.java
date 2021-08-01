@@ -14,7 +14,7 @@ import orderlist.model.vo.Orderlist;
 public class OrderlistDao {
 
 	
-	public ArrayList<Orderlist> selectList(Connection conn, int startRow, int endRow){
+	public ArrayList<Orderlist> selectList(Connection conn, int startRow, int endRow, int userNo){
 		ArrayList<Orderlist> list = new ArrayList<Orderlist>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -24,12 +24,13 @@ public class OrderlistDao {
 				+ "from orders o join item i "
 				+ "on o.item_no = i.item_no "
 				+ "order by o.orders_no desc) "
-				+ "where rnum >= ? and rnum <=?";
+				+ "where rnum >= ? and rnum <=? and buyer_no = ?";
 		
 		try {
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, startRow);
 			ps.setInt(2, endRow);
+			ps.setInt(3, userNo);
 			
 			rs = ps.executeQuery();
 			
@@ -60,29 +61,33 @@ public class OrderlistDao {
 	}
 	
 	
-	public int getListCount(Connection conn) {
+	public int getListCount(Connection conn, int userNo) {
 		int ordersListCount = 0;
-		Statement stm = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "select count(*) from orders";
+		String query = "select count(*) from orders where buyer_no = ?";
 		
 		try {
-			stm = conn.createStatement();
-			rs = stm.executeQuery(query);
-			
-			if(rs.next()) {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
 				ordersListCount = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(rs);
-			close(stm);
+			close(pstmt);
 		}
 		
 		return ordersListCount;
 	}
+	
+	
 	public Orderlist selectOne(Connection conn, int orderNo) {
 		Orderlist orderlist = null;
 		PreparedStatement pstmt = null;
@@ -135,5 +140,77 @@ public class OrderlistDao {
 		
 		return orderlist;
 	}
+
+	public ArrayList<Orderlist> adminSelectList(Connection conn, int startRow, int endRow){
+		ArrayList<Orderlist> list = new ArrayList<Orderlist>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String query = "select * from ("
+				+ "select rownum rnum, o.orders_no, o.item_no, o.seller_no, o.buyer_no, o.price, o.count, o.progress, i.ITEM_ENG_NAME "
+				+ "from orders o join item i "
+				+ "on o.item_no = i.item_no "
+				+ "order by o.orders_no desc) "
+				+ "where rnum >= ? and rnum <=?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+			
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Orderlist orderlist = new Orderlist();
+				
+				orderlist.setOrdersNo(rs.getInt("orders_no"));
+				orderlist.setItemNo(rs.getInt("item_no"));
+				orderlist.setSellerNo(rs.getInt("seller_no"));
+				orderlist.setBuyerNo(rs.getInt("buyer_no"));
+				orderlist.setPrice(rs.getInt("price"));
+				orderlist.setCount(rs.getInt("count"));
+				orderlist.setProgress(rs.getString("progress"));
+				orderlist.setItemEngName(rs.getString("ITEM_ENG_NAME"));
+				
+				list.add(orderlist);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return list;
+	}
+	
+	
+	public int adminGetListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String query = "select count(*) from orders ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	
 	
 }

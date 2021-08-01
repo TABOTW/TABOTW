@@ -14,16 +14,16 @@ public class OrderlistService {
 
 	private OrderlistDao oldao = new OrderlistDao();
 	
-	public ArrayList<Orderlist> selectList(int startRow, int endRow){
+	public ArrayList<Orderlist> selectList(int startRow, int endRow, int userNo){
 		Connection conn = getConnection();
-		ArrayList<Orderlist> list = oldao.selectList(conn, startRow, endRow);
+		ArrayList<Orderlist> list = oldao.selectList(conn, startRow, endRow, userNo);
 		close(conn);
 		return list;
 	}
 	
-	public int getListCount() {
+	public int getListCount(int userNo) {
 		Connection conn = getConnection();
-		int ordersListCount = oldao.getListCount(conn);
+		int ordersListCount = oldao.getListCount(conn, userNo);
 		close(conn);
 		
 		return ordersListCount;
@@ -34,6 +34,21 @@ public class OrderlistService {
 		Orderlist orderlist = oldao.selectOne(conn, orderNo);
 		close(conn);
 		return orderlist;
+	}
+	
+	public ArrayList<Orderlist> adminSelectList(int startRow, int endRow){
+		Connection conn = getConnection();
+		ArrayList<Orderlist> list = oldao.adminSelectList(conn, startRow, endRow);
+		close(conn);
+		return list;
+	}
+	
+	public int adminGetListCount() {
+		Connection conn = getConnection();
+		int ordersListCount = oldao.adminGetListCount(conn);
+		close(conn);
+		
+		return ordersListCount;
 	}
 	
 }

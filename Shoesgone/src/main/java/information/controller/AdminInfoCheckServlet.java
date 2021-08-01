@@ -1,4 +1,4 @@
-package wishlist.controller;
+package information.controller;
 
 import java.io.IOException;
 
@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wishlist.model.service.WishlistService;
+import information.model.service.InformationService;
+import information.model.vo.Information;
 
 /**
- * Servlet implementation class WishlistAllDeleteServlet
+ * Servlet implementation class AdminInfoCheckServlet
  */
-@WebServlet("/walldelete")
-public class WishlistAllDeleteServlet extends HttpServlet {
+@WebServlet("/info.ad")
+public class AdminInfoCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishlistAllDeleteServlet() {
+    public AdminInfoCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +31,24 @@ public class WishlistAllDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		//3. 서비스 메소드 실행하고 결과받기
+		Information information = new InformationService().adminselectMember(userNo);
 		
-
-		// 서비스 메소드로 삭제 실행하고 결과받기
-		if (new WishlistService().deleteAll(userNo) > 0) {
-
-			response.sendRedirect("/Shoesgone/wlist?userNo="+ userNo);
-		} else if(new WishlistService().getListCount(userNo) == 0){
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message",  "삭제할 위시리스트가 없습니다.");
+		//4. 받은 결과로 성공/실패에 대한 뷰 내보냄
+		RequestDispatcher view = null;
+		if(information != null) {
+			view = request.getRequestDispatcher(
+					"views/managerPage/selectMember.jsp");
+			request.setAttribute("information", information);
 			view.forward(request, response);
-		}
-		else{
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message",  "전체 삭제 실패.");
+		}else {
+			view = request.getRequestDispatcher(
+					"views/common/error.jsp");
+			request.setAttribute("message", userNo 
+					+ "번 회원정보 조회 실패!");
 			view.forward(request, response);
 		}
 	}

@@ -30,5 +30,24 @@ public class InformationService {
 		close(conn);
 		return result;
 	}
+	
+	public int updateName(Information information) {
+		Connection conn = getConnection();
+		int result = idao.updateName(conn, information);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public Information adminselectMember(int userNo) {
+		Connection conn = getConnection();
+		Information information = idao.adminSelectMember(conn, userNo);
+		close(conn);
+		return information;
+	}
 
 }

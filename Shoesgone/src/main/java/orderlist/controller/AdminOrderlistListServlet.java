@@ -16,14 +16,14 @@ import orderlist.model.vo.Orderlist;
 /**
  * Servlet implementation class OrderlistListServlet
  */
-@WebServlet("/olist")
-public class OrderlistListServlet extends HttpServlet {
+@WebServlet("/olist.ad")
+public class AdminOrderlistListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderlistListServlet() {
+    public AdminOrderlistListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class OrderlistListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+	
 		// 출력할 페이지 지정
 		int currentPage = 1;
 		
@@ -43,11 +43,11 @@ public class OrderlistListServlet extends HttpServlet {
 		}
 		
 		// 한 페이지당 출력할 갯수 설정
-		int limit = 4;
+		int limit = 1000;
 		
 		// 총 페이지 수 계산을 위한 목록 조회
 		OrderlistService olservice = new OrderlistService();
-		int listCount = olservice.getListCount(userNo);// 서비스 객체 메소드 실행하고 결과받기
+		int listCount = olservice.adminGetListCount();// 서비스 객체 메소드 실행하고 결과받기
 	
 
 		
@@ -56,7 +56,7 @@ public class OrderlistListServlet extends HttpServlet {
 		int endRow = startRow + limit - 1;
 		
 		// 서비스로 해당 페이지에 출력할 제품들만 조회
-		ArrayList<Orderlist> list = olservice.selectList(startRow, endRow, userNo);
+		ArrayList<Orderlist> list = olservice.adminSelectList(startRow, endRow);
 		
 		// 출력할 페이지 관련 숫자 처리
 		int maxPage = (int)((double)listCount / limit + 0.9);
@@ -73,7 +73,7 @@ public class OrderlistListServlet extends HttpServlet {
 		// 화면에 출력
 		RequestDispatcher view = null;
 		
-			view = request.getRequestDispatcher("views/myPage/orderlist.jsp");
+			view = request.getRequestDispatcher("views/managerPage/adminOrdersView.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
