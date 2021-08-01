@@ -39,9 +39,29 @@
 			background-color: rgb(255, 103, 17);
 			text-align: center;
 		}
+		
+		#today-style, #shoesgone-style{
+			width: 100%;
+			margin: 3em auto;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		
+		#today-style li, #shoesgone-style li{
+			width: 16%;
+			list-style: none;
+			padding: 15px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		#today-style li img, #shoesgone-style li img{
+			width: 100%;
+		}
 	</style>
 </head>
 <body>
+
 	<%@ include file="views/common/menubar.jsp" %>
 
 	<!-- start banner Area -->
@@ -260,104 +280,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					<div id="today-style"></div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
@@ -469,104 +392,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					<div id="shoesgone-style"></div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
@@ -929,5 +755,24 @@
 	<!-- end product Area -->
 
 	<%@ include file="views/common/footer.jsp" %>
+
+	<script src="/Shoesgone/resources/js/instafeed.min.js"></script>
+	<script>
+	    var feed1 = new Instafeed({
+	    	target: 'today-style',
+	    	template: '<li><a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a></li>',
+	    	limit: 6,
+	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
+	    });
+	    feed1.run();
+	    
+	    var feed2 = new Instafeed({
+	    	target: 'shoesgone-style',
+	    	template: '<li><a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a></li>',
+	    	limit: 6,
+	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
+	    });
+	    feed2.run();
+	</script>
 </body>
 </html>
