@@ -5,8 +5,11 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import loginPage.model.service.LoginService;
 import loginPage.model.vo.Login;
 
 
@@ -33,6 +37,7 @@ public class KakaoLoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		PrintWriter out = response.getWriter();
 		String code = request.getParameter("code");
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 		
@@ -53,6 +58,7 @@ public class KakaoLoginServlet extends HttpServlet {
 			bw.write(sb.toString());
 			bw.flush();
 			
+			int responseCode = conn.getResponseCode();
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = "";

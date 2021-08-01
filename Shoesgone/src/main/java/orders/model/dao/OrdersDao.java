@@ -99,50 +99,8 @@ public class OrdersDao {
 	// 주문 취소용 메소드
 	
 	// 배송현황 갱신용 메소드
-	public int updateProgress(Connection conn, Orders upProgress) {
-		int result = 0;
-		PreparedStatement ps = null;
-		
-		String query = "update orders set progress = ? where orders_no = ?";
-		
-		try {
-			ps = conn.prepareStatement(query);
-			
-			ps.setString(1, upProgress.getProgress());
-			ps.setInt(2, upProgress.getOrdersNo());
-			
-			result = ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(ps);
-		}
-		
-		return result;
-	}
 	
 	// 배송지 변경용 메소드
-	public int updateOrder(Connection conn, Orders upOrder) {
-		int result = 0;
-		PreparedStatement ps = null;
-		
-		String query = "update orders set address = ? where orders_no = ?";
-		
-		try {
-			ps = conn.prepareStatement(query);
-			
-			ps.setString(1, upOrder.getAddress());
-			ps.setInt(2, upOrder.getOrdersNo());
-			
-			result = ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(ps);
-		}
-		
-		return result;
-	}
 	
 	// 전체 주문목록 갯수 출력용 메소드
 	public int getOrdersListCount(Connection conn) {

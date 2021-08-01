@@ -8,9 +8,9 @@ public class Orders implements java.io.Serializable {
 
 	// Field
 	private int ordersNo;
-	private int userNo;
+	private int sellerNo;
 	private int itemNo;
-	private String userID;
+	private int buyerNo;
 	private java.sql.Date purDate;
 	private int count;
 	private String progress;
@@ -20,18 +20,20 @@ public class Orders implements java.io.Serializable {
 	private String phone;
 	private int delFee;
 	private String payment;
-	private String etc;
 	
-	// Constructor
-	public Orders() {}
+	//Constructor
+	public Orders() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public Orders(int ordersNo, int userNo, int itemNo, String userID, Date purDate, int count, String progress,
-			int price, String address, int size, String phone, int delFee, String payment, String etc) {
+	public Orders(int ordersNo, int sellerNo, int itemNo, int buyerNo, Date purDate, int count, String progress,
+			int price, String address, int size, String phone, int delFee, String payment) {
 		super();
 		this.ordersNo = ordersNo;
-		this.userNo = userNo;
+		this.sellerNo = sellerNo;
 		this.itemNo = itemNo;
-		this.userID = userID;
+		this.buyerNo = buyerNo;
 		this.purDate = purDate;
 		this.count = count;
 		this.progress = progress;
@@ -41,10 +43,8 @@ public class Orders implements java.io.Serializable {
 		this.phone = phone;
 		this.delFee = delFee;
 		this.payment = payment;
-		this.etc = etc;
 	}
-
-	// Getter & Setter
+	//Getter and Setters
 	public int getOrdersNo() {
 		return ordersNo;
 	}
@@ -53,12 +53,12 @@ public class Orders implements java.io.Serializable {
 		this.ordersNo = ordersNo;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public int getSellerNo() {
+		return sellerNo;
 	}
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setSellerNo(int sellerNo) {
+		this.sellerNo = sellerNo;
 	}
 
 	public int getItemNo() {
@@ -69,12 +69,12 @@ public class Orders implements java.io.Serializable {
 		this.itemNo = itemNo;
 	}
 
-	public String getUserID() {
-		return userID;
+	public int getBuyerNo() {
+		return buyerNo;
 	}
 
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setBuyerNo(int buyerNo) {
+		this.buyerNo = buyerNo;
 	}
 
 	public java.sql.Date getPurDate() {
@@ -149,26 +149,12 @@ public class Orders implements java.io.Serializable {
 		this.payment = payment;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	public void setEtc(String etc) {
-		this.etc = etc;
-	}
-	
-	public String getEtc() {
-		return etc;
-	}
-
-	// toString()
 	@Override
 	public String toString() {
-		return "Orders [ordersNo=" + ordersNo + ", userNo=" + userNo + ", itemNo=" + itemNo + ", userID=" + userID
+		return "Orders [ordersNo=" + ordersNo + ", sellerNo=" + sellerNo + ", itemNo=" + itemNo + ", buyerNo=" + buyerNo
 				+ ", purDate=" + purDate + ", count=" + count + ", progress=" + progress + ", price=" + price
 				+ ", address=" + address + ", size=" + size + ", phone=" + phone + ", delFee=" + delFee + ", payment="
 				+ payment + "]";
 	}
-	
 	
 }
