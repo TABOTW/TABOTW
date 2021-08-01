@@ -114,7 +114,7 @@
 							<h2>등록 상품</h2>
 							<ul class="list">
 								<li><a href="#">제품명 <span>가격</span></a></li>
-								<li><a href="#">슈즈곤 신발 1 <span class="last">150000 </span></a></li>
+								<li><a href="#">슈즈곤 신발 1 <span class="last">150000 </span></a></li> 
 							</ul>
 							<ul class="list list_2">
 								<li><a>배송비 <span>2500</span></a></li>
