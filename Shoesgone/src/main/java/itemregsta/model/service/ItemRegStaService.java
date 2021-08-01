@@ -41,9 +41,20 @@ public class ItemRegStaService {
 
 	// 상품 등록 삭제용(판매완료후) 메소드
 
-	// 등록 상품 가격 변경 메소드
-
-	// 등록 상품 사이즈 변경 메소드
+	// 등록 상품 수정 메소드
+	public int updateReg(ItemRegSta upReg) {
+		Connection conn = getConnection();
+		int result = regdao.updateReg(conn, upReg);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 
 	// 등록된 상품 총 갯수 출력용 메소드
 	public int getRegListCount() {

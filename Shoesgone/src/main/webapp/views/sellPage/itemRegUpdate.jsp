@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="loginPage.model.vo.Login, itemPage.model.vo.Item"%>
+    pageEncoding="UTF-8" import="loginPage.model.vo.Login, itemregsta.model.vo.ItemRegSta, itemPage.model.vo.Item"%>
 <% 
 	// 로그인 확인을 위한 session 객체 사용
 	// 상품 정보 조회를 위한 session 객체 사용
 	// 이 부분은 추후 머지하면서 수정해주세요.
 	Login loginmember = new Login();
+	ItemRegSta reg = new ItemRegSta();
 	Item item = new Item();
 %>
 <!DOCTYPE html>
@@ -88,20 +89,21 @@
 			<div class="billing_details">
 				<div class="row">
 					<div class="col-lg-8">
-						<form class="row contact_form" action="/Shoesgone/sizeupdate" method="post" novalidate="novalidate">
+						<form class="row contact_form" action="/Shoesgone/itemupdate" method="post" novalidate="novalidate">
 							<input type="hidden" name="userno" value="<%= loginmember.getUserNo() %>">
 							<input type="hidden" name="userid" value="<%= loginmember.getUserId() %>">
-							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
+							<input type="hidden" name="itemno" value="<%= reg.getItemNo() %>">
+							<input type="hidden" name="regno" value="<%= reg.getRegNo() %>">
 							<div class="col-md-6 form-group p_star">
 								<h3>판매 상품 정보 입력</h3>
-								<input type="text" class="form-control" id="itemname" name="itemname" placeholder="제품명" value="이곳에는 선택한 상품의 제품명이 들어갑니다." required><br>
-								<input type="number" class="form-control" id="size" name="size" placeholder="Size" required><br>
-								<input type="number" class="form-control" id="price" name="price" placeholder="희망 판매가" required>
+								<input type="text" class="form-control" id="itemname" name="itemname" placeholder="<%= item.getItemKrName() + '(' +item.getItemEngName() + ')' %>" value="<%= item.getItemKrName() + item.getItemEngName() %>" readonly><br>
+								<input type="number" class="form-control" id="size" name="size" placeholder="<%= reg.getSize() %>" value="<%= reg.getSize() %>" required><br>
+								<input type="number" class="form-control" id="price" name="price" placeholder="<%= reg.getPrice() %>" value="<%= reg.getPrice() %>" required>
 								<br>
 								<h3>반품 배송지 입력</h3>
-								<input type="text" class="form-control" id="username" name="username" placeholder="이름" value="<%= loginmember.getUserName() %>" required><br>
-								<input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호" required><br>
-								<input type="email" class="form-control" id="email" name="email" placeholder="이메일" required><br>
+								<input type="text" class="form-control" id="username" name="username" placeholder="이름" value="<%= loginmember.getUserName() %>" readonly><br>
+								<input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호" readonly><br>
+								<input type="email" class="form-control" id="email" name="email" placeholder="이메일" readonly><br>
 								<input type="text" class="form-control postcodify_postcode5" id="post" name="post" placeholder="우편번호" required>
 								<button type="button" id="postcodify_search_button" onclick="searchaddress();">검색</button><br><br>
 								<input type="text" class="form-control postcodify_address" id="address" name="address" placeholder="주소" required><br>
@@ -149,7 +151,7 @@
 								<input type="checkbox" id="f-option4" name="selector" required="required">
 								<label for="f-option4"><a href="#">검수 기준</a>과 <a href="#">개인 정보 정책</a>에 동의합니다. </label>
 							</div>
-							<input type="submit" value="상품 등록하기"> &nbsp;
+							<input type="submit" value="상품 수정하기"> &nbsp;
 							<input type="reset" value="등록취소">
 						</div>
 					</div>
