@@ -285,13 +285,142 @@ public class ItemDetailDao {
 			pstmt.setString(3, item.getBrand());
 			pstmt.setString(4, item.getModelNo());
 			pstmt.setString(5, item.getShoesColors());
-			pstmt.setString(6, member.getEtc());
-			pstmt.setString(7, member.getUserId());
+			pstmt.setInt(6, item.getPrice());
+			pstmt.setDate(7, item.getDropDate());
+			pstmt.setString(8, item.getShoesSizes());
+			pstmt.setInt(9, item.getItemNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectCheckModelno(Connection conn, String modelno) {
+		int modelCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select count(item_modelno) from item "
+				+ "where item_modelno = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, modelno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				modelCount = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return modelCount;
+	}
+
+	public int insertItem(Connection conn, Item item) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "INSERT INTO ITEM VALUES("
+				+ "(SELECT MAX(ITEM_NO)+1 FROM ITEM), "
+				+ "?, ?, ?, ?, ?, ?, "
+				+ "SYSDATE, "
+				+ "?, ?)";		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, item.getItemEngName());
+			pstmt.setString(2, item.getItemKrName());
+			pstmt.setString(3, item.getBrand());
+			pstmt.setString(4, item.getModelNo());
+			pstmt.setString(5, item.getShoesColors());
+			pstmt.setInt(6, item.getPrice());
+			pstmt.setDate(7, item.getDropDate());
+			pstmt.setString(8, item.getShoesSizes());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertPicture(Connection conn, Picture picture) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "INSERT INTO PICTURES VALUES("
+				+ "(SELECT MAX(PICTURES_NO)+1 FROM PICTURES), "
+				+ "(SELECT MAX(ITEM_NO) FROM ITEM), "
+				+ "?)";		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, picture.getPicturepath());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deletePhoto(Connection conn, int itemNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "DELETE FROM PICTURES "
+				+ "WHERE PICTURES_ITEMNO = ?";		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteItem(Connection conn, int itemNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "DELETE FROM ITEM "
+				+ "WHERE ITEM_NO = ?";		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			close(pstmt);
 		}
 		

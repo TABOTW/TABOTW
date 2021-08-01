@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,14 +39,7 @@ public class AdminItemUpdateServlet extends HttpServlet {
 		Item item = new Item();
 		
 		String from = request.getParameter("itemdropdate");
-		SimpleDateFormat transFormat = new SimpleDateFormat("yy/MM/DD");
-		Date to = null;
-		try {
-			to = (Date) transFormat.parse(from);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Date to = Date.valueOf(from);
 		
 		item.setItemNo(Integer.parseInt(request.getParameter("itemno")));
 		item.setItemEngName(request.getParameter("itemengname"));
@@ -58,6 +52,18 @@ public class AdminItemUpdateServlet extends HttpServlet {
 		item.setShoesSizes(String.join(",", request.getParameterValues("size")));
 		
 		int result = new ItemDetailService().updateItem(item);
+		
+		if (result > 0) {
+			// 서블릿에서 서블릿 호출 : myinfo 서블릿 호출
+//			response.sendRedirect("/first/myinfo?userid=" 
+//								+ member.getUserId());
+			response.sendRedirect("/Shoesgone/itemlist.ad");
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			System.out.println("실패");
+			request.setAttribute("message", " 회원 정보 수정 실패!");
+			view.forward(request, response);
+		}
 	}
 
 	/**

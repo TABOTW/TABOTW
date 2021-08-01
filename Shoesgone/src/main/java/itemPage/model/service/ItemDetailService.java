@@ -69,8 +69,39 @@ public class ItemDetailService {
 		return result;
 	}
 
-	
+	public int selectCheckModelno(String modelno) {
+		Connection conn = getConnection();
+		int count = iddao.selectCheckModelno(conn, modelno);
+		close(conn);
+		return count;
+	}
 
-	
+	public int insertItem(Item item) {
+		Connection conn = getConnection();
+		int count = iddao.insertItem(conn, item);
+		close(conn);
+		return count;
+	}
+
+	public int insertPicture(Picture picture) {
+		Connection conn = getConnection();
+		int count = iddao.insertPicture(conn, picture);
+		close(conn);
+		return count;
+	}
+
+	public int deletePhoto(int itemNo) {
+		Connection conn = getConnection();
+		int count = iddao.deletePhoto(conn, itemNo);
+		close(conn);
+		return count;
+	}
+
+	public int deleteItem(int itemNo) {
+		Connection conn = getConnection();
+		int count = iddao.deleteItem(conn, itemNo);
+		close(conn);
+		return count;
+	}
 
 }

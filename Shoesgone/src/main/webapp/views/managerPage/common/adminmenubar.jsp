@@ -26,11 +26,11 @@
 				<ul class="menu">
 					<li class="sidebar-title">Menu</li>
 
-					<li class="sidebar-item active "><a href="adminIndex.jsp"
+					<li class="sidebar-item active "><a href="/Shoesgone/views/managerPage/adminIndex.jsp"
 						class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
 					</a></li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item ">
 						<a href="/Shoesgone/itemlist.ad" class='sidebar-link'> 
 								<i class="bi bi-file-earmark-medical-fill"></i> 
 								<span>물품등록/관리</span>
