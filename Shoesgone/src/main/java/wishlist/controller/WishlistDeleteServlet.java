@@ -1,6 +1,7 @@
 package wishlist.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import question.model.service.QuestionService;
-import wishlist.model.vo.Wishlist;
+import wishlist.model.service.WishlistService;
 
 /**
  * Servlet implementation class WishlistDeleteServlet
@@ -33,18 +33,27 @@ public class WishlistDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+	
 		int wishlistNo = Integer.parseInt(request.getParameter("wnum"));
+	
+	    
 
-		
+	    
+	 
 		
 		
 		// 서비스 메소드로 삭제 실행하고 결과받기
-		if (new QuestionService().delete(wishlistNo) > 0) {
+		if (new WishlistService().deleteWishlist(userNo, wishlistNo) > 0) {
 
-			response.sendRedirect("/Shoesgone/wlist?userNo="+ loginMember.);
-		} else {
+			response.sendRedirect("/Shoesgone/wlist?userNo="+userNo);
+		} else if(new WishlistService().getListCount(userNo) == 0){		RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message",  "삭제할 위시리스트가 없습니다.");
+			view.forward(request, response);
+		}
+		else{
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", questionNo + "번 글 삭제 실패.");
+			request.setAttribute("message",  "전체 삭제 실패.");
 			view.forward(request, response);
 		}
 	

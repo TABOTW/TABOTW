@@ -117,5 +117,47 @@ public class InformationDao {
 		return result;
 	}
 	
+	public Information adminSelectMember(Connection conn, int userNo) {
+		Information information = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from user_info "
+				+ "where user_no = ?";				
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				information = new Information();
+				
+				//컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
+				information.setUserNo(userNo);
+				information.setUserName(rset.getString("user_name"));
+				information.setUserId(rset.getString("user_id"));
+				information.setUserPwd(rset.getString("user_pwd"));
+				information.setEmail(rset.getString("email"));
+				information.setPhone(rset.getString("phone"));
+				information.setAddress(rset.getString("address"));
+				information.setShoesSize(rset.getInt("shoes_size"));
+				information.setPoint(rset.getInt("point"));
+				information.setMgr(rset.getString("mgr"));
+				information.setBankName(rset.getString("bank_name"));
+				information.setAccountNo(rset.getString("account_no"));
+				information.setLoginOk(rset.getString("login_ok"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return information;
 	
+	}
 }

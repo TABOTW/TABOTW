@@ -103,14 +103,19 @@ public class WishlistDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "DELETE FROM wish_list "
-				+ "WHERE user_no = ?";
-
+		String query = "delete from wish_list where user_no = ? and wish_list_no = ?";
+		
 		try {
 			pstmt = conn.prepareStatement(query);
+			
+		
 			pstmt.setInt(1, userNo);
-
+			
+			pstmt.setInt(2, wishlistNo);
+			
 			result = pstmt.executeUpdate();
+	
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,6 +125,11 @@ public class WishlistDao {
 
 		return result;
 	}
+
+
+
+	
+	
 
 
 }

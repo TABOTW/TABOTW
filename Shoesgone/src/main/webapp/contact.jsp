@@ -63,7 +63,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/olist"><img src="resources/img/joo.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/olist?userNo=<%= loginMember.getUserNo() %>"><img src="resources/img/joo.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>주문내역조회</h6>
 						<p>주문하신 상품 내역을 <br>확인하실 수 있습니다.</p>

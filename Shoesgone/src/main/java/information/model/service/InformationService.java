@@ -42,5 +42,12 @@ public class InformationService {
 		close(conn);
 		return result;
 	}
+	
+	public Information adminselectMember(int userNo) {
+		Connection conn = getConnection();
+		Information information = idao.adminSelectMember(conn, userNo);
+		close(conn);
+		return information;
+	}
 
 }
