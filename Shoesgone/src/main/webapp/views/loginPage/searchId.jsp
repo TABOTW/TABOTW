@@ -93,7 +93,6 @@
 		
 		$.validator.addMethod("telnum", function(telnum, element){
 		      var pattern = /^01[016789]{1}[0-9]{3,4}[0-9]{4}$/;
-
 		      if(!pattern.test(telnum)){
 		        return this.optional(element)||false;
 		      }

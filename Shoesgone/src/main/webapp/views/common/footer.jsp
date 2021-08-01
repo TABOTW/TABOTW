@@ -134,7 +134,7 @@
 			</div>
 			<div class="right-side">
 				<h5>고객지원</h5><br>
-				<p><a id="grey-color" href="/Shoesgone/views/customerservicePage/customerservice.jsp">공지사항</a></p>
+				<p><a id="grey-color" href="/Shoesgone/nlist">공지사항</a></p>
 				<p><a id="grey-color" href="#">서비스 소개</a></p>
 				<p><a id="grey-color" href="#">쇼룸 안내</a></p>
 				<p><a id="grey-color" href="#">판매자 방문접수</a></p>
@@ -271,22 +271,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$(function() {
 			setPop();
 		});
-
 		// 팝업 세팅
 		function setPop() {
 			var popOpenBtn = $('.popOpenBtnCmmn');
-
 			//팝업 열기
 			popOpenBtn.on('click', function() {
 				var clickNum = $(this).attr('data-num');
-
 				$('#popUp_' + clickNum).fadeIn(200);
 			})
-
 			//팝업 닫기
 			$('.popBg, .popCloseBtnCmmn').on('click', function() {
 				var clickNum = $(this).attr('data-num');
-
 				$('#popUp_' + clickNum).fadeOut(200);
 			})
 		}

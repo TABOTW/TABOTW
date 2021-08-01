@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="loginPage.model.vo.Login, information.model.vo.Information"%>
+    
+    <%
+	Information information = (Information)request.getAttribute("information"); 
+	Login loginMember = (Login)session.getAttribute("loginMember");%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -15,12 +21,12 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Shoesgone</title>
-
+	<title>회원정보수정</title>
 	<!--
             CSS
             ============================================= -->
-<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
+         ============================================= -->
+	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
@@ -117,77 +123,109 @@
 			</div>
 		</div>
 	</section>
-	<!-- End Banner Area -->
-<section class="features-area section_gap">
-		<div class="container">
-			<div class="row features-inner">
-				<!-- single features -->
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<a href="views/myPage/orderlist.jsp"><img src="resources/img/joo.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>주문내역조회</h6>
-						<p>주문하신 상품 내역을 <br>확인하실 수 있습니다.</p>
-					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<a href="views/myPage/infomodify.jsp"><img src="resources/img/soo.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>회원정보수정</h6>
-						<p>개인정보를 수정하고<br> 관리할 수 있습니다.</p>
-					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<a href="views/myPage/pointview.jsp"><img src="resources/img/point.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>포인트조회</h6>
-						<p>보유하고 계신 포인트<br> 내역을 확인합니다.</p>
-					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<a href="views/myPage/wishlist.jsp"><img src="resources/img/heart.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>관심상품</h6>
-						<p>관심상품으로 등록하신<br> 상품을 확인합니다.</p>
-					</div>
-				</div>
-				<br><br>
-					<!-- single features -->
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<a href="views/myPage/boardview.jsp"><img src="resources/img/gg.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>나의글보기</h6>
-						<p>나의 질문,답변,게시글 등을<br>
-						한눈에 확인합니다.</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-features" style="border-right: none">
-						<div class="f-icon">
-							<a href="views/customerservicePage/customerservice.jsp"><img src="resources/img/goo.png" alt="" width="60px" height="60px"></a>
-						</div>
-						<h6>고객센터</h6>
-						<p>
-						고객센터페이지로<br> 이동합니다.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================Contact Area =================-->
 	
+	<!--================Contact Area =================-->
+	<section>
+	<div><br><br><br>
+<h2 align="center">회원정보수정</h2><br>
+<hr>
+<form method="post" action="" onsubmit="return validate();">
+<!-- 제출시(전송시 : submit 버튼 눌렀을 때)에 
+유효성검사 실행되도록 함 
+결과가 false 일 때 전송을 취소되게 해야 하므로 
+return 함수명() 으로 실행해야 됨. -->
+<form action="/Shoesgone/iupdate" method="post">
+<table align="center" width="600">
+<tr><th width="180">이름</th>
+<td><input type="text" id="name" name="username" value="<%if(information.getUserName() != null){ %>
+																<%= information.getUserName() %>
+															<% }%>"></td></tr>
+<tr><th width="180">아이디</th>
+<td><input type="text" id="email" name="userid" value="<%= information.getUserId() %>" readonly></td></tr>
+<tr><th width="180">이메일</th>
+<td><input type="email" id="email" name="email" value="<%if(information.getUserName() != null){ %>
+																<%= information.getEmail() %>
+															<% }%>" ></td></tr>
+<tr><th width="180">*비밀번호</th>
+<td><input type="password" id="userpwd" name="userpwd" required></td></tr>
+<tr><th width="180">*비밀번호확인</th>
+<td><input type="password" id="userpwd2" required></td></tr>
+<tr><th width="180">휴대폰번호</th>
+<td><input type="text" id="phone" name="phone" value="<%if(information.getUserName() != null){ %>
+																<%= information.getPhone() %>
+															<% }%>" ></td></tr>
+<tr><th width="180">주 소</th>
+<td><input type="text" id="post" name="post" size="10" maxLength="5"> &nbsp; 
+<input type="button" value="우편번호검색" onclick="return false;" class="genric-btn primary small"><br>
+<input type="text" name="address" id="address" size="50">
+<input type="text" name="address2" id="address" size="50">
+</td></tr>
+<tr><th width="180">신발사이즈</th><td>
+<select name="shoesize">
+<option selected disabled hidden>선택하세요</option>
+<option value="215">215</option>
+<option value="220">220</option>
+<option value="225">225</option>
+<option value="230">230</option>
+<option value="235">235</option>
+<option value="240">240</option>
+<option value="245">245</option>
+<option value="250">250</option>
+<option value="255">255</option>
+<option value="260">260</option>
+<option value="265">265</option>
+<option value="270">270</option>
+<option value="275">275</option>
+<option value="280">280</option>
+<option value="285">285</option>
+<option value="290">290</option>
+<option value="295">295</option>
+<option value="300">300</option>
+<option value="305">305</option>
+<option value="310">310</option>
+<option value="315">315</option>
+<option value="320">320</option>
+</select>
+</td></tr>
+<tr><th width="180">은행명</th><td>
+<select name="bankname">
+<option selected disabled hidden>선택하세요</option>
+  	<option value="003">기업은행</option>
+	<option value="004">국민은행</option>
+	<option value="005">외환은행</option>
+	<option value="007">수협</option>
+	<option value="011">농협</option>
+	<option value="020">우리은행</option>
+	<option value="023">제일은행</option>
+	<option value="027">씨티은행</option>
+	<option value="031">대구은행</option>
+	<option value="032">부산은행</option>
+	<option value="034">광주은행</option>
+	<option value="035">제주은행</option>
+	<option value="037">전북은행</option>
+	<option value="039">경남은행</option>
+	<option value="045">새마을금고</option>
+	<option value="048">신협</option>
+	<option value="071">우체국</option> 
+	<option value="081">하나은행</option>
+	<option value="088">신한은행</option>
+ 
+</select>
+</td></tr>
+<tr><th width="180">계좌번호</th>
+<td><input type="text" id="accountno" name="accountno" size="50" value="<%if(information.getUserName() != null){ %>
+																<%= information.getAccountNo() %>
+															<% }%>" ></td></tr>
+
+<tr><th colspan="2">
+<br><br>
+	<center><input type="submit" value="수정하기" class="genric-btn primary small">&nbsp;
+	<input type="submit" value="목록보기" class="genric-btn primary small"> </center> 
+</th></tr>
+</table><hr><br><br><br>
+</form>
+</div>
+</section>
 	<!--================Contact Area =================-->
 
 	<!-- start footer Area -->
@@ -318,6 +356,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
 	<script src="/Shoesgone/resources/js/main.js"></script>
-</body>
 
+</body>
 </html>

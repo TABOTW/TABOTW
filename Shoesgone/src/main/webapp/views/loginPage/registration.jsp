@@ -138,13 +138,11 @@
 			},
 			errorClass : "error-info"
 		});
-
 		$.validator.addMethod("pw_regexp", function(value, element) {
 			return this.optional(element)
 					|| /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/
 							.test(value);
 		});
-
 		function ageCheckAll() {
 			if ($("#ageAgree").is(':checked')) {
 				$("input[name=tos]").prop("checked", true);
@@ -154,7 +152,6 @@
 				$("input[name=privacyPolicy]").prop("checked", false);
 			}
 		}
-
 		function adCheckAll() {
 			if ($("#adAgree").is(':checked')) {
 				$("input[name=appPush]").prop("checked", true);
@@ -166,7 +163,6 @@
 				$("input[name=email]").prop("checked", false);
 			}
 		}
-
 		function tos_pp_check() {
 			if($("#tos").is(':checked') && $("#privacyPolicy").is(':checked')){
 				$("input[name=ageAgree]").prop("checked", true);

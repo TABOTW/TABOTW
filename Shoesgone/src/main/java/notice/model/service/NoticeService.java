@@ -5,18 +5,21 @@ import static common.JDBCTemp.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
 
 public class NoticeService {
 	private NoticeDao ndao = new NoticeDao();
 	
-	public ArrayList<Notice> selectList(){
+	public ArrayList<Notice> selectList(int startRow, int endRow){
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectList(conn);
+		ArrayList<Notice> list = ndao.selectList(conn, startRow, endRow);
 		close(conn);
 		return list;
 	}
+	
+
 	
 	public Notice selectOne(int noticeNo) {
 		Connection conn = getConnection();
