@@ -86,8 +86,6 @@
 		
 		#footer-style{
 			margin-right: auto;
-			margin-left: auto;
-			text-align: center;
 		}
 	</style>
 </head>
