@@ -306,7 +306,7 @@
 		</div>
 		<section id="ad1-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=21';">
 			<div class="col-lg-4" id="ad-image-margin">
-				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/travis_scott.png" alt="">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH3227-105_0.png" alt="">
 			</div>
 			<div>
 				<h1 id="white-color">조던 1 x 트래비스 스캇 x 프라그먼트 레트로 하이 OG SP 밀리터리 블루</h1><br>
@@ -417,7 +417,7 @@
 		</div>
 		<section id="ad2-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=22';">
 			<div class="col-lg-4" id="ad-image-margin">
-				<img class="img-fluid" src="/Shoesgone/resources/img/abstract_art.png" alt="">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH7695-600_0.png" alt="">
 			</div>
 			<div>
 				<h1 id="white-color">나이키 x 파라 SB 덩크 로우 프로 앱스트랙트 아트</h1><br>
@@ -508,7 +508,7 @@
 		</div>
 		<section id="ad3-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=23';">
 			<div class="col-lg-4" id="ad-image-margin">
-				<img class="img-fluid" src="/Shoesgone/resources/img/golden_goose_superstar.png" alt="">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/GCOMS590-W55_0.png" alt="">
 			</div>
 			<div>
 				<h1 id="white-color">골든구스 슈퍼스타 화이트 블랙탭 스니커즈</h1><br>
@@ -675,7 +675,7 @@
 		</div>
 		<section id="ad4-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=24';">
 			<div class="col-lg-4" id="ad-image-margin">
-				<img class="img-fluid" src="/Shoesgone/resources/img/sacai_blazer.png" alt="">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1877-002_0.png" alt="">
 			</div>
 			<div>
 				<h1 id="white-color">나이키 x 사카이 블레이저 로우 아이언 그레이</h1><br>
