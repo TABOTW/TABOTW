@@ -35,10 +35,11 @@ public class MainRegDateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		Item item = new ItemService().selectItem();
+		RequestDispatcher view;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
 		if (item != null) {
-			RequestDispatcher view = null;
+			view = null;
 			
 			view = request.getRequestDispatcher("index.jsp");
 			
@@ -46,13 +47,11 @@ public class MainRegDateServlet extends HttpServlet {
 	        
 	        view.forward(request, response);
 		} else { 
-			response.setContentType("text/html; charset=UTF-8");
+			view = request.getRequestDispatcher("views/common/error.jsp");
 
-			PrintWriter out = response.getWriter();
+			request.setAttribute("message", "페이지 오류!");
 
-			out.println("<script>alert('일치하는 사용자 정보를 찾을 수 없습니다.'); location.href='/Shoesgone/views/loginPage/searchId.jsp';</script>");
-
-			out.flush();
+			view.forward(request, response);
 		}
 	}
 
