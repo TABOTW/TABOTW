@@ -23,21 +23,25 @@
 		#ad1-style{
 			background-color: rgb(54, 130, 176);
 			text-align: center;
+			cursor: pointer;
 		}
 		
 		#ad2-style{
 			background-color: rgb(227, 31, 106);
 			text-align: center;
+			cursor: pointer;
 		}
 		
 		#ad3-style{
 			background-color: rgb(160, 185, 190);
 			text-align: center;
+			cursor: pointer;
 		}
 		
 		#ad4-style{
 			background-color: rgb(255, 103, 17);
 			text-align: center;
+			cursor: pointer;
 		}
 		
 		#today-style, #shoesgone-style{
@@ -290,7 +294,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad1-style">
+		<section id="ad1-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=21';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/travis_scott.png" alt="">
 			</div>
@@ -401,7 +405,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad2-style">
+		<section id="ad2-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=22';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/abstract_art.png" alt="">
 			</div>
@@ -492,7 +496,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad3-style">
+		<section id="ad3-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=23';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/golden_goose_superstar.png" alt="">
 			</div>
@@ -659,7 +663,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad4-style">
+		<section id="ad4-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=24';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/sacai_blazer.png" alt="">
 			</div>
