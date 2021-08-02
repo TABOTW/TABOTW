@@ -199,8 +199,8 @@
 	<!-- start footer Area -->
 	<footer class="footer-area">
 		<div class="row">
-			<h6><a id="white-color" href="/Shoesgone/privacyPolicy.jsp" style="margin-left: 50px;">개인정보처리방침</a></h6>
-			<h6><a id="white-color" href="/Shoesgone/tos.jsp" style="margin-left: 50px;">이용약관</a></h6>
+			<h6><a id="white-color" href="/Shoesgone/views/common/privacyPolicy.jsp" style="margin-left: 50px;">개인정보처리방침</a></h6>
+			<h6><a id="white-color" href="/Shoesgone/views/common/tos.jsp" style="margin-left: 50px;">이용약관</a></h6>
 			<div class="footer-social" style="margin-left: auto; margin-right: 20px;">
 				<a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
 				<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
