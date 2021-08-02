@@ -36,22 +36,26 @@ public class MainRegDateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		ArrayList<Item> regItem1 = new ItemService().selectList();
-		ArrayList<Picture> regItem2 = new PictureService().selectList();
+		ArrayList<Item> regItem1 = new ItemService().selectRegList();
+		ArrayList<Picture> regItem2 = new PictureService().selectRegList();
+		ArrayList<Item> hotItem1 = new ItemService().selectHotList();
+		ArrayList<Picture> hotItem2 = new PictureService().selectHotList();
 		RequestDispatcher view = null;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (regItem1.size() > 0 && regItem2.size() > 0) {
+		if (regItem1.size() > 0 && regItem2.size() > 0 && hotItem1.size() > 0 && hotItem2.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
 	        request.setAttribute("regItem2", regItem2);
+	        request.setAttribute("hotItem1", hotItem1);
+	        request.setAttribute("hotItem2", hotItem2);
 	        
 	        view.forward(request, response);
 		} else { 
 			view = request.getRequestDispatcher("views/common/error.jsp");
 
-			request.setAttribute("message", "발매 상품 조회 실패!");
+			request.setAttribute("message", "상품 조회 실패!");
 
 			view.forward(request, response);
 		}

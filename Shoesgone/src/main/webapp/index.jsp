@@ -3,6 +3,8 @@
 <%
 	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
+	ArrayList<Item> hotItem1 = (ArrayList<Item>)request.getAttribute("hotItem1");
+	ArrayList<Picture> hotItem2 = (ArrayList<Picture>)request.getAttribute("hotItem2");
 %>
 <!DOCTYPE html>
 <html>
@@ -304,7 +306,7 @@
 		</div>
 		<section id="ad1-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=21';">
 			<div class="col-lg-4" id="ad-image-margin">
-				<img class="img-fluid" src="/Shoesgone/resources/img/travis_scott.png" alt="">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/travis_scott.png" alt="">
 			</div>
 			<div>
 				<h1 id="white-color">조던 1 x 트래비스 스캇 x 프라그먼트 레트로 하이 OG SP 밀리터리 블루</h1><br>
@@ -329,13 +331,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-402_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 하이퍼 로얄</h6>
+								<h6><%= hotItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>319,000원</h6>
+									<h6><%= hotItem1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -343,13 +345,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/575441-402_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>(GS) 조던 1 레트로 하이 OG 하이퍼 로얄</h6>
+								<h6><%= hotItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>292,000원</h6>
+									<h6><%= hotItem1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -357,13 +359,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/CU7544-400_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>나이키 x 앰부쉬 덩크 하이 딥 로얄 블루</h6>
+								<h6><%= hotItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>489,000원</h6>
+									<h6><%= hotItem1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -371,13 +373,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DC0774-105_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>(W) 조던 1 로우 화이트 울프 그레이</h6>
+								<h6><%= hotItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>224,000원</h6>
+									<h6><%= hotItem1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
