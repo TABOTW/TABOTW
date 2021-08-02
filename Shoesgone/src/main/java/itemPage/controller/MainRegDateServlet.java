@@ -1,7 +1,7 @@
-package loginPage.controller;
+package itemPage.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import loginPage.model.service.LoginService;
-import loginPage.model.vo.Login;
+import itemPage.model.service.ItemService;
+import itemPage.model.service.PictureService;
+import itemPage.model.vo.Item;
+import itemPage.model.vo.Picture;
 
 /**
- * Servlet implementation class SearchIdServlet
+ * Servlet implementation class MainRegDateServlet
  */
-@WebServlet("/searchid")
-public class SearchIdServlet extends HttpServlet {
+@WebServlet("/mregdate")
+public class MainRegDateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet() {
+    public MainRegDateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +36,24 @@ public class SearchIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		String phone = request.getParameter("phone");
-		Login login = new LoginService().searchId(phone);
+		ArrayList<Item> list1 = new ItemService().selectList();
+		ArrayList<Picture> list2 = new PictureService().selectList();
+		RequestDispatcher view = null;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (login != null) {
-			RequestDispatcher view = null;
+		if (list1.size() > 0 && list2.size() > 0) {
+			view = request.getRequestDispatcher("index.jsp");
 			
-			view = request.getRequestDispatcher("views/loginPage/resultId.jsp");
-			
-	        request.setAttribute("login", login);
+	        request.setAttribute("list1", list1);
+	        request.setAttribute("list2", list2);
 	        
 	        view.forward(request, response);
 		} else { 
-			response.setContentType("text/html; charset=UTF-8");
+			view = request.getRequestDispatcher("views/common/error.jsp");
 
-			PrintWriter out = response.getWriter();
+			request.setAttribute("message", "발매 상품 조회 실패!");
 
-			out.println("<script>alert('일치하는 사용자 정보를 찾을 수 없습니다.'); location.href='/Shoesgone/views/loginPage/searchId.jsp';</script>");
-
-			out.flush();
+			view.forward(request, response);
 		}
 	}
 

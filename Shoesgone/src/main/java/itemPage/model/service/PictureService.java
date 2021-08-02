@@ -6,17 +6,16 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import itemPage.model.dao.ItemDao;
-import itemPage.model.vo.Item;
+import itemPage.model.dao.PictureDao;
+import itemPage.model.vo.Picture;
 
-public class ItemService {
-	private ItemDao idao = new ItemDao();
-	
-	public ArrayList<Item> selectList() {
+public class PictureService {
+	private PictureDao pdao = new PictureDao();
+
+	public ArrayList<Picture> selectList() {
 		Connection conn = getConnection();
-		ArrayList<Item> list = idao.selectList(conn);
+		ArrayList<Picture> list = pdao.selectList(conn);
 		close(conn);
 		return list;
 	}
-
 }

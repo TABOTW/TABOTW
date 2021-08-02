@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"%>
+<%
+	ArrayList<Item> list1 = (ArrayList<Item>)request.getAttribute("list1");
+	ArrayList<Picture> list2 = (ArrayList<Picture>)request.getAttribute("list2");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +66,10 @@
 		#today-style li img, #shoesgone-style li img{
 			width: 100%;
 		}
+		
+		#cursor-pointer{
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
@@ -75,7 +83,7 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=11';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>택배사 휴무 안내</h1>
@@ -91,7 +99,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=10';">
 							<div class="col-lg-5">
 								<div class="banner-content">
 									<h1>개인정보 이용 처리방침 변경 안내</h1>
@@ -107,7 +115,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=9';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>부정거래 이용제한 조치 안내</h1>
@@ -122,7 +130,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=8';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>가품거래 시도와 관련한 조치사항</h1>
@@ -137,7 +145,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=7';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>이용약관 변경 안내</h1>
@@ -152,7 +160,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=6';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>7월 이벤트 당첨자 안내</h1>
@@ -167,7 +175,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=5';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>휴무일 안내</h1>
@@ -210,13 +218,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= list1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-035_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= list2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 쉐도우 2.0</h6>
+								<h6><%= list1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>194,000원</h6>
+									<h6><%= list1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -224,13 +232,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= list1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-105_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= list2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 블랙 모카</h6>
+								<h6><%= list1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>457,000원</h6>
+									<h6><%= list1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -238,13 +246,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= list1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-134_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= list2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 유니버시티 블루</h6>
+								<h6><%= list1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>320,000원</h6>
+									<h6><%= list1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -252,13 +260,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= list1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-180_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= list2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 일렉트로 오렌지</h6>
+								<h6><%= list1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>176,000원</h6>
+									<h6><%= list1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
