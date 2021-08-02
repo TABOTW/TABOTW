@@ -83,10 +83,6 @@
 			cursor:pointer;
 			opacity: .75;
 		}
-		
-		#footer-style{
-			margin-right: auto;
-		}
 	</style>
 </head>
 <body>
@@ -201,59 +197,26 @@
 	<!-- End brand Area -->
 
 	<!-- start footer Area -->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6><a id="white-color" href="/Shoesgone/privacyPolicy.jsp">개인정보처리방침</a></h6>
-					</div>
-				</div>
-				<div class="col-lg-4  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6><a id="white-color" href="/Shoesgone/tos.jsp">이용약관</a></h6>
-						
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-				
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<div class="footer-social d-flex align-items-center">
-							<a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-							<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap"><br>
-				<div id="footer-style">슈즈곤 주식회사 · 대표 백정현 &nbsp; 사업자등록번호: 777-77-77777사업자정보확인 &nbsp; 통신판매업: 제 2021-서울마포A-0101호<br>
-				사업장소재지: 서울시 마포구 양화로 127, 첨단빌딩 7층 &nbsp; 개인정보관리책임자: 윤형석 &nbsp; 호스팅 서비스: 슈즈곤 클라우드 (주)<br><br>
-				슈즈곤(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별 판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다.<br>
-				단, 거래과정에서 검수하고 보증하는 내용에 대한 책임은 당사에 있습니다.<br></div>
-				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+	<footer class="footer-area">
+		<div class="row">
+			<h6><a id="white-color" href="/Shoesgone/privacyPolicy.jsp" style="margin-left: 50px;">개인정보처리방침</a></h6>
+			<h6><a id="white-color" href="/Shoesgone/tos.jsp" style="margin-left: 50px;">이용약관</a></h6>
+			<div class="footer-social" style="margin-left: auto; margin-right: 20px;">
+				<a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+				<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
 			</div>
 		</div>
+		<div style="margin-left: 35px;">
+			슈즈곤 주식회사 · 대표 백정현 &nbsp; 사업자등록번호: 777-77-77777사업자정보확인 &nbsp; 통신판매업: 제 2021-서울마포A-0101호<br>
+			<p>사업장소재지: 서울시 마포구 양화로 127, 첨단빌딩 7층 &nbsp; 개인정보관리책임자: 윤형석 &nbsp; 호스팅 서비스: 슈즈곤 클라우드 (주)</p>
+			슈즈곤(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별 판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다.<br>
+			단, 거래과정에서 검수하고 보증하는 내용에 대한 책임은 당사에 있습니다.
+		</div>
+		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		<div style="margin-left: 1265px;">
+			<p class="footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p><br>
+		</div>
+		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 	</footer>
 	<!-- End footer Area -->
   	
