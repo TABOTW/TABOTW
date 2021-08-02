@@ -3,20 +3,39 @@
 <%@ page import="question.model.vo.Question, java.io.PrintWriter,java.sql.Date" %>    
 <%
 Question question = (Question)request.getAttribute("question");
-int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+
 %>  
 <!DOCTYPE html>
-<html>
+<html lang="zxx" class="no-js">
 
 <head>
+<!-- Mobile Specific Meta -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Favicon-->
+<link rel="shortcut icon" href="img/fav.png">
+<!-- Author Meta -->
+<meta name="author" content="CodePixar">
+<!-- Meta Description -->
+<meta name="description" content="">
+<!-- Meta Keyword -->
+<meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>고객센터</title>
+<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("table *").css('width','100%');
+	$("table *").css('border-top','1px');
+	$("table *").css('color','blue');
+}
 
+</script>
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/qupview?qnum=<%= question.getQuestionNo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/qupview?qnum=<%= question.getQuestionNo() %>";
 }
 function requestDelete(){
 	alert("삭제완료");
@@ -24,7 +43,17 @@ function requestDelete(){
 }
 
 </script>
-
+<!--
+            CSS
+            ============================================= -->
+<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 <style type="text/css">
 #floatdiv {
 
@@ -130,8 +159,10 @@ border-top-right-radius: 10px;
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>고객센터</h1>
+					<h1>CustomerSerive</h1>
 					<nav class="d-flex align-items-center">
+						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="category.html">CustomerSerive</a>
 					</nav>
 				</div>
 			</div>
@@ -174,14 +205,18 @@ border-top-right-radius: 10px;
 			<!-- 해당 글의 작성자가 본인이라면 수정과 삭제가 가능하도록 코드 추가 -->
 			
 		</div>
- <br>	
-<% if(loginMember.getUserId().equals(question.getQuestionWriter())){%>
+ <br>
+ 
+ <% if(loginMember == null){ %>	
+ <center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
+ <% }else if(loginMember.getUserId().equals(question.getQuestionWriter())){ %>
 		<button onclick="moveUpdateView(); return false;" class="genric-btn primary small">수정하기</button> &nbsp;
 		<button onclick="requestDelete(); return false;" class="genric-btn primary small">글삭제</button>  &nbsp;
-	<% } %> &nbsp; 
+	 &nbsp; 
 			<center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
-		
-		
+		<% }else{ %>
+		<center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
+		<%} %>
 		
 		</div>
 					<div id="floatdiv">
@@ -218,6 +253,55 @@ border-top-right-radius: 10px;
 			<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
+		<!--================Contact Success and Error message Area =================-->
+		<div id="success" class="modal modal-message fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+						<h2>Thank you</h2>
+						<p>Your message is successfully sent...</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modals error -->
+
+		<div id="error" class="modal modal-message fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+						<h2>Sorry !</h2>
+						<p>Something went wrong</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--================End Contact Success and Error message Area =================-->
+
+
+	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.nice-select.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.sticky.js"></script>
+	<script src="/Shoesgone/resources/js/nouislider.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Shoesgone/resources/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
+	<script src="/Shoesgone/resources/js/main.js"></script>
 </body>
 
 </html>

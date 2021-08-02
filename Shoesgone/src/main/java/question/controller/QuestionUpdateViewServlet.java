@@ -36,7 +36,7 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		
 		int questionNo = Integer.parseInt(request.getParameter("qnum"));
-		int currentPage = Integer.parseInt(request.getParameter("page"));
+	
 		
 		Question question = new QuestionService().selectOne(questionNo);
 		
@@ -45,7 +45,7 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher(
 					"views/customerservicePage/questionUpdateView.jsp");
 			request.setAttribute("question", question);
-			request.setAttribute("page", currentPage);
+			
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher(

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="question.model.vo.Question, loginPage.model.vo.Login, java.util.ArrayList, java.io.PrintWriter,java.sql.Date" %>    
+<%@ page import="question.model.vo.Question, java.util.ArrayList, java.io.PrintWriter,java.sql.Date" %>    
 <% 
-Login loginMember = (Login)session.getAttribute("loginMember");
 ArrayList<Question> list = (ArrayList<Question>)request.getAttribute("list");
 int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -240,7 +239,7 @@ border-top-right-radius: 10px;
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -364,7 +363,7 @@ border-top-right-radius: 10px;
 	<% } %>
 </div>
 				<hr>
-						<br><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center>
+						
 							 
 						
 						
@@ -403,7 +402,7 @@ border-top-right-radius: 10px;
 		<!--================Contact Area =================-->
 
 		<!-- start footer Area -->
-		<%@ include file="../common/footer.html" %>
+		<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
 		<!--================Contact Success and Error message Area =================-->

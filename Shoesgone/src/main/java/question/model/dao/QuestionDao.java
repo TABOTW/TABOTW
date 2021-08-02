@@ -125,7 +125,7 @@ public class QuestionDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = "select count(*) from question";
+		String query = "select count(*) from question where question_available = 1";
 
 		try {
 			stmt = conn.createStatement();

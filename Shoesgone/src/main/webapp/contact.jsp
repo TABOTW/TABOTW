@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
-    <% Login loginMember = (Login)session.getAttribute("loginMember"); 
-    %>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -38,7 +37,7 @@
 
 <body>
 	<!-- Start Header Area -->
-	<%@ include file="/views/common/menubar.html" %>
+	<%@ include file="/views/common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -129,7 +128,7 @@
 	<!--================Contact Area =================-->
 
 	<!-- start footer Area -->
-	<%@ include file="/views/common/footer.html" %>
+	<%@ include file="/views/common/footer.jsp" %>
 	<!-- End footer Area -->
 
 	<!--================Contact Success and Error message Area =================-->
