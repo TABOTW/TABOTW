@@ -2,17 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<!-- meta character set -->
-<meta charset="UTF-8">
-<!-- Site Title -->
-<title>슈즈곤</title>
-
-</head>
 
 <body>
 
-	<%@ include file="../../common/menubar.jsp" %>
+	<%@ include file="/views/common/menubar.jsp" %>
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -102,6 +95,8 @@
 	</section>
 	<!--================End Checkout Area =================-->
 
-	<%@ include file="../../common/footer.jsp" %>
+	<!-- start footer Area -->
+		<%@ include file="/views/common/footer.jsp" %>
+	<!-- End footer Area -->
 </body>
 </html>

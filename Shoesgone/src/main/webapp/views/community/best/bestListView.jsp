@@ -3,16 +3,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="/Shoesgone/resources/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>슈즈곤</title>
+
+	<!--
+            CSS
+            ============================================= -->
+	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
+	
 </head>
 
 <body id="category">
 
-	<%@ include file="../../common/menubar.jsp" %>
-	
+	<%@ include file="/views/common/menubar.jsp" %>
+
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -132,6 +155,22 @@
 
 	<br><br><br><br><br>
 
-	<%@ include file="../../common/footer.jsp" %>
+	<!-- start footer Area -->
+		<%@ include file="/views/common/footer.jsp" %>
+
+	<!-- End footer Area -->
+
+	<!-- Modal Quick Product View -->
+	
+
+
+
+	
+	
+	
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
+	<script src="/Shoesgone/resources/js/main.js"></script>
 </body>
 </html>

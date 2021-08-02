@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="community.free.model.vo.Free"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%
 	//Free free = (Free)request.getAttribute("free");
 	ArrayList freeList = (ArrayList) request.getAttribute("list");
@@ -11,20 +12,20 @@
 	int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
 	int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
 	int listCount = Integer.parseInt(request.getAttribute("listCount").toString());
+	String gSort = (String)request.getAttribute("sort");
+	if(gSort == null || "".equals(gSort)) {
+		gSort = "0";
+	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>슈즈곤</title>
-
+	
 </head>
 
 <body id="category">
 
-	<%@ include file="../../common/menubar.jsp" %>
+	<%@ include file="/views/common/menubar.jsp" %>
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -84,7 +85,7 @@
 						<div class="nice-select" tabindex="0">
 							<span class="current">정렬</span>
 							<ul class="list">
-								<li data-value="0" class="option selected focus">정렬</li>
+								<li data-value="0" class="option">정렬</li>
 								<li data-value="likedown" class="option">인기순↓</li>
 								<li data-value="likeup" class="option">인기순↑</li>
 								<li data-value="oldest" class="option">최신순↓</li>
@@ -137,7 +138,7 @@
 						<a href="javascript:prev();" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 						<%
 							String currentDecorator = "";
-							for(int i = 1; i < endPage + 1; i++) {
+							for(int i = 1; i < maxPage + 1; i++) {
 								if(currentPage == i) {
 									currentDecorator = " class='active'";
 								} else {
@@ -156,7 +157,8 @@
 						<%
 							}
 						%>
-						<a href="javascript:next();" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>						
+						<a href="javascript:next();" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+												
 					</div>
 					<div class="button-group-area mt-40 ml-auto">
 						<a href="#" class="genric-btn primary default circle">글쓰기</a>
@@ -169,7 +171,17 @@
 	</div>
 <br><br><br><br><br>
  
-	<%@ include file="../../common/footer.jsp" %>
+
+	<!-- start footer Area -->
+		<%@ include file="/views/common/footer.jsp" %>
+	
+
+									
+				
+
+
+
+	
 	<script type="text/javascript">
 	var limit = <%= limit %>;
 	var currentPage = <%= currentPage %>;
@@ -177,20 +189,34 @@
 	var startPage = <%= startPage %>;
 	var endPage = <%= endPage %>;
 	var listCount = <%= listCount %>;
-	var gsort = "";
+	var gsort = "<%=gSort%>";
 	
 	$(document).ready(function(){
+		$('#limit').niceSelect();
+		$('#limit').val(limit).niceSelect('update');
+
+    	$('#limit').change(function() {
+    		$('#limit').niceSelect('update');
+    		//console.log($('#sort').val());	
+    		limit = $('#limit').val();
+    		movePage(1);
+    	});
+    	
     	$('#sort').niceSelect();
+    	$('#sort').val(gsort).niceSelect('update');
+    	
     	$('#sort').change(function() {
     		$('#sort').niceSelect('update');
     		//console.log($('#sort').val());	
     		gsort = $('#sort').val();
+    		movePage(1);
     	});
    	
     });
     
 	function movePage(page) {
-		location.href = "/Shoesgone/freelist?page=" + page + "&sort=" + gsort;
+		
+		location.href = "/Shoesgone/freelist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
 	};
 	
 	function prev() {
@@ -207,8 +233,6 @@
 		} else {
 			movePage(currentPage + 1);	
 		}
-		
-		
 	}
 	</script>
 </body>
