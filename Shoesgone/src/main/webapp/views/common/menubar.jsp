@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-
+    pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
+<%
+	// 로그인 확인을 위해서 내장된 session 객체를 이용
+	Login loginMember = (Login)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
@@ -51,16 +54,11 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/itemPage/category.jsp">SHOP</a></li>
 							<% if(loginMember != null){ %>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/customerservicePage/customerservice.jsp">고객센터</a></li>
-							<% } %>
-							<% if(loginMember == null){ %>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
-							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.jsp">마이페이지</a></li>
 							<% } %>
 							<li class="nav-item submenu dropdown active">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">커뮤니티</a>
+								 aria-expanded="false">Community Category</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item active"><a class="nav-link" href="/Shoesgone/views/community/best/bestListView.jsp">Best 게시판</a></li>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/review/reviewListView.jsp">리뷰 게시판</a></li>
@@ -69,6 +67,11 @@
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/qna/qnaListView.jsp">Q&A</a></li>
 								</ul>
 							</li>
+							<% if(loginMember == null){ %>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
+							<% }else{ %>
+							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
+							<% } %>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item">

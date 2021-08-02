@@ -33,6 +33,23 @@ public class FreeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 페이지별로 출력되는 게시글 목록 조회 처리용 컨트롤러
+
+		// 정렬 방법
+		String sort = (String)request.getParameter("sort");
+		if(sort == null || "".equals(sort)) {
+			sort = "0";
+		}
+		
+		String orderBy = " FREE_NO DESC "; // 기본은 글 최신 순
+		if(sort.equals("likeup")) {
+			orderBy = " FREE_LIKE DESC ";
+		} else if (sort.equals("likedown")) {
+			orderBy = " FREE_LIKE ASC ";
+		} else if (sort.equals("newest")) {
+			orderBy = " FREE_NO DESC ";
+		} else if (sort.equals("oldest")) {
+			orderBy = " FREE_NO ASC";
+		}
 		
 		//출력할 페이지 지정
 		int currentPage = 1;
@@ -61,7 +78,7 @@ public class FreeListServlet extends HttpServlet {
 		int endRow = startRow + limit - 1;
 		
 		//서비스로 해당 페이지에 출력할 게시글만 조회해 옴
-		ArrayList<Free> list = bservice.selectList(startRow, endRow);
+		ArrayList<Free> list = bservice.selectList(startRow, endRow, orderBy);
 		
 		//뷰 페이지로 같이 내보낼 페이지 관련 숫자 계산 처리
 		//총 페이지 수 : 총 목록이 21개인 경우
@@ -94,6 +111,7 @@ public class FreeListServlet extends HttpServlet {
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
 			request.setAttribute("limit", limit);
+			request.setAttribute("sort", sort);
 			
 			view.forward(request, response);
 		}else {

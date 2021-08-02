@@ -4692,7 +4692,8 @@ label {
         color: #777777; }
 
 .order_details_table {
-  background: #e5ecee;
+  /* background: #e5ecee; */
+  background: #fffdfa;
   padding: 30px;
   margin-top: 75px; }
   @media (min-width: 767px) {
