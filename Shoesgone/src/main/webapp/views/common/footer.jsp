@@ -97,12 +97,8 @@
 			margin-right: 20px;
 		}
 		
-		#copy-left{
-			margin-left: 35px;
-		}
-		
 		#copy-right{
-			margin-left: 1265px;
+			margin-left: 35px;
 		}
 	</style>
 </head>
@@ -227,7 +223,7 @@
 				<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
 			</div>
 		</div>
-		<div id="copy-left">
+		<div id="copy-right">
 			슈즈곤 주식회사 · 대표 백정현 &nbsp; 사업자등록번호: 777-77-77777사업자정보확인 &nbsp; 통신판매업: 제 2021-서울마포A-0101호<br>
 			<p>사업장소재지: 서울시 마포구 양화로 127, 첨단빌딩 7층 &nbsp; 개인정보관리책임자: 윤형석 &nbsp; 호스팅 서비스: 슈즈곤 클라우드 (주)</p>
 			슈즈곤(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별 판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다.<br>
