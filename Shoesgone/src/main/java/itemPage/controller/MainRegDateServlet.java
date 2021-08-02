@@ -36,16 +36,16 @@ public class MainRegDateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		ArrayList<Item> list1 = new ItemService().selectList();
-		ArrayList<Picture> list2 = new PictureService().selectList();
+		ArrayList<Item> regItem1 = new ItemService().selectList();
+		ArrayList<Picture> regItem2 = new PictureService().selectList();
 		RequestDispatcher view = null;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (list1.size() > 0 && list2.size() > 0) {
+		if (regItem1.size() > 0 && regItem2.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
-	        request.setAttribute("list1", list1);
-	        request.setAttribute("list2", list2);
+	        request.setAttribute("regItem1", regItem1);
+	        request.setAttribute("regItem2", regItem2);
 	        
 	        view.forward(request, response);
 		} else { 
