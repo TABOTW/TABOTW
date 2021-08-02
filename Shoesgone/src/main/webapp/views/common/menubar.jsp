@@ -63,7 +63,7 @@
 									<li class="nav-item active"><a class="nav-link" href="/Shoesgone/views/community/best/bestListView.jsp">Best 게시판</a></li>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/review/reviewListView.jsp">리뷰 게시판</a></li>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/gallery/galleryListView.jsp">Gallery</a></li>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/free/freeListView.jsp">자유게시판</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/freelist">자유게시판</a></li>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/qna/qnaListView.jsp">Q&A</a></li>
 								</ul>
 							</li>
