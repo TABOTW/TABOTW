@@ -363,10 +363,9 @@
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DC0774-105_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>(W) 조던 1 로우 화이트 울프 그레이</h6>
 								<div class="price">
-									<h6>$150.00</h6>
+									<h6>224,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>

@@ -144,7 +144,7 @@
 				<p>운영시간 평일 11:00 - 18:00 (토 ∙ 일, 공휴일 휴무) 점심시간</p>
 				<p>점심시간 평일 13:00 - 14:00</p>
 				<h6>1:1 문의하기는 앱에서만 가능합니다.</h6><br>
-				<a href="/Shoesgone/views/customerservicePage/faqlistView.jsp" class="primary-btn">자주 묻는 질문</a>
+				<a href="/Shoesgone/flist" class="primary-btn">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div id="popUp_1" class="popCmmn">
