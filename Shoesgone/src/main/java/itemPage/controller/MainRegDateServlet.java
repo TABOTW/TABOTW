@@ -1,4 +1,4 @@
-package loginPage.controller;
+package itemPage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import loginPage.model.service.LoginService;
-import loginPage.model.vo.Login;
+import itemPage.model.service.ItemService;
+import itemPage.model.vo.Item;
 
 /**
- * Servlet implementation class SearchIdServlet
+ * Servlet implementation class MainRegDateServlet
  */
-@WebServlet("/searchid")
-public class SearchIdServlet extends HttpServlet {
+@WebServlet("/mregdate")
+public class MainRegDateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet() {
+    public MainRegDateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +34,15 @@ public class SearchIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		String phone = request.getParameter("phone");
-		Login login = new LoginService().searchId(phone);
+		Item item = new ItemService().selectItem();
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (login != null) {
+		if (item != null) {
 			RequestDispatcher view = null;
 			
-			view = request.getRequestDispatcher("views/loginPage/resultId.jsp");
+			view = request.getRequestDispatcher("index.jsp");
 			
-	        request.setAttribute("login", login);
+	        request.setAttribute("item", item);
 	        
 	        view.forward(request, response);
 		} else { 
