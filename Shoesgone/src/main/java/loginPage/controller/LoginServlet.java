@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
 			session.setAttribute("loginMember", login);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("mregdate");
 		} else { 
 			response.setContentType("text/html; charset=UTF-8");
 			
