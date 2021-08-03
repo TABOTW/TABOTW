@@ -110,7 +110,7 @@ public class LoginDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select user_id, user_pwd, login_ok from user_info where user_id = ?";
+		String query = "select * from user_info where user_id = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -121,8 +121,18 @@ public class LoginDao {
 			if (rset.next()) {
 				login = new Login();
 				
+				login.setUserNo(rset.getInt("user_no"));
+				login.setUserName(rset.getString("user_name"));
 				login.setUserId(userid);
 				login.setUserPwd(rset.getString("user_pwd"));
+				login.setEmail(rset.getString("email"));
+				login.setPhone(rset.getString("phone"));
+				login.setAddress(rset.getString("address"));
+				login.setShoesSize(rset.getInt("shoes_size"));
+				login.setPoint(rset.getInt("point"));
+				login.setMgr(rset.getString("mgr"));
+				login.setBankName(rset.getString("bank_name"));
+				login.setAccountNo(rset.getString("account_no"));
 				login.setLoginOk(rset.getString("login_ok"));
 			}
 		} catch (Exception e) {
