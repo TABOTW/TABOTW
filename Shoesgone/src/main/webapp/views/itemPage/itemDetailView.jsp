@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, review.model.vo.Review"%>
+	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, community.review.model.vo.Review"%>
 <%
 //Item 객체를 가져옴
 Item item = (Item) request.getAttribute("item");
@@ -205,10 +205,10 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 								<tr><th>번호</th><th>제목</th><th>별점</th><th>조회수</th></tr>
 								<% for(Review r : rlist){ %>
 								<tr>
-									<td><%= r.getReviewNum() %></td>
+									<td><%= r.getReviewNo() %></td>
 									<td><%= r.getReviewTitle() %></td>
 									<td><%= r.getReviewStar() %>/10</td>
-									<td><%= r.getReviewReadCount() %></td>
+									<td><%= r.getReviewReadcount() %></td>
 								</tr>
 								<% } %>
 							</table>
