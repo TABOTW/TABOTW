@@ -39,61 +39,41 @@ public class NaverLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. 전송온 값에 한글이 있다면 인코딩 처리함
 		request.setCharacterEncoding("utf-8");
-		// 2. 전송온 값 꺼내서, 변수 또는 객체에 기록하기
-		// String 변수 = request.getParameter("input의 이름");
-		String userid = request.getParameter("email");
-		//String userpwd = request.getParameter("userpwd");
-		// System.out.println(userid + ", " + userpwd);
-		System.out.println(userid);
 
+		String userid = request.getParameter("email");
 		Login login = new LoginService().selectNaverLogin(userid);
 
-		// 4. 받은 결과에 따라 성공/실패 페이지 내보내기
-		if (login != null && login.getLoginOk().equals("Y")) { // 로그인 성공
-			// 로그인 확인용 객체 생성함
+		if (login != null && login.getLoginOk().equals("Y")) {
 			HttpSession session = request.getSession();
-			System.out.println("생성된 세션 객체의 id : " + session.getId());
 
-			// 로그인한 회원의 정보는 세션객체에 저장함
 			session.setAttribute("loginMember", login);
 
-			// 로그인 성공시 내보낼 페이지 지정
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("mregdate");
 
-		} else { // 로그인 실패
+		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			
 			PrintWriter out = response.getWriter();
 			
 			if (login != null && login.getLoginOk().equals("N")) {
-				out.println(
-						"<script>alert('로그인 제한된 회원입니다. 관리자에게 문의하세요.'); location.href='/Shoesgone/views/loginPage/login.jsp';</script>");
+				out.println("<script>alert('로그인 제한된 회원입니다. 관리자에게 문의하세요.'); location.href='/Shoesgone/views/loginPage/login.jsp';</script>");
 			}
 
+			// 해당하는 아이디가 없을 때 아이디, 비밀번호 데이터베이스에 생성
 			if (login == null) {
+				String cryptoUserpwd = null;
 				Login newLogin = new Login();
-				
 				String userpwd = "0000";
 				String username = request.getParameter("name");
 				
-				// 웹에서는 단방향 알고리즘 적용 : SHA-512
-				// 단방향 : 암호화만 하고, 복호화가 안되는 알고리즘
-				// java.security.MessageDigest 클래스 이용함
-				String cryptoUserpwd = null;
-				
 				try {
 					MessageDigest md = MessageDigest.getInstance("SHA-512");
-					// 패스워드 문자열을 암호문으로 바꾸려면, byte[]로 변환해야 함
 					byte[] pwdValues = userpwd.getBytes(Charset.forName("UTF-8"));
-					// 암호문으로 바꾸기
+
 					md.update(pwdValues);
-					// 암호화된 byte[]을 String으로 바꿈 : 암호문 상태임
+
 					cryptoUserpwd = Base64.getEncoder().encodeToString(pwdValues);
-					// 확인
-					System.out.println(cryptoUserpwd);
-					System.out.println(cryptoUserpwd.length());
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}
@@ -105,30 +85,20 @@ public class NaverLoginServlet extends HttpServlet {
 				
 				int result = new LoginService().insertNaverLogin(newLogin);
 				
-				// 4. 받은 결과에 따라 성공/실패 페이지를 내보냄
 				if (result > 0) {
-					// 로그인 확인용 객체 생성함
 					HttpSession session = request.getSession();
-					System.out.println("생성된 세션 객체의 id : " + session.getId());
 
-					// 로그인한 회원의 정보는 세션객체에 저장함
 					session.setAttribute("loginMember", newLogin);
 
-					// 로그인 성공시 내보낼 페이지 지정
-					response.sendRedirect("index.jsp");
+					response.sendRedirect("mregdate");
 				}else {
-					// error.jsp 로 에러메세지를 내보냄
-					// 상대경로만 사용할 수 있음.
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					// 지정한 뷰로 내보낼 정보나 객체가 있다면
-					// request 에 기록함 : setAttribute(String key, Object value)
-					request.setAttribute("message", "회원 가입 실패!");
 					
-					// 뷰 내보냄
+					request.setAttribute("message", "회원 가입 실패!");
+
 					view.forward(request, response);
 				}
 			}
-
 			out.flush();
 		}
 	}

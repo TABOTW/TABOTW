@@ -81,7 +81,7 @@ public class QuestionListServlet extends HttpServlet {
 	
         	
 
-		if(list.size() > 0) {
+		
 			view = request.getRequestDispatcher(
 					"views/customerservicePage/questionlistView.jsp");
 			
@@ -93,13 +93,7 @@ public class QuestionListServlet extends HttpServlet {
 			request.setAttribute("listCount", listCount);
 			
 			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher(
-					"views/common/error.jsp");
-			request.setAttribute("message", 
-					currentPage + " 페이지에 대한 목록 조회 실패!");
-			view.forward(request, response);
-		}
+		
 	}
 
 	/**

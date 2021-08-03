@@ -3,7 +3,7 @@
     
     <%
 	Information information = (Information)request.getAttribute("information"); 
-	Login loginMember = (Login)session.getAttribute("loginMember");
+
 	
 
 %>  
@@ -50,7 +50,7 @@
 
 	<!-- Start Header Area -->
 
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 
 	<!-- End Header Area -->
 
@@ -59,11 +59,8 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Mypage</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Mypage</a>
-					</nav>
+					<h1>마이페이지</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -97,12 +94,11 @@ onsubmit="return checkAll();"
 <td><input type="password" id="userpwd" name="userpwd" size="30" placeholder="영문, 숫자, 특수문자 조합 8-16자" required><br>비밀번호를 입력하셔야 정보가 수정됩니다.</td></tr>
 <tr><th width="180">휴대폰번호</th>
 <td><input type="text" id="phone" name="phone" value="<%if(information.getPhone() != null){ %><%= information.getPhone() %><% }else{%><%}%>" ></td></tr>
-<!-- input type="text" id="post" name="post" size="10" maxLength="5"> &nbsp; 
-<input type="button" value="우편번호검색" onclick="return false;" class="genric-btn primary small"><br> -->
+
 <tr><th width="180">우편번호</th>
 					<td>
 						<input type="text" name="address" class="postcodify_postcode5" size="6" value="<%if(information.getAddress() != null){ String[] address = information.getAddress().split(","); %><%= address[0] %><%}else{%> <%}%>">
-						<button type="button" id="postcodify_search_button" " >검색</button>
+						<button type="button" id="postcodify_search_button" >검색</button>
 					</td>
 <tr>
 					<th width="180">도로명주소</th>
@@ -190,7 +186,7 @@ onsubmit="return checkAll();"
 	<!--================Contact Area =================-->
 
 	<!-- start footer Area -->
-	<%@ include file="../common/footer.html" %>
+	<%@ include file="../common/footer.jsp" %>
 	<!-- End footer Area -->
 
 	<!--================Contact Success and Error message Area =================-->

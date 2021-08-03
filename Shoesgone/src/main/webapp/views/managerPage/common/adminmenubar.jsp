@@ -37,9 +37,16 @@
 						</a>
 					</li>
 
+					<li class="sidebar-item ">
+						<a href="/Shoesgone/olist.ad" class='sidebar-link'> 
+								<i class="bi bi-file-earmark-medical-fill"></i> 
+								<span>주문현황</span>
+						</a>
+					</li>
+					
+
 					<li class="sidebar-item  has-sub"><a href="#"
-						class='sidebar-link'> <i class="bi bi-collection-fill"></i> <span>Extra
-								Components</span>
+						class='sidebar-link'> <i class="bi bi-collection-fill"></i> <span></span>
 					</a>
 						<ul class="submenu ">
 							<li class="submenu-item "><a

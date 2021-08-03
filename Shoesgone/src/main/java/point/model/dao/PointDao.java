@@ -17,15 +17,16 @@ public class PointDao {
 		
 		String query = "select * from ( "
 				+ "select rownum rnum, USER_NO , orders_no, reg_date, point, history "
-				+ "FROM POINTS "
+				+ "FROM POINTS where user_no = ? "
 				+ "order by orders_no desc) "
-				+ "where rnum >= ? and rnum <= ? and user_no = ?";
+				+ "where rnum >= ? and rnum <= ? ";
 		
 		try {
 			ps = conn.prepareStatement(query);
-			ps.setInt(1, startRow);
-			ps.setInt(2, endRow);
-			ps.setInt(3, userNo);
+			ps.setInt(1, userNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
+			
 			
 			rs = ps.executeQuery();
 			

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
-<% 
-Login loginMember = (Login)session.getAttribute("loginMember");
-%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -108,7 +106,7 @@ Login loginMember = (Login)session.getAttribute("loginMember");
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -117,11 +115,8 @@ Login loginMember = (Login)session.getAttribute("loginMember");
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Mypage</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Mypage</a>
-					</nav>
+					<h1>고객센터</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -196,13 +191,39 @@ Login loginMember = (Login)session.getAttribute("loginMember");
 
 		</article>
 
+					<div id="floatdiv">
 
+<div id="floatTitle">상담채널</div>
+
+<div id="floatContent">
+
+<ul>
+
+<li>
+
+<a href="http://pf.kakao.com/_Ahxoas"><img src="/Shoesgone/resources/img/kakach.png" width = "80px"></a>
+
+</li>
+
+<li>
+
+
+<a href="#" onclick="window.open('https://console.dialogflow.com/api-client/demo/embedded/6178e851-ef1a-409a-a182-c4828ae3b8b2','챗봇','resizable=no width=600 height=500');return false"><img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"></a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+<!-- //floatMenu -->
 
 	</section>
 	<!--================Contact Area =================-->
 
 	<!-- start footer Area -->
-		<%@ include file="../common/footer.html" %>
+		<%@ include file="../common/footer.jsp" %>
 	<!-- End footer Area -->
 
 	<!--================Contact Success and Error message Area =================-->

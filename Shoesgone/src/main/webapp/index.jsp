@@ -1,24 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
+    pageEncoding="UTF-8" import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"%>
 <%
-	// 로그인 확인을 위해서 내장된 session 객체를 이용
-	Login loginMember = (Login)session.getAttribute("loginMember");
+	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
+	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
+	ArrayList<Item> hotItem1 = (ArrayList<Item>)request.getAttribute("hotItem1");
+	ArrayList<Picture> hotItem2 = (ArrayList<Picture>)request.getAttribute("hotItem2");
 %>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
-
+<html>
 <head>
-<meta charset="UTF-8">
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="/Shoesgone/resources/img/fav.png">
-	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
@@ -26,66 +16,67 @@
 	<!--
 		CSS
 		============================================= -->
-	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Shoesgone/resources/css/magnific-popup.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
-	<link rel="stylesheet" href="/Shoesgone/resources/css/newMine.css">
+	
+	<style>
+		#ad-image-margin{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		#ad1-style{
+			background-color: rgb(54, 130, 176);
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		#ad2-style{
+			background-color: rgb(227, 31, 106);
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		#ad3-style{
+			background-color: rgb(160, 185, 190);
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		#ad4-style{
+			background-color: rgb(255, 103, 17);
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		#today-style, #shoesgone-style{
+			width: 100%;
+			margin: 3em auto;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		
+		#today-style li, #shoesgone-style li{
+			width: 16%;
+			list-style: none;
+			padding: 15px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		#today-style li img, #shoesgone-style li img{
+			width: 100%;
+		}
+		
+		#cursor-pointer{
+			cursor: pointer;
+		}
+	</style>
 </head>
-
 <body>
 
-	<!-- Start Header Area -->
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Shoesgone/index.jsp">슈즈곤</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/itemPage/category.jsp">SHOP</a></li>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.jsp">고객센터</a></li>
-							<% if(loginMember == null){ %>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
-							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
-							<% } %>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header>
-	<!-- End Header Area -->
+	<%@ include file="views/common/menubar.jsp" %>
 
 	<!-- start banner Area -->
 	<section class="banner-area">
@@ -94,11 +85,11 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=11';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>공지사항 <br>공지사항</h1>
-									<p>공지사항입니다.</p>
+									<h1>택배사 휴무 안내</h1>
+									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -110,11 +101,87 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide">
+						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=10';">
 							<div class="col-lg-5">
 								<div class="banner-content">
-									<h1>공지사항<br>공지사항</h1>
-									<p>공지사항입니다.</p>
+									<h1>개인정보 이용 처리방침 변경 안내</h1>
+									<p>테스트 페이지입니다.</p>
+									<div class="add-bag d-flex align-items-center">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+								</div>
+							</div>
+						</div>
+						<!-- single-slide -->
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=9';">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content">
+									<h1>부정거래 이용제한 조치 안내</h1>
+									<p>테스트 페이지입니다.</p>
+									<div class="add-bag d-flex align-items-center">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=8';">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content">
+									<h1>가품거래 시도와 관련한 조치사항</h1>
+									<p>테스트 페이지입니다.</p>
+									<div class="add-bag d-flex align-items-center">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=7';">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content">
+									<h1>이용약관 변경 안내</h1>
+									<p>테스트 페이지입니다.</p>
+									<div class="add-bag d-flex align-items-center">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=6';">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content">
+									<h1>7월 이벤트 당첨자 안내</h1>
+									<p>테스트 페이지입니다.</p>
+									<div class="add-bag d-flex align-items-center">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-img">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=5';">
+							<div class="col-lg-5 col-md-6">
+								<div class="banner-content">
+									<h1>휴무일 안내</h1>
+									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -130,48 +197,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- <section class="banner-area">
-		<div class="container">
-			<div class="row fullscreen align-items-center justify-content-start">
-				<div class="col-lg-12">
-					<div class="active-banner-slider owl-carousel">
-						single-slide
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Semi_Project/notice-page.html';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1>공지사항</h1>
-									<p>공지사항입니다.</p>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="#" alt="">
-								</div>
-							</div>
-						</div>
-						single-slide
-						<div class="row single-slide">
-							<div class="col-lg-5">
-								<div class="banner-content">
-									<h1>공지사항</h1>
-									<p>공지사항입니다.</p>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> -->
 	<!-- End banner Area -->
 	
 	<!-- start product Area -->
@@ -182,21 +207,26 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
 							<h1>발매 상품</h1>			
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= regItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= regItem1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -204,15 +234,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= regItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= regItem1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -220,15 +248,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= regItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= regItem1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -236,15 +262,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= regItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= regItem1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -259,122 +283,45 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
 							<h1>오늘의 스타일</h1>			
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
+					<div id="today-style"></div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1></h1>			
 				</div>
 			</div>
 		</div>
-		<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>광고</h1>
-				</div>
+		<section id="ad1-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=21';">
+			<div class="col-lg-4" id="ad-image-margin">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH3227-105_0.png" alt="">
 			</div>
-		</div>
+			<div>
+				<h1 id="white-color">조던 1 x 트래비스 스캇 x 프라그먼트 레트로 하이 OG SP 밀리터리 블루</h1><br>
+			</div>
 		</section>
 		<!-- single product slide -->
 		<div class="single-product-slider">
 			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
@@ -384,15 +331,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= hotItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= hotItem1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -400,15 +345,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p8.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= hotItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= hotItem1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -416,15 +359,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= hotItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= hotItem1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -432,15 +373,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6><%= hotItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><%= hotItem1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -455,121 +394,44 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
 							<h1>슈즈곤</h1>			
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single product -->
-					<div class="col-lg-2 col-md-5">
-						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<div class="prd-bottom">
-								</div>
-							</div>
-						</div>
-					</div>
+					<div id="shoesgone-style"></div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1></h1>			
 				</div>
 			</div>
 		</div>
-		<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>광고</h1>
-				</div>
+		<section id="ad2-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=22';">
+			<div class="col-lg-4" id="ad-image-margin">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH7695-600_0.png" alt="">
 			</div>
-		</div>
+			<div>
+				<h1 id="white-color">나이키 x 파라 SB 덩크 로우 프로 앱스트랙트 아트</h1><br>
+			</div>
 		</section>
 		<div class="single-product-slider">
 			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
@@ -581,13 +443,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1391-100_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>나이키 덩크 로우 레트로 블랙</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>289,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -597,13 +457,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p8.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1503-101_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>(W) 나이키 덩크 로우 블랙</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>260,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -613,13 +471,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1875-200_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>나이키 x 사카이 베이퍼와플 세서미 앤 블루 보이드</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>604,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -629,13 +485,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD3223-100_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>나이키 x 피스마이너스원 에어포스 1 로우 파라노이즈 2.0</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>470,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -645,17 +499,30 @@
 				</div>
 			</div>
 		</div>
-		<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>광고</h1>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1></h1>			
 				</div>
 			</div>
 		</div>
+		<section id="ad3-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=23';">
+			<div class="col-lg-4" id="ad-image-margin">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/GCOMS590-W55_0.png" alt="">
+			</div>
+			<div>
+				<h1 id="white-color">골든구스 슈퍼스타 화이트 블랙탭 스니커즈</h1><br>
+			</div>
 		</section>
 		<div class="single-product-slider">
 			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
@@ -667,13 +534,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH0690-200_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 6 x 트래비스 스캇 레트로 SP 브리티쉬 카키</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>348,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -683,13 +548,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p8.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DJ0606-400_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>나이키 SB 덩크 로우 프로 프리미엄 바르셀로나</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>240,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -699,13 +562,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DJ5718-300_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 4 x 유니온 레트로 SP 데저트 모스</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>345,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -715,13 +576,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/GZ5554_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>아디다스 이지 슬라이드 퓨어</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>137,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -736,6 +595,13 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
+							<h1></h1>			
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
 							<h1>새로운 즉시 판매가</h1>
 						</div>
 					</div>
@@ -744,13 +610,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992EB_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>뉴발란스 992 메이드 인 USA 블랙 그레이</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>195,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -760,13 +624,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p8.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992GR_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>뉴발란스 992 메이드 인 USA 그레이 (D 스탠다드)</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>210,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -776,13 +638,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/MS327FE_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>뉴발란스 327 화이트 블랙</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>110,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -792,13 +652,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-035_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 1 레트로 하이 OG 쉐도우 2.0</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>194,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -808,17 +666,30 @@
 				</div>
 			</div>
 		</div>
-		<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>광고</h1>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1></h1>			
 				</div>
 			</div>
 		</div>
+		<section id="ad4-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=24';">
+			<div class="col-lg-4" id="ad-image-margin">
+				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1877-002_0.png" alt="">
+			</div>
+			<div>
+				<h1 id="white-color">나이키 x 사카이 블레이저 로우 아이언 그레이</h1><br>
+			</div>
 		</section>
-	<div class="single-product-slider">
+		<div class="single-product-slider">
 			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1></h1>
+						</div>
+					</div>
+				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
@@ -830,13 +701,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-105_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 1 레트로 하이 OG 블랙 모카</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>457,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -846,13 +715,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p8.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-134_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 1 레트로 하이 OG 유니버시티 블루</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>357,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -862,13 +729,11 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-180_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 1 레트로 하이 OG 일렉트로 오렌지</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>176,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -878,162 +743,49 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-402_0.png" alt="">
 							<div class="product-details">
-								<h6>addidas New Hammer sole
-									for Sports person</h6>
+								<h6>조던 1 레트로 하이 OG 하이퍼 로얄</h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6>319,000원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1></h1>			
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- end product Area -->
 
-	<!-- Start exclusive deal Area -->
-	<section class="exclusive-deal-area">
-		<div class="container-fluid">
-			<div class="row justify-content-center align-items-center">
-				<div class="col-lg-6 no-padding exclusive-left">
-					<div class="row clock_sec clockdiv" id="clockdiv">
-						<div class="col-lg-12">
-							<p>SERVICE GUIDE</p>
-							<h1>슈즈곤 처음이지? <br>서비스 소개를 확인해보세요.</h1>
-						</div>
-					</div>
-					<a href="blog.html" class="primary-btn">서비스 안내</a>
-				</div>
-				<div class="col-lg-6 no-padding exclusive-right">
-						<!-- single exclusive carousel -->
-						<div class="single-exclusive-slider">
-							<img  dclass="img-fluid" src="/Shoesgone/resources/img/product/e-p1.png" alt="">
-							<div class="product-details">
-								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
-								</div>
-								<p>DOWNLOAD THE APP</p>
-								<h4>슈즈곤 앱을 설치하여<br> 한정판 스니커즈를 FLEX 하세요!</h4>
-								<div class="add-bag d-flex align-items-center justify-content-center">
-									<a href="appInstall.html" class="primary-btn" onclick="window.open(this.href, '_blank', 'width=500px, height=500px, toolbars=no, scrollbars=yes'); return false;">앱 설치하기</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</section>
-	<!-- End exclusive deal Area -->
+	<%@ include file="views/common/footer.jsp" %>
 
-	<!-- Start brand Area -->
-	<section class="brand-area section_gap">
-		<div class="container-new">
-		<div class="row">
-			<div class="right-side">
-				<h5>이용안내</h5><br>
-				<p><a style="color: grey" href="inspection.html" onclick="window.open(this.href, '_blank', 'width=500px, height=500px, toolbars=no, scrollbars=yes'); return false;">검수기준</a></p>
-				<p><a style="color: grey" href="policy.html" onclick="window.open(this.href, '_blank', 'width=500px, height=500px, toolbars=no, scrollbars=yes'); return false;">이용정책</a></p>
-				<p><a style="color: grey" href="penalty.html" onclick="window.open(this.href, '_blank', 'width=500px, height=500px, toolbars=no, scrollbars=yes'); return false;">페널티 정책</a></p>
-				<p><a style="color: grey" href="guideline.html" onclick="window.open(this.href, '_blank', 'width=500px, height=500px, toolbars=no, scrollbars=yes'); return false;">커뮤니티 가이드라인</a></p>
-			</div>
-			<div class="right-side">
-				<h5>고객지원</h5><br>
-				<p><a style="color: grey" href="#">공지사항</a></p>
-				<p><a style="color: grey" href="blog.html">서비스 소개</a></p>
-				<p><a style="color: grey" href="single-blog.html">쇼룸 안내</a></p>
-				<p><a style="color: grey" href="#">판매자 방문접수</a></p>
-			</div>
-			<div class="right-0 right-side">
-				<h5>고객센터 1588-9999</h5><br>
-				<p>운영시간 평일 11:00 - 18:00 (토 ∙ 일, 공휴일 휴무) 점심시간</p>
-				<p>점심시간 평일 13:00 - 14:00</p>
-				<h6>1:1 문의하기는 앱에서만 가능합니다.</h6><br>
-				<a href="#" class="primary-btn">자주 묻는 질문</a>
-			</div>
-			</div>
-		</div>
-	</section>
-	<!-- End brand Area -->
-
-	<!-- start footer Area -->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6><a style="color: white" href="privacy-policy.html">개인정보처리방침</a></h6>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-4  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6><a style="color: white" href="TOS.html">이용약관</a></h6>
-						
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-				
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<div class="footer-social d-flex align-items-center">
-							<a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-							<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
-
-	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
-	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.ajaxchimp.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.nice-select.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.sticky.js"></script>
-	<script src="/Shoesgone/resources/js/nouislider.min.js"></script>
-	<script src="/Shoesgone/resources/js/countdown.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="/Shoesgone/resources/js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
-	<script src="/Shoesgone/resources/js/main.js"></script>
+	<script src="/Shoesgone/resources/js/instafeed.min.js"></script>
+	<script>
+	    var feed1 = new Instafeed({
+	    	target: 'today-style',
+	    	template: '<li><a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a></li>',
+	    	limit: 6,
+	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
+	    });
+	    feed1.run();
+	    
+	    var feed2 = new Instafeed({
+	    	target: 'shoesgone-style',
+	    	template: '<li><a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a></li>',
+	    	limit: 6,
+	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
+	    });
+	    feed2.run();
+	</script>
 </body>
-
 </html>

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
+import question.model.vo.Question;
+
 
 public class NoticeService {
 	private NoticeDao ndao = new NoticeDao();
@@ -48,5 +50,43 @@ public class NoticeService {
 		return listCount;
 	}
 
+	public int insertNotice(Notice notice) {
+		Connection conn = getConnection();
+		int result = ndao.insertNotice(conn, notice);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
-}
+
+	public int adminDeleteNotice(int noticeNo) {
+		Connection conn = getConnection();
+		int result = ndao.adminDeleteNotice(conn, noticeNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
+
+	public int adminUpdateNotice(Notice notice) {
+		
+			Connection conn = getConnection();
+			int result = ndao.adminUpdateNotice(conn, notice);
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			return result;
+		}
+	}

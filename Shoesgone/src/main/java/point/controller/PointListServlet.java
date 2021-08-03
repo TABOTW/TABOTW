@@ -71,7 +71,7 @@ public class PointListServlet extends HttpServlet {
 		
 		// 화면에 출력
 		RequestDispatcher view = null;
-		if(list.size() > 0) {
+		
 			view = request.getRequestDispatcher("views/myPage/pointview.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("pointlist", pointlist);
@@ -83,11 +83,7 @@ public class PointListServlet extends HttpServlet {
 		
 			
 			view.forward(request, response);
-		} else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", " 포인트 목록 조회 실패");
-			view.forward(request, response);
-		}
+
 	}
 
 	/**

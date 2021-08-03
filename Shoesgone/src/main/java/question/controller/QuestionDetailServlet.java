@@ -37,9 +37,10 @@ public class QuestionDetailServlet extends HttpServlet {
 
 		// 페이징 처리를 위한 목록 페이지 변수
 		int currentPage = 1;
-		if (request.getParameter("page") != null) {
+		if(request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
+	
 
 		// 서비스 객체 메소드 실행하고 결과받기
 		QuestionService qservice = new QuestionService();
@@ -51,16 +52,13 @@ public class QuestionDetailServlet extends HttpServlet {
 		Question question = qservice.selectOne(questionNo);
 
 		RequestDispatcher view = null;
-		if (question != null) {
+	
 			view = request.getRequestDispatcher("views/customerservicePage/questionDetailView.jsp");
 			request.setAttribute("question", question);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
-		} else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", questionNo + "번 공지글 상세조회 실패!");
-			view.forward(request, response);
-		}
+		
+		
 	}
 
 	/**

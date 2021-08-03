@@ -33,7 +33,7 @@ public class QuestionUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 게시글 원글 수정 처리용 컨트롤러
+
 		request.setCharacterEncoding("utf-8");
 		RequestDispatcher view = null;
 
@@ -48,7 +48,7 @@ public class QuestionUpdateServlet extends HttpServlet {
 				question.setQuestionWriter(request.getParameter("writer"));
 				question.setQuestionContent(request.getParameter("content"));
 
-				int currentPage = Integer.parseInt(request.getParameter("page"));
+				
 
 				// 6. 서비스 메소드로 전달하고 결과받기
 				int result = new QuestionService().updateQuestion(question);
@@ -60,8 +60,7 @@ public class QuestionUpdateServlet extends HttpServlet {
 					
 					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
 					response.sendRedirect("qudetail?qnum=" 
-								+ question.getQuestionNo()+ "&page="
-								+ currentPage);
+								+ question.getQuestionNo());
 					
 				} else {
 					view = request.getRequestDispatcher("views/common/error.jsp");

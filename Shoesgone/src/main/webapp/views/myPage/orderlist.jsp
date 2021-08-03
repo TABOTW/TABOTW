@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="orderlist.model.vo.Orderlist,loginPage.model.vo.Login, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="orderlist.model.vo.Orderlist, java.util.ArrayList"%>
 <% 
 
 ArrayList<Orderlist> list = (ArrayList<Orderlist>)request.getAttribute("list");
 Orderlist orderlist = (Orderlist)request.getAttribute("orderlist");
-Login loginMember = (Login)session.getAttribute("loginMember");
 int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
@@ -12,36 +11,14 @@ int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	%>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html>
 
 <head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/fav.png">
-	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>주문내역조회</title>
-	<!--
-            CSS
-            ============================================= -->
-         ============================================= -->
-	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
-<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
-	<style type="text/css">
+<style type="text/css">
 .th{
  text-align : center;
 }
@@ -100,7 +77,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -108,10 +85,8 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Mypage</h1>
+					<h1>마이페이지</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Mypage</a>
 					</nav>
 				</div>
 			</div>
@@ -150,7 +125,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 					
 								<tr>
 								 <td style = "text-align:center"><a href="/Shoesgone/odetail?orderNo=<%= list.get(i).getOrdersNo() %>"><%= list.get(i).getOrdersNo() %></a></td>
-								 <td style = "text-align:center"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %>&nbsp;(size: <%= list.get(i).getShoesSize() %>)</td>
+								 <td style = "text-align:center"><a href="/Shoesgone/ItemDV?itemno=<%= list.get(i).getItemNo() %>"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %>&nbsp;(size: <%= list.get(i).getShoesSize() %>)</a></td>
 								 <td style = "text-align:center"><%= list.get(i).getPrice() %>(<%= list.get(i).getCount() %>)</td>
 								 <td style = "text-align:center"><%= list.get(i).getDelFee() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getProgress() %></td> 
@@ -205,58 +180,10 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	<!--================Contact Area =================-->
 
 	<!-- start footer Area -->
-		<%@ include file="../common/footer.html" %>
+		<%@ include file="../common/footer.jsp" %>
 	
 	<!-- End footer Area -->
 
-	<!--================Contact Success and Error message Area =================-->
-	<div id="success" class="modal modal-message fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<i class="fa fa-close"></i>
-					</button>
-					<h2>Thank you</h2>
-					<p>Your message is successfully sent...</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modals error -->
-
-	<div id="error" class="modal modal-message fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<i class="fa fa-close"></i>
-					</button>
-					<h2>Sorry !</h2>
-					<p> Something went wrong </p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--================End Contact Success and Error message Area =================-->
-
-
-	
-		<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
-	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.ajaxchimp.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.nice-select.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.sticky.js"></script>
-	<script src="/Shoesgone/resources/js/nouislider.min.js"></script>
-	<script src="/Shoesgone/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="/Shoesgone/resources/js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
-	<script src="/Shoesgone/resources/js/main.js"></script>
 </body>
 
 

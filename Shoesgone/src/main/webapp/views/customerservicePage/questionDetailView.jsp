@@ -3,8 +3,8 @@
 <%@ page import="question.model.vo.Question, loginPage.model.vo.Login, java.io.PrintWriter,java.sql.Date" %>    
 <%
 Question question = (Question)request.getAttribute("question");
-Login loginMember = (Login)session.getAttribute("loginMember");
-int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+
+
 %>  
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -27,16 +27,11 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <title>고객센터</title>
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("table *").css('width','100%');
-	$("table *").css('border-top','1px');
-	$("table *").css('color','blue');
-}
 
 </script>
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/qupview?qnum=<%= question.getQuestionNo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/qupview?qnum=<%= question.getQuestionNo() %>";
 }
 function requestDelete(){
 	alert("삭제완료");
@@ -151,7 +146,7 @@ border-top-right-radius: 10px;
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -160,11 +155,8 @@ border-top-right-radius: 10px;
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>CustomerSerive</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">CustomerSerive</a>
-					</nav>
+					<h1>고객센터</h1>
+				
 				</div>
 			</div>
 		</div>
@@ -206,14 +198,18 @@ border-top-right-radius: 10px;
 			<!-- 해당 글의 작성자가 본인이라면 수정과 삭제가 가능하도록 코드 추가 -->
 			
 		</div>
- <br>	
-<% if(loginMember.getUserId().equals(question.getQuestionWriter())){%>
+ <br>
+ 
+ <% if(loginMember == null){ %>	
+ <center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
+ <% }else if(loginMember.getUserId().equals(question.getQuestionWriter())){ %>
 		<button onclick="moveUpdateView(); return false;" class="genric-btn primary small">수정하기</button> &nbsp;
 		<button onclick="requestDelete(); return false;" class="genric-btn primary small">글삭제</button>  &nbsp;
-	<% } %> &nbsp; 
+	 &nbsp; 
 			<center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
-		
-		
+		<% }else{ %>
+		<center><button onclick="javascript:history.go(-1);" class="genric-btn primary">목록</button></a></center><br><br>
+		<%} %>
 		
 		</div>
 					<div id="floatdiv">
@@ -226,14 +222,14 @@ border-top-right-radius: 10px;
 
 <li>
 
-<img src="/Shoesgone/resources/img/kakach.png" width = "80px"><a href="#"></a>
+<a href="http://pf.kakao.com/_Ahxoas"><img src="/Shoesgone/resources/img/kakach.png" width = "80px"></a>
 
 </li>
 
 <li>
 
-<img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"><a href="#"></a>
 
+<a href="#" onclick="window.open('https://console.dialogflow.com/api-client/demo/embedded/6178e851-ef1a-409a-a182-c4828ae3b8b2','챗봇','resizable=no width=600 height=500');return false"><img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"></a>
 </li>
 
 </ul>
@@ -247,7 +243,7 @@ border-top-right-radius: 10px;
 		<!--================Contact Area =================-->
 
 		<!-- start footer Area -->
-			<%@ include file="../common/footer.html" %>
+			<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
 		<!--================Contact Success and Error message Area =================-->

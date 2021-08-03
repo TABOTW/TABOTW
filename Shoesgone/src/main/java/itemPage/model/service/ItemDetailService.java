@@ -2,6 +2,8 @@ package itemPage.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.commit;
+import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,10 +11,18 @@ import java.util.ArrayList;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import orders.model.vo.SalesList;
+import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
-
+	
+	public ArrayList<Item> selectList() {
+		Connection conn = getConnection();
+		ArrayList<Item> ilist = iddao.selectList(conn);
+		return ilist;
+	}
+	
 	public Item selectOne(int itemNo) {
 		//주어진 제품번호로 제품의 내용을 갖고 오는 method
 		Connection conn = getConnection();
@@ -21,13 +31,77 @@ public class ItemDetailService {
 		return item;
 	}
 
-	public ArrayList<Picture> selectPList(String modelNo) {
+	public ArrayList<Picture> selectPList(int itemNo) {
 		// 주어진 모델번호로 이에 맞는 사진 리스트 가져오기
 		Connection conn = getConnection();
-		ArrayList<Picture> plist = iddao.selectPList(conn, modelNo);
+		ArrayList<Picture> plist = iddao.selectPList(conn, itemNo);
 		return plist;
 	}
 
-	
+	public ArrayList<SalesList> selectOrderList(int itemNo, int size, int days) {
+		// 주어진 정보로 맞는 정보 가져오기
+		Connection conn = getConnection();
+		ArrayList<SalesList> orderlist = iddao.selectOrderList(conn, itemNo, size, days);
+		return orderlist;
+	}
+
+	public ArrayList<Review> selectRlist(int itemNo) {
+		Connection conn = getConnection();
+		ArrayList<Review> reviewlist = iddao.selectReviewList(conn, itemNo);
+		return reviewlist;
+	}
+
+	public ArrayList<Picture> selectRPList(int itemNo, String brand) {
+		Connection conn = getConnection();
+		ArrayList<Picture> rplist = iddao.selectRPList(conn, itemNo, brand);
+		return rplist;
+	}
+
+	public int updateItem(Item item) {
+		Connection conn = getConnection();
+		int result = iddao.updateItem(conn, item);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int selectCheckModelno(String modelno) {
+		Connection conn = getConnection();
+		int count = iddao.selectCheckModelno(conn, modelno);
+		close(conn);
+		return count;
+	}
+
+	public int insertItem(Item item) {
+		Connection conn = getConnection();
+		int count = iddao.insertItem(conn, item);
+		close(conn);
+		return count;
+	}
+
+	public int insertPicture(Picture picture) {
+		Connection conn = getConnection();
+		int count = iddao.insertPicture(conn, picture);
+		close(conn);
+		return count;
+	}
+
+	public int deletePhoto(int itemNo) {
+		Connection conn = getConnection();
+		int count = iddao.deletePhoto(conn, itemNo);
+		close(conn);
+		return count;
+	}
+
+	public int deleteItem(int itemNo) {
+		Connection conn = getConnection();
+		int count = iddao.deleteItem(conn, itemNo);
+		close(conn);
+		return count;
+	}
 
 }

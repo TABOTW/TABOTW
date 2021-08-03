@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="question.model.vo.Question, loginPage.model.vo.Login, java.util.ArrayList, java.io.PrintWriter,java.sql.Date" %>    
 <% 
-Login loginMember = (Login)session.getAttribute("loginMember");
+
 ArrayList<Question> list = (ArrayList<Question>)request.getAttribute("list");
 int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -32,11 +32,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <title>고객센터</title>
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("table *").css('width','100%');
-	$("table *").css('border-top','1px');
-	$("table *").css('color','blue');
-}
+
 </script>
 <script type="text/javascript">
 function showWriteForm(){
@@ -240,7 +236,7 @@ border-top-right-radius: 10px;
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -320,7 +316,10 @@ border-top-right-radius: 10px;
 								
 							</tbody>
 						</table><br>
+						<% if(loginMember != null){ %>
 						<br><center><button onclick="showWriteForm();" class="genric-btn primary small">글쓰기</button></a></center>
+							<% }else{} %>
+	
 	<br>
 <%-- 페이징 처리 --%>
 <div style="text-align:center;">
@@ -361,7 +360,7 @@ border-top-right-radius: 10px;
 	<% } %>
 </div>
 				<hr>
-						<br><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center>
+						
 							 
 						
 						
@@ -369,7 +368,7 @@ border-top-right-radius: 10px;
 						</div></section>
 					
 						<!-- 리스트 게시판 끝-->
-					<div id="floatdiv">
+										<div id="floatdiv">
 
 <div id="floatTitle">상담채널</div>
 
@@ -379,14 +378,14 @@ border-top-right-radius: 10px;
 
 <li>
 
-<img src="/Shoesgone/resources/img/kakach.png" width = "80px"><a href="#"></a>
+<a href="http://pf.kakao.com/_Ahxoas"><img src="/Shoesgone/resources/img/kakach.png" width = "80px"></a>
 
 </li>
 
 <li>
 
-<img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"><a href="#"></a>
 
+<a href="#" onclick="window.open('https://console.dialogflow.com/api-client/demo/embedded/6178e851-ef1a-409a-a182-c4828ae3b8b2','챗봇','resizable=no width=600 height=500');return false"><img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"></a>
 </li>
 
 </ul>
@@ -400,7 +399,7 @@ border-top-right-radius: 10px;
 		<!--================Contact Area =================-->
 
 		<!-- start footer Area -->
-		<%@ include file="../common/footer.html" %>
+		<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
 		<!--================Contact Success and Error message Area =================-->

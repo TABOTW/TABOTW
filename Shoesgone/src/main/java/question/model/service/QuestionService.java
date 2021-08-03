@@ -8,6 +8,7 @@ import static common.JDBCTemp.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import notice.model.vo.Notice;
 import question.model.vo.Question;
 import question.model.dao.QuestionDao;
 
@@ -73,6 +74,42 @@ public class QuestionService {
 	public int deleteQuestion(int questionNo) {
 		Connection conn = getConnection();
 		int result = qdao.deleteQuestion(conn, questionNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int adminReplyInsert(Question question) {
+		Connection conn = getConnection();
+		int result = qdao.adminReplyInsert(conn, question);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int adminDeleteQuestion(int questionNo, int questionLevel) {
+		Connection conn = getConnection();
+		int result = qdao.adminDeleteQuestion(conn, questionNo, questionLevel);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int adminUpdateReply(Question question) {
+		Connection conn = getConnection();
+		int result = qdao.adminUpdateReply(conn, question);
 		if(result > 0) {
 			commit(conn);
 		}else {

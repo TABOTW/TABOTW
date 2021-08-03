@@ -25,11 +25,7 @@ Faq faq = (Faq)request.getAttribute("faq");;
 <title>고객센터</title>
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("table *").css('width','100%');
-	$("table *").css('border-top','1px');
-	$("table *").css('color','blue');
-}
+
 </script>
 <!--
             CSS
@@ -138,7 +134,7 @@ border-top-right-radius: 10px;
 <body>
 
 	<!-- Start Header Area -->
-	<%@ include file="../common/menubar.html" %>
+	<%@ include file="../common/menubar.jsp" %>
 	<!-- End Header Area -->
 
 	<!-- Start Banner Area -->
@@ -147,11 +143,8 @@ border-top-right-radius: 10px;
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>CustomerSerive</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">CustomerSerive</a>
-					</nav>
+					<h1>고객센터</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -192,6 +185,8 @@ border-top-right-radius: 10px;
 		</div>
 					<div id="floatdiv">
 
+					<div id="floatdiv">
+
 <div id="floatTitle">상담채널</div>
 
 <div id="floatContent">
@@ -200,14 +195,14 @@ border-top-right-radius: 10px;
 
 <li>
 
-<img src="/Shoesgone/resources/img/kakach.png" width = "80px"><a href="#"></a>
+<a href="http://pf.kakao.com/_Ahxoas"><img src="/Shoesgone/resources/img/kakach.png" width = "80px"></a>
 
 </li>
 
 <li>
 
-<img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"><a href="#"></a>
 
+<a href="#" onclick="window.open('https://console.dialogflow.com/api-client/demo/embedded/6178e851-ef1a-409a-a182-c4828ae3b8b2','챗봇','resizable=no width=600 height=500');return false"><img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"></a>
 </li>
 
 </ul>
@@ -221,7 +216,7 @@ border-top-right-radius: 10px;
 		<!--================Contact Area =================-->
 
 		<!-- start footer Area -->
-	<%@ include file="../common/footer.html" %>
+	<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
 		<!--================Contact Success and Error message Area =================-->

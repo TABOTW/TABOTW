@@ -3,7 +3,6 @@ package loginPage.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,12 +33,11 @@ public class ValidationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 회원가입 시 데이터베이스에 아이디가 이미 존재하는지 유효성 검사 처리
 		request.setCharacterEncoding("utf-8");
 		
 		String userid = request.getParameter("userid");
-		
 		Login login = new LoginService().idValidate(userid);
-		
 		PrintWriter out = response.getWriter();
 		
 		if (login != null) {
