@@ -40,16 +40,22 @@ public class MainRegDateServlet extends HttpServlet {
 		ArrayList<Picture> regItem2 = new PictureService().selectRegList();
 		ArrayList<Item> hotItem1 = new ItemService().selectHotList();
 		ArrayList<Picture> hotItem2 = new PictureService().selectHotList();
+		ArrayList<Item> recItem1 = new ItemService().selectRecList();
+		ArrayList<Picture> recItem2 = new PictureService().selectRecList();
+		
 		RequestDispatcher view = null;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (regItem1.size() > 0 && regItem2.size() > 0 && hotItem1.size() > 0 && hotItem2.size() > 0) {
+		if (regItem1.size() > 0 && regItem2.size() > 0 && hotItem1.size() > 0 && hotItem2.size() > 0
+				&& recItem1.size() > 0 && recItem2.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
 	        request.setAttribute("regItem2", regItem2);
 	        request.setAttribute("hotItem1", hotItem1);
 	        request.setAttribute("hotItem2", hotItem2);
+	        request.setAttribute("recItem1", recItem1);
+	        request.setAttribute("recItem2", recItem2);
 	        
 	        view.forward(request, response);
 		} else { 

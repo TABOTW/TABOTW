@@ -25,4 +25,11 @@ public class PictureService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<Picture> selectRecList() {
+		Connection conn = getConnection();
+		ArrayList<Picture> list = pdao.selectRecList(conn);
+		close(conn);
+		return list;
+	}
 }

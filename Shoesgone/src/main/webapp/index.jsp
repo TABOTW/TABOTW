@@ -5,6 +5,8 @@
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
 	ArrayList<Item> hotItem1 = (ArrayList<Item>)request.getAttribute("hotItem1");
 	ArrayList<Picture> hotItem2 = (ArrayList<Picture>)request.getAttribute("hotItem2");
+	ArrayList<Item> recItem1 = (ArrayList<Item>)request.getAttribute("recItem1");
+	ArrayList<Picture> recItem2 = (ArrayList<Picture>)request.getAttribute("recItem2");
 %>
 <!DOCTYPE html>
 <html>
@@ -441,13 +443,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1391-100_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>나이키 덩크 로우 레트로 블랙</h6>
+								<h6><%= recItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>289,000원</h6>
+									<h6><%= recItem1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -455,13 +457,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1503-101_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>(W) 나이키 덩크 로우 블랙</h6>
+								<h6><%= recItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>260,000원</h6>
+									<h6><%= recItem1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -469,13 +471,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1875-200_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>나이키 x 사카이 베이퍼와플 세서미 앤 블루 보이드</h6>
+								<h6><%= recItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>604,000원</h6>
+									<h6><%= recItem1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -483,13 +485,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD3223-100_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>나이키 x 피스마이너스원 에어포스 1 로우 파라노이즈 2.0</h6>
+								<h6><%= recItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>470,000원</h6>
+									<h6><%= recItem1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>

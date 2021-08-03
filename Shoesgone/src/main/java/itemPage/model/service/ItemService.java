@@ -26,4 +26,11 @@ public class ItemService {
 		return list;
 	}
 
+	public ArrayList<Item> selectRecList() {
+		Connection conn = getConnection();
+		ArrayList<Item> list = idao.selectRecList(conn);
+		close(conn);
+		return list;
+	}
+
 }
