@@ -33,4 +33,11 @@ public class ItemService {
 		return list;
 	}
 
+	public ArrayList<Item> selectNewBuyList() {
+		Connection conn = getConnection();
+		ArrayList<Item> list = idao.selectNewBuyList(conn);
+		close(conn);
+		return list;
+	}
+
 }

@@ -32,4 +32,11 @@ public class PictureService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<Picture> selectNewBuyList() {
+		Connection conn = getConnection();
+		ArrayList<Picture> list = pdao.selectNewBuyList(conn);
+		close(conn);
+		return list;
+	}
 }

@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import itemPage.model.service.ItemService;
 import itemPage.model.service.PictureService;
+import itemPage.model.service.SellBidService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import itemPage.model.vo.SellBid;
 
 /**
  * Servlet implementation class MainRegDateServlet
@@ -42,12 +44,17 @@ public class MainRegDateServlet extends HttpServlet {
 		ArrayList<Picture> hotItem2 = new PictureService().selectHotList();
 		ArrayList<Item> recItem1 = new ItemService().selectRecList();
 		ArrayList<Picture> recItem2 = new PictureService().selectRecList();
+		ArrayList<Item> newBuyPrice1 = new ItemService().selectNewBuyList();
+		ArrayList<Picture> newBuyPrice2 = new PictureService().selectNewBuyList();
+		ArrayList<SellBid> newBuyPrice3 = new SellBidService().selectNewBuyList();
 		
 		RequestDispatcher view = null;
 
 		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
-		if (regItem1.size() > 0 && regItem2.size() > 0 && hotItem1.size() > 0 && hotItem2.size() > 0
-				&& recItem1.size() > 0 && recItem2.size() > 0) {
+		if (regItem1.size() > 0 && regItem2.size() > 0
+				&& hotItem1.size() > 0 && hotItem2.size() > 0
+				&& recItem1.size() > 0 && recItem2.size() > 0
+				&& newBuyPrice1.size() > 0 && newBuyPrice2.size() > 0 && newBuyPrice3.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
@@ -56,6 +63,9 @@ public class MainRegDateServlet extends HttpServlet {
 	        request.setAttribute("hotItem2", hotItem2);
 	        request.setAttribute("recItem1", recItem1);
 	        request.setAttribute("recItem2", recItem2);
+	        request.setAttribute("newBuyPrice1", newBuyPrice1);
+	        request.setAttribute("newBuyPrice2", newBuyPrice2);
+	        request.setAttribute("newBuyPrice3", newBuyPrice3);
 	        
 	        view.forward(request, response);
 		} else { 
