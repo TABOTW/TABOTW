@@ -194,7 +194,7 @@ public class ItemDetailDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * FROM REVIEW WHERE REVIEW_ITEMNO = ? ORDER BY REVIEW_COUNT DESC";
+		String query = "SELECT * FROM REVIEW WHERE REVIEW_ITEMNO = ? ORDER BY REVIEW_READCOUNT DESC";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -204,16 +204,15 @@ public class ItemDetailDao {
 			while(rset.next()) {
 				Review review = new Review();
 				
-				review.setReviewNum(rset.getInt("review_no"));
-				review.setReviewWriter(rset.getInt("REVIEW_WRITERNO"));
-				review.setReviewItemNo(rset.getInt("REVIEW_ITEMNO"));
+				review.setReviewNo(rset.getInt("REVIEW_NO"));
 				review.setReviewTitle(rset.getString("REVIEW_TITLE"));
-				review.setReviewStar(rset.getInt("REVIEW_STAR"));
-				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
-				review.setreviewOriginalFilename(rset.getString("REVIEW_OFILE"));
-				review.setreviewRenameFilename(rset.getString("REVIEW_RFILE"));
-				review.setReviewReadCount(rset.getInt("REVIEW_COUNT"));
+				review.setReviewWriterNo(rset.getInt("REVIEW_WRITER"));
 				review.setReviewDate(rset.getDate("REVIEW_DATE"));
+				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				review.setReviewItemNo(rset.getInt("REVIEW_ITEMNO"));
+				review.setReviewStar(rset.getInt("REVIEW_STAR"));
+				review.setReviewLike(rset.getInt("REVIEW_LIKE"));
+				review.setReviewReadcount(rset.getInt("REVIEW_READCOUNT"));
 				rlist.add(review);
 			}
 		} catch (Exception e) {
