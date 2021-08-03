@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import community.review.model.vo.Review;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import orders.model.vo.SalesList;
-import review.model.vo.Review;
 
 public class ItemDetailDao {
 	

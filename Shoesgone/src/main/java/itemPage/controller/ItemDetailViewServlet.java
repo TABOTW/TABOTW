@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import community.review.model.vo.Review;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
-import review.model.vo.Review;
 
 /**
  * Servlet implementation class ItemDetailViewServlet

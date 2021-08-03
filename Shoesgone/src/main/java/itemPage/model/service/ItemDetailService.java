@@ -1,18 +1,18 @@
 package itemPage.model.service;
 
 import static common.JDBCTemp.close;
-import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.commit;
+import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import community.review.model.vo.Review;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import orders.model.vo.SalesList;
-import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
