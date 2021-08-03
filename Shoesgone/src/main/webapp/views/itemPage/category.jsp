@@ -237,7 +237,6 @@
 						<!-- single product -->
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
-								<a href="/Shoesgone/ItemDV?itemno=1">
 								<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
 								<div class="product-details">
 									<h6>addidas New Hammer sole
@@ -249,7 +248,6 @@
 									<div class="prd-bottom">
 									</div>
 								</div>
-								</a>
 							</div>
 						</div>
 						<!-- single product -->

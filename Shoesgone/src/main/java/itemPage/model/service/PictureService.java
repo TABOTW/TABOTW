@@ -12,9 +12,23 @@ import itemPage.model.vo.Picture;
 public class PictureService {
 	private PictureDao pdao = new PictureDao();
 
-	public ArrayList<Picture> selectList() {
+	public ArrayList<Picture> selectRegList() {
 		Connection conn = getConnection();
-		ArrayList<Picture> list = pdao.selectList(conn);
+		ArrayList<Picture> list = pdao.selectRegList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Picture> selectHotList() {
+		Connection conn = getConnection();
+		ArrayList<Picture> list = pdao.selectHotList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Picture> selectRecList() {
+		Connection conn = getConnection();
+		ArrayList<Picture> list = pdao.selectRecList(conn);
 		close(conn);
 		return list;
 	}
