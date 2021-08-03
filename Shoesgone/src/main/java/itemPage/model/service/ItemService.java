@@ -47,4 +47,11 @@ public class ItemService {
 		return list;
 	}
 
+	public ArrayList<Item> selectUpcomingList() {
+		Connection conn = getConnection();
+		ArrayList<Item> list = idao.selectUpcomingList(conn);
+		close(conn);
+		return list;
+	}
+
 }

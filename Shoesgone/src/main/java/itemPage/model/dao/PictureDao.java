@@ -213,4 +213,41 @@ public class PictureDao {
 		return list;
 	}
 
+	public ArrayList<Picture> selectUpcomingList(Connection conn) {
+		ArrayList<Picture> list = new ArrayList<Picture>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select pictures_no, pictures_itemno, pictures_path "
+				+ "from(select rownum, pictures.*, item.* "
+				+ "    from pictures "
+				+ "    join item on pictures_itemno = item_no "
+				+ "    where pictures_path like '%0.png' "
+				+ "    order by item_drop_date desc) "
+				+ "where rownum <= 4";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Picture picture = new Picture();
+				
+				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
+				picture.setPictureno(rset.getInt("pictures_no"));
+				picture.setModelno(rset.getInt("pictures_itemno"));
+				picture.setPicturepath(rset.getString("pictures_path"));
+				
+				list.add(picture);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return list;
+	}
+
 }

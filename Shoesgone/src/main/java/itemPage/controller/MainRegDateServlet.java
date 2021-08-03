@@ -52,6 +52,8 @@ public class MainRegDateServlet extends HttpServlet {
 		ArrayList<Item> newSellPrice1 = new ItemService().selectNewSellList();
 		ArrayList<Picture> newSellPrice2 = new PictureService().selectNewSellList();
 		ArrayList<BuyBid> newSellPrice3 = new BuyBidService().selectNewSellList();
+		ArrayList<Item> upcomingRelease1 = new ItemService().selectUpcomingList();
+		ArrayList<Picture> upcomingRelease2 = new PictureService().selectUpcomingList();
 		
 		RequestDispatcher view = null;
 
@@ -60,7 +62,8 @@ public class MainRegDateServlet extends HttpServlet {
 				&& hotItem1.size() > 0 && hotItem2.size() > 0
 				&& recItem1.size() > 0 && recItem2.size() > 0
 				&& newBuyPrice1.size() > 0 && newBuyPrice2.size() > 0 && newBuyPrice3.size() > 0
-				&& newSellPrice1.size() > 0 && newSellPrice2.size() > 0 && newSellPrice3.size() > 0) {
+				&& newSellPrice1.size() > 0 && newSellPrice2.size() > 0 && newSellPrice3.size() > 0
+				&& upcomingRelease1.size() > 0 && upcomingRelease2.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
@@ -75,6 +78,8 @@ public class MainRegDateServlet extends HttpServlet {
 	        request.setAttribute("newSellPrice1", newSellPrice1);
 	        request.setAttribute("newSellPrice2", newSellPrice2);
 	        request.setAttribute("newSellPrice3", newSellPrice3);
+	        request.setAttribute("upcomingRelease1", upcomingRelease1);
+	        request.setAttribute("upcomingRelease2", upcomingRelease2);
 	        
 	        view.forward(request, response);
 		} else { 

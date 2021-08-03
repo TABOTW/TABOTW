@@ -46,4 +46,11 @@ public class PictureService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<Picture> selectUpcomingList() {
+		Connection conn = getConnection();
+		ArrayList<Picture> list = pdao.selectUpcomingList(conn);
+		close(conn);
+		return list;
+	}
 }
