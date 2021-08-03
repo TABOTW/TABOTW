@@ -54,7 +54,7 @@ $(document).ready(function(){
         autoplayTimeout: 5000,
         loop:true,
         nav:true,
-        navText:["<img src='/Shoesgone/resources/img/banner/prev.png'>","<img src='/Shoesgone/img/banner/next.png'>"],
+        navText:["<img src='/Shoesgone/resources/img/banner/prev.png'>","<img src='/Shoesgone/resources/img/banner/next.png'>"],
         dots:false
     });
 
