@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="itemPage.model.vo.Item, itemPage.model.vo.Picture, itemPage.model.vo.SellBid, java.util.ArrayList" %>
+<%@ page import="itemPage.model.vo.Item, itemPage.model.vo.Picture, itemPage.model.vo.SellBid, itemPage.model.vo.BuyBid, java.util.ArrayList" %>
 <%
 	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
@@ -11,6 +11,9 @@
 	ArrayList<Item> newBuyPrice1 = (ArrayList<Item>)request.getAttribute("newBuyPrice1");
 	ArrayList<Picture> newBuyPrice2 = (ArrayList<Picture>)request.getAttribute("newBuyPrice2");
 	ArrayList<SellBid> newBuyPrice3 = (ArrayList<SellBid>)request.getAttribute("newBuyPrice3");
+	ArrayList<Item> newSellPrice1 = (ArrayList<Item>)request.getAttribute("newSellPrice1");
+	ArrayList<Picture> newSellPrice2 = (ArrayList<Picture>)request.getAttribute("newSellPrice2");
+	ArrayList<BuyBid> newSellPrice3 = (ArrayList<BuyBid>)request.getAttribute("newSellPrice3");
 %>
 <!DOCTYPE html>
 <html>
@@ -614,13 +617,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992EB_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 992 메이드 인 USA 블랙 그레이</h6>
+								<h6><%= newSellPrice1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>195,000원</h6>
+									<h6><%= newSellPrice3.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -628,13 +631,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992GR_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 992 메이드 인 USA 그레이 (D 스탠다드)</h6>
+								<h6><%= newSellPrice1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>210,000원</h6>
+									<h6><%= newSellPrice3.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -642,13 +645,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/MS327FE_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 327 화이트 블랙</h6>
+								<h6><%= newSellPrice1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>110,000원</h6>
+									<h6><%= newSellPrice3.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -656,13 +659,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-035_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 쉐도우 2.0</h6>
+								<h6><%= newSellPrice1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>194,000원</h6>
+									<h6><%= newSellPrice3.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>

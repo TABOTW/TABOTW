@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import itemPage.model.service.BuyBidService;
 import itemPage.model.service.ItemService;
 import itemPage.model.service.PictureService;
 import itemPage.model.service.SellBidService;
+import itemPage.model.vo.BuyBid;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import itemPage.model.vo.SellBid;
@@ -47,6 +49,9 @@ public class MainRegDateServlet extends HttpServlet {
 		ArrayList<Item> newBuyPrice1 = new ItemService().selectNewBuyList();
 		ArrayList<Picture> newBuyPrice2 = new PictureService().selectNewBuyList();
 		ArrayList<SellBid> newBuyPrice3 = new SellBidService().selectNewBuyList();
+		ArrayList<Item> newSellPrice1 = new ItemService().selectNewSellList();
+		ArrayList<Picture> newSellPrice2 = new PictureService().selectNewSellList();
+		ArrayList<BuyBid> newSellPrice3 = new BuyBidService().selectNewSellList();
 		
 		RequestDispatcher view = null;
 
@@ -54,7 +59,8 @@ public class MainRegDateServlet extends HttpServlet {
 		if (regItem1.size() > 0 && regItem2.size() > 0
 				&& hotItem1.size() > 0 && hotItem2.size() > 0
 				&& recItem1.size() > 0 && recItem2.size() > 0
-				&& newBuyPrice1.size() > 0 && newBuyPrice2.size() > 0 && newBuyPrice3.size() > 0) {
+				&& newBuyPrice1.size() > 0 && newBuyPrice2.size() > 0 && newBuyPrice3.size() > 0
+				&& newSellPrice1.size() > 0 && newSellPrice2.size() > 0 && newSellPrice3.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
@@ -66,6 +72,9 @@ public class MainRegDateServlet extends HttpServlet {
 	        request.setAttribute("newBuyPrice1", newBuyPrice1);
 	        request.setAttribute("newBuyPrice2", newBuyPrice2);
 	        request.setAttribute("newBuyPrice3", newBuyPrice3);
+	        request.setAttribute("newSellPrice1", newSellPrice1);
+	        request.setAttribute("newSellPrice2", newSellPrice2);
+	        request.setAttribute("newSellPrice3", newSellPrice3);
 	        
 	        view.forward(request, response);
 		} else { 

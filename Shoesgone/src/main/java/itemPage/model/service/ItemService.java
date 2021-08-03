@@ -40,4 +40,11 @@ public class ItemService {
 		return list;
 	}
 
+	public ArrayList<Item> selectNewSellList() {
+		Connection conn = getConnection();
+		ArrayList<Item> list = idao.selectNewSellList(conn);
+		close(conn);
+		return list;
+	}
+
 }

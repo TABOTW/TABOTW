@@ -170,4 +170,47 @@ public class PictureDao {
 		return list;
 	}
 
+	public ArrayList<Picture> selectNewSellList(Connection conn) {
+		ArrayList<Picture> list = new ArrayList<Picture>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select pictures_no, pictures_itemno, pictures_path "
+				+ "from(select * "
+				+ "    from(select rownum, buy_bid.* "
+				+ "        from buy_bid "
+				+ "        where price in (select max(buy_bid.price) "
+				+ "                        from buy_bid "
+				+ "                        join item on item.item_no = buy_bid.item_no "
+				+ "                        group by item.item_no) "
+				+ "        order by reg_date desc) "
+				+ "    where rownum <=4) "
+				+ "join pictures on pictures.pictures_itemno = item_no "
+				+ "where pictures_path like '%0.png' "
+				+ "order by reg_date desc";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Picture picture = new Picture();
+				
+				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
+				picture.setPictureno(rset.getInt("pictures_no"));
+				picture.setModelno(rset.getInt("pictures_itemno"));
+				picture.setPicturepath(rset.getString("pictures_path"));
+				
+				list.add(picture);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return list;
+	}
+
 }
