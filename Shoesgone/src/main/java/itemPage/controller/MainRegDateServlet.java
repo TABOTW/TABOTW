@@ -40,6 +40,7 @@ public class MainRegDateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
+		// 메인 페이지에 보낼 리스트 값
 		ArrayList<Item> regItem1 = new ItemService().selectRegList();
 		ArrayList<Picture> regItem2 = new PictureService().selectRegList();
 		ArrayList<Item> hotItem1 = new ItemService().selectHotList();
@@ -57,7 +58,7 @@ public class MainRegDateServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 
-		// 데이터베이스에 전화번호 값 유무에 따른 화면 구현
+		// 데이터베이스 조회 성공에 따른 값 전달
 		if (regItem1.size() > 0 && regItem2.size() > 0
 				&& hotItem1.size() > 0 && hotItem2.size() > 0
 				&& recItem1.size() > 0 && recItem2.size() > 0

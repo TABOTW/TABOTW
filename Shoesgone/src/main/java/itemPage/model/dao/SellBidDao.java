@@ -11,6 +11,7 @@ import itemPage.model.vo.SellBid;
 
 public class SellBidDao {
 
+	// 새로운 즉시 구매가에 따른 판매입찰 데이터베이스 조회
 	public ArrayList<SellBid> selectNewBuyList(Connection conn) {
 		ArrayList<SellBid> list = new ArrayList<SellBid>();
 		Statement stmt = null;
@@ -33,7 +34,6 @@ public class SellBidDao {
 			while(rset.next()) {
 				SellBid sellbid = new SellBid();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				sellbid.setSellBidNo(rset.getInt("sell_bid_no"));
 				sellbid.setUserNo(rset.getInt("user_no"));
 				sellbid.setItemNo(rset.getInt("item_no"));

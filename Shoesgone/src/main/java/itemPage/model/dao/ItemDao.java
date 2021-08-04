@@ -11,6 +11,7 @@ import itemPage.model.vo.Item;
 
 public class ItemDao {
 
+	// 발매 상품에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectRegList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -29,7 +30,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
@@ -54,6 +54,7 @@ public class ItemDao {
 		return list;
 	}
 
+	// 인기 상품에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectHotList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -78,7 +79,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
@@ -103,6 +103,7 @@ public class ItemDao {
 		return list;
 	}
 
+	// 추천 상품에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectRecList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -121,7 +122,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
@@ -146,6 +146,7 @@ public class ItemDao {
 		return list;
 	}
 
+	// 새로운 즉시 구매가에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectNewBuyList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -171,7 +172,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
@@ -196,6 +196,7 @@ public class ItemDao {
 		return list;
 	}
 
+	// 새로운 즉시 판매가에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectNewSellList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -221,7 +222,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
@@ -246,6 +246,7 @@ public class ItemDao {
 		return list;
 	}
 
+	// 발매 예정에 따른 상품 데이터베이스 조회
 	public ArrayList<Item> selectUpcomingList(Connection conn) {
 		ArrayList<Item> list = new ArrayList<Item>();
 		Statement stmt = null;
@@ -264,7 +265,6 @@ public class ItemDao {
 			while(rset.next()) {
 				Item item = new Item();
 				
-				// 컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
 				item.setItemNo(rset.getInt("item_no"));
 				item.setItemEngName(rset.getString("item_eng_name"));
 				item.setItemKrName(rset.getString("item_kr_name"));
