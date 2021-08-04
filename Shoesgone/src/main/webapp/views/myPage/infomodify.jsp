@@ -175,12 +175,13 @@ onsubmit="return checkAll();"
 <td><input type="text" id="accountno" name="accountno" size="50" value="<%if(information.getAccountNo() != null){ %><%= information.getAccountNo() %><% }else{%><%}%>" ></td></tr>
 
 <tr><th colspan="2">
-<br><br>
+<br>
+<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 	<center><input type="submit" value="수정하기" class="genric-btn primary small" >&nbsp;
 	<a href="/Shoesgone/contact.jsp" class="genric-btn primary small">목록보기</a></center>
-	<br>
-	<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+	
+	
 </th></tr>
 </table><hr><br><br><br>
 </form>
