@@ -34,16 +34,34 @@ public class CategoryItemServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		// 정렬 기준 값
+		String sortValue = null;
+		ArrayList<ItemPicture> item = null;
+		
+		sortValue = request.getParameter("sortValue");
+		
 		// 상품 페이지에 보낼 리스트 값
-		ArrayList<ItemPicture> lookupItem = new ItemPictureService().selectLookupList();
+		if (sortValue == null) {
+			item = new ItemPictureService().selectLookupList();
+		} else if (sortValue.equals("sort-hot")) {
+			item = new ItemPictureService().selectHotList();
+		} else if (sortValue.equals("sort-premium")) {
+			item = new ItemPictureService().selectPremiumList();
+		} else if (sortValue.equals("sort-buy")) {
+			item = new ItemPictureService().selectBuyList();
+		} else if (sortValue.equals("sort-sell")) {
+			item = new ItemPictureService().selectSellList();
+		} else if (sortValue.equals("sort-drop")) {
+			item = new ItemPictureService().selectDropList();
+		}
 		
 		RequestDispatcher view = null;
 		
 		// 데이터베이스 조회 성공에 따른 값 전달
-		if (lookupItem.size() > 0) {
+		if (item.size() > 0) {
 			view = request.getRequestDispatcher("views/itemPage/category.jsp");
 			
-			request.setAttribute("lookupItem", lookupItem);
+			request.setAttribute("item", item);
 			
 			view.forward(request, response);
 		} else {

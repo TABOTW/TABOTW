@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="itemPage.model.vo.ItemPicture, java.util.ArrayList" %>
 <%
-	ArrayList<ItemPicture> lookupItem = (ArrayList<ItemPicture>)request.getAttribute("lookupItem");
+	ArrayList<ItemPicture> item = (ArrayList<ItemPicture>)request.getAttribute("item");
 %>
 <!DOCTYPE html>
 <html>
@@ -231,12 +231,12 @@
 					</div>
 					<div>		
 						<div class="sorting">
-							<select>
-								<option value="1">인기순</option>
-								<option value="1">프리미엄순</option>
-								<option value="1">즉시 구매가순</option>
-								<option value="1">즉시 판매가순</option>
-								<option value="1">발매일순</option>
+							<select id="sort">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
 							</select>
 						</div>
 					</div>
@@ -245,7 +245,7 @@
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
-						<% for (ItemPicture ip : lookupItem){ %>
+						<% for (ItemPicture ip : item){ %>
 						<!-- single product -->
 						<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= ip.getItemNo() %>';">
 							<div class="single-product">
@@ -277,5 +277,20 @@
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
+	<!-- ajax로 정렬 기준 값을 서블릿으로 전달 -->
+	<script>
+		$(document).ready(function(){
+			$('#sort').change(function(){
+				var sortId = document.getElementById("sort");
+				var sortValue = sortId.options[sortId.selectedIndex].value;
+				
+				$.ajax({
+					type: 'GET',
+					data: { "sortValue": sortValue },
+					url: 'categoryitem'
+				});
+			});
+		});
+	</script>
 </body>
 </html>

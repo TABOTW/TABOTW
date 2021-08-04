@@ -19,9 +19,9 @@ public class SellBidDao {
 		
 		String query = "select * "
 				+ "from(select rownum, sell_bid.* "
-				+ "    from sell_bid\n"
+				+ "    from sell_bid "
 				+ "    where price in (select max(sell_bid.price) "
-				+ "                    from sell_bid\n"
+				+ "                    from sell_bid "
 				+ "                    join item on item.item_no = sell_bid.item_no "
 				+ "                    group by item.item_no) "
 				+ "    order by reg_date desc) "

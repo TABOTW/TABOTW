@@ -19,4 +19,39 @@ public class ItemPictureService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<ItemPicture> selectHotList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectHotList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<ItemPicture> selectPremiumList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectPremiumList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<ItemPicture> selectBuyList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectBuyList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<ItemPicture> selectSellList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectSellList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<ItemPicture> selectDropList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectDropList(conn);
+		close(conn);
+		return list;
+	}
 }
