@@ -137,7 +137,7 @@ ul#menubar li a:hover {
 								<tr>
 								
 									<td class="name" style = "text-align:center"><%= glist.get(i).getTextNo() %></td>
-									<td class="title" style = "text-align:center"><a href="/Shoesgone/freedetail?fNo=<%= glist.get(i).getTextNo() %>"><%= glist.get(i).getTitle() %></td>
+									<td class="title" style = "text-align:center"><a href="/Shoesgone/gallerydetail?gNo=<%= glist.get(i).getTextNo() %>"><%= glist.get(i).getTitle() %></td>
 									<td class="name" style = "text-align:center"><%= glist.get(i).getWriter() %></td>
 									<td class="date" style = "text-align:center"><%= glist.get(i).getRegistDate() %></td>
 									<td class="hit" style = "text-align:center"><%= glist.get(i).getTextReadcount() %></td>

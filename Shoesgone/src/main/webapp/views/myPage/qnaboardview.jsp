@@ -137,7 +137,7 @@ ul#menubar li a:hover {
 								<tr>
 								
 									<td class="name" style = "text-align:center"><%= qlist.get(i).getTextNo() %></td>
-									<td class="title" style = "text-align:center"><a href="/Shoesgone/freedetail?fNo=<%= qlist.get(i).getTextNo() %>"><%= qlist.get(i).getTitle() %></td>
+									<td class="title" style = "text-align:center"><a href="/Shoesgone/qnadetail?qNo=<%= qlist.get(i).getTextNo() %>"><%= qlist.get(i).getTitle() %></td>
 									<td class="name" style = "text-align:center"><%= qlist.get(i).getWriter() %></td>
 									<td class="date" style = "text-align:center"><%= qlist.get(i).getRegistDate() %></td>
 									<td class="hit" style = "text-align:center"><%= qlist.get(i).getTextReadcount() %></td>
