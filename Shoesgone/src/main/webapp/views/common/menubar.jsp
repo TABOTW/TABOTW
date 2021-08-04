@@ -82,7 +82,7 @@
 							<% if(loginMember == null){ %>
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
 							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/logout">로그아웃</a></li>
 							<% } %>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">

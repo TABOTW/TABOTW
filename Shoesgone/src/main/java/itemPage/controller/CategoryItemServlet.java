@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import itemPage.model.service.ItemService;
-import itemPage.model.service.PictureService;
-import itemPage.model.vo.Item;
-import itemPage.model.vo.Picture;
+import itemPage.model.service.ItemPictureService;
+import itemPage.model.vo.ItemPicture;
 
 /**
  * Servlet implementation class CategoryItemServlet
@@ -41,8 +39,9 @@ public class CategoryItemServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
+		// 데이터베이스 조회 성공에 따른 값 전달
 		if (lookupItem.size() > 0) {
-			view = request.getRequestDispatcher("category.jsp");
+			view = request.getRequestDispatcher("views/itemPage/category.jsp");
 			
 			request.setAttribute("lookupItem", lookupItem);
 			
