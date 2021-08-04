@@ -35,6 +35,10 @@
 		#cursor-pointer{
 			cursor: pointer;
 		}
+		
+		#orange-bar{
+			background-color: orange;
+		}
 	</style>
 </head>
 
@@ -222,7 +226,7 @@
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
+				<div class="filter-bar d-flex flex-wrap align-items-center" id="orange-bar">
 					<div class="sorting mr-auto">
 					</div>
 					<div>		
@@ -249,7 +253,7 @@
 								<div class="product-details">
 									<h6><%= ip.getItemKrName() %></h6>
 									<div class="price">
-										<h6><%= ip.getPrice() %></h6>
+										<h6><%= ip.getPrice() %>원</h6>
 									</div>
 									<div class="prd-bottom">
 									</div>
