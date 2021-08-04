@@ -6,9 +6,11 @@ import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import information.model.dao.InformationDao;
 import information.model.vo.Information;
+import loginPage.model.vo.Login;
 
 public class InformationService {
 	private InformationDao idao = new InformationDao();
@@ -49,5 +51,41 @@ public class InformationService {
 		close(conn);
 		return information;
 	}
-
+	
+	public ArrayList<Login> adminselectAllMembers() {
+		Connection conn = getConnection();
+		ArrayList<Login> users = idao.adminselectAllMembers(conn);
+		close(conn);
+		return users;
+	}
+	public Login adminselectMGRLOKMember(int userno) {
+		Connection conn = getConnection();
+		Login user = idao.adminselectMGRLOKMember(conn, userno);
+		close(conn);
+		return user;
+	}
+	public int adminupdateMGR(int userno, String mgrstatus) {
+		Connection conn = getConnection();
+		int result = idao.adminupdateMGR(conn, userno, mgrstatus);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int adminupdateLOK(int userno, String lokstatus) {
+		Connection conn = getConnection();
+		int result = idao.adminupdateLOK(conn, userno, lokstatus);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
 }

@@ -87,7 +87,7 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=11';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=11';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>택배사 휴무 안내</h1>
@@ -103,7 +103,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=10';">
+						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=10';">
 							<div class="col-lg-5">
 								<div class="banner-content">
 									<h1>개인정보 이용 처리방침 변경 안내</h1>
@@ -119,7 +119,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=9';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=9';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>부정거래 이용제한 조치 안내</h1>
@@ -134,7 +134,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=8';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=8';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>가품거래 시도와 관련한 조치사항</h1>
@@ -149,7 +149,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=7';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=7';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>이용약관 변경 안내</h1>
@@ -164,7 +164,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=6';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=6';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>7월 이벤트 당첨자 안내</h1>
@@ -179,7 +179,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='http://localhost:8080/Shoesgone/ndetail?noticeNo=5';">
+						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=5';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>휴무일 안내</h1>
@@ -222,7 +222,7 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(0).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -236,7 +236,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(1).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -250,7 +250,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(2).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -264,7 +264,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= regItem1.get(3).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -306,7 +306,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad1-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=21';">
+		<section id="ad1-style" onclick="location.href='/Shoesgone/ItemDV?itemno=21';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH3227-105_0.png" alt="">
 			</div>
@@ -333,7 +333,7 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(0).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -347,7 +347,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(1).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -361,7 +361,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(2).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -375,7 +375,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= hotItem1.get(3).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -417,7 +417,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad2-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=22';">
+		<section id="ad2-style" onclick="location.href='/Shoesgone/ItemDV?itemno=22';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH7695-600_0.png" alt="">
 			</div>
@@ -443,7 +443,7 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(0).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -457,7 +457,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(1).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -471,7 +471,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(2).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -485,7 +485,7 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=<%= recItem1.get(3).getItemNo() %>';">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
 							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
@@ -508,7 +508,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad3-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=23';">
+		<section id="ad3-style" onclick="location.href='/Shoesgone/ItemDV?itemno=23';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/GCOMS590-W55_0.png" alt="">
 			</div>
@@ -675,7 +675,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="ad4-style" onclick="location.href='http://localhost:8080/Shoesgone/ItemDV?itemno=24';">
+		<section id="ad4-style" onclick="location.href='/Shoesgone/ItemDV?itemno=24';">
 			<div class="col-lg-4" id="ad-image-margin">
 				<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DD1877-002_0.png" alt="">
 			</div>

@@ -5,185 +5,116 @@ import java.sql.Date;
 public class Review implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int ReviewNo;  //게시글번호
-	private String ReviewWriter; //게시글 작성자 아이디
-	private String ReviewTitle;  //게시글 제목
-	private String ReviewContent;  //게시글 내용
-	private String ReviewOriginalFilename;  //첨부파일 원래이름
-	private String ReviewRenameFilename;  //변경된 첨부파일이름
-	private int ReviewRef;  //원글은 자기번호, 댓글은 원글번호
-	private int ReviewLevel;  //원글 1, 댓글 2, 대댓글 3
-	private int ReviewReplyRef;  //원글 0, 댓글은 자기번호, 대댓글은 참조하는 댓글번호
-	private int ReviewReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
-	private int ReviewReadCount; //읽은 조회수
-	private java.sql.Date ReviewDate;  //게시글 등록 날짜
-	private int reviewItemNo; //리뷰하는 물품 번호
-	private int reviewStar; //추천수?
+	private int ReviewNo;  //리뷰글 번호
+	private String ReviewTitle; //리뷰글 제목
+	private int ReviewWriterNo; //리뷰글 작성자 번호
+	private java.sql.Date ReviewDate; //리뷰글 작설 날짜
+	private String ReviewContent; //리뷰글 내용
+	private int ReviewItemNo; //리뷰글 상품 번호
+	private int ReviewStar; //리뷰글 별점
+	private int ReviewLike; //리뷰글 좋아요수
+	private int ReviewReadcount; //리뷰글 조회수
 	
-	public Review() {}
-
-	public Review(String ReviewWriter, String ReviewTitle, String ReviewContent) {
+	public Review() {
 		super();
-		this.ReviewWriter = ReviewWriter;
-		this.ReviewTitle = ReviewTitle;
-		this.ReviewContent = ReviewContent;
+		// TODO Auto-generated constructor stub
 	}
 
-	public Review(String ReviewWriter, String ReviewTitle, 
-			String ReviewContent, String ReviewOriginalFilename,
-			String ReviewRenameFilename) {
+	public Review(int reviewNo, String reviewTitle, int reviewWriterNo, Date reviewDate, String reviewContent,
+			int reviewItemNo, int reviewStar, int reviewLike, int reviewReadcount) {
 		super();
-		this.ReviewWriter = ReviewWriter;
-		this.ReviewTitle = ReviewTitle;
-		this.ReviewContent = ReviewContent;
-		this.ReviewOriginalFilename = ReviewOriginalFilename;
-		this.ReviewRenameFilename = ReviewRenameFilename;
-	}
-
-	public Review(int ReviewNo, String ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
-			String ReviewRenameFilename, int ReviewRef, int ReviewLevel, int ReviewReplyRef, int ReviewReplySeq,
-			int ReviewReadCount, Date ReviewDate, int reviewItemNo, int reviewStar) {
-		super();
-		this.ReviewNo = ReviewNo;
-		this.ReviewWriter = ReviewWriter;
-		this.ReviewTitle = ReviewTitle;
-		this.ReviewContent = ReviewContent;
-		this.ReviewOriginalFilename = ReviewOriginalFilename;
-		this.ReviewRenameFilename = ReviewRenameFilename;
-		this.ReviewRef = ReviewRef;
-		this.ReviewLevel = ReviewLevel;
-		this.ReviewReplyRef = ReviewReplyRef;
-		this.ReviewReplySeq = ReviewReplySeq;
-		this.ReviewReadCount = ReviewReadCount;
-		this.ReviewDate = ReviewDate;
-		this.reviewItemNo = reviewItemNo;
-		this.reviewStar = reviewStar;
+		ReviewNo = reviewNo;
+		ReviewTitle = reviewTitle;
+		ReviewWriterNo = reviewWriterNo;
+		ReviewDate = reviewDate;
+		ReviewContent = reviewContent;
+		ReviewItemNo = reviewItemNo;
+		ReviewStar = reviewStar;
+		ReviewLike = reviewLike;
+		ReviewReadcount = reviewReadcount;
 	}
 
 	public int getReviewNo() {
 		return ReviewNo;
 	}
 
-	public void setReviewNo(int ReviewNo) {
-		this.ReviewNo = ReviewNo;
-	}
-
-	public String getReviewWriter() {
-		return ReviewWriter;
-	}
-
-	public void setReviewWriter(String ReviewWriter) {
-		this.ReviewWriter = ReviewWriter;
+	public void setReviewNo(int reviewNo) {
+		ReviewNo = reviewNo;
 	}
 
 	public String getReviewTitle() {
 		return ReviewTitle;
 	}
 
-	public void setReviewTitle(String ReviewTitle) {
-		this.ReviewTitle = ReviewTitle;
+	public void setReviewTitle(String reviewTitle) {
+		ReviewTitle = reviewTitle;
 	}
 
-	public String getReviewContent() {
-		return ReviewContent;
+	public int getReviewWriterNo() {
+		return ReviewWriterNo;
 	}
 
-	public void setReviewContent(String ReviewContent) {
-		this.ReviewContent = ReviewContent;
-	}
-
-	public String getReviewOriginalFilename() {
-		return ReviewOriginalFilename;
-	}
-
-	public void setReviewOriginalFilename(String ReviewOriginalFilename) {
-		this.ReviewOriginalFilename = ReviewOriginalFilename;
-	}
-
-	public String getReviewRenameFilename() {
-		return ReviewRenameFilename;
-	}
-
-	public void setReviewRenameFilename(String ReviewRenameFilename) {
-		this.ReviewRenameFilename = ReviewRenameFilename;
-	}
-
-	public int getReviewRef() {
-		return ReviewRef;
-	}
-
-	public void setReviewRef(int ReviewRef) {
-		this.ReviewRef = ReviewRef;
-	}
-
-	public int getReviewLevel() {
-		return ReviewLevel;
-	}
-
-	public void setReviewLevel(int ReviewLevel) {
-		this.ReviewLevel = ReviewLevel;
-	}
-
-	public int getReviewReplyRef() {
-		return ReviewReplyRef;
-	}
-
-	public void setReviewReplyRef(int ReviewReplyRef) {
-		this.ReviewReplyRef = ReviewReplyRef;
-	}
-
-	public int getReviewReplySeq() {
-		return ReviewReplySeq;
-	}
-
-	public void setReviewReplySeq(int ReviewReplySeq) {
-		this.ReviewReplySeq = ReviewReplySeq;
-	}
-
-	public int getReviewReadCount() {
-		return ReviewReadCount;
-	}
-
-	public void setReviewReadCount(int ReviewReadCount) {
-		this.ReviewReadCount = ReviewReadCount;
+	public void setReviewWriterNo(int reviewWriterNo) {
+		ReviewWriterNo = reviewWriterNo;
 	}
 
 	public java.sql.Date getReviewDate() {
 		return ReviewDate;
 	}
 
-	public void setReviewDate(java.sql.Date ReviewDate) {
-		this.ReviewDate = ReviewDate;
+	public void setReviewDate(java.sql.Date reviewDate) {
+		ReviewDate = reviewDate;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getReviewContent() {
+		return ReviewContent;
 	}
-	
+
+	public void setReviewContent(String reviewContent) {
+		ReviewContent = reviewContent;
+	}
+
 	public int getReviewItemNo() {
-		return reviewItemNo;
+		return ReviewItemNo;
 	}
 
 	public void setReviewItemNo(int reviewItemNo) {
-		this.reviewItemNo = reviewItemNo;
+		ReviewItemNo = reviewItemNo;
 	}
+
 	public int getReviewStar() {
-		return reviewStar;
+		return ReviewStar;
 	}
 
 	public void setReviewStar(int reviewStar) {
-		this.reviewStar = reviewStar;
+		ReviewStar = reviewStar;
+	}
+
+	public int getReviewLike() {
+		return ReviewLike;
+	}
+
+	public void setReviewLike(int reviewLike) {
+		ReviewLike = reviewLike;
+	}
+
+	public int getReviewReadcount() {
+		return ReviewReadcount;
+	}
+
+	public void setReviewReadcount(int reviewReadcount) {
+		ReviewReadcount = reviewReadcount;
 	}
 
 	@Override
 	public String toString() {
-		return "Review [ReviewNo=" + ReviewNo + ", ReviewWriter=" + ReviewWriter + ", ReviewTitle=" + ReviewTitle
-				+ ", ReviewContent=" + ReviewContent + ", ReviewOriginalFilename=" + ReviewOriginalFilename
-				+ ", ReviewRenameFilename=" + ReviewRenameFilename + ", ReviewRef=" + ReviewRef + ", ReviewLevel="
-				+ ReviewLevel + ", ReviewReplyRef=" + ReviewReplyRef + ", ReviewReplySeq=" + ReviewReplySeq
-				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + ", reviewItemNo="
-				+ reviewItemNo + ", reviewStar=" + reviewStar + "]";
+		return "Review [ReviewNo=" + ReviewNo + ", ReviewTitle=" + ReviewTitle + ", ReviewWriterNo=" + ReviewWriterNo
+				+ ", ReviewDate=" + ReviewDate + ", ReviewContent=" + ReviewContent + ", ReviewItemNo=" + ReviewItemNo
+				+ ", ReviewStar=" + ReviewStar + ", ReviewLike=" + ReviewLike + ", ReviewReadcount=" + ReviewReadcount
+				+ "]";
 	}
+	
+	
 	
 }
 

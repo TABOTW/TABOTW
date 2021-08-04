@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import community.review.model.vo.Review;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
-import review.model.vo.Review;
 
 /**
  * Servlet implementation class ItemDetailViewServlet
@@ -57,6 +57,9 @@ public class ItemDetailViewServlet extends HttpServlet {
 			String rpname = rpitem.getItemEngName();
 			rpnames.add(rpname);
 		}
+		//조회수 늘리기
+		ItemDetailService idservice = new ItemDetailService();
+		idservice.addReadCount(itemNo);
 		//판매정보 가져오기
 		//페이지로 이동
 		RequestDispatcher view = null;

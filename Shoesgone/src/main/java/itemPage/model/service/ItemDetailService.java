@@ -1,18 +1,18 @@
 package itemPage.model.service;
 
 import static common.JDBCTemp.close;
-import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.commit;
+import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import community.review.model.vo.Review;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
 import orders.model.vo.SalesList;
-import review.model.vo.Review;
 
 public class ItemDetailService {
 	private ItemDetailDao iddao = new ItemDetailDao();
@@ -102,6 +102,17 @@ public class ItemDetailService {
 		int count = iddao.deleteItem(conn, itemNo);
 		close(conn);
 		return count;
+	}
+
+	public void addReadCount(int itemNo) {
+		Connection conn = getConnection();
+		int result = iddao.updateReadCount(conn, itemNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
 	}
 
 }
