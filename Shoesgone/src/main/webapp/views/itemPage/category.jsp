@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="itemPage.model.vo.ItemPicture, java.util.ArrayList" %>
+<%
+	ArrayList<ItemPicture> lookupItem = (ArrayList<ItemPicture>)request.getAttribute("lookupItem");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,19 +219,18 @@
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
-					
 					<div class="sorting mr-auto">
 					</div>
 					<div>		
 						<div class="sorting">
-						<select>
-							<option value="1">인기순</option>
-							<option value="1">프리미엄순</option>
-							<option value="1">즉시 구매가순</option>
-							<option value="1">즉시 판매가순</option>
-							<option value="1">발매일순</option>
-						</select>
-					</div>
+							<select>
+								<option value="1">인기순</option>
+								<option value="1">프리미엄순</option>
+								<option value="1">즉시 구매가순</option>
+								<option value="1">즉시 판매가순</option>
+								<option value="1">발매일순</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
