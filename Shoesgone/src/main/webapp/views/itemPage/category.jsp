@@ -102,44 +102,44 @@
 		
 								<table id="size-table">
 									<tr>
-										<td><input type=button value="215" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="220" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="225" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="215" id="shoes-pants" src="#"></td>
+										<td><input type=button value="220" id="shoes-pants" src="#"></td>
+										<td><input type=button value="225" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="230" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="235" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="240" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="230" id="shoes-pants" src="#"></td>
+										<td><input type=button value="235" id="shoes-pants" src="#"></td>
+										<td><input type=button value="240" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="245" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="250" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="255" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="245" id="shoes-pants" src="#"></td>
+										<td><input type=button value="250" id="shoes-pants" src="#"></td>
+										<td><input type=button value="255" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="260" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="265" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="270" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="260" id="shoes-pants" src="#"></td>
+										<td><input type=button value="265" id="shoes-pants" src="#"></td>
+										<td><input type=button value="270" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="275" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="280" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="285" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="275" id="shoes-pants" src="#"></td>
+										<td><input type=button value="280" id="shoes-pants" src="#"></td>
+										<td><input type=button value="285" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="290" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="295" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="300" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="290" id="shoes-pants" src="#"></td>
+										<td><input type=button value="295" id="shoes-pants" src="#"></td>
+										<td><input type=button value="300" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="305" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="310" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="315" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="305" id="shoes-pants" src="#"></td>
+										<td><input type=button value="310" id="shoes-pants" src="#"></td>
+										<td><input type=button value="315" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="320" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="325" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="330" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="320" id="shoes-pants" src="#"></td>
+										<td><input type=button value="325" id="shoes-pants" src="#"></td>
+										<td><input type=button value="330" id="shoes-pants" src="#"></td>
 									</tr>
 							</table>
 							</ul>
@@ -149,38 +149,38 @@
 							<ul class="collapse" id="clothes" data-toggle="collapse" aria-expanded="false" aria-controls="clothes">
 								<table  id="size-table">
 									<tr>
-										<td><input type=button value="XXS" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XS" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="XXS" id="clothes-style" src="#"></td>
+										<td><input type=button value="XS" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="S" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="M" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="S" id="clothes-style" src="#"></td>
+										<td><input type=button value="M" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="L" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XL" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="L" id="clothes-style" src="#"></td>
+										<td><input type=button value="XL" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="XXL" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XXXL" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="XXL" id="clothes-style" src="#"></td>
+										<td><input type=button value="XXXL" id="clothes-style" src="#"></td>
 									</tr>
 								</table>
 								<br>
 								<table>
 									<tr>
-										<td><input type=button value="28" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="29" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="30" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="28" id="shoes-pants" src="#"></td>
+										<td><input type=button value="29" id="shoes-pants" src="#"></td>
+										<td><input type=button value="30" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="31" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="32" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="33" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="31" id="shoes-pants" src="#"></td>
+										<td><input type=button value="32" id="shoes-pants" src="#"></td>
+										<td><input type=button value="33" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="34" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="35" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="36" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="34" id="shoes-pants" src="#"></td>
+										<td><input type=button value="35" id="shoes-pants" src="#"></td>
+										<td><input type=button value="36" id="shoes-pants" src="#"></td>
 									</tr>
 								</table>
 							</ul>
