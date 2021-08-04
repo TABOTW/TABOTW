@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="itemPage.model.vo.Item, itemPage.model.vo.Picture, itemPage.model.vo.SellBid, itemPage.model.vo.BuyBid, java.util.ArrayList" %>
 <%
 	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
@@ -7,6 +8,15 @@
 	ArrayList<Picture> hotItem2 = (ArrayList<Picture>)request.getAttribute("hotItem2");
 	ArrayList<Item> recItem1 = (ArrayList<Item>)request.getAttribute("recItem1");
 	ArrayList<Picture> recItem2 = (ArrayList<Picture>)request.getAttribute("recItem2");
+	ArrayList<Item> newBuyPrice1 = (ArrayList<Item>)request.getAttribute("newBuyPrice1");
+	ArrayList<Picture> newBuyPrice2 = (ArrayList<Picture>)request.getAttribute("newBuyPrice2");
+	ArrayList<SellBid> newBuyPrice3 = (ArrayList<SellBid>)request.getAttribute("newBuyPrice3");
+	ArrayList<Item> newSellPrice1 = (ArrayList<Item>)request.getAttribute("newSellPrice1");
+	ArrayList<Picture> newSellPrice2 = (ArrayList<Picture>)request.getAttribute("newSellPrice2");
+	ArrayList<BuyBid> newSellPrice3 = (ArrayList<BuyBid>)request.getAttribute("newSellPrice3");
+	
+	ArrayList<Item> upcomingRelease1 = (ArrayList<Item>)request.getAttribute("upcomingRelease1");
+	ArrayList<Picture> upcomingRelease2 = (ArrayList<Picture>)request.getAttribute("upcomingRelease2");
 %>
 <!DOCTYPE html>
 <html>
@@ -87,7 +97,7 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=11';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=11';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>택배사 휴무 안내</h1>
@@ -103,7 +113,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=10';">
+						<div class="row single-slide" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=10';">
 							<div class="col-lg-5">
 								<div class="banner-content">
 									<h1>개인정보 이용 처리방침 변경 안내</h1>
@@ -119,7 +129,7 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=9';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=9';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>부정거래 이용제한 조치 안내</h1>
@@ -134,7 +144,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=8';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=8';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>가품거래 시도와 관련한 조치사항</h1>
@@ -149,7 +159,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=7';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=7';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>이용약관 변경 안내</h1>
@@ -164,7 +174,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=6';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=6';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>7월 이벤트 당첨자 안내</h1>
@@ -179,7 +189,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" style="cursor: pointer;" onclick="location.href='/Shoesgone/ndetail?noticeNo=5';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=5';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>휴무일 안내</h1>
@@ -534,13 +544,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DH0690-200_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 6 x 트래비스 스캇 레트로 SP 브리티쉬 카키</h6>
+								<h6><%= newBuyPrice1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>348,000원</h6>
+									<h6><%= newBuyPrice3.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -548,13 +558,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DJ0606-400_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>나이키 SB 덩크 로우 프로 프리미엄 바르셀로나</h6>
+								<h6><%= newBuyPrice1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>240,000원</h6>
+									<h6><%= newBuyPrice3.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -562,13 +572,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/DJ5718-300_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 4 x 유니온 레트로 SP 데저트 모스</h6>
+								<h6><%= newBuyPrice1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>345,000원</h6>
+									<h6><%= newBuyPrice3.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -576,13 +586,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/GZ5554_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>아디다스 이지 슬라이드 퓨어</h6>
+								<h6><%= newBuyPrice1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>137,000원</h6>
+									<h6><%= newBuyPrice3.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -610,13 +620,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992EB_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 992 메이드 인 USA 블랙 그레이</h6>
+								<h6><%= newSellPrice1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>195,000원</h6>
+									<h6><%= newSellPrice3.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -624,13 +634,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/M992GR_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 992 메이드 인 USA 그레이 (D 스탠다드)</h6>
+								<h6><%= newSellPrice1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>210,000원</h6>
+									<h6><%= newSellPrice3.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -638,13 +648,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/MS327FE_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>뉴발란스 327 화이트 블랙</h6>
+								<h6><%= newSellPrice1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>110,000원</h6>
+									<h6><%= newSellPrice3.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -652,13 +662,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-035_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 쉐도우 2.0</h6>
+								<h6><%= newSellPrice1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>194,000원</h6>
+									<h6><%= newSellPrice3.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -701,13 +711,13 @@
 				</div>
 				<div class="row">
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-105_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 블랙 모카</h6>
+								<h6><%= upcomingRelease1.get(0).getItemKrName() %></h6>
 								<div class="price">
-									<h6>457,000원</h6>
+									<h6><%= upcomingRelease1.get(0).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -715,13 +725,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-134_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 유니버시티 블루</h6>
+								<h6><%= upcomingRelease1.get(1).getItemKrName() %></h6>
 								<div class="price">
-									<h6>357,000원</h6>
+									<h6><%= upcomingRelease1.get(1).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -729,13 +739,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-180_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 일렉트로 오렌지</h6>
+								<h6><%= upcomingRelease1.get(2).getItemKrName() %></h6>
 								<div class="price">
-									<h6>176,000원</h6>
+									<h6><%= upcomingRelease1.get(2).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>
@@ -743,13 +753,13 @@
 						</div>
 					</div>
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/555088-402_0.png" alt="">
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
-								<h6>조던 1 레트로 하이 OG 하이퍼 로얄</h6>
+								<h6><%= upcomingRelease1.get(3).getItemKrName() %></h6>
 								<div class="price">
-									<h6>319,000원</h6>
+									<h6><%= upcomingRelease1.get(3).getPrice() %>원</h6>
 								</div>
 								<div class="prd-bottom">
 								</div>

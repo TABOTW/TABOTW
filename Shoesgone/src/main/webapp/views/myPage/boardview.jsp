@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="myboard.model.vo.Myboard, java.util.ArrayList,  java.io.PrintWriter,java.sql.Date"%>
+    
+  <%
+  ArrayList<Myboard> rlist = (ArrayList<Myboard>)request.getAttribute("rlist");
+
+  int rlistCount = ((Integer)request.getAttribute("rlistCount")).intValue();
+  int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+  int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+  int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+  int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+  %>
 <!DOCTYPE html>
 <html>
 
@@ -83,17 +93,16 @@ ul#menubar li a:hover {
 <h2 align="center">나의 글 보기</h2>
 <center>
 <ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/nlist">Best게시판</a></li>
-	<li><a href="/Shoesgone/flist">리뷰게시판</a></li>
-	<li><a href="/Shoesgone/qulist">갤러리</a></li>
-	<li><a href="#">자유게시판</a></li>
-	<li><a href="#">QnA</a></li>
+	<li><a href="/Shoesgone/rlist.my?userno=<%= loginMember.getUserNo() %>">리뷰게시판</a></li>
+	<li><a href="/Shoesgone/glist.my?userno=<%= loginMember.getUserNo() %>">갤러리</a></li>
+	<li><a href="/Shoesgone/flist.my?userno=<%= loginMember.getUserNo() %>">자유게시판</a></li>
+	<li><a href="/Shoesgone/qlist.my?userno=<%= loginMember.getUserNo() %>">QnA</a></li>
 </ul></center>
 <br>
 <hr>
 		<section class="product_description_area">
 			<div class="container">
-			<center><h3>Best게시판</h3></center><br>
+			<center><h3>리뷰게시판</h3></center><br>
 				<table class="sub_news" border="0" cellpadding="7px"
 							summary="게시판의 글제목 리스트" align="center" text-align="center">
 							
@@ -117,22 +126,65 @@ ul#menubar li a:hover {
 							</thead>
 							
 							<tbody>
+								<%
+							
+						
+							
+						for(int i = 0; i < rlist.size(); i++){
+					%>
 								<tr>
 								
-									<td class="name" style = "text-align:center">1</td>
-									<td class="title" style = "text-align:center"><a href="#">게시판 제목
-										</td>
-									<td class="name" style = "text-align:center">글쓴이이름</td>
-									<td class="date" style = "text-align:center">2021-01-01</td>
-									<td class="hit" style = "text-align:center">1234</td>
+									<td class="name" style = "text-align:center"><%= rlist.get(i).getTextNo() %></td>
+									<td class="title" style = "text-align:center"><a href="/Shoesgone/reviewdetail?rNo=<%= rlist.get(i).getTextNo() %>"><%= rlist.get(i).getTitle() %></td>
+									<td class="name" style = "text-align:center"><%= rlist.get(i).getWriter() %></td>
+									<td class="date" style = "text-align:center"><%= rlist.get(i).getRegistDate() %></td>
+									<td class="hit" style = "text-align:center"><%= rlist.get(i).getTextReadcount() %></td>
 								</tr>
-								
+								<% }
+								%>
 								<!-- -->
 							</tbody>
 						</table><br>
 						 
  <br><br>
-
+<%-- 페이징 처리 --%>
+<div style="text-align:center;">
+	<% if(currentPage <= 1){ %>
+		[맨처음] &nbsp;
+	<% }else{ %>
+		<a href="/Shoesgone/rlist.my?userid=<%= loginMember.getUserId() %>&page=1">[맨처음]</a> &nbsp;
+	<% } %>
+	<!-- 이전 페이지 그룹으로 이동 -->
+	<% if((currentPage - 10) < startPage && 
+			(currentPage - 10) > 1){ %>
+		<a href="/Shoesgone/rlist.my?userid=<%= loginMember.getUserId() %>&page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+	<% }else{ %>
+		[이전그룹] &nbsp;
+	<% } %>
+	
+	<!-- 현재 페이지 그룹의 페이지 숫자 출력 -->
+	<% for(int p = startPage; p <= endPage; p++){ 
+			if(p == currentPage){
+	%>
+		 <font color="red" size="4"><b>[<%= p %>]</b></font>
+		<% }else{ %>
+			<a href="/Shoesgone/rlist.my?userid=<%= loginMember.getUserId() %>&page=<%= p %>"><%= p %></a>
+	<% }} %>
+	
+	<!-- 다음 페이지 그룹으로 이동 -->
+	<% if((currentPage + 10) > endPage && 
+			(currentPage + 10) < maxPage){ %>
+		<a href="/Shoesgone/rlist.my?userid=<%= loginMember.getUserId() %>&page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+	<% }else{ %>
+		[다음그룹] &nbsp;
+	<% } %>
+	
+	<% if(currentPage >= maxPage){ %>
+		[맨끝] &nbsp;
+	<% }else{ %>
+		<a href="/Shoesgone/rlist.my?userid=<%= loginMember.getUserId() %>&page=<%= maxPage %>">[맨끝]</a> &nbsp;
+	<% } %>
+</div>
 					
 					<hr>
 					</div>

@@ -41,7 +41,7 @@
 						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>갤러리</a>
 							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/freelist" aria-expanded="false" ><span
+						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
 								 class="lnr lnr-arrow-right"></span>자유게시판</a>
 							</li>
 						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span

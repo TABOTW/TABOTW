@@ -42,9 +42,9 @@ public class FreeService {
 		return listCount;
 	}
 
-	public ArrayList<Free> selectList(int startRow, int endRow) {
+	public ArrayList<Free> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Free> list = fdao.selectList(conn, startRow, endRow);
+		ArrayList<Free> list = fdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}

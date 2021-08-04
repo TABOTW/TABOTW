@@ -49,7 +49,7 @@ public class NaverLoginServlet extends HttpServlet {
 
 			session.setAttribute("loginMember", login);
 
-			response.sendRedirect("mregdate");
+			response.sendRedirect("mpageitem");
 
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -90,7 +90,7 @@ public class NaverLoginServlet extends HttpServlet {
 
 					session.setAttribute("loginMember", newLogin);
 
-					response.sendRedirect("mregdate");
+					response.sendRedirect("mpageitem");
 				}else {
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 					

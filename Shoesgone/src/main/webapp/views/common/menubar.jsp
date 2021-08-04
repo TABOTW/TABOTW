@@ -42,7 +42,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Shoesgone/mregdate">슈즈곤</a>
+					<a class="navbar-brand logo_h" href="/Shoesgone/mpageitem">슈즈곤</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -52,12 +52,20 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/itemPage/category.jsp">SHOP</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/categoryitem">SHOP</a></li>
 							<% if(loginMember != null){ %>
-								<% if(loginMember.getMgr().equals("N")){ %>
-								<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.jsp">마이페이지</a></li>
+								<% if(loginMember.getMgr().toString().equals("Y")){ %>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">관리자페이지</a></li>
 								<% }else{ %>
-								<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">관리자페이지</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.jsp">마이페이지</a></li>
+								<% } %>
+							<% } %>
+							
+							<% if(loginMember != null){ %>
+								<% if(loginMember.getMgr().toString().equals("Y")){ %>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/nlist.ad">고객센터</a></li>
+								<% }else{ %>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/nlist">고객센터</a></li>
 								<% } %>
 							<% } %>
 							<li class="nav-item submenu dropdown active">
@@ -74,7 +82,7 @@
 							<% if(loginMember == null){ %>
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
 							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" onclick="javascript:location.href='/Shoesgone/logout';">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/logout">로그아웃</a></li>
 							<% } %>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">

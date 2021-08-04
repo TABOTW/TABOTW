@@ -36,7 +36,12 @@
 								<span>물품등록/관리</span>
 						</a>
 					</li>
-
+					<li class="sidebar-item ">
+						<a href="/Shoesgone/olist.ad" class='sidebar-link'> 
+								<i class="bi bi-file-earmark-medical-fill"></i> 
+								<span>주문현황</span>
+						</a>
+					</li>
 					<li class="sidebar-item ">
 						<a href="/Shoesgone/memberlist.ad" class='sidebar-link'> 
 							<i class="bi bi-collection-fill"></i> 

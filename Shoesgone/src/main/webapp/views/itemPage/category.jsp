@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="itemPage.model.vo.ItemPicture, java.util.ArrayList" %>
+<%
+	ArrayList<ItemPicture> item = (ArrayList<ItemPicture>)request.getAttribute("item");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +30,14 @@
 		#size-table{
 			margin-left: auto;
 			margin-right: auto;
+		}
+		
+		#cursor-pointer{
+			cursor: pointer;
+		}
+		
+		#orange-bar{
+			background-color: orange;
 		}
 	</style>
 </head>
@@ -94,44 +106,44 @@
 		
 								<table id="size-table">
 									<tr>
-										<td><input type=button value="215" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="220" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="225" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="215" id="shoes-pants" src="#"></td>
+										<td><input type=button value="220" id="shoes-pants" src="#"></td>
+										<td><input type=button value="225" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="230" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="235" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="240" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="230" id="shoes-pants" src="#"></td>
+										<td><input type=button value="235" id="shoes-pants" src="#"></td>
+										<td><input type=button value="240" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="245" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="250" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="255" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="245" id="shoes-pants" src="#"></td>
+										<td><input type=button value="250" id="shoes-pants" src="#"></td>
+										<td><input type=button value="255" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="260" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="265" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="270" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="260" id="shoes-pants" src="#"></td>
+										<td><input type=button value="265" id="shoes-pants" src="#"></td>
+										<td><input type=button value="270" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="275" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="280" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="285" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="275" id="shoes-pants" src="#"></td>
+										<td><input type=button value="280" id="shoes-pants" src="#"></td>
+										<td><input type=button value="285" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="290" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="295" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="300" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="290" id="shoes-pants" src="#"></td>
+										<td><input type=button value="295" id="shoes-pants" src="#"></td>
+										<td><input type=button value="300" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="305" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="310" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="315" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="305" id="shoes-pants" src="#"></td>
+										<td><input type=button value="310" id="shoes-pants" src="#"></td>
+										<td><input type=button value="315" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="320" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="325" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="330" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="320" id="shoes-pants" src="#"></td>
+										<td><input type=button value="325" id="shoes-pants" src="#"></td>
+										<td><input type=button value="330" id="shoes-pants" src="#"></td>
 									</tr>
 							</table>
 							</ul>
@@ -141,38 +153,38 @@
 							<ul class="collapse" id="clothes" data-toggle="collapse" aria-expanded="false" aria-controls="clothes">
 								<table  id="size-table">
 									<tr>
-										<td><input type=button value="XXS" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XS" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="XXS" id="clothes-style" src="#"></td>
+										<td><input type=button value="XS" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="S" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="M" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="S" id="clothes-style" src="#"></td>
+										<td><input type=button value="M" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="L" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XL" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="L" id="clothes-style" src="#"></td>
+										<td><input type=button value="XL" id="clothes-style" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="XXL" id="clothes-style" onclick="location.href='#'"></td>
-										<td><input type=button value="XXXL" id="clothes-style" onclick="location.href='#'"></td>
+										<td><input type=button value="XXL" id="clothes-style" src="#"></td>
+										<td><input type=button value="XXXL" id="clothes-style" src="#"></td>
 									</tr>
 								</table>
 								<br>
 								<table>
 									<tr>
-										<td><input type=button value="28" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="29" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="30" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="28" id="shoes-pants" src="#"></td>
+										<td><input type=button value="29" id="shoes-pants" src="#"></td>
+										<td><input type=button value="30" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="31" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="32" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="33" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="31" id="shoes-pants" src="#"></td>
+										<td><input type=button value="32" id="shoes-pants" src="#"></td>
+										<td><input type=button value="33" id="shoes-pants" src="#"></td>
 									</tr>
 									<tr>
-										<td><input type=button value="34" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="35" id="shoes-pants" onclick="location.href='#'"></td>
-										<td><input type=button value="36" id="shoes-pants" onclick="location.href='#'"></td>
+										<td><input type=button value="34" id="shoes-pants" src="#"></td>
+										<td><input type=button value="35" id="shoes-pants" src="#"></td>
+										<td><input type=button value="36" id="shoes-pants" src="#"></td>
 									</tr>
 								</table>
 							</ul>
@@ -214,217 +226,41 @@
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					
+				<div class="filter-bar d-flex flex-wrap align-items-center" id="orange-bar">
 					<div class="sorting mr-auto">
 					</div>
 					<div>		
 						<div class="sorting">
-						<select>
-							<option value="1">인기순</option>
-							<option value="1">프리미엄순</option>
-							<option value="1">즉시 구매가순</option>
-							<option value="1">즉시 판매가순</option>
-							<option value="1">발매일순</option>
-						</select>
-					</div>
+							<select id="sort">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
+						<% for (ItemPicture ip : item){ %>
 						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
+						<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= ip.getItemNo() %>';">
 							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p1.jpg" alt="">
+								<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= ip.getPicturepath() %>" alt="">
 								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
+									<h6><%= ip.getItemKrName() %></h6>
 									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6><%= ip.getPrice() %>원</h6>
 									</div>
 									<div class="prd-bottom">
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p3.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p2.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p4.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- single product -->
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
-								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-									<div class="prd-bottom">
-									</div>
-								</div>
-							</div>
-						</div>
+						<% } %>
 					</div>
 				</section>
 				<!-- End Best Seller -->
@@ -441,5 +277,20 @@
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
+	<!-- ajax로 정렬 기준 값을 서블릿으로 전달 -->
+	<script>
+		$(document).ready(function(){
+			$('#sort').change(function(){
+				var sortId = document.getElementById("sort");
+				var sortValue = sortId.options[sortId.selectedIndex].value;
+				
+				$.ajax({
+					type: 'GET',
+					data: { "sortValue": sortValue },
+					url: 'categoryitem'
+				});
+			});
+		});
+	</script>
 </body>
 </html>

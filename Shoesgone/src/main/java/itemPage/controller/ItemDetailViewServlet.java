@@ -57,9 +57,6 @@ public class ItemDetailViewServlet extends HttpServlet {
 			String rpname = rpitem.getItemEngName();
 			rpnames.add(rpname);
 		}
-		//조회수 늘리기
-		ItemDetailService idservice = new ItemDetailService();
-		idservice.addReadCount(itemNo);
 		//판매정보 가져오기
 		//페이지로 이동
 		RequestDispatcher view = null;
