@@ -117,7 +117,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
         $login_url = /member/login.html
     -->
     <div class="title">
-        <h2 align="center">위시리스트</h2><hr><br>
+        <h2 align="center">마이페이지</h2><hr><br>
     </div>
 
     <table class="th" border="1" summary="" align="center" width="960px">
@@ -141,7 +141,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
                     
                    <a href="/Shoesgone/wdelete?userNo=<%= loginMember.getUserNo() %>&wnum=<%= list.get(i).getWishlistNo() %>" onclick="alert('정말 삭제하시겠습니까?');return true;"><button class="genric-btn primary small" >삭제</button></a>
                 </td>
-                <td class="product"><strong><a href="#"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %></a></strong> </td>
+                <td class="product"><strong><a href="/Shoesgone/ItemDV?itemno=<%= list.get(i).getItemNo() %>"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %></a></strong> </td>
                 <td class="price"><strong><%= list.get(i).getPrice() %></strong></td>
                 
                 <td class="state"><button type="submit" class="genric-btn primary-border small">주문</button></td>

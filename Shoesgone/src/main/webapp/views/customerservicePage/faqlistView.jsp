@@ -13,22 +13,39 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	
 	
 <!DOCTYPE html>
-<html>
+<html lang="zxx" class="no-js">
 
 <head>
+<!-- Mobile Specific Meta -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Favicon-->
+<link rel="shortcut icon" href="img/fav.png">
+<!-- Author Meta -->
+<meta name="author" content="CodePixar">
+<!-- Meta Description -->
+<meta name="description" content="">
+<!-- Meta Keyword -->
+<meta name="keywords" content="">
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
 <title>고객센터</title>
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$("table *").css('width','100%');
-	$("table *").css('border-top','1px');
-	$("table *").css('color','blue');
-}
-</script>
 
+</script>
+<!--
+            CSS
+            ============================================= -->
+<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 <style type="text/css">
 ul#menubar {
 	text-align: center;
@@ -223,11 +240,8 @@ border-top-right-radius: 10px;
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>CustomerSerive</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">CustomerSerive</a>
-					</nav>
+					<h1>고객센터</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -338,7 +352,7 @@ border-top-right-radius: 10px;
 						</div></section>
 						
 						<!-- 리스트게시판 끝 -->
-					<div id="floatdiv">
+						<div id="floatdiv">
 
 <div id="floatTitle">상담채널</div>
 
@@ -348,14 +362,14 @@ border-top-right-radius: 10px;
 
 <li>
 
-<img src="/Shoesgone/resources/img/kakach.png" width = "80px"><a href="#"></a>
+<a href="http://pf.kakao.com/_Ahxoas"><img src="/Shoesgone/resources/img/kakach.png" width = "80px"></a>
 
 </li>
 
 <li>
 
-<img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"><a href="#"></a>
 
+<a href="#" onclick="window.open('https://console.dialogflow.com/api-client/demo/embedded/6178e851-ef1a-409a-a182-c4828ae3b8b2','챗봇','resizable=no width=600 height=500');return false"><img src="/Shoesgone/resources/img/chatbot.jpg" width = "80px"></a>
 </li>
 
 </ul>
@@ -372,6 +386,55 @@ border-top-right-radius: 10px;
 			<%@ include file="../common/footer.jsp" %>
 		<!-- End footer Area -->
 
+		<!--================Contact Success and Error message Area =================-->
+		<div id="success" class="modal modal-message fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+						<h2>Thank you</h2>
+						<p>Your message is successfully sent...</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modals error -->
+
+		<div id="error" class="modal modal-message fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+						<h2>Sorry !</h2>
+						<p>Something went wrong</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--================End Contact Success and Error message Area =================-->
+
+
+	<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.nice-select.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.sticky.js"></script>
+	<script src="/Shoesgone/resources/js/nouislider.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Shoesgone/resources/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
+	<script src="/Shoesgone/resources/js/main.js"></script>
 </body>
 
 </html>

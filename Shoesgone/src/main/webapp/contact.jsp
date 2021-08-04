@@ -21,11 +21,8 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Mypage</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Mypage</a>
-					</nav>
+					<h1>마이페이지</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -79,7 +76,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="views/myPage/boardview.jsp"><img src="resources/img/gg.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/rlist.my?userno=<%= loginMember.getUserNo() %>"><img src="resources/img/gg.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>나의글보기</h6>
 						<p>나의 질문,답변,게시글 등을<br>

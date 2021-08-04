@@ -1,19 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="information.model.vo.Information"%>
+    pageEncoding="UTF-8" import="loginPage.model.vo.Login, information.model.vo.Information"%>
     
     <%
 	Information information = (Information)request.getAttribute("information"); 
+
 	
 
 %>  
 <!DOCTYPE html>
-<html>
+<html lang="zxx" class="no-js">
 
 <head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>회원정보수정</title>
+	<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+	<!--
+            CSS
+            ============================================= -->
+         ============================================= -->
+	<link rel="stylesheet" href="/Shoesgone/resources/css/linearicons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/owl.carousel.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/themify-icons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nice-select.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/nouislider.min.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
+	<style type="text/css">
+	</style>
+	
 
 </head>
 
@@ -30,9 +57,8 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>회원정보수정</h1>
-					<nav class="d-flex align-items-center">
-					</nav>
+					<h1>마이페이지</h1>
+					
 				</div>
 			</div>
 		</div>
@@ -47,7 +73,7 @@
 	
 <h2 align="center">회원정보수정</h2><br>
 <hr>
-<form id="iform" method="post" action="/Shoesgone/iupdate" onclick="">
+<form id="iform" method="post" action="/Shoesgone/iupdate" >
 <!-- 제출시(전송시 : submit 버튼 눌렀을 때)에 
 유효성검사 실행되도록 함 
 결과가 false 일 때 전송을 취소되게 해야 하므로 
@@ -64,14 +90,15 @@ onsubmit="return checkAll();"
 <td><input type="email" id="email" name="email" value="<%if(information.getEmail() != null){ %><%= information.getEmail() %><% }else{%><%}%>" ></td></tr>
 <tr><th width="180">*비밀번호</th>
 <td><input type="password" id="userpwd" name="userpwd" size="30" placeholder="영문, 숫자, 특수문자 조합 8-16자" required><br>비밀번호를 입력하셔야 정보가 수정됩니다.</td></tr>
+<tr><th width="180">*비밀번호 확인</th>
+<td><input type="password" id="userpwd2" name="userpwd2" size="30" required><br></td></tr>
 <tr><th width="180">휴대폰번호</th>
 <td><input type="text" id="phone" name="phone" value="<%if(information.getPhone() != null){ %><%= information.getPhone() %><% }else{%><%}%>" ></td></tr>
-<!-- input type="text" id="post" name="post" size="10" maxLength="5"> &nbsp; 
-<input type="button" value="우편번호검색" onclick="return false;" class="genric-btn primary small"><br> -->
+
 <tr><th width="180">우편번호</th>
 					<td>
 						<input type="text" name="address" class="postcodify_postcode5" size="6" value="<%if(information.getAddress() != null){ String[] address = information.getAddress().split(","); %><%= address[0] %><%}else{%> <%}%>">
-						<button type="button" id="postcodify_search_button" " >검색</button>
+						<button type="button" id="postcodify_search_button" >검색</button>
 					</td>
 <tr>
 					<th width="180">도로명주소</th>
@@ -148,9 +175,13 @@ onsubmit="return checkAll();"
 <td><input type="text" id="accountno" name="accountno" size="50" value="<%if(information.getAccountNo() != null){ %><%= information.getAccountNo() %><% }else{%><%}%>" ></td></tr>
 
 <tr><th colspan="2">
-<br><br>
-	<center><input type="submit" value="수정하기" class="genric-btn primary small">&nbsp;
+<br>
+<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+	<center><input type="submit" value="수정하기" class="genric-btn primary small" >&nbsp;
 	<a href="/Shoesgone/contact.jsp" class="genric-btn primary small">목록보기</a></center>
+	
+	
 </th></tr>
 </table><hr><br><br><br>
 </form>
@@ -162,15 +193,67 @@ onsubmit="return checkAll();"
 	<%@ include file="../common/footer.jsp" %>
 	<!-- End footer Area -->
 
+	<!--================Contact Success and Error message Area =================-->
+	<div id="success" class="modal modal-message fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+					<h2>Thank you</h2>
+					<p>Your message is successfully sent...</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modals error -->
+
+	<div id="error" class="modal modal-message fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+					<h2>Sorry !</h2>
+					<p> Something went wrong </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--================End Contact Success and Error message Area =================-->
+
+	
+		<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+		<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+				<script>
+					/*  검색 단추를 누르면 팝업 레이어가 열리도록 설정한다. */
+					$(function(){
+						$("#postcodify_search_button").postcodifyPopUp();
+					});
+				</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/Shoesgone/resources/js/vendor/bootstrap.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.nice-select.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.sticky.js"></script>
+	<script src="/Shoesgone/resources/js/nouislider.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Shoesgone/resources/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/Shoesgone/resources/js/gmaps.min.js"></script>
+	<script src="/Shoesgone/resources/js/main.js"></script>
 <script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
-<script>
-	/*  검색 단추를 누르면 팝업 레이어가 열리도록 설정한다. */
-	$(function(){
-		$("#postcodify_search_button").postcodifyPopUp();
-	});
-</script>
 <!-- 유효성검사 자바스크립트 -->
 <script type="text/javascript">
+	
+
+
 	$("#iform").validate({
 		rules: {
 		    userpwd: {
@@ -196,7 +279,24 @@ onsubmit="return checkAll();"
 	$.validator.addMethod("pw_regexp",  function( value, element ) {
 		return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
    });
+	
+	$(function(){ $("#alert-success").hide(); 
+	$("#alert-danger").hide(); $("input").keyup(
+	function(){ 
+	var pwd1=$("#userpwd").val(); 
+	var pwd2=$("#userpwd2").val(); 
+	if(pwd1 != "" || pwd2 != ""){ 
+		if(pwd1 == pwd2){ $("#alert-success").show(); 
+		$("#alert-danger").hide(); $("#submit").removeAttr("disabled"); 
+		}else{ $("#alert-success").hide(); $("#alert-danger").show(); 
+		$("#submit").attr("disabled", "disabled"); } } }); });
+
+
+
+	
 </script>
+
+
 
 </body>
 </html>
