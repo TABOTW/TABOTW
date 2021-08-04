@@ -426,6 +426,29 @@ public class ItemDetailDao {
 		return result;
 	}
 
+	public int updateReadCount(Connection conn, int itemNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update item set "
+				+ "item_views = item_views + 1 "
+				+ "where item_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 
 }

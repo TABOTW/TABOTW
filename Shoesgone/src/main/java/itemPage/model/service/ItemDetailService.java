@@ -104,4 +104,15 @@ public class ItemDetailService {
 		return count;
 	}
 
+	public void addReadCount(int itemNo) {
+		Connection conn = getConnection();
+		int result = iddao.updateReadCount(conn, itemNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
+
 }
