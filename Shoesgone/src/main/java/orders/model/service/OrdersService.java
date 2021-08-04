@@ -13,13 +13,22 @@ public class OrdersService {
 	private OrdersDao odao = new OrdersDao();
 	
 	// Method
-	// 해당 주문 번호의 정보 출력용 메소드
+	// 모든 주문의 정보 출력용 메소드
 	public ArrayList<Orders> selectOrdersList(int startRow, int endRow){
 		Connection conn = getConnection();
 		ArrayList<Orders> list = odao.selectOrdersList(conn, startRow, endRow);
 		close(conn);
 		
 		return list;
+	}
+	
+	// 해당 주문 번호의 정보 출력용 메소드
+	public Orders selectOne(int orderNo) {
+		Connection conn = getConnection();
+		Orders order = odao.selectOne(conn, orderNo);
+		close(conn);
+		
+		return order;
 	}
 	
 	// 새 주문용 메소드
@@ -38,11 +47,9 @@ public class OrdersService {
 	}
 	
 	// 주문 취소용 메소드
-	
-	// 배송현황 갱신용 메소드
-	public int updateProgress(Orders upProgress) {
+	public int deleteOrder(int orderNo) {
 		Connection conn = getConnection();
-		int result = odao.updateProgress(conn, upProgress);
+		int result = odao.deleteOrder(conn, orderNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -54,16 +61,19 @@ public class OrdersService {
 		return result;
 	}
 	
-	// 배송지 변경용 메소드
-	public int updateOrder(Orders upOrder) {
+	// 배송현황 갱신용 메소드
+	public int updateProgress(Orders upProgress) {
 		Connection conn = getConnection();
-		int result = odao.updateOrder(conn, upOrder);
+		int result = odao.updateProgress(conn, upProgress);
+		close(conn);
 		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		return result;
+	}
+	
+	// 배송지 변경용 메소드
+	public int updateAddress(Orders upAdd) {
+		Connection conn = getConnection();
+		int result = odao.updateAddress(conn, upAdd);
 		close(conn);
 		
 		return result;
