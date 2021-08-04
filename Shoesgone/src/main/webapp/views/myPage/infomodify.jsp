@@ -41,7 +41,8 @@
 	<style type="text/css">
 	</style>
 	
-<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js">
+</script>
 
 
 </head>
