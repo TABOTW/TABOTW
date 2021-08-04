@@ -34,13 +34,13 @@ public class CategoryItemServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		// 정렬 기준 값
 		String sortValue = null;
 		ArrayList<ItemPicture> item = null;
 		
+		// 정렬 기준 값
 		sortValue = request.getParameter("sortValue");
 		
-		// 상품 페이지에 보낼 리스트 값
+		// 상품 페이지에 보낼 정렬 리스트 값
 		if (sortValue == null) {
 			item = new ItemPictureService().selectLookupList();
 		} else if (sortValue.equals("sort-hot")) {
