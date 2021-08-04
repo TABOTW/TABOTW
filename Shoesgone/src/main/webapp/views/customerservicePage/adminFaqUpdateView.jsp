@@ -155,13 +155,13 @@ Faq faq = (Faq)request.getAttribute("faq");
 								<tr>
 									<td><input type="text" class="form-control"
 										name="title" maxlength="50"
-										style="width: 950px;" value="<%= faq.getFaqTitle() %>"></td>
+										style="width: 950px;" value="<%= faq.getFaqTitle() %>" required></td>
 								</tr>
 							
 								<tr>
 									<td><textarea class="form-control" "
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"><%= faq.getFaqContent() %></textarea></td>
+											style="width: 950px; height: 350px;" required><%= faq.getFaqContent() %></textarea></td>
 								</tr>
 							</tbody>
 						</table>

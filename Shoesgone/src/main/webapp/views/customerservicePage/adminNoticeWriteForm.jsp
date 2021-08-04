@@ -87,13 +87,13 @@
 								<tr>
 									<td><input type="text" class="form-control"
 										placeholder="글 제목" name="title" maxlength="50"
-										style="width: 950px;"></td>
+										style="width: 950px;" required></td>
 								</tr>
 
 								<tr>
 									<td><textarea class="form-control" placeholder="글 내용"
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"></textarea></td>
+											style="width: 950px; height: 350px;" required></textarea></td>
 								</tr>
 							</tbody>
 						</table>

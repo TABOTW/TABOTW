@@ -41,9 +41,6 @@
 	<style type="text/css">
 	</style>
 	
-<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js">
-</script>
-
 
 </head>
 
@@ -76,7 +73,7 @@
 	
 <h2 align="center">회원정보수정</h2><br>
 <hr>
-<form id="iform" method="post" action="/Shoesgone/iupdate" onclick="">
+<form id="iform" method="post" action="/Shoesgone/iupdate" >
 <!-- 제출시(전송시 : submit 버튼 눌렀을 때)에 
 유효성검사 실행되도록 함 
 결과가 false 일 때 전송을 취소되게 해야 하므로 
@@ -93,6 +90,8 @@ onsubmit="return checkAll();"
 <td><input type="email" id="email" name="email" value="<%if(information.getEmail() != null){ %><%= information.getEmail() %><% }else{%><%}%>" ></td></tr>
 <tr><th width="180">*비밀번호</th>
 <td><input type="password" id="userpwd" name="userpwd" size="30" placeholder="영문, 숫자, 특수문자 조합 8-16자" required><br>비밀번호를 입력하셔야 정보가 수정됩니다.</td></tr>
+<tr><th width="180">*비밀번호 확인</th>
+<td><input type="password" id="userpwd2" name="userpwd2" size="30" required><br></td></tr>
 <tr><th width="180">휴대폰번호</th>
 <td><input type="text" id="phone" name="phone" value="<%if(information.getPhone() != null){ %><%= information.getPhone() %><% }else{%><%}%>" ></td></tr>
 
@@ -177,8 +176,11 @@ onsubmit="return checkAll();"
 
 <tr><th colspan="2">
 <br><br>
-	<center><input type="submit" value="수정하기" class="genric-btn primary small">&nbsp;
+	<center><input type="submit" value="수정하기" class="genric-btn primary small" >&nbsp;
 	<a href="/Shoesgone/contact.jsp" class="genric-btn primary small">목록보기</a></center>
+	<br>
+	<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 </th></tr>
 </table><hr><br><br><br>
 </form>
@@ -222,7 +224,6 @@ onsubmit="return checkAll();"
 	</div>
 	<!--================End Contact Success and Error message Area =================-->
 
-
 	
 		<script src="/Shoesgone/resources/js/vendor/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
@@ -249,6 +250,9 @@ onsubmit="return checkAll();"
 <script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
 <!-- 유효성검사 자바스크립트 -->
 <script type="text/javascript">
+	
+
+
 	$("#iform").validate({
 		rules: {
 		    userpwd: {
@@ -274,7 +278,23 @@ onsubmit="return checkAll();"
 	$.validator.addMethod("pw_regexp",  function( value, element ) {
 		return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
    });
+	
+	$(function(){ $("#alert-success").hide(); 
+	$("#alert-danger").hide(); $("input").keyup(
+	function(){ 
+	var pwd1=$("#userpwd").val(); 
+	var pwd2=$("#userpwd2").val(); 
+	if(pwd1 != "" || pwd2 != ""){ 
+		if(pwd1 == pwd2){ $("#alert-success").show(); 
+		$("#alert-danger").hide(); $("#submit").removeAttr("disabled"); 
+		}else{ $("#alert-success").hide(); $("#alert-danger").show(); 
+		$("#submit").attr("disabled", "disabled"); } } }); });
+
+
+
+	
 </script>
+
 
 
 </body>

@@ -34,70 +34,86 @@
 <link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 <style type="text/css">
-.orderdetail {
-	align: center;
+#floatdiv {
+
+    position:fixed; _position:absolute; _z-index:-1;
+
+    width:100px;
+
+    display:inline-block;/* overflow:hidden;  같은 의미? */
+
+    right:0px; /* //화면 오른쪽에 위치한다. left로 변경가능 */
+
+    top:20%; /* //화면 위쪽과의 간격 */
+
+    background-color: transparent;
+
+    margin:0;
+
 }
 
-.th {
-	text-align: center;
+#floatdiv ul  { list-style: none; }
+
+#floatdiv li  { margin-bottom: 2px; text-align: left; }
+
+#floatdiv a   { color: #5D5D5D; border: 0; text-decoration: none; display: float; }
+
+#floatdiv a:hover, #floatdiv .menu  { background-color: #5D5D5D; color: #fff; } /* 마우스오버 시 배경/글씨 색깔 */
+
+#floatdiv .menu, #floatdiv .last    { margin-bottom: 0px; }
+
+ 
+
+ 
+
+#floatContent {
+
+    padding:5px;
+
+border-width: 2px;
+
+border-color: #7f7f7f;
+
+border-style: solid;
+
+border-bottom-left-radius: 10px;
+
+border-bottom-right-radius: 10px;
+
 }
 
-.page_wrap {
-	text-align: center;
-	font-size: 0;
-}
+ 
 
-.page_nation {
-	display: inline-block;
-}
+#floatTitle {
 
-.page_nation .none {
-	display: none;
-}
+width:100px;
 
-.page_nation a {
-	display: block;
-	margin: 0 3px;
-	float: left;
-	border: 1px solid #e6e6e6;
-	width: 28px;
-	height: 28px;
-	line-height: 28px;
-	text-align: center;
-	background-color: #fff;
-	font-size: 13px;
-	color: #999999;
-	text-decoration: none;
-}
+height:30px;
 
-.page_nation .arrow {
-	border: 1px solid #ccc;
-}
+line-height:30px;
 
-.page_nation .pprev {
-	background: #f8f8f8 url('img/page_pprev.png') no-repeat center center;
-	margin-left: 0;
-}
+background-color: #7f7f7f;
 
-.page_nation .prev {
-	background: #f8f8f8 url('img/page_prev.png') no-repeat center center;
-	margin-right: 7px;
-}
+/* 텍스트 */
 
-.page_nation .next {
-	background: #f8f8f8 url('img/page_next.png') no-repeat center center;
-	margin-left: 7px;
-}
+color: #fff;
 
-.page_nation .nnext {
-	background: #f8f8f8 url('img/page_nnext.png') no-repeat center center;
-	margin-right: 0;
-}
+text-align: center;
 
-.page_nation a.active {
-	background-color: #42454c;
-	color: #fff;
-	border: 1px solid #42454c;
+text-decoration: none;
+
+font-weight:bold;
+
+font-size:12px;
+
+/* 모양 */
+
+border-top-left-radius: 10px;
+
+border-top-right-radius: 10px;
+
+ 
+
 }
 </style>
 
@@ -149,7 +165,7 @@
 								<tr>
 									<td><input type="text" class="form-control"
 										placeholder="글 제목" name="title" maxlength="50"
-										style="width: 950px;"></td>
+										style="width: 950px;" required></td>
 								</tr>
 								<tr>
 									
@@ -159,7 +175,7 @@
 								<tr>
 									<td><textarea class="form-control" placeholder="글 내용"
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"></textarea></td>
+											style="width: 950px; height: 350px;" required></textarea></td>
 								</tr>
 							</tbody>
 						</table>

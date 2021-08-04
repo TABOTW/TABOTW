@@ -97,7 +97,7 @@ Question question = (Question)request.getAttribute("question");
 								<tr>
 									<td><textarea class="form-control" "
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"><%= question.getQuestionContent() %></textarea></td>
+											style="width: 950px; height: 350px;" required><%= question.getQuestionContent() %></textarea></td>
 								</tr>
 							</tbody>
 						</table>

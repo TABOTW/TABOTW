@@ -91,13 +91,13 @@ Notice notice = (Notice)request.getAttribute("notice");
 								<tr>
 									<td><input type="text" class="form-control"
 										name="title" maxlength="50"
-										style="width: 950px;" value="<%= notice.getNoticeTitle() %>"></td>
+										style="width: 950px;" value="<%= notice.getNoticeTitle() %>" required></td>
 								</tr>
 							
 								<tr>
 									<td><textarea class="form-control" "
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"><%= notice.getNoticeContent() %></textarea></td>
+											style="width: 950px; height: 350px;" required><%= notice.getNoticeContent() %></textarea></td>
 								</tr>
 							</tbody>
 						</table>

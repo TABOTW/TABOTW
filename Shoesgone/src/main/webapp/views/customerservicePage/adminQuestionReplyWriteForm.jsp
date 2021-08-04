@@ -84,7 +84,7 @@ int questionNo = Integer.parseInt(request.getParameter("questionNo"));
 								</tr>
 							</thead>
 							<tbody>
-							<input type="hidden" name="questionNo" value="<%= questionNo %>">	
+							<input type="hidden" name="questionNo" value="<%= questionNo %>"> 	
 								<tr>
 									<td><input type="text" class="form-control"
 										placeholder="답변입니다." maxlength="50"
@@ -94,7 +94,7 @@ int questionNo = Integer.parseInt(request.getParameter("questionNo"));
 								<tr>
 									<td><textarea class="form-control" placeholder="글 내용"
 											name="content" maxlength="2048"
-											style="width: 950px; height: 350px;"></textarea></td>
+											style="width: 950px; height: 350px;" required></textarea></td>
 								</tr>
 							</tbody>
 						</table>
