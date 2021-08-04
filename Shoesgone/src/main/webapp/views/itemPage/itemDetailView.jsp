@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, community.review.model.vo.Review"%>
+	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, review.model.vo.Review"%>
 <%
 //Item 객체를 가져옴
 Item item = (Item) request.getAttribute("item");
@@ -65,8 +65,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 						%>
 						<div>
 							<img class="img-fluid"
-								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>"
-								alt="">
+								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
 						</div>
 						<%
 						}
@@ -95,8 +94,8 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							</div>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">구매하기</a> <a class="primary-btn"
-								href="#">판매하기</a>
+							<a class="primary-btn" href="/Shoesgone/buyaccept?itemno=<%= item.getItemNo() %>">구매하기</a>
+							<a class="primary-btn" href="/Shoesgone/sellaccept?itemno=<%= item.getItemNo() %>">판매하기</a>
 							<!-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i]\ class="lnr lnr lnr-heart"></i></a> -->
 						</div>
@@ -205,10 +204,10 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 								<tr><th>번호</th><th>제목</th><th>별점</th><th>조회수</th></tr>
 								<% for(Review r : rlist){ %>
 								<tr>
-									<td><%= r.getReviewNo() %></td>
+									<td><%= r.getReviewNum() %></td>
 									<td><%= r.getReviewTitle() %></td>
 									<td><%= r.getReviewStar() %>/10</td>
-									<td><%= r.getReviewReadcount() %></td>
+									<td><%= r.getReviewReadCount() %></td>
 								</tr>
 								<% } %>
 							</table>

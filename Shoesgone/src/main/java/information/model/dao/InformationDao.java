@@ -5,6 +5,8 @@ import static common.JDBCTemp.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import information.model.vo.Information;
 
@@ -159,5 +161,70 @@ public class InformationDao {
 		
 		return information;
 	
+	}
+
+	// 관리자용 회원 정보 전체 리스트 출력용 메소드
+	public ArrayList<Information> adminSelectList(Connection conn) {
+		ArrayList<Information> userList = new ArrayList<Information>();
+		Statement stm = null;
+		ResultSet rs = null;
+		
+		String query = "select * from user_info";
+		
+		try {
+			stm = conn.createStatement();
+			rs = stm.executeQuery(query);
+			
+			while(rs.next()) {
+				Information user = new Information();
+				
+				user.setUserNo(rs.getInt("user_no"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserId(rs.getString("user_id"));
+				user.setUserPwd(rs.getString("user_pwd"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phone"));
+				user.setAddress(rs.getString("address"));
+				user.setShoesSize(rs.getInt("shoes_size"));
+				user.setPoint(rs.getInt("point"));
+				user.setMgr(rs.getString("mgr"));
+				user.setBankName(rs.getString("bank_name"));
+				user.setAccountNo(rs.getString("account_no"));
+				user.setLoginOk(rs.getString("login_ok"));
+				
+				userList.add(user);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stm);
+		}
+		
+		return userList;
+	}
+
+	// 관리자용 회원정보수정용 메소드
+	public int adminUserUpdate(Connection conn, Information userUp) {
+		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "update user_info set mgr = ?, loginok = ? where user_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, userUp.getMgr());
+			ps.setString(2, userUp.getLoginOk());
+			ps.setInt(3, userUp.getUserNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(ps);
+		}
+		
+		return result;
 	}
 }

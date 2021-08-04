@@ -23,6 +23,22 @@ public class ItemRegStaService {
 	}
 
 	// 해당 등록 번호의 상품 정보 조회용 메소드
+	public ItemRegSta selectOne(int regNo) {
+		Connection conn = getConnection();
+		ItemRegSta reg = regdao.selectOne(conn, regNo);
+		close(conn);
+		
+		return reg;
+	}
+	
+	// 상품 번호에 해당하는 판매등록 제품 출력용 메소드
+	public ArrayList<ItemRegSta> selectedRegList(int itemNo, int size) {
+		Connection conn = getConnection();
+		ArrayList<ItemRegSta> list = regdao.selectedRegList(conn, itemNo, size);
+		close(conn);
+		
+		return list;
+	}
 
 	// 새 상품 등록용 메소드
 	public int insertReg(ItemRegSta reg) {
@@ -39,7 +55,20 @@ public class ItemRegStaService {
 		return result;
 	}
 
-	// 상품 등록 삭제용(판매완료후) 메소드
+	// 상품 등록 삭제용 메소드
+	public int deleteReg(int regNo) {
+		Connection conn = getConnection();
+		int result = regdao.deleteReg(conn, regNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
 
 	// 등록 상품 수정 메소드
 	public int updateReg(ItemRegSta upReg) {

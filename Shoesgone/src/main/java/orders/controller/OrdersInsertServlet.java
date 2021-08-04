@@ -32,13 +32,14 @@ public class OrdersInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 상품 주문 처리용 컨트롤러
+		request.setCharacterEncoding("utf-8");
 		
 		// 1. orders 테이블에 저장할 값 추출
 		Orders orders = new Orders();
 		
-		orders.setUserNo(Integer.parseInt(request.getParameter("userno")));
+		orders.setSellerNo(Integer.parseInt(request.getParameter("sellerno")));
 		orders.setItemNo(Integer.parseInt(request.getParameter("itemno")));
-		orders.setUserID(request.getParameter("userid"));
+		orders.setBuyerNo(Integer.parseInt(request.getParameter("userno")));
 		orders.setPrice(Integer.parseInt(request.getParameter("price")));
 		orders.setAddress(request.getParameter("address") + " " + request.getParameter("detailaddress"));
 		orders.setSize(Integer.parseInt(request.getParameter("size")));

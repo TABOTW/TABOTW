@@ -35,18 +35,18 @@ public class OrdersDao {
 				while(rs.next()) {
 					Orders orders = new Orders();
 					
-					orders.setOrdersNo(rs.getInt("orderno"));
-					orders.setUserNo(rs.getInt("userno"));
-					orders.setItemNo(rs.getInt("itemno"));
-					orders.setUserID(rs.getString("userid"));
-					orders.setPurDate(rs.getDate("purdate"));
+					orders.setOrdersNo(rs.getInt("orders_no"));
+					orders.setSellerNo(rs.getInt("seller_no"));
+					orders.setItemNo(rs.getInt("item_no"));
+					orders.setBuyerNo(rs.getInt("buyer_id"));
+					orders.setPurDate(rs.getDate("pur_date"));
 					orders.setCount(rs.getInt("count"));
 					orders.setProgress(rs.getString("progress"));
 					orders.setPrice(rs.getInt("price"));
 					orders.setAddress(rs.getString("address"));
-					orders.setSize(rs.getInt("size"));
+					orders.setSize(rs.getInt("shoes_size"));
 					orders.setPhone(rs.getString("phone"));
-					orders.setDelFee(rs.getInt("delfee"));
+					orders.setDelFee(rs.getInt("del_fee"));
 					orders.setPayment(rs.getString("payment"));
 					
 					list.add(orders);
@@ -62,6 +62,10 @@ public class OrdersDao {
 		}
 	
 	// 해당 주문 번호의 정보 출력용 메소드
+	public Orders selectOne(Connection conn, int orderNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	// 새 주문용 메소드
 	public int insertOrders(Connection conn, Orders orders) {
@@ -75,9 +79,9 @@ public class OrdersDao {
 		try {
 			ps = conn.prepareStatement(query);
 			
-			ps.setInt(1, orders.getUserNo());
+			ps.setInt(1, orders.getSellerNo());
 			ps.setInt(2, orders.getItemNo());
-			ps.setString(3, orders.getUserID());
+			ps.setInt(3, orders.getBuyerNo());
 			ps.setInt(4, orders.getPrice());
 			ps.setString(5, orders.getAddress());
 			ps.setInt(6, orders.getSize());
@@ -97,10 +101,57 @@ public class OrdersDao {
 	}
 	
 	// 주문 취소용 메소드
+	public int deleteOrder(Connection conn, int orderNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	// 배송현황 갱신용 메소드
+	public int updateProgress(Connection conn, Orders upProgress) {
+		int result = 0;
+		PreparedStatement ps =null;
+		
+		String query ="update orders set progress = ? where orders_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, upProgress.getProgress());
+			ps.setInt(2, upProgress.getOrdersNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
 	
 	// 배송지 변경용 메소드
+	public int updateAddress(Connection conn, Orders upAdd) {
+		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "update orders set address = ? where orders_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setString(1, upAdd.getAddress());
+			ps.setInt(2, upAdd.getOrdersNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+	
 	
 	// 전체 주문목록 갯수 출력용 메소드
 	public int getOrdersListCount(Connection conn) {

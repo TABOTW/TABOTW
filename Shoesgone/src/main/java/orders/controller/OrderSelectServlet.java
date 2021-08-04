@@ -13,20 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
-import itemregsta.model.service.ItemRegStaService;
-import itemregsta.model.vo.ItemRegSta;
 
 /**
- * Servlet implementation class OrderListServlet
+ * Servlet implementation class OrderSelectServlet
  */
-@WebServlet("/orlist")
-public class OrderListServlet extends HttpServlet {
+@WebServlet("/orderselect")
+public class OrderSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public OrderListServlet() {
+	public OrderSelectServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,34 +35,30 @@ public class OrderListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 페이지별로 출력되는 주문 상품 조회용 컨트롤러
-		request.setCharacterEncoding("utf-8");
-
-		// 출력할 상품 번호 받아오기
+		// 주문 상품 선택 후 처리용 컨트롤러
+		// 1. 상품 상세 페이지 -> 구매 동의 페이지에서 전달받은 Item 객체 저장
 		int itemNo = Integer.parseInt(request.getParameter("itemno"));
 		Item item = new ItemDetailService().selectOne(itemNo);
+
+		// 2. 사진 어레이 가져오기
 		ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
+
+		// 3. 선택한 사이즈 가져오기
 		int size = Integer.parseInt(request.getParameter("size"));
-		
-		// 상품번호가 일치하는 등록 상품 저장용 리스트
-		ArrayList<ItemRegSta> list = null;
-		
-		// 리스트에 저장
-		list = new ItemRegStaService().selectedRegList(itemNo, size);
-		
-		// 화면에 출력
+
+		// 4. 주문 등록 페이지로 정보 전달
 		RequestDispatcher view = null;
-		if (list.size() > 0) {
-			view = request.getRequestDispatcher("views/buyPage/select_buy_list");
-			
+		if (item != null && plist != null) {
+			view = request.getRequestDispatcher("views/buyPage/select_buy_list.jsp");
+
 			request.setAttribute("item", item);
 			request.setAttribute("plist", plist);
 			request.setAttribute("size", size);
-			
+
 			view.forward(request, response);
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "목록 조회 실패");
+			request.setAttribute("message", itemNo + "번 아이템 주문 실패");
 			view.forward(request, response);
 		}
 	}

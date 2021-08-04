@@ -32,14 +32,15 @@ public class OrdersUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 주문 배송지 수정 처리용 컨트롤러
-		// 1. 수정할 정보 저장용 객체 생성
-		Orders upOrder = new Orders();
+		// 1. 수정이 필요한 주문 상품 정보 조회
+		Orders upAdd = new Orders();
 		
-		// 2. 수정 정보 저장
-		upOrder.setAddress(request.getParameter("address") + " " + request.getParameter("detailaddress"));
+		// 2. 수정된 배송지로 변경
+		upAdd.setAddress(request.getParameter("address") + " " + request.getParameter("detailaddress"));
+		upAdd.setOrdersNo(Integer.parseInt(request.getParameter("ordersno")));
 		
 		// 3. 서비스 메소드에 전달하고 결과받기
-		int result = new OrdersService().updateOrder(upOrder);
+		int result = new OrdersService().updateAddress(upAdd);
 		
 		// 4. 성공|실패 출력
 		RequestDispatcher view = null;

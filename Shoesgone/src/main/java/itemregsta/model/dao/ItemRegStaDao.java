@@ -34,12 +34,12 @@ public class ItemRegStaDao {
 			while(rs.next()) {
 				ItemRegSta reg = new ItemRegSta();
 				
-				reg.setRegNo(rs.getInt("regno"));
-				reg.setUserNo(rs.getInt("userno"));
-				reg.setUserID(rs.getString("userid"));
-				reg.setItemNo(rs.getInt("itemno"));
-				reg.setSize(rs.getInt("size"));
-				reg.setRegDate(rs.getDate("regdate"));
+				reg.setRegNo(rs.getInt("item_sta_reg_no"));
+				reg.setUserNo(rs.getInt("user_no"));
+				reg.setUserID(rs.getString("user_id"));
+				reg.setItemNo(rs.getInt("item_no"));
+				reg.setSize(rs.getInt("shoes_size"));
+				reg.setRegDate(rs.getDate("reg_date"));
 				reg.setPrice(rs.getInt("price"));
 				reg.setAddress(rs.getString("address"));
 				
@@ -56,23 +56,94 @@ public class ItemRegStaDao {
 	}
 
 	// 해당 등록 번호의 상품 정보 조회용 메소드
+	public ItemRegSta selectOne(Connection conn, int regNo) {
+		ItemRegSta reg = new ItemRegSta();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String query = "select * from item_reg_sta where item_reg_sta_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, regNo);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				reg.setRegNo(rs.getInt("item_reg_sta_no"));
+				reg.setUserNo(rs.getInt("user_no"));
+				reg.setUserID(rs.getString("user_id"));
+				reg.setItemNo(rs.getInt("item_no"));
+				reg.setSize(rs.getInt("shoes_size"));
+				reg.setRegDate(rs.getDate("reg_date"));
+				reg.setPrice(rs.getInt("price"));
+				reg.setAddress(rs.getString("address"));
+				reg.setPenalty(rs.getString("penalty"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return reg;
+	}
+	
+	// 해당 상품번호의 판매등록 제품 출력용 메소드
+		public ArrayList<ItemRegSta> selectedRegList(Connection conn, int itemNo, int size) {
+			ArrayList<ItemRegSta> list = new ArrayList<ItemRegSta>();
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+			String query = "select * from item_reg_sta where item_no = ? and shoes_size = ?";
+			
+			try {
+				ps = conn.prepareStatement(query);
+				
+				ps.setInt(1, itemNo);
+				ps.setInt(2, size);
+				
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					ItemRegSta reg = new ItemRegSta();
+					
+					reg.setRegNo(rs.getInt("item_reg_sta_no"));
+					reg.setUserNo(rs.getInt("user_no"));
+					reg.setItemNo(rs.getInt("item_no"));
+					reg.setSize(rs.getInt("shoes_size"));
+					reg.setRegDate(rs.getDate("reg_date"));
+					reg.setPrice(rs.getInt("price"));
+					
+					list.add(reg);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(ps);
+			}
+			
+			return list;
+		}
 	
 	// 새 상품 등록용 메소드
 	public int insertReg(Connection conn, ItemRegSta reg) {
 		int result = 0;
 		PreparedStatement ps = null;
 		
-		String query = "insert into item_reg_sta value("
-						+ "reg_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?)";
+		String query = "insert into item_reg_sta values (ITEM_REG_STA_SEQ.NEXTVAL, ?, ?, ?, sysdate, ?, ?, ?)";
 		
 		try {
 			ps = conn.prepareStatement(query);
 			
 			ps.setInt(1, reg.getUserNo());
-			ps.setString(2, reg.getUserID());
-			ps.setInt(3, reg.getItemNo());
-			ps.setInt(4, reg.getSize());
-			ps.setInt(5, reg.getPrice());
+			ps.setInt(2, reg.getItemNo());
+			ps.setInt(3, reg.getSize());
+			ps.setInt(4, reg.getPrice());
+			ps.setString(5, reg.getPenalty());
 			ps.setString(6, reg.getAddress());
 			
 			result = ps.executeUpdate();
@@ -86,6 +157,26 @@ public class ItemRegStaDao {
 	}
 	
 	// 상품 등록 삭제용(판매완료후) 메소드
+	public int deleteReg(Connection conn, int regNo) {
+		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "delete from item_reg_sta where item_reg_sta_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, regNo);
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
 	
 	// 등록 상품 수정 메소드
 	public int updateReg(Connection conn, ItemRegSta upReg) {

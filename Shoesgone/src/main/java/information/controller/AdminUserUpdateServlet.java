@@ -13,16 +13,16 @@ import information.model.service.InformationService;
 import information.model.vo.Information;
 
 /**
- * Servlet implementation class InformationListServlet
+ * Servlet implementation class AdminUserUpdateServlet
  */
-@WebServlet("/ilist")
-public class InformationListServlet extends HttpServlet {
+@WebServlet("/userupdate.ad")
+public class AdminUserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InformationListServlet() {
+    public AdminUserUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +31,27 @@ public class InformationListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 내 정보보기(My Page) 요청 처리용 컨트롤러
-		//1. 전송온 값에 한글있으면 인코딩함
-		//2. 전송온 값 꺼내서 변수 또는 객체에 기록하기
-		String userid = request.getParameter("userid");
+		// 관리자 회원정보 수정 처리용 컨트롤러
+		request.setCharacterEncoding("utf-8");
 		
-		//3. 서비스 메소드 실행하고 결과받기
-		Information information = new InformationService().selectMember(userid);
+		// 1. 수정할 회원 정보 저장용 객체 생성
+		Information userUp = new Information();
 		
-		//4. 받은 결과로 성공/실패에 대한 뷰 내보냄
-		RequestDispatcher view = null;
-		if(information != null) {
-			view = request.getRequestDispatcher(
-					"views/myPage/infomodify.jsp");
-			request.setAttribute("information", information);
-			view.forward(request, response);
+		// 2. 수정한 내용 객체에 저장
+		userUp.setMgr(request.getParameter("mrg"));
+		userUp.setLoginOk(request.getParameter("loginok"));
+		userUp.setUserNo(Integer.parseInt(request.getParameter("userno")));
+		
+		// 3. 서비스에 전달하여 결과받기
+		int result = new InformationService().adminUserUpdate(userUp);
+		
+		// 4. 결과 성공|실패 출력하기
+		if(result > 0) {
+			response.sendRedirect("/Shoesgone/userlist.ad");
 		}else {
-			view = request.getRequestDispatcher(
-					"views/common/error.jsp");
-			request.setAttribute("message", userid 
-					+ " 회원정보 조회 실패!");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			System.out.println("실패");
+			request.setAttribute("message", "회원 정보 수정 실패!");
 			view.forward(request, response);
 		}
 	}
