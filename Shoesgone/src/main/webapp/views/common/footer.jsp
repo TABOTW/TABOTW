@@ -151,7 +151,13 @@
 			</div>
 			<div class="right-side">
 				<h5>고객지원</h5><br>
-				<p><a id="grey-color" href="/Shoesgone/nlist">공지사항</a></p>
+				<% if(loginMember != null){ %>
+					<% if(loginMember.getMgr().toString().equals("Y")){ %>
+						<p><a id="grey-color" href="/Shoesgone/nlist.ad">공지사항</a></p>
+					<% }else{ %>
+						<p><a id="grey-color" href="/Shoesgone/nlist">공지사항</a></p>
+					<% } %>
+				<% } %>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/service_intro.jsp')">서비스 소개</a></p>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/showroom_guide.jsp')">쇼룸 안내</a></p>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/seller_visit.jsp')">판매자 방문접수</a></p>

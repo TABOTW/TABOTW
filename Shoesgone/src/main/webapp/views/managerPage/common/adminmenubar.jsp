@@ -36,30 +36,18 @@
 								<span>물품등록/관리</span>
 						</a>
 					</li>
-
 					<li class="sidebar-item ">
 						<a href="/Shoesgone/olist.ad" class='sidebar-link'> 
 								<i class="bi bi-file-earmark-medical-fill"></i> 
 								<span>주문현황</span>
 						</a>
 					</li>
-					
-
-					<li class="sidebar-item  has-sub"><a href="#"
-						class='sidebar-link'> <i class="bi bi-collection-fill"></i> <span></span>
-					</a>
-						<ul class="submenu ">
-							<li class="submenu-item "><a
-								href="extra-component-avatar.html">Avatar</a></li>
-							<li class="submenu-item "><a
-								href="extra-component-sweetalert.html">Sweet Alert</a></li>
-							<li class="submenu-item "><a
-								href="extra-component-toastify.html">Toastify</a></li>
-							<li class="submenu-item "><a
-								href="extra-component-rating.html">Rating</a></li>
-							<li class="submenu-item "><a
-								href="extra-component-divider.html">Divider</a></li>
-						</ul></li>
+					<li class="sidebar-item ">
+						<a href="/Shoesgone/memberlist.ad" class='sidebar-link'> 
+							<i class="bi bi-collection-fill"></i> 
+							<span>사용자관리</span>
+						</a>
+					</li>
 
 					<li class="sidebar-item  has-sub"><a href="#"
 						class='sidebar-link'> <i class="bi bi-grid-1x2-fill"></i> <span>Layouts</span>

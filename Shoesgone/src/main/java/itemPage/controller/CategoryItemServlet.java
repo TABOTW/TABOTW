@@ -39,7 +39,7 @@ public class CategoryItemServlet extends HttpServlet {
 		
 		// 정렬 기준 값
 		sortValue = request.getParameter("sortValue");
-		
+		System.out.println(sortValue);
 		// 상품 페이지에 보낼 정렬 리스트 값
 		if (sortValue == null) {
 			item = new ItemPictureService().selectLookupList();
