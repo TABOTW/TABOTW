@@ -148,7 +148,7 @@ onsubmit="return checkAll();"
 </td></tr>
 <tr><th width="180">은행명</th><td>
 <select name="bankname">
-<option  value="<%= information.getBankName() %>" selected disabled hidden>선택하세요</option>
+<option  value="<%= information.getBankName() %>" selected ><%if(information.getBankName() != null){ %><%= information.getBankName() %><% }else{%><%}%></option>
   	<option value="기업은행">기업은행</option>
 	<option value="국민은행">국민은행</option>
 	<option value="외환은행">외환은행</option>

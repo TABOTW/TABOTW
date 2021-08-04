@@ -1,4 +1,4 @@
-package question.controller;
+package notice.controller;
 
 import java.io.IOException;
 
@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import question.model.service.QuestionService;
-import question.model.vo.Question;
-
-
+import notice.model.service.NoticeService;
+import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class QuestionUpdateServlet
+ * Servlet implementation class AdminNoticeInsertServlet
  */
-@WebServlet("/quupdate")
-public class QuestionUpdateServlet extends HttpServlet {
+@WebServlet("/ninsert.ad")
+public class AdminNoticeInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionUpdateServlet() {
+    public AdminNoticeInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,39 +31,31 @@ public class QuestionUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
-		RequestDispatcher view = null;
-
+		// 게시글 원글 등록 처리용 컨트롤러
+				request.setCharacterEncoding("utf-8");
 				
-				// 5. 데이터베이스 board 테이블에 기록할 값 추출
+				RequestDispatcher view = null;
 			
-				Question question = new Question();
 
-		
-				question.setQuestionNo(Integer.parseInt(request.getParameter("qnum")));
-				question.setQuestionTitle(request.getParameter("title"));
-				question.setQuestionWriter(request.getParameter("writer"));
-				question.setQuestionContent(request.getParameter("content"));
+				// 5. 데이터베이스 board 테이블에 기록할 값 추출
 
+				Notice notice = new Notice();
 				
+				notice.setNoticeTitle(request.getParameter("title"));
+				notice.setNoticeContent(request.getParameter("content"));
+			
+
+
 
 				// 6. 서비스 메소드로 전달하고 결과받기
-				int result = new QuestionService().updateQuestion(question);
+				int result = new NoticeService().insertNotice(notice);
 
 				// 7. 받은 결과로 성공/실패 페이지 내보내기
 				if (result > 0) {
-					//수정 성공시 목록 보기의 해당 페이지 출력 요청
-					//response.sendRedirect("blist?page=" + currentPage);
-					
-					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-					response.sendRedirect("qudetail?qnum=" 
-								+ question.getQuestionNo());
-					
+					response.sendRedirect("nlist.ad?page=1");
 				} else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", 
-							question.getQuestionNo() + "번 게시 원글 수정 실패!");
+					request.setAttribute("message", "새 게시 원글 등록 실패!");
 					view.forward(request, response);
 				}
 	}

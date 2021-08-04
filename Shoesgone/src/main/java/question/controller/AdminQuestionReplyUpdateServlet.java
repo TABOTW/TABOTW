@@ -17,14 +17,14 @@ import question.model.vo.Question;
 /**
  * Servlet implementation class QuestionUpdateServlet
  */
-@WebServlet("/quupdate")
-public class QuestionUpdateServlet extends HttpServlet {
+@WebServlet("/qurepupdate.ad")
+public class AdminQuestionReplyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionUpdateServlet() {
+    public AdminQuestionReplyUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,15 +43,13 @@ public class QuestionUpdateServlet extends HttpServlet {
 				Question question = new Question();
 
 		
-				question.setQuestionNo(Integer.parseInt(request.getParameter("qnum")));
-				question.setQuestionTitle(request.getParameter("title"));
-				question.setQuestionWriter(request.getParameter("writer"));
+				question.setQuestionNo(Integer.parseInt(request.getParameter("questionNo")));
 				question.setQuestionContent(request.getParameter("content"));
 
 				
 
 				// 6. 서비스 메소드로 전달하고 결과받기
-				int result = new QuestionService().updateQuestion(question);
+				int result = new QuestionService().adminUpdateReply(question);
 
 				// 7. 받은 결과로 성공/실패 페이지 내보내기
 				if (result > 0) {
@@ -59,7 +57,7 @@ public class QuestionUpdateServlet extends HttpServlet {
 					//response.sendRedirect("blist?page=" + currentPage);
 					
 					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-					response.sendRedirect("qudetail?qnum=" 
+					response.sendRedirect("qudetail.ad?questionNo=" 
 								+ question.getQuestionNo());
 					
 				} else {

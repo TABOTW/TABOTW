@@ -1,4 +1,4 @@
-package question.controller;
+package faq.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import question.model.service.QuestionService;
-import question.model.vo.Question;
+import faq.model.service.FaqService;
+import faq.model.vo.Faq;
 
 /**
- * Servlet implementation class QuestionListServlet
+ * Servlet implementation class FaqListServlet
  */
-@WebServlet("/qulist")
-public class QuestionListServlet extends HttpServlet {
+@WebServlet("/flist.ad")
+public class AdminFaqListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionListServlet() {
+    public AdminFaqListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,10 +43,10 @@ public class QuestionListServlet extends HttpServlet {
 		int limit = 10;
 		
 		//조회용 서비스 객체 생성
-		QuestionService qservice = new QuestionService();
+		FaqService fservice = new FaqService();
 		
 		//총 페이지수 계산을 위한 목록 갯수 조회
-		int listCount = qservice.getListCount();
+		int listCount = fservice.getListCount();
 		
 		
 		//요청한 페이지의 출력될 목록의 행번호를 계산
@@ -56,7 +56,7 @@ public class QuestionListServlet extends HttpServlet {
 		int endRow = startRow + limit - 1;
 		
 		//서비스로 해당 페이지에 출력할 게시글만 조회해 옴
-		ArrayList<Question> list = qservice.selectList(startRow, endRow);
+		ArrayList<Faq> list = fservice.selectList(startRow, endRow);
 		
 		//뷰 페이지로 같이 내보낼 페이지 관련 숫자 계산 처리
 		//총 페이지 수 : 총 목록이 21개인 경우
@@ -81,9 +81,9 @@ public class QuestionListServlet extends HttpServlet {
 	
         	
 
-		
+	
 			view = request.getRequestDispatcher(
-					"views/customerservicePage/questionlistView.jsp");
+					"views/customerservicePage/adminfaqlistView.jsp");
 			
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);

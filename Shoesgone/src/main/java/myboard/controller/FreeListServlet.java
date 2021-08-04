@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
+import myboard.model.service.MyboardService;
+import myboard.model.vo.Myboard;
 
 /**
  * Servlet implementation class MyboardListServlet
  */
-@WebServlet("/mlist")
-public class MyboardListServlet extends HttpServlet {
+@WebServlet("/flist.my")
+public class FreeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyboardListServlet() {
+    public FreeListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +32,8 @@ public class MyboardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int userno = Integer.parseInt(request.getParameter("userno"));
 		//출력할 페이지 지정
 		int currentPage = 1;
 		//전송온 페이지 값이 있다면 추출함
@@ -43,10 +45,10 @@ public class MyboardListServlet extends HttpServlet {
 		int limit = 10;
 		
 		//조회용 서비스 객체 생성
-		NoticeService nservice = new NoticeService();
+		MyboardService mservice = new MyboardService();
 		
 		//총 페이지수 계산을 위한 목록 갯수 조회
-		int listCount = nservice.getListCount();
+		int flistCount = mservice.getFreeListCount(userno);
 		
 		
 		//요청한 페이지의 출력될 목록의 행번호를 계산
@@ -56,12 +58,12 @@ public class MyboardListServlet extends HttpServlet {
 		int endRow = startRow + limit - 1;
 		
 		//서비스로 해당 페이지에 출력할 게시글만 조회해 옴
-		ArrayList<Notice> list = nservice.selectList(startRow, endRow);
+		ArrayList<Myboard> flist = mservice.freeList(userno, startRow, endRow);
 		
 		//뷰 페이지로 같이 내보낼 페이지 관련 숫자 계산 처리
 		//총 페이지 수 : 총 목록이 21개인 경우
 		//한 페이지에 출력할 목록이 10개이면, 페이지는 3임
-		int maxPage = (int)((double)listCount / limit + 0.9);
+		int maxPage = (int)((double)flistCount / limit + 0.9);
 		
 		//뷰에 출력할 페이지그룹의 시작 페이지 지정
 		//뷰 목록 아래쪽에 페이지 숫자를 10를 출력한다면..
@@ -81,25 +83,19 @@ public class MyboardListServlet extends HttpServlet {
 	
         	
 
-		if(list.size() > 0) {
+		
 			view = request.getRequestDispatcher(
-					"views/customerservicePage/customerservice.jsp");
+					"views/myPage/freeboardview.jsp");
 			
-			request.setAttribute("list", list);
+			request.setAttribute("flist", flist);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
-			request.setAttribute("listCount", listCount);
+			request.setAttribute("flistCount", flistCount);
 			
 			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher(
-					"views/common/error.jsp");
-			request.setAttribute("message", 
-					currentPage + " 페이지에 대한 목록 조회 실패!");
-			view.forward(request, response);
-		}
+	
 	}
 
 	/**
