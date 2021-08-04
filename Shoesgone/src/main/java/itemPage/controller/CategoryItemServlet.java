@@ -27,7 +27,7 @@ public class CategoryItemServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -60,7 +60,7 @@ public class CategoryItemServlet extends HttpServlet {
 		// 데이터베이스 조회 성공에 따른 값 전달
 		if (item.size() > 0) {
 			view = request.getRequestDispatcher("views/itemPage/category.jsp");
-			
+			System.out.println(sortValue);
 			request.setAttribute("item", item);
 			
 			view.forward(request, response);
