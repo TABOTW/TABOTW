@@ -162,7 +162,7 @@ public class FreeDao {
 	 * 여기에 나타나게 하고싶어요
 	 */
 	public ArrayList<Free> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Free> list = new ArrayList<Free>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -180,8 +180,11 @@ public class FreeDao {
 		*/
 		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
-				+ "				 Free_DATE, Free_READCOUNT, Free_content "
-				+ "        FROM FREE ORDER BY Free_NO DESC"
+				+ "                  Free_DATE, Free_READCOUNT, Free_content , free_like"
+				+ "            FROM (SELECT *"
+				+ "		               FROM FREE "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
 				+ "      )"
 				+ "WHERE RNUM >= ? AND RNUM <=?";
 		

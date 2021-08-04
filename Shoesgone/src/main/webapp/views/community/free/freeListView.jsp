@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="community.free.model.vo.Free"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%
 	//Free free = (Free)request.getAttribute("free");
 	ArrayList freeList = (ArrayList) request.getAttribute("list");
