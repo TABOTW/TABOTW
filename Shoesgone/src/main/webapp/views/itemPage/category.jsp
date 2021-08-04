@@ -65,39 +65,35 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span
 								 class="lnr lnr-arrow-right"></span>카테고리<span class="number">(모든 카테고리)</span></a>
 							<ul class="collapse" id="fruitsVegetable" data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable">
-								<li class="main-nav-list child"><a href="#">스니커즈<span class="number">(13)</span></a></li>
-								<li class="main-nav-list child"><a href="#">의류<span class="number">(09)</span></a></li>
-								<li class="main-nav-list child"><a href="#">패션 잡화<span class="number">(17)</span></a></li>
-								<li class="main-nav-list child"><a href="#">테크<span class="number">(01)</span></a></li>
-								<li class="main-nav-list child"><a href="#">라이프<span class="number">(11)</span></a></li>
+								<li class="main-nav-list child"><a href="#">스니커즈<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span
 								 class="lnr lnr-arrow-right"></span>브랜드<span class="number">(모든 브랜드)</span></a>
 							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
-								<li class="main-nav-list child"><a href="#">Frozen Fish<span class="number">(13)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Dried Fish<span class="number">(09)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Fresh Fish<span class="number">(17)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Meat Alternatives<span class="number">(01)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Meat<span class="number">(11)</span></a></li>
+								<li class="main-nav-list child"><a href="#">Nike<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Jordan<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">New Balance<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Adidas<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Golden Goose<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking"><span
 								 class="lnr lnr-arrow-right"></span>성별<span class="number">(모든 성별)</span></a>
 							<ul class="collapse" id="cooking" data-toggle="collapse" aria-expanded="false" aria-controls="cooking">
-								<li class="main-nav-list child"><a href="#">남성<span class="number">(13)</span></a></li>
-								<li class="main-nav-list child"><a href="#">여성<span class="number">(09)</span></a></li>
-								<li class="main-nav-list child"><a href="#">키즈<span class="number">(17)</span></a></li>
+								<li class="main-nav-list child"><a href="#">남성<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">여성<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">키즈<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#beverages" aria-expanded="false" aria-controls="beverages"><span
 								 class="lnr lnr-arrow-right"></span>컬렉션<span class="number">(모든 컬렉션)</span></a>
 							<ul class="collapse" id="beverages" data-toggle="collapse" aria-expanded="false" aria-controls="beverages">
-								<li class="main-nav-list child"><a href="#">Frozen Fish<span class="number">(13)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Dried Fish<span class="number">(09)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Fresh Fish<span class="number">(17)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Meat Alternatives<span class="number">(01)</span></a></li>
-								<li class="main-nav-list child"><a href="#">Meat<span class="number">(11)</span></a></li>
+								<li class="main-nav-list child"><a href="#">Frozen Fish<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Dried Fish<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Fresh Fish<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Meat Alternatives<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">Meat<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
@@ -192,10 +188,10 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#officeProduct" aria-expanded="false" aria-controls="officeProduct"><span
 								 class="lnr lnr-arrow-right"></span>가격<span class="number">(모든 가격)</span></a>
 							<ul class="collapse" id="officeProduct" data-toggle="collapse" aria-expanded="false" aria-controls="officeProduct">
-								<li class="main-nav-list child"><a href="#">10만원 이하<span class="number">(13)</span></a></li>
-								<li class="main-nav-list child"><a href="#">10만원 - 30만원 이하<span class="number">(09)</span></a></li>
-								<li class="main-nav-list child"><a href="#">30만원 - 50만원 이하<span class="number">(17)</span></a></li>
-								<li class="main-nav-list child"><a href="#">50만원 이상<span class="number">(01)</span></a></li>
+								<li class="main-nav-list child"><a href="#">10만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">10만원 - 30만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">30만원 - 50만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="#">50만원 이상<span class="number"></span></a></li>
 							</ul>
 						</li>
 					</ul>
