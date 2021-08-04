@@ -22,14 +22,14 @@ import itemPage.model.vo.SellBid;
 /**
  * Servlet implementation class MainRegDateServlet
  */
-@WebServlet("/mregdate")
-public class MainRegDateServlet extends HttpServlet {
+@WebServlet("/mpageitem")
+public class MainPageItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainRegDateServlet() {
+    public MainPageItemServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

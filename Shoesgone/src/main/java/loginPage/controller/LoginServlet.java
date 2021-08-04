@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
 			session.setAttribute("loginMember", login);
 
-			response.sendRedirect("mregdate");
+			response.sendRedirect("mpageitem");
 		} else { 
 			response.setContentType("text/html; charset=UTF-8");
 			

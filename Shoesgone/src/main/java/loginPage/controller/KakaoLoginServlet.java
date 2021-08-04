@@ -66,7 +66,7 @@ public class KakaoLoginServlet extends HttpServlet {
 			String access_token = (String) j_obj.get("access_token");
 			
 			request.getSession().setAttribute("access_token", access_token);
-			response.sendRedirect("/Shoesgone/mregdate");
+			response.sendRedirect("/Shoesgone/mpageitem");
 			
 			Login login = new Login();
 			
