@@ -43,7 +43,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Shoesgone/mpageitem">슈즈곤</a>
+					<a class="navbar-brand logo_h" href="/Shoesgone/menubarsearch?menu=main">슈즈곤</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -53,37 +53,37 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/categorysort">SHOP</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=shop">SHOP</a></li>
 							<% if(loginMember != null){ %>
 								<% if(loginMember.getMgr().toString().equals("Y")){ %>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">관리자페이지</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=admin">관리자페이지</a></li>
 								<% }else{ %>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/contact.jsp">마이페이지</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=mypage">마이페이지</a></li>
 								<% } %>
 							<% } %>
 							
 							<% if(loginMember != null){ %>
 								<% if(loginMember.getMgr().toString().equals("Y")){ %>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/nlist.ad">고객센터</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=nlistadmin">고객센터</a></li>
 								<% }else{ %>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/nlist">고객센터</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=nlistcustomer">고객센터</a></li>
 								<% } %>
 							<% } %>
 							<li class="nav-item submenu dropdown active">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Community Category</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item active"><a class="nav-link" href="/Shoesgone/views/community/best/bestListView.jsp">Best 게시판</a></li>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/review/reviewListView.jsp">리뷰 게시판</a></li>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/gallery/galleryListView.jsp">Gallery</a></li>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/freelist">자유게시판</a></li>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/community/qna/qnaListView.jsp">Q&A</a></li>
+									<li class="nav-item active"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=best">Best 게시판</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=review">리뷰 게시판</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=gallery">Gallery</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=free">자유게시판</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=qna">Q&A</a></li>
 								</ul>
 							</li>
 							<% if(loginMember == null){ %>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/loginPage/login.jsp">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=login">로그인</a></li>
 							<% }else{ %>
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/logout">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=logout">로그아웃</a></li>
 							<% } %>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -105,10 +105,10 @@
 			</div>
 		    <div>
 		    	<% for (ItemPicture ip: search){ %>
-		    	<div class="listInner">
-		    		<span class="engname"><%= ip.getItemEngName() %></span>
-		    		<span class="krname"><%= ip.getItemKrName() %></span>
-		    		<span class="picturepath"><%= ip.getPicturepath() %></span>
+		    	<div class="listInner" style="display: none;">
+		    		<p><span class="engname"><%= ip.getItemEngName() %></span><br>
+		    		<span class="krname"><%= ip.getItemKrName() %></span><br>
+		    		<span class="picturepath"><%= ip.getPicturepath() %></span></p>
 		      	</div>
 		      	<% } %>
 		    </div>
