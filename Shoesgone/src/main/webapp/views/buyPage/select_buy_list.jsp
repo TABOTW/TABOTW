@@ -1,11 +1,14 @@
+<%@page import="itemregsta.model.vo.ItemRegSta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"
 %>
 <%
-Item item = (Item) request.getAttribute("item");
+ArrayList<ItemRegSta> rlist = (ArrayList<ItemRegSta>) request.getAttribute("rlist");
 ArrayList<Picture> plist = (ArrayList<Picture>) request.getAttribute("plist");
 ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
+String itemEngName = request.getParameter("itemengname");
+String itemKrName = request.getParameter("itemkrname");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +22,16 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 <!-- CSS -->
 <link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.css" />
 <link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Shoesgone/resources/plugins/assets/css/bootstrap.css">
+
+<link rel="stylesheet" href="/Shoesgone/resources/plugins/assets/vendors/simple-datatables/style.css">
+
+<link rel="stylesheet" href="/Shoesgone/resources/plugins/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" href="/Shoesgone/resources/plugins/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="/Shoesgone/resources/plugins/assets/css/app.css">
+<link rel="shortcut icon" href="/Shoesgone/resources/plugins/assets/images/favicon.svg" type="image/x-icon">
 </head>
 <body>
 	<%-- Menubar --%>
@@ -47,8 +60,8 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text" style="margin-top: 0px">
-						<h3>nike_dunk_low_black</h3>
-						<h2>$149.99</h2>
+						<h3><%= itemEngName %></h3>
+						<h4><%= itemKrName %></h4>
 						<ul class="list">
 							<li><a class="active" href="#"><span>카테고리</span> : nike_dunk_low</a></li>
 							<li><a href="#"><span>사이즈</span> : In 180mm</a></li>
@@ -56,75 +69,30 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 						</ul>
 						<hr>
 						<div class="button-group-area mt-10">
-							<h2>구매 사이즈 선택</h2>
-							<h6>판매가(원)</h6>
-							<table>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="230"><font color="black">230</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="235"><font color="black">235</font></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="240"><font color="black">240</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="245"><font color="black">245</font></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="250"><font color="black">250</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="255"><font color="black">255</font></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="260"><font color="black">260</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="265"><font color="black">265</font></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="270"><font color="black">270</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="275"><font color="black">275</font></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="280"><font color="black">280</font></a>
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="/Shoesgone/views/buyPage/buy_accept.jsp" class="genric-btn default-border radius" value="285"><font color="black">285</font></a>
-									</td>
-								</tr>
+							<h2>원하는 상품을 선택해주세요.</h2>
+							<table class="table table-striped" id="table1">
+								<thead>
+									<tr>
+										<th>제품명</th>
+										<th>등록일</th>
+										<th>가격</th>
+										<th>구매하기</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for(ItemRegSta r : rlist){ %>
+										<tr>
+											<td><%= itemEngName %></td>
+											<td><%= r.getRegDate() %></td>
+											<td><%= r.getPrice() %></td>
+											<td><form action="/Shoesgone/orderselect">
+												<input type="hidden" name="itemno" value="<%= r.getItemNo() %>">
+												<input type="hidden" name="regno" value="<%= r.getRegNo() %>">
+												<input type="submit" value="구매하기">
+											</form></td>
+										</tr>
+									<% } %>
+								</tbody>
 							</table>
 						</div>
 						<div class="card_area d-flex align-items-center"></div>
@@ -279,5 +247,17 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 	<%-- Footer --%>
 	<%@ include file="../common/footer.jsp" %>
 	
+	<%-- JS --%>
+	<script src="/Shoesgone/resources/plugins/assets/js/main.js"></script>
+	<script src="/Shoesgone/resources/plugins/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="/Shoesgone/resources/plugins/assets/js/bootstrap.bundle.min.js"></script>
+
+	<script src="/Shoesgone/resources/plugins/assets/vendors/simple-datatables/simple-datatables.js?after"></script>
+	<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
+	<script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
 </body>
 </html>

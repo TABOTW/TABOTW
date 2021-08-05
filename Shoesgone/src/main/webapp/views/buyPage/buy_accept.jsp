@@ -48,13 +48,13 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 				<div class="col-lg-5 offset-lg-1">
 					<form action="/Shoesgone/orlist">
 						<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
+						<input type="hidden" name="itemengname" value="<%= item.getItemEngName() %>">
+						<input type="hidden" name="itemkrname" value="<%= item.getItemKrName() %>">
 						<div class="s_product_text">
 							<h3>구매하시기 전에 꼭 확인하세요.</h3>
 							<h3><%=item.getItemEngName()%></h3>
 							<h4><%=item.getItemKrName()%></h4>
-							<h2><%=item.getPrice()%>
-								원
-							</h2>
+							<h2><%=item.getPrice()%>원</h2>
 							<ul class="list">
 								<li>
 									<div class="default-select" id="default-select"">

@@ -9,7 +9,6 @@ public class ItemRegSta implements java.io.Serializable {
 	// Field
 	private int regNo;
 	private int userNo;
-	private String userID;
 	private int itemNo;
 	private int size;
 	private java.sql.Date regDate;
@@ -20,11 +19,10 @@ public class ItemRegSta implements java.io.Serializable {
 	// Constructor
 	public ItemRegSta() {}
 
-	public ItemRegSta(int regNo, int userNo, String userID, int itemNo, int size, Date regDate, int price, String address, String penalty) {
+	public ItemRegSta(int regNo, int userNo, int itemNo, int size, Date regDate, int price, String address, String penalty) {
 		super();
 		this.regNo = regNo;
 		this.userNo = userNo;
-		this.userID = userID;
 		this.itemNo = itemNo;
 		this.size = size;
 		this.regDate = regDate;
@@ -48,14 +46,6 @@ public class ItemRegSta implements java.io.Serializable {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-	public String getUserID() {
-		return userID;
-	}
-
-	public void setUserID(String userID) {
-		this.userID = userID;
 	}
 
 	public int getItemNo() {
@@ -113,7 +103,7 @@ public class ItemRegSta implements java.io.Serializable {
 	// toString()
 	@Override
 	public String toString() {
-		return "ItemRegSta [regNo=" + regNo + ", userNo=" + userNo + ", userID=" + userID + ", itemNo=" + itemNo
+		return "ItemRegSta [regNo=" + regNo + ", userNo=" + userNo + ", itemNo=" + itemNo
 				+ ", size=" + size + ", regDate=" + regDate + ", price=" + price + ", address=" + address + ", penalty=" + penalty + "]";
 	}
 	

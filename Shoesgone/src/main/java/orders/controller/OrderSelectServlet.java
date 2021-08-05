@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import itemregsta.model.service.ItemRegStaService;
+import itemregsta.model.vo.ItemRegSta;
 
 /**
  * Servlet implementation class OrderSelectServlet
@@ -36,29 +38,33 @@ public class OrderSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 주문 상품 선택 후 처리용 컨트롤러
-		// 1. 상품 상세 페이지 -> 구매 동의 페이지에서 전달받은 Item 객체 저장
+		request.setCharacterEncoding("utf-8");
+		
+		// 1. 선택 화면에서 넘어온 값 받아오기
 		int itemNo = Integer.parseInt(request.getParameter("itemno"));
-		Item item = new ItemDetailService().selectOne(itemNo);
-
+		int regNo = Integer.parseInt(request.getParameter("regno"));
+		
 		// 2. 사진 어레이 가져오기
 		ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
-
-		// 3. 선택한 사이즈 가져오기
-		int size = Integer.parseInt(request.getParameter("size"));
-
-		// 4. 주문 등록 페이지로 정보 전달
+		
+		// 3. 값에 맞는 Item객체와 ItemRegSta 객체 가져오기
+		Item item = new ItemDetailService().selectOne(itemNo);
+		ItemRegSta reg = new ItemRegStaService().selectOne(regNo);
+		
+		// 4. 구매 등록 페이지로 전달
 		RequestDispatcher view = null;
-		if (item != null && plist != null) {
-			view = request.getRequestDispatcher("views/buyPage/select_buy_list.jsp");
-
+		if(reg != null && plist != null) {
+			view = request.getRequestDispatcher("views/buyPage/now_buy.jsp");
+			
 			request.setAttribute("item", item);
+			request.setAttribute("reg", reg);
+			request.setAttribute("reg", reg);
 			request.setAttribute("plist", plist);
-			request.setAttribute("size", size);
-
+			
 			view.forward(request, response);
-		} else {
+		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", itemNo + "번 아이템 주문 실패");
+			request.setAttribute("message", itemNo + "번 상품 구매 등록 실패");
 			view.forward(request, response);
 		}
 	}

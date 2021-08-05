@@ -5530,15 +5530,17 @@ label {
       color: #fff; }
 
 .comment-form {
-  background: #fafaff;
+  background: #fffbf138;
   text-align: center;
   border: 1px solid #eee;
-  padding: 47px 30px 43px;
-  margin-top: 50px;
+  /* padding: 47px 30px 43px; */
+  padding: 25px 15px 10px;
+  margin-top: 30px;
   margin-bottom: 40px; }
   .comment-form h4 {
     text-align: center;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
+    margin-bottom: 20px;
     font-size: 18px;
     line-height: 22px;
     color: #222222; }

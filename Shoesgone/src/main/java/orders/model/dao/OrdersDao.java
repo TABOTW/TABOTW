@@ -73,7 +73,7 @@ public class OrdersDao {
 		PreparedStatement ps = null;
 		
 		String query = "insert into orders values("
-						+ "order_seq.nextval, ?, ?, ?, sysdate, 1, '준비중', ?, "
+						+ "(SELECT MAX(ORDERS_NO)+1 FROM ORDERS), ?, ?, ?, sysdate, 1, '준비중', ?, "
 						+ "?, ?, ?, 2500, ?, ?)";
 		
 		try {

@@ -36,7 +36,6 @@ public class ItemRegStaDao {
 				
 				reg.setRegNo(rs.getInt("item_sta_reg_no"));
 				reg.setUserNo(rs.getInt("user_no"));
-				reg.setUserID(rs.getString("user_id"));
 				reg.setItemNo(rs.getInt("item_no"));
 				reg.setSize(rs.getInt("shoes_size"));
 				reg.setRegDate(rs.getDate("reg_date"));
@@ -73,7 +72,6 @@ public class ItemRegStaDao {
 			if(rs.next()) {
 				reg.setRegNo(rs.getInt("item_reg_sta_no"));
 				reg.setUserNo(rs.getInt("user_no"));
-				reg.setUserID(rs.getString("user_id"));
 				reg.setItemNo(rs.getInt("item_no"));
 				reg.setSize(rs.getInt("shoes_size"));
 				reg.setRegDate(rs.getDate("reg_date"));
@@ -97,7 +95,7 @@ public class ItemRegStaDao {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			
-			String query = "select * from item_reg_sta where item_no = ? and shoes_size = ?";
+			String query = "select * from item_reg_sta where item_no = ? and shoes_size = ? order by reg_date desc";
 			
 			try {
 				ps = conn.prepareStatement(query);

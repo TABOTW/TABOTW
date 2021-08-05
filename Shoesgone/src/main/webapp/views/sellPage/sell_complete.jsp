@@ -45,7 +45,7 @@ ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
 						<%
 						}
 						%>
-					</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">

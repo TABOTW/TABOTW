@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="loginPage.model.vo.Login"%>
+    pageEncoding="UTF-8" import="loginPage.model.vo.Login, categoryPage.model.vo.ItemPicture, java.util.ArrayList"%>
 <%
 	// 로그인 확인을 위해서 내장된 session 객체를 이용
 	Login loginMember = (Login)session.getAttribute("loginMember");
+	ArrayList<ItemPicture> search = (ArrayList<ItemPicture>)request.getAttribute("search");
 %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -97,13 +98,43 @@
 		<div class="search_input" id="search_input_box">
 			<div class="container">
 				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
+					<input type="text" class="form-control" id="search_input" onkeyup="filter()" placeholder="브랜드명, 모델명, 모델번호 등">
 					<button type="submit" class="btn"></button>
 					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
 				</form>
 			</div>
+		    <div>
+		    	<% for (ItemPicture ip: search){ %>
+		    	<div class="listInner">
+		    		<span class="engname"><%= ip.getItemEngName() %></span>
+		    		<span class="krname"><%= ip.getItemKrName() %></span>
+		    		<span class="picturepath"><%= ip.getPicturepath() %></span>
+		      	</div>
+		      	<% } %>
+		    </div>
 		</div>
 	</header>
 	<!-- End Header Area -->
+	
+	<script>
+      function filter() {
+        let search = document.getElementById("search_input").value.toLowerCase();
+        let listInner = document.getElementsByClassName("listInner");
+
+        for (let i = 0; i < listInner.length; i++) {
+          engname = listInner[i].getElementsByClassName("engname");
+          krname = listInner[i].getElementsByClassName("krname");
+          picturepath = listInner[i].getElementsByClassName("picturepath");
+          if (engname[0].innerHTML.toLowerCase().indexOf(search) != -1 || 
+        		  krname[0].innerHTML.toLowerCase().indexOf(search) != -1 ||
+        		  picturepath[0].innerHTML.toLowerCase().indexOf(search) != -1
+          ) {
+            listInner[i].style.display = "flex"
+          } else {
+            listInner[i].style.display = "none"
+          }
+        }
+      }
+    </script>
 </body>
 </html>

@@ -59,7 +59,7 @@
 								<br> 슈즈곤의 검수기준에 동의하지 않으실 경우 거래가 불가하오니 거래 당사자는 거래에 앞서 슈즈곤의
 								검수기준을 반드시 검토하시기 바랍니다.
 							</p>
-							<a href="/Shoesgone/views/sellPage/sell_accept.jsp" class="genric-btn default circle arrow">
+							<a href="javascript:history.go(-1)" class="genric-btn default circle arrow">
 							<span class="lnr lnr-arrow-left"></span>&nbsp; 계속 판매하기</a>
 						</div>
 					</div>

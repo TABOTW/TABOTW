@@ -1,10 +1,11 @@
+<%@page import="itemregsta.model.vo.ItemRegSta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="itemPage.model.vo.Item"
 	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"%>
 <%
 Item item = (Item) request.getAttribute("item");
 ArrayList<Picture> plist = (ArrayList<Picture>) request.getAttribute("plist");
-int size = Integer.parseInt(request.getParameter("size"));
+ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 %>
 <!DOCTYPE html>
 <html>
@@ -61,12 +62,12 @@ int size = Integer.parseInt(request.getParameter("size"));
 						<h3><%=item.getItemEngName()%></h3>
 						<h4><%=item.getItemKrName()%></h4>
 						<a class="primary-btn">즉시 판매가 : <%=item.getPrice() + "원"%></a><br>
-						<form action="/Shoesgone/tendersell">
-							<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
-							<input type="hidden" name="size" value="<%=size%>">
+						<form action="/Shoesgone/tenderbuy">
+							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
+							<input type="hidden" name="size" value="<%= reg.getSize() %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%=item.getPrice() + "원"%>">
 						</form>
-						<br> <a class="primary-btn"><span>Size</span> : <%=size%></a>
+						<br> <a class="primary-btn"><span>Size</span> : <%= reg.getSize() %></a>
 					</div>
 				</div>
 			</div>
@@ -91,8 +92,11 @@ int size = Integer.parseInt(request.getParameter("size"));
 							<input type="hidden" name="userno" value="<%=loginMember.getUserNo()%>">
 							<input type="hidden" name="userid" value="<%=loginMember.getUserId()%>">
 							<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
+							<input type="hidden" name="price" value="<%= reg.getPrice() %>">
+							<input type="hidden" name="sellerno" value="<%= reg.getUserNo() %>">
+							<input type="hidden" name="size" value="<%= reg.getSize() %>">
 							<div class="col-md-6 form-group p_star">
-								<input type="number" class="form-control" id="size" name="size" placeholder="사이즈" value="<%=size%>" required readonly><br>
+								<input type="number" class="form-control" id="size" name="size" placeholder="사이즈" value="<%= reg.getSize() %>" required readonly><br>
 								<input type="text" class="form-control" id="username" name="username" placeholder="이름" value="<%=loginMember.getUserName()%>" required readonly><br>
 								<input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호" value="<%=loginMember.getPhone()%>" required><br>
 								<input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="<%=loginMember.getEmail()%>" required><br>
@@ -121,7 +125,7 @@ int size = Integer.parseInt(request.getParameter("size"));
 								<li><a href="#">전체가격 <span>150000</span></a></li>
 							</ul>
 							<div class="default-select" id="default-select"">
-								<select name="penalty" required>
+								<select name="payment" required>
 									<option value="무통장입금">무통장입금</option>
 									<option value="가상계좌">가상계좌</option>
 									<option value="신용카드">신용카드</option>

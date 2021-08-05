@@ -38,7 +38,6 @@ public class RegInsertServlet extends HttpServlet {
 		ItemRegSta reg = new ItemRegSta();
 		
 		reg.setUserNo(Integer.parseInt(request.getParameter("userno")));
-		reg.setUserID(request.getParameter("userid"));
 		reg.setItemNo(Integer.parseInt(request.getParameter("itemno")));
 		reg.setSize(Integer.parseInt(request.getParameter("size")));
 		reg.setPrice(Integer.parseInt(request.getParameter("price")));
