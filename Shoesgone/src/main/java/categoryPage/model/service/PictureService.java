@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import categoryPage.model.dao.PictureDao;
-import itemPage.model.vo.Picture;
+import categoryPage.model.vo.Picture;
 
 public class PictureService {
 	private PictureDao pdao = new PictureDao();

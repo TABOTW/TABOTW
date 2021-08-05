@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import itemPage.model.vo.Item;
+import categoryPage.model.vo.Item;
 
 public class ItemDao {
 

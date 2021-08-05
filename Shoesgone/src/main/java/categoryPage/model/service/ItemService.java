@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import categoryPage.model.dao.ItemDao;
-import itemPage.model.vo.Item;
+import categoryPage.model.vo.Item;
 
 public class ItemService {
 	private ItemDao idao = new ItemDao();

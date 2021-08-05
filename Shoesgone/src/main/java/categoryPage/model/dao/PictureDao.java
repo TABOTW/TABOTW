@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import itemPage.model.vo.Picture;
+import categoryPage.model.vo.Picture;
 
 public class PictureDao {
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="itemPage.model.vo.Item, itemPage.model.vo.Picture, itemPage.model.vo.SellBid, itemPage.model.vo.BuyBid, java.util.ArrayList" %>
+<%@ page import="categoryPage.model.vo.Item, categoryPage.model.vo.Picture, categoryPage.model.vo.SellBid, categoryPage.model.vo.BuyBid, java.util.ArrayList" %>
 <%
 	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");

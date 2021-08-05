@@ -1,4 +1,4 @@
-package itemPage.controller;
+package categoryPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import itemPage.model.service.BuyBidService;
-import itemPage.model.service.ItemService;
-import itemPage.model.service.PictureService;
-import itemPage.model.service.SellBidService;
-import itemPage.model.vo.BuyBid;
-import itemPage.model.vo.Item;
-import itemPage.model.vo.Picture;
-import itemPage.model.vo.SellBid;
+import categoryPage.model.service.BuyBidService;
+import categoryPage.model.service.ItemService;
+import categoryPage.model.service.PictureService;
+import categoryPage.model.service.SellBidService;
+import categoryPage.model.vo.BuyBid;
+import categoryPage.model.vo.Item;
+import categoryPage.model.vo.Picture;
+import categoryPage.model.vo.SellBid;
 
 /**
  * Servlet implementation class MainRegDateServlet

@@ -59,7 +59,7 @@ public class CategorySortServlet extends HttpServlet {
 		
 		// 데이터베이스 조회 성공에 따른 값 전달
 		if (item.size() > 0) {
-			view = request.getRequestDispatcher("views/itemPage/category.jsp");
+			view = request.getRequestDispatcher("views/categoryPage/category.jsp");
 			System.out.println(sortValue);
 			request.setAttribute("item", item);
 			
