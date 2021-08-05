@@ -167,6 +167,100 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("ItemDV?itemno=23");
 			} else if (menu.equals("ad4")) {
 				view = request.getRequestDispatcher("ItemDV?itemno=24");
+			} else if (menu.equals("sneakers")) {
+				view = request.getRequestDispatcher("categoryfilter?category=sneakers");
+			} else if (menu.equals("nike")) {
+				view = request.getRequestDispatcher("categoryfilter?category=brand&brand=Nike");
+			} else if (menu.equals("jordan")) {
+				view = request.getRequestDispatcher("categoryfilter?category=brand&brand=Jordan");
+			} else if (menu.equals("new balance")) {
+				view = request.getRequestDispatcher("categoryfilter?category=brand&brand=New Balance");
+			} else if (menu.equals("adidas")) {
+				view = request.getRequestDispatcher("categoryfilter?category=brand&brand=adidas");
+			} else if (menu.equals("golden goose")) {
+				view = request.getRequestDispatcher("categoryfilter?category=brand&brand=Golden Goose");
+			} else if (menu.equals("jordan 1")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Jordan 1");
+			} else if (menu.equals("jordan 4")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Jordan 4");
+			} else if (menu.equals("jordan 6")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Jordan 6");
+			} else if (menu.equals("nike dunk")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Nike Dunk");
+			} else if (menu.equals("air force")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Air Force");
+			} else if (menu.equals("new balance 327")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=New Balance 327");
+			} else if (menu.equals("new balance 992")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=New Balance 992");
+			} else if (menu.equals("adidas yeezy")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Adidas Yeezy");
+			} else if (menu.equals("x sacai")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=x Sacai");
+			} else if (menu.equals("luxury")) {
+				view = request.getRequestDispatcher("categoryfilter?category=collection&collection=Golden Goose");
+			} else if (menu.equals("size1")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=215");
+			} else if (menu.equals("size2")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=220");
+			} else if (menu.equals("size3")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=225");
+			} else if (menu.equals("size4")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=230");
+			} else if (menu.equals("size5")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=235");
+			} else if (menu.equals("size6")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=240");
+			} else if (menu.equals("size7")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=245");
+			} else if (menu.equals("size8")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=250");
+			} else if (menu.equals("size9")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=255");
+			} else if (menu.equals("size10")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=260");
+			} else if (menu.equals("size11")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=265");
+			} else if (menu.equals("size12")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=270");
+			} else if (menu.equals("size13")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=275");
+			} else if (menu.equals("size14")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=280");
+			} else if (menu.equals("size15")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=285");
+			} else if (menu.equals("size16")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=290");
+			} else if (menu.equals("size17")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=295");
+			} else if (menu.equals("size18")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=300");
+			} else if (menu.equals("size19")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=305");
+			} else if (menu.equals("size20")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=310");
+			} else if (menu.equals("size21")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=315");
+			} else if (menu.equals("size22")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=320");
+			} else if (menu.equals("size23")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=325");
+			} else if (menu.equals("size24")) {
+				view = request.getRequestDispatcher("categoryfilter?category=size&size=330");
+			} else if (menu.equals("price1")) {
+				view = request.getRequestDispatcher("categoryfilter?category=price1&priceone=100000");
+			} else if (menu.equals("price2")) {
+				view = request.getRequestDispatcher("categoryfilter?category=price2&priceone=100000&pricetwo=300000");
+			} else if (menu.equals("price3")) {
+				view = request.getRequestDispatcher("categoryfilter?category=price2&priceone=300000&pricetwo=500000");
+			} else if (menu.equals("price4")) {
+				view = request.getRequestDispatcher("categoryfilter?category=price3&priceone=500000");
+			} else {
+				for (int i = 0; i < search.size(); i++) {
+					if (menu.equals("item" + (i + 1))) {
+						view = request.getRequestDispatcher("ItemDV?itemno=" + search.get(i).getItemNo());
+					}
+				}
 			}
 			
 			request.setAttribute("search", search);

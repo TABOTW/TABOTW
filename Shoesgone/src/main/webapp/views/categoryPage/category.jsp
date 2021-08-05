@@ -86,17 +86,17 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span
 								 class="lnr lnr-arrow-right"></span>카테고리<span class="number">(모든 카테고리)</span></a>
 							<ul class="collapse" id="fruitsVegetable" data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable">
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=sneakers">스니커즈<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=sneakers">스니커즈<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span
 								 class="lnr lnr-arrow-right"></span>브랜드<span class="number">(모든 브랜드)</span></a>
 							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=brand&brand=Nike">Nike<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=brand&brand=Jordan">Jordan<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=brand&brand=New Balance">New Balance<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=brand&brand=adidas">Adidas<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=brand&brand=Golden Goose">Golden Goose<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=nike">Nike<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=jordan">Jordan<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=new balance">New Balance<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=adidas">Adidas<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=golden goose">Golden Goose<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking"><span
@@ -110,16 +110,16 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#beverages" aria-expanded="false" aria-controls="beverages"><span
 								 class="lnr lnr-arrow-right"></span>컬렉션<span class="number">(모든 컬렉션)</span></a>
 							<ul class="collapse" id="beverages" data-toggle="collapse" aria-expanded="false" aria-controls="beverages">
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Jordan 1">Jordan 1<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Jordan 4">Jordan 4<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Jordan 6">Jordan 6<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Nike Dunk">Dunk<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Air Force">Nike Air Force<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=New Balance 327">New Balance 327<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=New Balance 992">New Balance 992<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Adidas Yeezy">Adidas Yeezy<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=x Sacai">x Sacai<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Golden Goose">Luxury Collection<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=jordan 1">Jordan 1<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=jordan 4">Jordan 4<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=jordan 6">Jordan 6<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=nike dunk">Dunk<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=air force">Nike Air Force<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=new balance 327">New Balance 327<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=new balance 992">New Balance 992<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=adidas yeezy">Adidas Yeezy<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=x sacai">x Sacai<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=luxury">Luxury Collection<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#homeClean" aria-expanded="false" aria-controls="homeClean"><span
@@ -127,44 +127,44 @@
 							<ul class="collapse" id="homeClean" data-toggle="collapse" aria-expanded="false" aria-controls="homeClean">
 								<table id="size-table">
 									<tr>
-										<td><input class="cursor-pointer" type=button value="215" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=215'"></td>
-										<td><input class="cursor-pointer" type=button value="220" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=220'"></td>
-										<td><input class="cursor-pointer" type=button value="225" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=225'"></td>
+										<td><input class="cursor-pointer" type=button value="215" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size1'"></td>
+										<td><input class="cursor-pointer" type=button value="220" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size2'"></td>
+										<td><input class="cursor-pointer" type=button value="225" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size3'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="230" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=230'"></td>
-										<td><input class="cursor-pointer" type=button value="235" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=235'"></td>
-										<td><input class="cursor-pointer" type=button value="240" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=240'"></td>
+										<td><input class="cursor-pointer" type=button value="230" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size4'"></td>
+										<td><input class="cursor-pointer" type=button value="235" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size5'"></td>
+										<td><input class="cursor-pointer" type=button value="240" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size6'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="245" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=245'"></td>
-										<td><input class="cursor-pointer" type=button value="250" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=250'"></td>
-										<td><input class="cursor-pointer" type=button value="255" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=255'"></td>
+										<td><input class="cursor-pointer" type=button value="245" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size7'"></td>
+										<td><input class="cursor-pointer" type=button value="250" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size8'"></td>
+										<td><input class="cursor-pointer" type=button value="255" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size9'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="260" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=260'"></td>
-										<td><input class="cursor-pointer" type=button value="265" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=265'"></td>
-										<td><input class="cursor-pointer" type=button value="270" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=270'"></td>
+										<td><input class="cursor-pointer" type=button value="260" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size10'"></td>
+										<td><input class="cursor-pointer" type=button value="265" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size11'"></td>
+										<td><input class="cursor-pointer" type=button value="270" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size12'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="275" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=275'"></td>
-										<td><input class="cursor-pointer" type=button value="280" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=280'"></td>
-										<td><input class="cursor-pointer" type=button value="285" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=285'"></td>
+										<td><input class="cursor-pointer" type=button value="275" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size13'"></td>
+										<td><input class="cursor-pointer" type=button value="280" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size14'"></td>
+										<td><input class="cursor-pointer" type=button value="285" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size15'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="290" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=290'"></td>
-										<td><input class="cursor-pointer" type=button value="295" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=295'"></td>
-										<td><input class="cursor-pointer" type=button value="300" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=300'"></td>
+										<td><input class="cursor-pointer" type=button value="290" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size16'"></td>
+										<td><input class="cursor-pointer" type=button value="295" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size17'"></td>
+										<td><input class="cursor-pointer" type=button value="300" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size18'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="305" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=305'"></td>
-										<td><input class="cursor-pointer" type=button value="310" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=310'"></td>
-										<td><input class="cursor-pointer" type=button value="315" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=315'"></td>
+										<td><input class="cursor-pointer" type=button value="305" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size19'"></td>
+										<td><input class="cursor-pointer" type=button value="310" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size20'"></td>
+										<td><input class="cursor-pointer" type=button value="315" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size21'"></td>
 									</tr>
 									<tr>
-										<td><input class="cursor-pointer" type=button value="320" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=320'"></td>
-										<td><input class="cursor-pointer" type=button value="325" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=325'"></td>
-										<td><input class="cursor-pointer" type=button value="330" id="shoes-pants" onclick="location.href='/Shoesgone/categoryfilter?category=size&size=330'"></td>
+										<td><input class="cursor-pointer" type=button value="320" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size22'"></td>
+										<td><input class="cursor-pointer" type=button value="325" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size23'"></td>
+										<td><input class="cursor-pointer" type=button value="330" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size24'"></td>
 									</tr>
 							</table>
 							</ul>
@@ -213,10 +213,10 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#officeProduct" aria-expanded="false" aria-controls="officeProduct"><span
 								 class="lnr lnr-arrow-right"></span>가격<span class="number">(모든 가격)</span></a>
 							<ul class="collapse" id="officeProduct" data-toggle="collapse" aria-expanded="false" aria-controls="officeProduct">
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=price1&priceone=100000">10만원 이하<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=price2&priceone=100000&pricetwo=300000">10만원 - 30만원 이하<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=price2&priceone=300000&pricetwo=500000">30만원 - 50만원 이하<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=price3&priceone=500000">50만원 이상<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=price1">10만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=price2">10만원 - 30만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=price3">30만원 - 50만원 이하<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/menubarsearch?menu=price4">50만원 이상<span class="number"></span></a></li>
 							</ul>
 						</li>
 					</ul>
@@ -268,7 +268,7 @@
 					<div class="row">
 						<% for (ItemPicture ip : item){ %>
 						<!-- single product -->
-						<div class="col-lg-3 col-md-6 cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= ip.getItemNo() %>';">
+						<div class="col-lg-3 col-md-6 cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=item<%= ip.getItemNo() %>';">
 							<div class="single-product">
 								<img class="img-fluid item-background-color<%= random.nextInt(5) + 1 %>" src="/Shoesgone/resources/img/shoes_images/<%= ip.getPicturepath() %>" alt="">
 								<div class="product-details">
