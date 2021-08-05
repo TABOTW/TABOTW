@@ -34,7 +34,27 @@ public class CategoryFilterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		ArrayList<ItemPicture> item = new ItemPictureService().selectSneakersList();
+		String category = request.getParameter("category");
+		String brand = request.getParameter("brand");
+		String size = request.getParameter("size");
+		String priceone = request.getParameter("priceone");
+		String pricetwo = request.getParameter("pricetwo");
+		ArrayList<ItemPicture> item = null;
+		
+		if (category.equals("sneakers")) {
+			item = new ItemPictureService().selectSneakersList();
+		} else if (category.equals("brand")) {
+			item = new ItemPictureService().selectBrandList(brand);
+		} else if (category.equals("size")) {
+			item = new ItemPictureService().selectShoesSizeList(size);
+		} else if (category.equals("price1")) {
+			item = new ItemPictureService().selectPrice1List(priceone);
+		} else if (category.equals("price2")) {
+			item = new ItemPictureService().selectPrice2List(priceone, pricetwo);
+		} else if (category.equals("price3")) {
+			item = new ItemPictureService().selectPrice3List(priceone);
+		}
+				
 		
 		RequestDispatcher view = null;
 		
@@ -46,9 +66,11 @@ public class CategoryFilterServlet extends HttpServlet {
 
 			view.forward(request, response);
 		} else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
+			view = request.getRequestDispatcher("views/categoryPage/category.jsp");
+//			view = request.getRequestDispatcher("views/common/error.jsp");
 
-			request.setAttribute("message", "상품 조회 실패");
+			request.setAttribute("item", item);
+//			request.setAttribute("message", "상품 조회 실패");
 
 			view.forward(request, response);
 		}

@@ -20,6 +20,7 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectHotList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectHotList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectHotList(conn);
@@ -27,6 +28,7 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectPremiumList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectPremiumList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectPremiumList(conn);
@@ -34,6 +36,7 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectBuyList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectBuyList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectBuyList(conn);
@@ -41,6 +44,7 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectSellList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectSellList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectSellList(conn);
@@ -48,6 +52,7 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectDropList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectDropList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectDropList(conn);
@@ -55,9 +60,50 @@ public class ItemPictureService {
 		return list;
 	}
 
+	// ItemPictureDao의 selectSneakersList() 값을 받아서 전달하는 메소드
 	public ArrayList<ItemPicture> selectSneakersList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectSneakersList(conn);
+		close(conn);
+		return list;
+	}
+
+	// ItemPictureDao의 selectBrandList() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectBrandList(String brand) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectBrandList(conn, brand);
+		close(conn);
+		return list;
+	}
+
+	// ItemPictureDao의 selectShoesSizeList() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectShoesSizeList(String size) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectShoesSizeList(conn, size);
+		close(conn);
+		return list;
+	}
+
+	// ItemPictureDao의 selectPrice1List() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectPrice1List(String priceone) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectPrice1List(conn, priceone);
+		close(conn);
+		return list;
+	}
+
+	// ItemPictureDao의 selectPrice2List() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectPrice2List(String priceone, String pricetwo) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectPrice2List(conn, priceone, pricetwo);
+		close(conn);
+		return list;
+	}
+
+	// ItemPictureDao의 selectPrice3List() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectPrice3List(String priceone) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectPrice3List(conn, priceone);
 		close(conn);
 		return list;
 	}
