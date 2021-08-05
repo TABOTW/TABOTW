@@ -1,4 +1,4 @@
-package itemPage.model.service;
+package categoryPage.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
@@ -6,7 +6,7 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import itemPage.model.dao.ItemDao;
+import categoryPage.model.dao.ItemDao;
 import itemPage.model.vo.Item;
 
 public class ItemService {

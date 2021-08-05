@@ -1,4 +1,4 @@
-package itemPage.model.service;
+package categoryPage.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
@@ -6,8 +6,8 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import itemPage.model.dao.SellBidDao;
-import itemPage.model.vo.SellBid;
+import categoryPage.model.dao.SellBidDao;
+import categoryPage.model.vo.SellBid;
 
 public class SellBidService {
 	private SellBidDao sdao = new SellBidDao();

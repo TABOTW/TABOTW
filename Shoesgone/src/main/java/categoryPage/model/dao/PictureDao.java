@@ -1,4 +1,4 @@
-package itemPage.model.dao;
+package categoryPage.model.dao;
 
 import static common.JDBCTemp.close;
 

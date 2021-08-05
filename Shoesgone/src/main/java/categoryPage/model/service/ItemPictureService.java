@@ -1,4 +1,4 @@
-package itemPage.model.service;
+package categoryPage.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
@@ -6,8 +6,8 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import itemPage.model.dao.ItemPictureDao;
-import itemPage.model.vo.ItemPicture;
+import categoryPage.model.dao.ItemPictureDao;
+import categoryPage.model.vo.ItemPicture;
 
 public class ItemPictureService {
 	private ItemPictureDao ipdao = new ItemPictureDao();
@@ -51,6 +51,13 @@ public class ItemPictureService {
 	public ArrayList<ItemPicture> selectDropList() {
 		Connection conn = getConnection();
 		ArrayList<ItemPicture> list = ipdao.selectDropList(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<ItemPicture> selectSneakersList() {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectSneakersList(conn);
 		close(conn);
 		return list;
 	}

@@ -1,11 +1,11 @@
-package itemPage.model.vo;
+package categoryPage.model.vo;
 
 import java.sql.Date;
 
-public class ItemPicture implements java.io.Serializable{
+public class Item implements java.io.Serializable {
 
-	private static final long serialVersionUID = 5L;
-	
+	private static final long serialVersionUID = 2L;
+
 	private int itemNo;
 	private String itemEngName;
 	private String itemKrName;
@@ -17,18 +17,14 @@ public class ItemPicture implements java.io.Serializable{
 	private java.sql.Date dropDate;
 	private String shoesSizes;
 	private int views;
-	
-	private int pictureno;
-	private int modelno;
-	private String picturepath;
-	
-	public ItemPicture() {
+
+	public Item() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public ItemPicture(int itemNo, String itemEngName, String itemKrName, String brand, String modelNo,
-			String shoesColors, int price, Date regDate, Date dropDate, String shoesSizes, int views, int pictureno,
-			int modelno2, String picturepath) {
+	public Item(int itemNo, String itemEngName, String itemKrName, String brand, String modelNo, String shoesColors,
+			int price, Date regDate, Date dropDate, String shoesSizes, int views) {
 		super();
 		this.itemNo = itemNo;
 		this.itemEngName = itemEngName;
@@ -41,9 +37,6 @@ public class ItemPicture implements java.io.Serializable{
 		this.dropDate = dropDate;
 		this.shoesSizes = shoesSizes;
 		this.views = views;
-		this.pictureno = pictureno;
-		this.modelno = modelno2;
-		this.picturepath = picturepath;
 	}
 
 	public int getItemNo() {
@@ -134,39 +127,10 @@ public class ItemPicture implements java.io.Serializable{
 		this.views = views;
 	}
 
-	public int getPictureno() {
-		return pictureno;
-	}
-
-	public void setPictureno(int pictureno) {
-		this.pictureno = pictureno;
-	}
-
-	public int getModelno() {
-		return modelno;
-	}
-
-	public void setModelno(int modelno) {
-		this.modelno = modelno;
-	}
-
-	public String getPicturepath() {
-		return picturepath;
-	}
-
-	public void setPicturepath(String picturepath) {
-		this.picturepath = picturepath;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public String toString() {
-		return "ItemPicture [itemNo=" + itemNo + ", itemEngName=" + itemEngName + ", itemKrName=" + itemKrName
-				+ ", brand=" + brand + ", modelNo=" + modelNo + ", shoesColors=" + shoesColors + ", price=" + price
-				+ ", regDate=" + regDate + ", dropDate=" + dropDate + ", shoesSizes=" + shoesSizes + ", views=" + views
-				+ ", pictureno=" + pictureno + ", modelno=" + modelno + ", picturepath=" + picturepath + "]";
+		return "Item [itemNo=" + itemNo + ", itemEngName=" + itemEngName + ", itemKrName=" + itemKrName + ", brand="
+				+ brand + ", modelNo=" + modelNo + ", shoesColors=" + shoesColors + ", price=" + price + ", regDate="
+				+ regDate + ", dropDate=" + dropDate + ", shoesSizes=" + shoesSizes + ", views=" + views + "]";
 	}
 }

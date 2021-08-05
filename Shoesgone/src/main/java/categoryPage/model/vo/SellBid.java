@@ -1,4 +1,4 @@
-package itemPage.model.vo;
+package categoryPage.model.vo;
 
 import java.sql.Date;
 

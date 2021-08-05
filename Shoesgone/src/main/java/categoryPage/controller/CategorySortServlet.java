@@ -1,4 +1,4 @@
-package itemPage.controller;
+package categoryPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import itemPage.model.service.ItemPictureService;
-import itemPage.model.vo.ItemPicture;
+import categoryPage.model.service.ItemPictureService;
+import categoryPage.model.vo.ItemPicture;
 
 /**
  * Servlet implementation class CategoryItemServlet

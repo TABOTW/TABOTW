@@ -65,13 +65,13 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span
 								 class="lnr lnr-arrow-right"></span>카테고리<span class="number">(모든 카테고리)</span></a>
 							<ul class="collapse" id="fruitsVegetable" data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable">
-								<li class="main-nav-list child"><a href="#">스니커즈<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter">스니커즈<span class="number"></span></a></li>
 							</ul>
 						</li>
 						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span
 								 class="lnr lnr-arrow-right"></span>브랜드<span class="number">(모든 브랜드)</span></a>
 							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
-								<li class="main-nav-list child"><a href="#">Nike<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter">Nike<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="#">Jordan<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="#">New Balance<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="#">Adidas<span class="number"></span></a></li>

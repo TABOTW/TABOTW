@@ -1,4 +1,4 @@
-package itemPage.model.dao;
+package categoryPage.model.dao;
 
 import static common.JDBCTemp.close;
 
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import itemPage.model.vo.BuyBid;
+import categoryPage.model.vo.BuyBid;
 
 public class BuyBidDao {
 
