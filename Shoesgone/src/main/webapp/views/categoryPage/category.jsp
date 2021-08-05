@@ -308,7 +308,7 @@
 				$.ajax({
 					type: 'GET',
 					data: { "sortValue": sortValue },
-					url: 'categorysort'
+					url: 'menubarsearch?menu=sort'
 				});
 			});
 		});
