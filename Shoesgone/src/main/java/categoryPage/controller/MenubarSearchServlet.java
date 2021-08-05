@@ -39,7 +39,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if (search.size() > 0) {
-			view = request.getRequestDispatcher("views/common/menubar.jsp");
+			view = request.getRequestDispatcher("mpageitem");
 			
 			request.setAttribute("search", search);
 			
