@@ -3,6 +3,7 @@
 <%@page import="community.free.model.vo.Free"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
 	//Free free = (Free)request.getAttribute("free");
 	ArrayList freeList = (ArrayList) request.getAttribute("list");
@@ -45,29 +46,9 @@
 	<!-- End Banner Area -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-md-5">
-				<div class="sidebar-categories">
-					<div class="head">커뮤니티</div>
-					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
-						</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>갤러리</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>자유게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Q&A</a>
-							</li>
-					</ul>
-				</div>
-				
-			</div>
+		
+			<%@ include file="/views/common/communityCategory.jsp" %>
+			
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
@@ -113,7 +94,9 @@
 							%>
 							<div class="table-row">
 								<div class="boardno"><%= free.getFreeNo() %></div>
-								<div class="boardtitle"><%= free.getFreeTitle() %></div>
+								<div class="boardtitle">
+									<a href="/Shoesgone/freedetail?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>"><%= free.getFreeTitle() %></a>
+								</div>
 								<div class="register"><%= free.getFreeWriter() %></div>
 								<div class="registdate"><%= free.getFreeDate()%></div>
 								<div class="hitcount"><%= free.getFreeReadCount() %></div>
@@ -161,26 +144,22 @@
 												
 					</div>
 					<div class="button-group-area mt-40 ml-auto">
-						<a href="#" class="genric-btn primary default circle">글쓰기</a>
+					<% if(loginMember != null){ %>
+						<a onclick="showWriteForm();" class="genric-btn primary default circle">글쓰기</a>
 					</div>
-					
+					<% } %>
 				</div>
 				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
-<br><br><br><br><br>
+
+
+	<br><br><br><br><br>
  
 
 	<!-- start footer Area -->
 		<%@ include file="/views/common/footer.jsp" %>
-	
-
-									
-				
-
-
-
 	
 	<script type="text/javascript">
 	var limit = <%= limit %>;
@@ -234,6 +213,14 @@
 			movePage(currentPage + 1);	
 		}
 	}
-	</script>
+	function showWriteForm(){
+		location.href = "/Shoesgone/views/community/free/freeWriteForm.jsp";
+	}
+	</script>	
+
+									
+				
+
+	
 </body>
 </html>

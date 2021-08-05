@@ -101,7 +101,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>택배사 휴무 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -117,7 +116,6 @@
 							<div class="col-lg-5">
 								<div class="banner-content">
 									<h1>개인정보 이용 처리방침 변경 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -133,7 +131,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>부정거래 이용제한 조치 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -148,7 +145,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>가품거래 시도와 관련한 조치사항</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -163,7 +159,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>이용약관 변경 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -178,7 +173,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>7월 이벤트 당첨자 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -193,7 +187,6 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>휴무일 안내</h1>
-									<p>테스트 페이지입니다.</p>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>

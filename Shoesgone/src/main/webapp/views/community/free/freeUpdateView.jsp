@@ -2,13 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
 
-</head>
 
 <body>
 
-	<%@ include file="/views/common/menubar.jsp" %>
+		<%@ include file="/views/common/menubar.jsp" %>
 
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -35,9 +33,9 @@
 			<div class="billing_details">
 				<div class="row">
 					<div class="col-lg-8">
-						<h3>글쓰기</h3>
-						<form class="row contact_form" action="/Shoesgone/freeinsert" method="post"
-							novalidate="novalidate" enctype="multipart/form-data">
+						<h3>글 수정하기</h3>
+						<form class="row contact_form" action="#" method="post"
+							novalidate="novalidate">
 							<div class="col-md-6 form-group p_star">
 								<select class="country_select">
 									<option value="1">게시판을 선택해 주세요</option>
@@ -48,33 +46,14 @@
 									<option value="5">Q&A</option>
 								</select>
 							</div>
-
-
-							<!-- 수업용버튼자료 -->
-							<div class="button-group-area mt-40">
-								<tr>
-									<th colspan="2">
-										<input type="submit" value="등록하기"> &nbsp; 
-										<input type="reset" value="작성취소"> &nbsp; 
-										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/freelist?page=1'; return false;">
-									</th>
-								</tr>
+							<div class="button-group-area mt-40"> 
+							<a onclick="javascript:history.go(-1); return false;" class="genric-btn primary circle arrow">취소<span class="lnr lnr-arrow-right"></span></a>
+							<a type="submit" class="genric-btn primary circle arrow">등록<span class="lnr lnr-arrow-right"></span></a> 
+							<a onclick="javascript:history.go(-1); return false;" class="genric-btn primary circle arrow">목록<span class="lnr lnr-arrow-right"></span></a>
 							</div>
-
-
-
-
-							<!--  버튼오류  -->
-							<!-- <div class="button-group-area mt-40"> 
-							<a onclick="javascript:history.go(-1); return false;" class="genric-btn primary circle arrow">이전<span class="lnr lnr-arrow-right"></span></a>
-							<a class="genric-btn primary circle arrow">등록<span class="lnr lnr-arrow-right"></span></a>
-							<a href="#" class="genric-btn primary circle arrow">목록<span class="lnr lnr-arrow-right"></span></a>
-							</div> -->
-							
-							
 							<div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control" id="first" name="title" data-placeholder="제목을 입력해주세요">
-								<span class="placeholder" data-placeholder="제목을 입력해주세요" required aria-required="true"></span>
+								<input type="text" class="form-control" id="first" name="name">
+								<span class="placeholder" data-placeholder="제목을 입력해주세요"></span>
 							</div>
 							<div class="col-md-12 form-group p_star">
 								<tr><th>첨부파일: </th><td><input type="file" name="upfile"></td></tr>
@@ -117,10 +96,7 @@
 	</section>
 	<!--================End Checkout Area =================-->
 
-	<!-- start footer Area -->
 		<%@ include file="/views/common/footer.jsp" %>
-
-	<!-- End footer Area -->
 
 </body>
 </html>

@@ -4694,7 +4694,7 @@ label {
         color: #777777; }
 
 .order_details_table {
-  background: #e5ecee;
+  /* background: #e5ecee; */
   padding: 30px;
   margin-top: 75px; }
   @media (min-width: 767px) {
@@ -5473,7 +5473,8 @@ label {
     padding-bottom: 0px; } }
 
 .comments-area {
-  background: #fafaff;
+  /* background: #fafaff; */
+  background: #fffbf138;
   border: 1px solid #eee;
   padding: 50px 30px;
   margin-top: 50px; }
@@ -5519,7 +5520,7 @@ label {
     padding: 2px 18px;
     font-size: 12px;
     display: block;
-    font-weight: 600;
+    /* font-weight: 600; */
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
