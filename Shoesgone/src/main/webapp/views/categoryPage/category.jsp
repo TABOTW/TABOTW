@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="itemPage.model.vo.ItemPicture, java.util.ArrayList" %>
+<%@ page import="categoryPage.model.vo.ItemPicture, java.util.ArrayList" %>
 <%
 	ArrayList<ItemPicture> item = (ArrayList<ItemPicture>)request.getAttribute("item");
 %>
