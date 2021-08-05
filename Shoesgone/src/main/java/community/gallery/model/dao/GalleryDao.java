@@ -52,8 +52,9 @@ public class GalleryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from Gallery "
-				+ "where Gallery_No = ?";
+		String query = "select gallery_no, gallery_title, gallery_content, gallery_writer, to_char(gallery_date, 'YYYY-MM-DD HH24:MI:SS') as gallery_date"
+				+ ", gallery_readcount from gallery "
+				+ "where Gallery_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -66,16 +67,17 @@ public class GalleryDao {
 				
 				Gallery.setGalleryNo(GalleryNo);
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
-				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
+				Gallery.setGalleryWriter(rset.getInt("Gallery_writer"));
 				Gallery.setGalleryContent(rset.getString("Gallery_content"));
-				Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
-				Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
+				//Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
+				//Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
 				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
-				Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
-				Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
-				Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
-				Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
+				//Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
+				//Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
+				//Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
+				//Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
 				Gallery.setGalleryReadCount(rset.getInt("Gallery_readcount"));
+				Gallery.setGalleryLike(rset.getInt("Gallery_like"));
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +138,31 @@ public class GalleryDao {
 	}
 
 	public ArrayList<Gallery> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Gallery> list = new ArrayList<Gallery>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_WRITER,  " +
+		 * "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  " +
+		 * "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
+		 * + "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content , Gallery_like" +
+		 * "        FROM (SELECT * FROM Gallery " +
+		 * "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, " +
+		 * "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_WRITER,  "
-				+ "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  "
-				+ "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
-				+ "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content "
-				+ "        FROM (SELECT * FROM Gallery "
-				+ "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, "
-				+ "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  Gallery_DATE, Gallery_READCOUNT, Gallery_content , Gallery_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM Gallery "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,15 +176,17 @@ public class GalleryDao {
 				
 				Gallery.setGalleryNo(rset.getInt("Gallery_No"));
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
-				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
-				Gallery.setGalleryContent(rset.getString("Gallery_content"));				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
-				Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
-				Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
-				Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
-				Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
-				Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
-				Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
+				Gallery.setGalleryWriter(rset.getInt("Gallery_writer"));
+				Gallery.setGalleryContent(rset.getString("Gallery_content"));				
+				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
+				//Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
+				//Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
+				//Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
+				//Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
+				//Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
+				//Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
 				Gallery.setGalleryReadCount(rset.getInt("Gallery_readcount"));
+				Gallery.setGalleryLike(rset.getInt("Gallery_like"));
 				
 				list.add(Gallery);
 			}
@@ -199,7 +214,7 @@ public class GalleryDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Gallery.getGalleryTitle());
-			pstmt.setString(2, Gallery.getGalleryWriter());
+			pstmt.setInt(2, Gallery.getGalleryWriter());
 			pstmt.setString(3, Gallery.getGalleryContent());
 			pstmt.setString(4, Gallery.getGalleryOriginalFilename());
 			pstmt.setString(5, Gallery.getGalleryRenameFilename());
@@ -334,7 +349,7 @@ public class GalleryDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getGalleryTitle());
-			pstmt.setString(2, reply.getGalleryWriter());
+			pstmt.setInt(2, reply.getGalleryWriter());
 			pstmt.setString(3, reply.getGalleryContent());
 			pstmt.setInt(4, reply.getGalleryRef());
 			

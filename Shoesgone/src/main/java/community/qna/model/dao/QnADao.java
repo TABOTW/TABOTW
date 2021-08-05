@@ -66,7 +66,7 @@ public class QnADao {
 				
 				QnA.setQnANo(QnANo);
 				QnA.setQnATitle(rset.getString("QnA_title"));
-				QnA.setQnAWriter(rset.getString("QnA_writer"));
+				QnA.setQnAWriter(rset.getInt("QnA_writer"));
 				QnA.setQnAContent(rset.getString("QnA_content"));
 				QnA.setQnAOriginalFilename(rset.getString("QnA_original_filename"));
 				QnA.setQnARenameFilename(rset.getString("QnA_rename_filename"));
@@ -76,6 +76,7 @@ public class QnADao {
 				QnA.setQnAReplyRef(rset.getInt("QnA_reply_ref"));
 				QnA.setQnAReplySeq(rset.getInt("QnA_reply_seq"));
 				QnA.setQnAReadCount(rset.getInt("QnA_readcount"));
+				QnA.setQnALike(rset.getInt("QnA_like"));
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +137,31 @@ public class QnADao {
 	}
 
 	public ArrayList<QnA> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<QnA> list = new ArrayList<QnA>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, QnA_No, QnA_TITLE, QnA_WRITER,  " +
+		 * "                QnA_ORIGINAL_FILENAME, QnA_RENAME_FILENAME,  " +
+		 * "                QnA_DATE, QnA_LEVEL, QnA_REF, QnA_REPLY_REF,  " +
+		 * "                QnA_REPLY_SEQ, QnA_READCOUNT, QnA_content , QnA_like " +
+		 * "        FROM (SELECT * FROM QnA " +
+		 * "                ORDER BY QnA_REF DESC, QnA_REPLY_REF DESC, " +
+		 * "                          QnA_LEVEL ASC, QnA_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, QnA_No, QnA_TITLE, QnA_WRITER,  "
-				+ "                QnA_ORIGINAL_FILENAME, QnA_RENAME_FILENAME,  "
-				+ "                QnA_DATE, QnA_LEVEL, QnA_REF, QnA_REPLY_REF,  "
-				+ "                QnA_REPLY_SEQ, QnA_READCOUNT, QnA_content "
-				+ "        FROM (SELECT * FROM QnA "
-				+ "                ORDER BY QnA_REF DESC, QnA_REPLY_REF DESC, "
-				+ "                          QnA_LEVEL ASC, QnA_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  QnA_DATE, QnA_READCOUNT, QnA_content , QnA_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM QnA "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,8 +175,9 @@ public class QnADao {
 				
 				QnA.setQnANo(rset.getInt("QnA_No"));
 				QnA.setQnATitle(rset.getString("QnA_title"));
-				QnA.setQnAWriter(rset.getString("QnA_writer"));
-				QnA.setQnAContent(rset.getString("QnA_content"));				QnA.setQnADate(rset.getDate("QnA_date"));
+				QnA.setQnAWriter(rset.getInt("QnA_writer"));
+				QnA.setQnAContent(rset.getString("QnA_content"));				
+				QnA.setQnADate(rset.getDate("QnA_date"));
 				QnA.setQnAOriginalFilename(rset.getString("QnA_original_filename"));
 				QnA.setQnARenameFilename(rset.getString("QnA_rename_filename"));
 				QnA.setQnARef(rset.getInt("QnA_ref"));
@@ -172,6 +185,7 @@ public class QnADao {
 				QnA.setQnAReplyRef(rset.getInt("QnA_reply_ref"));
 				QnA.setQnAReplySeq(rset.getInt("QnA_reply_seq"));
 				QnA.setQnAReadCount(rset.getInt("QnA_readcount"));
+				QnA.setQnALike(rset.getInt("QnA_like"));
 				
 				list.add(QnA);
 			}
@@ -199,7 +213,7 @@ public class QnADao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, QnA.getQnATitle());
-			pstmt.setString(2, QnA.getQnAWriter());
+			pstmt.setInt(2, QnA.getQnAWriter());
 			pstmt.setString(3, QnA.getQnAContent());
 			pstmt.setString(4, QnA.getQnAOriginalFilename());
 			pstmt.setString(5, QnA.getQnARenameFilename());
@@ -334,7 +348,7 @@ public class QnADao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getQnATitle());
-			pstmt.setString(2, reply.getQnAWriter());
+			pstmt.setInt(2, reply.getQnAWriter());
 			pstmt.setString(3, reply.getQnAContent());
 			pstmt.setInt(4, reply.getQnARef());
 			

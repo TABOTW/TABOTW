@@ -75,7 +75,7 @@ public class ReviewOriginUpdateServlet extends HttpServlet {
 		Review.setReviewNo(Integer.parseInt(
 				mrequest.getParameter("rNo")));
 		Review.setReviewTitle(mrequest.getParameter("title"));
-		Review.setReviewWriter(mrequest.getParameter("writer"));
+		Review.setReviewWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Review.setReviewContent(mrequest.getParameter("content"));
 
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));

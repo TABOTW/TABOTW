@@ -1,12 +1,13 @@
 package community.gallery.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Gallery implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
 	private int GalleryNo;  //게시글번호
-	private String GalleryWriter; //게시글 작성자 아이디
+	private int GalleryWriter; //게시글 작성자 아이디
 	private String GalleryTitle;  //게시글 제목
 	private String GalleryContent;  //게시글 내용
 	private String GalleryOriginalFilename;  //첨부파일 원래이름
@@ -17,17 +18,18 @@ public class Gallery implements java.io.Serializable {
 	private int GalleryReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int GalleryReadCount; //읽은 조회수
 	private java.sql.Date GalleryDate;  //게시글 등록 날짜
+	private int GalleryLike; // 추천수
 	
 	public Gallery() {}
 
-	public Gallery(String GalleryWriter, String GalleryTitle, String GalleryContent) {
+	public Gallery(int GalleryWriter, String GalleryTitle, String GalleryContent) {
 		super();
 		this.GalleryWriter = GalleryWriter;
 		this.GalleryTitle = GalleryTitle;
 		this.GalleryContent = GalleryContent;
 	}
 
-	public Gallery(String GalleryWriter, String GalleryTitle, 
+	public Gallery(int GalleryWriter, String GalleryTitle, 
 			String GalleryContent, String GalleryOriginalFilename,
 			String GalleryRenameFilename) {
 		super();
@@ -38,9 +40,9 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryRenameFilename = GalleryRenameFilename;
 	}
 
-	public Gallery(int GalleryNo, String GalleryWriter, String GalleryTitle, String GalleryContent, String GalleryOriginalFilename,
+	public Gallery(int GalleryNo, int GalleryWriter, String GalleryTitle, String GalleryContent, String GalleryOriginalFilename,
 			String GalleryRenameFilename, int GalleryRef, int GalleryLevel, int GalleryReplyRef, int GalleryReplySeq,
-			int GalleryReadCount, Date GalleryDate) {
+			int GalleryReadCount, Date GalleryDate, int GalleryLike) {
 		super();
 		this.GalleryNo = GalleryNo;
 		this.GalleryWriter = GalleryWriter;
@@ -54,6 +56,7 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryReplySeq = GalleryReplySeq;
 		this.GalleryReadCount = GalleryReadCount;
 		this.GalleryDate = GalleryDate;
+		this.GalleryLike = GalleryLike;
 	}
 
 	public int getGalleryNo() {
@@ -64,11 +67,11 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryNo = GalleryNo;
 	}
 
-	public String getGalleryWriter() {
+	public int getGalleryWriter() {
 		return GalleryWriter;
 	}
 
-	public void setGalleryWriter(String GalleryWriter) {
+	public void setGalleryWriter(int GalleryWriter) {
 		this.GalleryWriter = GalleryWriter;
 	}
 
@@ -151,6 +154,13 @@ public class Gallery implements java.io.Serializable {
 	public void setGalleryDate(java.sql.Date GalleryDate) {
 		this.GalleryDate = GalleryDate;
 	}
+	public int getGalleryLike() {
+		return GalleryLike;
+	}
+
+	public void setGalleryLike(int GalleryLike) {
+		this.GalleryLike = GalleryLike;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -162,8 +172,13 @@ public class Gallery implements java.io.Serializable {
 				+ ", GalleryContent=" + GalleryContent + ", GalleryOriginalFilename=" + GalleryOriginalFilename
 				+ ", GalleryRenameFilename=" + GalleryRenameFilename + ", GalleryRef=" + GalleryRef + ", GalleryLevel="
 				+ GalleryLevel + ", GalleryReplyRef=" + GalleryReplyRef + ", GalleryReplySeq=" + GalleryReplySeq
-				+ ", GalleryReadCount=" + GalleryReadCount + ", GalleryDate=" + GalleryDate + "]";
+				+ ", GalleryReadCount=" + GalleryReadCount + ", GalleryDate=" + GalleryDate + ", GalleryLike=" + GalleryLike + "]";
 	}
+
+	
+
+	
+
 	
 }
 

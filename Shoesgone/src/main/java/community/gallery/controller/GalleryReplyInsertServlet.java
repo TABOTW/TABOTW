@@ -44,7 +44,7 @@ public class GalleryReplyInsertServlet extends HttpServlet {
 		Gallery reply = new Gallery();
 		
 		reply.setGalleryTitle(request.getParameter("title"));
-		reply.setGalleryWriter(request.getParameter("writer"));
+		reply.setGalleryWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setGalleryContent(request.getParameter("content"));
 		
 		//원글 조회

@@ -265,6 +265,7 @@ h1, h2, h3, h4, h5, h6 {
       border: 1px solid transparent; }
   .genric-btn.primary {
     color: #fff;
+    font-weight: 600;
     background: #ffba00;
     border: 1px solid transparent; }
     .genric-btn.primary:hover {
@@ -5472,7 +5473,8 @@ label {
     padding-bottom: 0px; } }
 
 .comments-area {
-  background: #fafaff;
+  /* background: #fafaff; */
+  background: #fffbf138;
   border: 1px solid #eee;
   padding: 50px 30px;
   margin-top: 50px; }
@@ -5518,21 +5520,21 @@ label {
     padding: 2px 18px;
     font-size: 12px;
     display: block;
-    font-weight: 600;
+    /* font-weight: 600; */
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s; }
     .comments-area .btn-reply:hover {
-      background-color: #c5322d;
+      background-color: #ffba00;
       color: #fff; }
 
 .comment-form {
-  background: #fafaff;
+  background: #fffbf138;
   text-align: center;
   border: 1px solid #eee;
   padding: 47px 30px 43px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 40px; }
   .comment-form h4 {
     text-align: center;

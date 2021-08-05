@@ -44,7 +44,7 @@ public class QnAReplyInsertServlet extends HttpServlet {
 		QnA reply = new QnA();
 		
 		reply.setQnATitle(request.getParameter("title"));
-		reply.setQnAWriter(request.getParameter("writer"));
+		reply.setQnAWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setQnAContent(request.getParameter("content"));
 		
 		//원글 조회

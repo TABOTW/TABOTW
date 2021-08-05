@@ -44,7 +44,7 @@ public class FreeReplyInsertServlet extends HttpServlet {
 		Free reply = new Free();
 		
 		reply.setFreeTitle(request.getParameter("title"));
-		reply.setFreeWriter(request.getParameter("writer"));
+		reply.setFreeWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setFreeContent(request.getParameter("content"));
 		
 		//원글 조회

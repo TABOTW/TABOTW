@@ -1,12 +1,13 @@
 package community.review.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Review implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
 	private int ReviewNo;  //게시글번호
-	private String ReviewWriter; //게시글 작성자 아이디
+	private int ReviewWriter; //게시글 작성자 아이디
 	private String ReviewTitle;  //게시글 제목
 	private String ReviewContent;  //게시글 내용
 	private String ReviewOriginalFilename;  //첨부파일 원래이름
@@ -17,19 +18,20 @@ public class Review implements java.io.Serializable {
 	private int ReviewReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int ReviewReadCount; //읽은 조회수
 	private java.sql.Date ReviewDate;  //게시글 등록 날짜
-	private int reviewItemNo; //리뷰하는 물품 번호
-	private int reviewStar; //추천수?
+	private int ReviewItemNo; //리뷰하는 물품 번호
+	private int ReviewStar; //별점
+	private int ReviewLike; //추천수
 	
 	public Review() {}
 
-	public Review(String ReviewWriter, String ReviewTitle, String ReviewContent) {
+	public Review(int ReviewWriter, String ReviewTitle, String ReviewContent) {
 		super();
 		this.ReviewWriter = ReviewWriter;
 		this.ReviewTitle = ReviewTitle;
 		this.ReviewContent = ReviewContent;
 	}
 
-	public Review(String ReviewWriter, String ReviewTitle, 
+	public Review(int ReviewWriter, String ReviewTitle, 
 			String ReviewContent, String ReviewOriginalFilename,
 			String ReviewRenameFilename) {
 		super();
@@ -40,9 +42,9 @@ public class Review implements java.io.Serializable {
 		this.ReviewRenameFilename = ReviewRenameFilename;
 	}
 
-	public Review(int ReviewNo, String ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
+	public Review(int ReviewNo, int ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
 			String ReviewRenameFilename, int ReviewRef, int ReviewLevel, int ReviewReplyRef, int ReviewReplySeq,
-			int ReviewReadCount, Date ReviewDate, int reviewItemNo, int reviewStar) {
+			int ReviewReadCount, Date ReviewDate, int reviewItemNo, int reviewStar, int reviewLike) {
 		super();
 		this.ReviewNo = ReviewNo;
 		this.ReviewWriter = ReviewWriter;
@@ -56,8 +58,9 @@ public class Review implements java.io.Serializable {
 		this.ReviewReplySeq = ReviewReplySeq;
 		this.ReviewReadCount = ReviewReadCount;
 		this.ReviewDate = ReviewDate;
-		this.reviewItemNo = reviewItemNo;
-		this.reviewStar = reviewStar;
+		this.ReviewItemNo = ReviewItemNo;
+		this.ReviewStar = ReviewStar;
+		this.ReviewLike = ReviewLike;
 	}
 
 	public int getReviewNo() {
@@ -68,11 +71,11 @@ public class Review implements java.io.Serializable {
 		this.ReviewNo = ReviewNo;
 	}
 
-	public String getReviewWriter() {
+	public int getReviewWriter() {
 		return ReviewWriter;
 	}
 
-	public void setReviewWriter(String ReviewWriter) {
+	public void setReviewWriter(int ReviewWriter) {
 		this.ReviewWriter = ReviewWriter;
 	}
 
@@ -161,18 +164,25 @@ public class Review implements java.io.Serializable {
 	}
 	
 	public int getReviewItemNo() {
-		return reviewItemNo;
+		return ReviewItemNo;
 	}
 
 	public void setReviewItemNo(int reviewItemNo) {
-		this.reviewItemNo = reviewItemNo;
+		this.ReviewItemNo = ReviewItemNo;
 	}
 	public int getReviewStar() {
-		return reviewStar;
+		return ReviewStar;
 	}
 
 	public void setReviewStar(int reviewStar) {
-		this.reviewStar = reviewStar;
+		this.ReviewStar = ReviewStar;
+	}
+	public int getReviewLike() {
+		return ReviewLike;
+	}
+
+	public void setReviewLike(int reviewLike) {
+		this.ReviewLike = ReviewLike;
 	}
 
 	@Override
@@ -181,9 +191,15 @@ public class Review implements java.io.Serializable {
 				+ ", ReviewContent=" + ReviewContent + ", ReviewOriginalFilename=" + ReviewOriginalFilename
 				+ ", ReviewRenameFilename=" + ReviewRenameFilename + ", ReviewRef=" + ReviewRef + ", ReviewLevel="
 				+ ReviewLevel + ", ReviewReplyRef=" + ReviewReplyRef + ", ReviewReplySeq=" + ReviewReplySeq
-				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + ", reviewItemNo="
-				+ reviewItemNo + ", reviewStar=" + reviewStar + "]";
+				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + ", ReviewItemNo="
+				+ ReviewItemNo + ", ReviewStar=" + ReviewStar + ", ReviewLike=" + ReviewLike + "]";
 	}
+
+	
+
+
+		
+	
 	
 }
 

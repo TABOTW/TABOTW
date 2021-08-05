@@ -42,9 +42,9 @@ public class BestService {
 		return listCount;
 	}
 
-	public ArrayList<Best> selectList(int startRow, int endRow) {
+	public ArrayList<Best> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Best> list = bdao.selectList(conn, startRow, endRow);
+		ArrayList<Best> list = bdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}

@@ -44,7 +44,7 @@ public class BestReplyInsertServlet extends HttpServlet {
 		Best reply = new Best();
 		
 		reply.setBestTitle(request.getParameter("title"));
-		reply.setBestWriter(request.getParameter("writer"));
+		reply.setBestWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setBestContent(request.getParameter("content"));
 		
 		//원글 조회

@@ -33,28 +33,9 @@
 	<!-- End Banner Area -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-md-5">
-				<div class="sidebar-categories">
-					<div class="head">커뮤니티</div>
-					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
-						</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>갤러리</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>자유게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Q&A</a>
-							</li>
-					</ul>
-				</div>
-			</div>
+			
+			<%@ include file="/views/common/communityCategory.jsp" %>
+			
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="order_details_table">

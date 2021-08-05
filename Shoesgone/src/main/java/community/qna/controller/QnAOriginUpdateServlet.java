@@ -75,7 +75,7 @@ public class QnAOriginUpdateServlet extends HttpServlet {
 		QnA.setQnANo(Integer.parseInt(
 				mrequest.getParameter("qNo")));
 		QnA.setQnATitle(mrequest.getParameter("title"));
-		QnA.setQnAWriter(mrequest.getParameter("writer"));
+		QnA.setQnAWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		QnA.setQnAContent(mrequest.getParameter("content"));
 
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));

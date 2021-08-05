@@ -20,7 +20,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title></title>
+	<title>슈즈곤</title>
 	
 	<!--
 		CSS

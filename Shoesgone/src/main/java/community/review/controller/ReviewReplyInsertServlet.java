@@ -44,7 +44,7 @@ public class ReviewReplyInsertServlet extends HttpServlet {
 		Review reply = new Review();
 		
 		reply.setReviewTitle(request.getParameter("title"));
-		reply.setReviewWriter(request.getParameter("writer"));
+		reply.setReviewWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setReviewContent(request.getParameter("content"));
 		
 		//원글 조회

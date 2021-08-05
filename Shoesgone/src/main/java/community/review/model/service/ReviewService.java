@@ -42,9 +42,9 @@ public class ReviewService {
 		return listCount;
 	}
 
-	public ArrayList<Review> selectList(int startRow, int endRow) {
+	public ArrayList<Review> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = rdao.selectList(conn, startRow, endRow);
+		ArrayList<Review> list = rdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}

@@ -53,7 +53,6 @@ public class FreeDetailServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(free != null) {
 			view = request.getRequestDispatcher(
-					//"views/Free/FreeDetailView.jsp");
 					"views/community/free/freeDetailView.jsp");
 			request.setAttribute("free", free);
 			request.setAttribute("currentPage", currentPage);

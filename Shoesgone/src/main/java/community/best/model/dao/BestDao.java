@@ -66,7 +66,7 @@ public class BestDao {
 				
 				Best.setBestNo(BestNo);
 				Best.setBestTitle(rset.getString("Best_title"));
-				Best.setBestWriter(rset.getString("Best_writer"));
+				Best.setBestWriter(rset.getInt("Best_writer"));
 				Best.setBestContent(rset.getString("Best_content"));
 				Best.setBestOriginalFilename(rset.getString("Best_original_filename"));
 				Best.setBestRenameFilename(rset.getString("Best_rename_filename"));
@@ -76,6 +76,7 @@ public class BestDao {
 				Best.setBestReplyRef(rset.getInt("Best_reply_ref"));
 				Best.setBestReplySeq(rset.getInt("Best_reply_seq"));
 				Best.setBestReadCount(rset.getInt("Best_readcount"));
+				Best.setBestLike(rset.getInt("Best_like"));
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +137,31 @@ public class BestDao {
 	}
 
 	public ArrayList<Best> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Best> list = new ArrayList<Best>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Best_No, Best_TITLE, Best_WRITER,  " +
+		 * "                Best_ORIGINAL_FILENAME, Best_RENAME_FILENAME,  " +
+		 * "                Best_DATE, Best_LEVEL, Best_REF, Best_REPLY_REF,  " +
+		 * "                Best_REPLY_SEQ, Best_READCOUNT, Best_content , Best_like " +
+		 * "        FROM (SELECT * FROM Best " +
+		 * "                ORDER BY Best_REF DESC, Best_REPLY_REF DESC, " +
+		 * "                          Best_LEVEL ASC, Best_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Best_No, Best_TITLE, Best_WRITER,  "
-				+ "                Best_ORIGINAL_FILENAME, Best_RENAME_FILENAME,  "
-				+ "                Best_DATE, Best_LEVEL, Best_REF, Best_REPLY_REF,  "
-				+ "                Best_REPLY_SEQ, Best_READCOUNT, Best_content "
-				+ "        FROM (SELECT * FROM Best "
-				+ "                ORDER BY Best_REF DESC, Best_REPLY_REF DESC, "
-				+ "                          Best_LEVEL ASC, Best_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  Best_DATE, Best_READCOUNT, Best_content , Best_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM Best "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,8 +175,9 @@ public class BestDao {
 				
 				Best.setBestNo(rset.getInt("Best_No"));
 				Best.setBestTitle(rset.getString("Best_title"));
-				Best.setBestWriter(rset.getString("Best_writer"));
-				Best.setBestContent(rset.getString("Best_content"));				Best.setBestDate(rset.getDate("Best_date"));
+				Best.setBestWriter(rset.getInt("Best_writer"));
+				Best.setBestContent(rset.getString("Best_content"));				
+				Best.setBestDate(rset.getDate("Best_date"));
 				Best.setBestOriginalFilename(rset.getString("Best_original_filename"));
 				Best.setBestRenameFilename(rset.getString("Best_rename_filename"));
 				Best.setBestRef(rset.getInt("Best_ref"));
@@ -172,6 +185,7 @@ public class BestDao {
 				Best.setBestReplyRef(rset.getInt("Best_reply_ref"));
 				Best.setBestReplySeq(rset.getInt("Best_reply_seq"));
 				Best.setBestReadCount(rset.getInt("Best_readcount"));
+				Best.setBestLike(rset.getInt("Best_like"));
 				
 				list.add(Best);
 			}
@@ -199,7 +213,7 @@ public class BestDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Best.getBestTitle());
-			pstmt.setString(2, Best.getBestWriter());
+			pstmt.setInt(2, Best.getBestWriter());
 			pstmt.setString(3, Best.getBestContent());
 			pstmt.setString(4, Best.getBestOriginalFilename());
 			pstmt.setString(5, Best.getBestRenameFilename());
@@ -334,7 +348,7 @@ public class BestDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getBestTitle());
-			pstmt.setString(2, reply.getBestWriter());
+			pstmt.setInt(2, reply.getBestWriter());
 			pstmt.setString(3, reply.getBestContent());
 			pstmt.setInt(4, reply.getBestRef());
 			

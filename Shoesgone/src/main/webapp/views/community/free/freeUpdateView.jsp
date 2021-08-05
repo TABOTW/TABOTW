@@ -33,7 +33,7 @@
 			<div class="billing_details">
 				<div class="row">
 					<div class="col-lg-8">
-						<h3>글쓰기</h3>
+						<h3>글 수정하기</h3>
 						<form class="row contact_form" action="#" method="post"
 							novalidate="novalidate">
 							<div class="col-md-6 form-group p_star">
@@ -95,8 +95,8 @@
 		</div>
 	</section>
 	<!--================End Checkout Area =================-->
-	<%@ include file="/views/common/footer.jsp" %>
 
-	
+		<%@ include file="/views/common/footer.jsp" %>
+
 </body>
 </html>

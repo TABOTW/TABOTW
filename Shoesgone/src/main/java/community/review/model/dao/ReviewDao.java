@@ -66,7 +66,7 @@ public class ReviewDao {
 				
 				Review.setReviewNo(ReviewNo);
 				Review.setReviewTitle(rset.getString("Review_title"));
-				Review.setReviewWriter(rset.getString("Review_writer"));
+				Review.setReviewWriter(rset.getInt("Review_writer"));
 				Review.setReviewContent(rset.getString("Review_content"));
 				Review.setReviewOriginalFilename(rset.getString("Review_original_filename"));
 				Review.setReviewRenameFilename(rset.getString("Review_rename_filename"));
@@ -76,6 +76,7 @@ public class ReviewDao {
 				Review.setReviewReplyRef(rset.getInt("Review_reply_ref"));
 				Review.setReviewReplySeq(rset.getInt("Review_reply_seq"));
 				Review.setReviewReadCount(rset.getInt("Review_readcount"));
+				Review.setReviewLike(rset.getInt("Review_like"));			
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +137,31 @@ public class ReviewDao {
 	}
 
 	public ArrayList<Review> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Review> list = new ArrayList<Review>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Review_No, Review_TITLE, Review_WRITER,  " +
+		 * "                Review_ORIGINAL_FILENAME, Review_RENAME_FILENAME,  " +
+		 * "                Review_DATE, Review_LEVEL, Review_REF, Review_REPLY_REF,  "
+		 * + "                Review_REPLY_SEQ, Review_READCOUNT, Review_content , Review_like " +
+		 * "        FROM (SELECT * FROM Review " +
+		 * "                ORDER BY Review_REF DESC, Review_REPLY_REF DESC, " +
+		 * "                          Review_LEVEL ASC, Review_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Review_No, Review_TITLE, Review_WRITER,  "
-				+ "                Review_ORIGINAL_FILENAME, Review_RENAME_FILENAME,  "
-				+ "                Review_DATE, Review_LEVEL, Review_REF, Review_REPLY_REF,  "
-				+ "                Review_REPLY_SEQ, Review_READCOUNT, Review_content "
-				+ "        FROM (SELECT * FROM Review "
-				+ "                ORDER BY Review_REF DESC, Review_REPLY_REF DESC, "
-				+ "                          Review_LEVEL ASC, Review_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  Review_DATE, Review_READCOUNT, Review_content , Review_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM Review "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,8 +175,9 @@ public class ReviewDao {
 				
 				Review.setReviewNo(rset.getInt("Review_No"));
 				Review.setReviewTitle(rset.getString("Review_title"));
-				Review.setReviewWriter(rset.getString("Review_writer"));
-				Review.setReviewContent(rset.getString("Review_content"));				Review.setReviewDate(rset.getDate("Review_date"));
+				Review.setReviewWriter(rset.getInt("Review_writer"));
+				Review.setReviewContent(rset.getString("Review_content"));				
+				Review.setReviewDate(rset.getDate("Review_date"));
 				Review.setReviewOriginalFilename(rset.getString("Review_original_filename"));
 				Review.setReviewRenameFilename(rset.getString("Review_rename_filename"));
 				Review.setReviewRef(rset.getInt("Review_ref"));
@@ -199,7 +212,7 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Review.getReviewTitle());
-			pstmt.setString(2, Review.getReviewWriter());
+			pstmt.setInt(2, Review.getReviewWriter());
 			pstmt.setString(3, Review.getReviewContent());
 			pstmt.setString(4, Review.getReviewOriginalFilename());
 			pstmt.setString(5, Review.getReviewRenameFilename());
@@ -334,7 +347,7 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reply.getReviewTitle());
-			pstmt.setString(2, reply.getReviewWriter());
+			pstmt.setInt(2, reply.getReviewWriter());
 			pstmt.setString(3, reply.getReviewContent());
 			pstmt.setInt(4, reply.getReviewRef());
 			

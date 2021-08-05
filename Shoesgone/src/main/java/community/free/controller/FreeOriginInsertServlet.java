@@ -76,7 +76,7 @@ public class FreeOriginInsertServlet extends HttpServlet {
 		Free Free = new Free();
 
 		Free.setFreeTitle(mrequest.getParameter("title"));
-		Free.setFreeWriter(mrequest.getParameter("writer"));
+		Free.setFreeWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Free.setFreeContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출

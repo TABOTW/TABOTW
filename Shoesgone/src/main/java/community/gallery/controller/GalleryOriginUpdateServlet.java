@@ -75,9 +75,7 @@ public class GalleryOriginUpdateServlet extends HttpServlet {
 		Gallery.setGalleryNo(Integer.parseInt(
 				mrequest.getParameter("gNo")));
 		Gallery.setGalleryTitle(mrequest.getParameter("title"));
-		Gallery.setGalleryWriter(mrequest.getParameter("writer"));
 		Gallery.setGalleryContent(mrequest.getParameter("content"));
-
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));
 		
 		// 이전 첨부파일에 대한 삭제여부 값 추출

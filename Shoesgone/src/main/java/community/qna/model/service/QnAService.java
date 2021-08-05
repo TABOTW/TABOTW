@@ -42,9 +42,9 @@ public class QnAService {
 		return listCount;
 	}
 
-	public ArrayList<QnA> selectList(int startRow, int endRow) {
+	public ArrayList<QnA> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<QnA> list = qdao.selectList(conn, startRow, endRow);
+		ArrayList<QnA> list = qdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}

@@ -42,9 +42,9 @@ public class GalleryService {
 		return listCount;
 	}
 
-	public ArrayList<Gallery> selectList(int startRow, int endRow) {
+	public ArrayList<Gallery> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Gallery> list = gdao.selectList(conn, startRow, endRow);
+		ArrayList<Gallery> list = gdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}
