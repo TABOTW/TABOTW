@@ -107,4 +107,12 @@ public class ItemPictureService {
 		close(conn);
 		return list;
 	}
+
+	// ItemPictureDao의 selectCollectionList() 값을 받아서 전달하는 메소드
+	public ArrayList<ItemPicture> selectCollectionList(String collection) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectCollectionList(conn, collection);
+		close(conn);
+		return list;
+	}
 }

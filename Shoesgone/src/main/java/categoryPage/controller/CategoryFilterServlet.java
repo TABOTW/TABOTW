@@ -39,6 +39,7 @@ public class CategoryFilterServlet extends HttpServlet {
 		String size = request.getParameter("size");
 		String priceone = request.getParameter("priceone");
 		String pricetwo = request.getParameter("pricetwo");
+		String collection = request.getParameter("collection");
 		ArrayList<ItemPicture> item = null;
 		
 		if (category.equals("sneakers")) {
@@ -53,6 +54,8 @@ public class CategoryFilterServlet extends HttpServlet {
 			item = new ItemPictureService().selectPrice2List(priceone, pricetwo);
 		} else if (category.equals("price3")) {
 			item = new ItemPictureService().selectPrice3List(priceone);
+		} else if (category.equals("collection")) {
+			item = new ItemPictureService().selectCollectionList(collection);
 		}
 				
 		

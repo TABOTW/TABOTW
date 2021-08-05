@@ -93,7 +93,7 @@
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Jordan 4">Jordan 4<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Jordan 6">Jordan 6<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Nike Dunk">Dunk<span class="number"></span></a></li>
-								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Nike Air Force">Air Force<span class="number"></span></a></li>
+								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Air Force">Nike Air Force<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=New Balance 327">New Balance 327<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=New Balance 992">New Balance 992<span class="number"></span></a></li>
 								<li class="main-nav-list child"><a href="/Shoesgone/categoryfilter?category=collection&collection=Adidas Yeezy">Adidas Yeezy<span class="number"></span></a></li>
