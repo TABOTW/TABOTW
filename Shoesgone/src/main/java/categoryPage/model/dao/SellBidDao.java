@@ -54,5 +54,4 @@ public class SellBidDao {
 		}
 		return list;
 	}
-
 }

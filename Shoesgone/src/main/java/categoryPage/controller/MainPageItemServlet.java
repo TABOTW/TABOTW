@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import categoryPage.model.service.BuyBidService;
 import categoryPage.model.service.ItemService;
+import categoryPage.model.service.NoticeService;
 import categoryPage.model.service.PictureService;
 import categoryPage.model.service.SellBidService;
 import categoryPage.model.vo.BuyBid;
 import categoryPage.model.vo.Item;
+import categoryPage.model.vo.Notice;
 import categoryPage.model.vo.Picture;
 import categoryPage.model.vo.SellBid;
 
@@ -55,6 +57,7 @@ public class MainPageItemServlet extends HttpServlet {
 		ArrayList<BuyBid> newSellPrice3 = new BuyBidService().selectNewSellList();
 		ArrayList<Item> upcomingRelease1 = new ItemService().selectUpcomingList();
 		ArrayList<Picture> upcomingRelease2 = new PictureService().selectUpcomingList();
+		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		
 		RequestDispatcher view = null;
 
@@ -64,7 +67,8 @@ public class MainPageItemServlet extends HttpServlet {
 				&& recItem1.size() > 0 && recItem2.size() > 0
 				&& newBuyPrice1.size() > 0 && newBuyPrice2.size() > 0 && newBuyPrice3.size() > 0
 				&& newSellPrice1.size() > 0 && newSellPrice2.size() > 0 && newSellPrice3.size() > 0
-				&& upcomingRelease1.size() > 0 && upcomingRelease2.size() > 0) {
+				&& upcomingRelease1.size() > 0 && upcomingRelease2.size() > 0
+				&& notice.size() > 0) {
 			view = request.getRequestDispatcher("index.jsp");
 			
 	        request.setAttribute("regItem1", regItem1);
@@ -81,6 +85,7 @@ public class MainPageItemServlet extends HttpServlet {
 	        request.setAttribute("newSellPrice3", newSellPrice3);
 	        request.setAttribute("upcomingRelease1", upcomingRelease1);
 	        request.setAttribute("upcomingRelease2", upcomingRelease2);
+	        request.setAttribute("notice", notice);
 	        
 	        view.forward(request, response);
 		} else { 

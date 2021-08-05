@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="categoryPage.model.vo.Item, categoryPage.model.vo.Picture, categoryPage.model.vo.SellBid, categoryPage.model.vo.BuyBid, java.util.ArrayList" %>
+<%@ page import="categoryPage.model.vo.Item, categoryPage.model.vo.Picture, categoryPage.model.vo.SellBid, categoryPage.model.vo.BuyBid, categoryPage.model.vo.Notice, java.util.ArrayList" %>
 <%
 	ArrayList<Item> regItem1 = (ArrayList<Item>)request.getAttribute("regItem1");
 	ArrayList<Picture> regItem2 = (ArrayList<Picture>)request.getAttribute("regItem2");
@@ -14,9 +14,9 @@
 	ArrayList<Item> newSellPrice1 = (ArrayList<Item>)request.getAttribute("newSellPrice1");
 	ArrayList<Picture> newSellPrice2 = (ArrayList<Picture>)request.getAttribute("newSellPrice2");
 	ArrayList<BuyBid> newSellPrice3 = (ArrayList<BuyBid>)request.getAttribute("newSellPrice3");
-	
 	ArrayList<Item> upcomingRelease1 = (ArrayList<Item>)request.getAttribute("upcomingRelease1");
 	ArrayList<Picture> upcomingRelease2 = (ArrayList<Picture>)request.getAttribute("upcomingRelease2");
+	ArrayList<Notice> notice = (ArrayList<Notice>)request.getAttribute("notice");
 %>
 <!DOCTYPE html>
 <html>
@@ -97,10 +97,10 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=11';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(0).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>택배사 휴무 안내</h1>
+									<h1><%= notice.get(0).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -112,10 +112,10 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=10';">
+						<div class="row single-slide" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(1).getNoticeNo() %>';">
 							<div class="col-lg-5">
 								<div class="banner-content">
-									<h1>개인정보 이용 처리방침 변경 안내</h1>
+									<h1><%= notice.get(1).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -127,10 +127,10 @@
 							</div>
 						</div>
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=9';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(2).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>부정거래 이용제한 조치 안내</h1>
+									<h1><%= notice.get(2).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -141,10 +141,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=8';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(3).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>가품거래 시도와 관련한 조치사항</h1>
+									<h1><%= notice.get(3).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -155,10 +155,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=7';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(4).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>이용약관 변경 안내</h1>
+									<h1><%= notice.get(4).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -169,10 +169,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=6';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(5).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>7월 이벤트 당첨자 안내</h1>
+									<h1><%= notice.get(5).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -183,10 +183,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=5';">
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/ndetail?noticeNo=<%= notice.get(6).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>휴무일 안내</h1>
+									<h1><%= notice.get(6).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
