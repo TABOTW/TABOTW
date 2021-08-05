@@ -70,7 +70,20 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("views/loginPage/login.jsp");
 			} else if (menu.equals("logout")) {
 				view = request.getRequestDispatcher("logout");
+			} else if (menu.equals("registration")) {
+				view = request.getRequestDispatcher("views/loginPage/registration.jsp");
+			} else if (menu.equals("searchid")) {
+				view = request.getRequestDispatcher("views/loginPage/searchId.jsp");
+			} else if (menu.equals("searchpassword")) {
+				view = request.getRequestDispatcher("views/loginPage/searchPassword.jsp");
+			} else if (menu.equals("resultid")) {
+				view = request.getRequestDispatcher("searchid");
+			} else if (menu.equals("resultpassword")) {
+				view = request.getRequestDispatcher("searchpwd");
+			} else if (menu.equals("normallogin")) {
+				view = request.getRequestDispatcher("login");
 			}
+			
 			request.setAttribute("search", search);
 			
 			view.forward(request, response);
