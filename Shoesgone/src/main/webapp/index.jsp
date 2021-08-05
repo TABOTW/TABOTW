@@ -775,6 +775,8 @@
 	<%@ include file="views/common/footer.jsp" %>
 
 	<script src="/Shoesgone/resources/js/instafeed.min.js"></script>
+	<script src="/Shoesgone/resources/js/jquery-ui.min.js"></script>
+	<script src="/Shoesgone/resources/js/animated_bg.js"></script>
 	<script>
 	    var feed1 = new Instafeed({
 	    	target: 'today-style',
@@ -791,6 +793,15 @@
 	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
 	    });
 	    feed2.run();
+	</script>
+	
+	<script>
+		jQuery(document).ready(function(){
+			$('.banner-area').animatedBG({
+				colorSet: ['rgb(20, 122, 61)', 'rgb(58, 194, 162)', 'rgb(77, 89, 81)', 'rgb(225, 218, 204)', 'rgb(249, 249, 249)'],
+				speed: 2000
+			});
+		});
 	</script>
 </body>
 </html>

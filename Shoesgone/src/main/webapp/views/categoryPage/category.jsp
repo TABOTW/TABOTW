@@ -287,7 +287,7 @@
 				$.ajax({
 					type: 'GET',
 					data: { "sortValue": sortValue },
-					url: 'categorysort'
+					url: 'categoryfilter'
 				});
 			});
 		});

@@ -42,6 +42,7 @@ public class CategoryFilterServlet extends HttpServlet {
 		String collection = request.getParameter("collection");
 		ArrayList<ItemPicture> item = null;
 		
+		// 카테고리 종류에 따른 조건문
 		if (category.equals("sneakers")) {
 			item = new ItemPictureService().selectSneakersList();
 		} else if (category.equals("brand")) {
@@ -57,7 +58,6 @@ public class CategoryFilterServlet extends HttpServlet {
 		} else if (category.equals("collection")) {
 			item = new ItemPictureService().selectCollectionList(collection);
 		}
-				
 		
 		RequestDispatcher view = null;
 		
