@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import categoryPage.model.service.ItemPictureService;
+import categoryPage.model.service.ItemService;
+import categoryPage.model.service.NoticeService;
+import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
+import categoryPage.model.vo.Notice;
 
 /**
  * Servlet implementation class MenubarSearchServlet
@@ -36,6 +40,13 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		String menu = request.getParameter("menu");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
+		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
+		ArrayList<Item> regItem = new ItemService().selectRegList();
+		ArrayList<Item> hotItem = new ItemService().selectHotList();
+		ArrayList<Item> recItem = new ItemService().selectRecList();
+		ArrayList<Item> newBuyPrice = new ItemService().selectNewBuyList();
+		ArrayList<Item> newSellPrice = new ItemService().selectNewSellList();
+		ArrayList<Item> upcomingRelease = new ItemService().selectUpcomingList();
 		
 		if (menu == null) {
 			menu = "main";
@@ -43,7 +54,9 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if (search.size() > 0) {
+		if (search.size() > 0 && notice.size() > 0 && regItem.size() > 0
+				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
+				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
@@ -82,6 +95,78 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("searchpwd");
 			} else if (menu.equals("normallogin")) {
 				view = request.getRequestDispatcher("login");
+			} else if (menu.equals("notice1")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(0).getNoticeNo());
+			} else if (menu.equals("notice2")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(1).getNoticeNo());
+			} else if (menu.equals("notice3")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(2).getNoticeNo());
+			} else if (menu.equals("notice4")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(3).getNoticeNo());
+			} else if (menu.equals("notice5")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(4).getNoticeNo());
+			} else if (menu.equals("notice6")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(5).getNoticeNo());
+			} else if (menu.equals("notice7")) {
+				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(6).getNoticeNo());
+			} else if (menu.equals("faq")) {
+				view = request.getRequestDispatcher("flist");
+			} else if (menu.equals("regitem1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + regItem.get(0).getItemNo());
+			} else if (menu.equals("regitem2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + regItem.get(1).getItemNo());
+			} else if (menu.equals("regitem3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + regItem.get(2).getItemNo());
+			} else if (menu.equals("regitem4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + regItem.get(3).getItemNo());
+			} else if (menu.equals("hotitem1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + hotItem.get(0).getItemNo());
+			} else if (menu.equals("hotitem2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + hotItem.get(1).getItemNo());
+			} else if (menu.equals("hotitem3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + hotItem.get(2).getItemNo());
+			} else if (menu.equals("hotitem4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + hotItem.get(3).getItemNo());
+			} else if (menu.equals("recitem1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + recItem.get(0).getItemNo());
+			} else if (menu.equals("recitem2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + recItem.get(1).getItemNo());
+			} else if (menu.equals("recitem3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + recItem.get(2).getItemNo());
+			} else if (menu.equals("recitem4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + recItem.get(3).getItemNo());
+			} else if (menu.equals("newbuyprice1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newBuyPrice.get(0).getItemNo());
+			} else if (menu.equals("newbuyprice2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newBuyPrice.get(1).getItemNo());
+			} else if (menu.equals("newbuyprice3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newBuyPrice.get(2).getItemNo());
+			} else if (menu.equals("newbuyprice4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newBuyPrice.get(3).getItemNo());
+			} else if (menu.equals("newsellprice1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newSellPrice.get(0).getItemNo());
+			} else if (menu.equals("newsellprice2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newSellPrice.get(1).getItemNo());
+			} else if (menu.equals("newsellprice3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newSellPrice.get(2).getItemNo());
+			} else if (menu.equals("newsellprice4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + newSellPrice.get(3).getItemNo());
+			} else if (menu.equals("upcomingrelease1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + upcomingRelease.get(0).getItemNo());
+			} else if (menu.equals("upcomingrelease2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + upcomingRelease.get(1).getItemNo());
+			} else if (menu.equals("upcomingrelease3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + upcomingRelease.get(2).getItemNo());
+			} else if (menu.equals("upcomingrelease4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=" + upcomingRelease.get(3).getItemNo());
+			} else if (menu.equals("ad1")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=21");
+			} else if (menu.equals("ad2")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=22");
+			} else if (menu.equals("ad3")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=23");
+			} else if (menu.equals("ad4")) {
+				view = request.getRequestDispatcher("ItemDV?itemno=24");
 			}
 			
 			request.setAttribute("search", search);
