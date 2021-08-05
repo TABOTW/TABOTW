@@ -20,12 +20,13 @@ public class SellBidDao {
 		String query = "select * "
 				+ "from(select rownum, sell_bid.* "
 				+ "    from sell_bid "
-				+ "    where price in (select max(sell_bid.price) "
+				+ "    where price in (select min(sell_bid.price) "
 				+ "                    from sell_bid "
 				+ "                    join item on item.item_no = sell_bid.item_no "
 				+ "                    group by item.item_no) "
 				+ "    order by reg_date desc) "
-				+ "where rownum <=4";
+				+ "where rownum <=4 "
+				+ "order by price";
 		
 		try {
 			stmt = conn.createStatement();
