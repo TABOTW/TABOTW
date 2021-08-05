@@ -16,14 +16,14 @@ import itemPage.model.vo.ItemPicture;
 /**
  * Servlet implementation class CategoryItemServlet
  */
-@WebServlet("/categoryitem")
-public class CategoryItemServlet extends HttpServlet {
+@WebServlet("/categorysort")
+public class CategorySortServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoryItemServlet() {
+    public CategorySortServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

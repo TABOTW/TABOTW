@@ -283,7 +283,7 @@
 				$.ajax({
 					type: 'GET',
 					data: { "sortValue": sortValue },
-					url: 'categoryitem'
+					url: 'categorysort'
 				});
 			});
 		});

@@ -52,7 +52,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Shoesgone/categoryitem">SHOP</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Shoesgone/categorysort">SHOP</a></li>
 							<% if(loginMember != null){ %>
 								<% if(loginMember.getMgr().toString().equals("Y")){ %>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">관리자페이지</a></li>
