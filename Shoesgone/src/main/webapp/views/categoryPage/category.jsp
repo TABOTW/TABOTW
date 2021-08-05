@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="categoryPage.model.vo.ItemPicture, java.util.ArrayList" %>
+<%@ page import="categoryPage.model.vo.ItemPicture, java.util.*" %>
 <%
 	ArrayList<ItemPicture> item = (ArrayList<ItemPicture>)request.getAttribute("item");
+	Random random = new Random();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,27 @@
 		}
 		
 		#orange-bar{
-			background-color: orange;
+			background-color: #ff9f00;
+		}
+		
+		.item-background-color1{
+			background-color: rgb(241, 241, 234);
+		}
+		
+		.item-background-color2{
+			background-color: rgb(244, 244, 244);
+		}
+		
+		.item-background-color3{
+			background-color: rgb(235, 240, 245);
+		}
+		
+		.item-background-color4{
+			background-color: rgb(246, 238, 237);
+		}
+		
+		.item-background-color5{
+			background-color: rgb(231, 239, 236);
 		}
 	</style>
 </head>
@@ -249,7 +270,7 @@
 						<!-- single product -->
 						<div class="col-lg-3 col-md-6 cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= ip.getItemNo() %>';">
 							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= ip.getPicturepath() %>" alt="">
+								<img class="img-fluid item-background-color<%= random.nextInt(5) + 1 %>" src="/Shoesgone/resources/img/shoes_images/<%= ip.getPicturepath() %>" alt="">
 								<div class="product-details">
 									<h6><%= ip.getItemKrName() %></h6>
 									<div class="price">
