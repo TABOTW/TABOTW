@@ -84,6 +84,26 @@
 		#cursor-pointer{
 			cursor: pointer;
 		}
+		
+		.item-background-color1{
+			background-color: rgb(241, 241, 234);
+		}
+		
+		.item-background-color2{
+			background-color: rgb(244, 244, 244);
+		}
+		
+		.item-background-color3{
+			background-color: rgb(235, 240, 245);
+		}
+		
+		.item-background-color4{
+			background-color: rgb(246, 238, 237);
+		}
+		
+		.item-background-color5{
+			background-color: rgb(231, 239, 236);
+		}
 	</style>
 </head>
 <body>
@@ -107,7 +127,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -122,7 +142,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -137,7 +157,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -151,7 +171,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -165,7 +185,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -179,7 +199,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -193,7 +213,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner/banner-img.png" alt="">
+									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -227,7 +247,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color1" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= regItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -241,7 +261,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= regItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -255,7 +275,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= regItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -269,7 +289,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= regItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= regItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= regItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
@@ -338,7 +358,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= hotItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -352,7 +372,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= hotItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -366,7 +386,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= hotItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -380,7 +400,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= hotItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color4" src="/Shoesgone/resources/img/shoes_images/<%= hotItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= hotItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
@@ -448,7 +468,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= recItem1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -462,7 +482,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= recItem1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -476,7 +496,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= recItem1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -490,7 +510,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= recItem1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= recItem2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= recItem1.get(3).getItemKrName() %></h6>
 								<div class="price">
@@ -539,7 +559,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newBuyPrice1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -553,7 +573,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newBuyPrice1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -567,7 +587,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newBuyPrice1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -581,7 +601,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newBuyPrice1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= newBuyPrice2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newBuyPrice1.get(3).getItemKrName() %></h6>
 								<div class="price">
@@ -615,7 +635,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newSellPrice1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -629,7 +649,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color4" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newSellPrice1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -643,7 +663,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newSellPrice1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -657,7 +677,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= newSellPrice1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color1" src="/Shoesgone/resources/img/shoes_images/<%= newSellPrice2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= newSellPrice1.get(3).getItemKrName() %></h6>
 								<div class="price">
@@ -706,7 +726,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(0).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(0).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(0).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= upcomingRelease1.get(0).getItemKrName() %></h6>
 								<div class="price">
@@ -720,7 +740,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(1).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(1).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color3" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(1).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= upcomingRelease1.get(1).getItemKrName() %></h6>
 								<div class="price">
@@ -734,7 +754,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(2).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(2).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color5" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(2).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= upcomingRelease1.get(2).getItemKrName() %></h6>
 								<div class="price">
@@ -748,7 +768,7 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6" id="cursor-pointer" onclick="location.href='/Shoesgone/ItemDV?itemno=<%= upcomingRelease1.get(3).getItemNo() %>';">
 						<div class="single-product">
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(3).getPicturepath() %>" alt="">
+							<img class="img-fluid item-background-color2" src="/Shoesgone/resources/img/shoes_images/<%= upcomingRelease2.get(3).getPicturepath() %>" alt="">
 							<div class="product-details">
 								<h6><%= upcomingRelease1.get(3).getItemKrName() %></h6>
 								<div class="price">
