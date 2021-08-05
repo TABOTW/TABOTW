@@ -35,6 +35,39 @@
 	<link rel="stylesheet" href="/Shoesgone/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/main.css">
 	<link rel="stylesheet" href="/Shoesgone/resources/css/newMine.css">	
+	
+	<style>
+		.listBox{
+			max-width: 500px;
+		}
+		
+		.listInner{
+			margin: 10px 5px;
+			padding: 4px;
+			display: none;
+		}
+		
+		.engname{
+			font-weight: bold;
+			color: white;
+		}
+		
+		.krname{
+			color: white;
+		}
+		
+		.picturepath{
+			width: 20%;
+		}
+		
+		.white-color{
+			background-color: white;
+		}
+		
+		.cursor-pointer{
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
 	<!-- Start Header Area -->
@@ -104,13 +137,16 @@
 				</form>
 			</div>
 		    <div>
-		    	<% for (ItemPicture ip: search){ %>
-		    	<div class="listInner" style="display: none;">
-		    		<p><span class="engname"><%= ip.getItemEngName() %></span><br>
-		    		<span class="krname"><%= ip.getItemKrName() %></span><br>
-		    		<span class="picturepath"><%= ip.getPicturepath() %></span></p>
+		    	<div class="listBox">
+		    		<% for (ItemPicture ip: search){ %>
+			    	<div class="listInner cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=item<%= ip.getItemNo() %>'">
+			    		<p><img class="picturepath" src="/Shoesgone/resources/img/shoes_images/<%= ip.getPicturepath() %>"><br>
+			    		<span class="engname"><%= ip.getItemEngName() %></span><br>
+			    		<span class="krname"><%= ip.getItemKrName() %></span></p>
+			    		<hr class="white-color">
+			      	</div>
+			      	<% } %>
 		      	</div>
-		      	<% } %>
 		    </div>
 		</div>
 	</header>
@@ -129,7 +165,7 @@
         		  krname[0].innerHTML.toLowerCase().indexOf(search) != -1 ||
         		  picturepath[0].innerHTML.toLowerCase().indexOf(search) != -1
           ) {
-            listInner[i].style.display = "flex"
+            listInner[i].style.display = "block"
           } else {
             listInner[i].style.display = "none"
           }
