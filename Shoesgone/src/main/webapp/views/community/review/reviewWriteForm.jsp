@@ -52,7 +52,7 @@
 									<th colspan="2">
 										<input type="submit" value="등록하기"> &nbsp; 
 										<input type="reset" value="작성취소"> &nbsp; 
-										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/reviewlist?page=1'; return false;">
+										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=reviewpage&page=1'; return false;">
 									</th>
 								</tr>
 							</div>
