@@ -94,8 +94,8 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							</div>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/Shoesgone/buyaccept?itemno=<%= item.getItemNo() %>">구매하기</a>
-							<a class="primary-btn" href="/Shoesgone/sellaccept?itemno=<%= item.getItemNo() %>">판매하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=buyaccept&itemno=<%= item.getItemNo() %>">구매하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=sellaccept&itemno=<%= item.getItemNo() %>">판매하기</a>
 							<!-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i]\ class="lnr lnr lnr-heart"></i></a> -->
 						</div>

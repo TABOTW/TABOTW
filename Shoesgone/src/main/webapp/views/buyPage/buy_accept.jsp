@@ -46,7 +46,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
-					<form action="/Shoesgone/orlist">
+					<form action="/Shoesgone/menubarsearch?menu=orlist">
 						<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
 						<input type="hidden" name="itemengname" value="<%= item.getItemEngName() %>">
 						<input type="hidden" name="itemkrname" value="<%= item.getItemKrName() %>">
@@ -84,7 +84,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 								</p>
 							</div>
 							<div class="card_area d-flex align-items-center">
-								<a href="/Shoesgone/views/buyPage/check_buy_standard.jsp" class="genric-btn primary circle">검수기준</a> &nbsp; &nbsp;
+								<a href="/Shoesgone/menubarsearch?menu=check_buy_standard" class="genric-btn primary circle">검수기준</a> &nbsp; &nbsp;
 								<input type="submit" value="즉시 구매" class="genric-btn primary circle">
 							</div>
 						</div>

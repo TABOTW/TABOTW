@@ -40,6 +40,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		String menu = request.getParameter("menu");
 		String text = request.getParameter("text");
+		String itemno = request.getParameter("itemno");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
@@ -268,6 +269,18 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("categorysort?sortValue=sort-drop");
 			} else if (menu.equals("text")) {
 				view = request.getRequestDispatcher("menubarsearchenter?text=" + text);
+			} else if (menu.equals("buyaccept")) {
+				view = request.getRequestDispatcher("buyaccept?itemno=" + itemno);
+			} else if (menu.equals("sellaccept")) {
+				view = request.getRequestDispatcher("sellaccept?itemno=" + itemno);
+			} else if (menu.equals("check_buy_standard")) {
+				view = request.getRequestDispatcher("views/buyPage/check_buy_standard.jsp");
+			} else if (menu.equals("orlist")) {
+				view = request.getRequestDispatcher("orlist");
+			} else if (menu.equals("check_sell_standard")) {
+				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
+			} else if (menu.equals("regselect")) {
+				view = request.getRequestDispatcher("regselect");
 			} else {
 				for (int i = 0; i < search.size(); i++) {
 					if (menu.equals("item" + (i + 1))) {
