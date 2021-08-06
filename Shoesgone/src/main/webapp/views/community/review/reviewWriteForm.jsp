@@ -35,7 +35,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>글쓰기</h3>
-						<form class="row contact_form" action="/Shoesgone/reviewinsert" method="post"
+						<form class="row contact_form" action="/Shoesgone/menubarsearch?menu=reviewinsert" method="post"
 							novalidate="novalidate" enctype="multipart/form-data">
 							<div class="col-md-6 form-group p_star">
 								<select class="country_select">
