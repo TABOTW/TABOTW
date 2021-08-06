@@ -240,7 +240,7 @@
     
 	function movePage(page) {
 		
-		location.href = "/Shoesgone/gallerylist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
+		location.href = "/Shoesgone/menubarsearch?menu=gallerylist&page=" + page + "&limit=" + limit + "&sort=" + gsort;
 	};
 	
 	function prev() {
