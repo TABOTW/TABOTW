@@ -95,7 +95,7 @@
 							<div class="table-row">
 								<div class="boardno"><%= free.getFreeNo() %></div>
 								<div class="boardtitle">
-									<a href="/Shoesgone/freedetail?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>"><%= free.getFreeTitle() %></a>
+									<a href="/Shoesgone/menubarsearch?menu=free<%= free.getFreeNo() %>&page=<%= currentPage %>"><%= free.getFreeTitle() %></a>
 								</div>
 								<div class="register"><%= free.getFreeWriter() %></div>
 								<div class="registdate"><%= free.getFreeDate()%></div>
@@ -255,7 +255,7 @@
     
 	function movePage(page) {
 		
-		location.href = "/Shoesgone/freelist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
+		location.href = "/Shoesgone/menubarsearch?menu=freelist&page=" + page + "&limit=" + limit + "&sort=" + gsort;
 	};
 	
 	function prev() {
