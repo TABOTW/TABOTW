@@ -245,11 +245,8 @@ border-top-right-radius: 10px;
 			<div
 				class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>CustomerSerive</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">CustomerSerive</a>
-					</nav>
+					<h1>고객센터</h1>
+					
 				</div>
 			</div>
 		</div>

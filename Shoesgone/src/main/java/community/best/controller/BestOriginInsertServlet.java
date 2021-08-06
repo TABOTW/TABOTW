@@ -76,7 +76,7 @@ public class BestOriginInsertServlet extends HttpServlet {
 		Best Best = new Best();
 
 		Best.setBestTitle(mrequest.getParameter("title"));
-		Best.setBestWriter(mrequest.getParameter("writer"));
+		Best.setBestWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Best.setBestContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출

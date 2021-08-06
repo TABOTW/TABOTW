@@ -78,9 +78,8 @@ ul#menubar li a:hover {
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>나의 글 보기</h1>
-					<nav class="d-flex align-items-center">
-					</nav>
+					<h1>마이페이지</h1>
+					
 				</div>
 			</div>
 		</div>

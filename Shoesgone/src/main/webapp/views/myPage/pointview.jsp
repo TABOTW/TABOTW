@@ -103,7 +103,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <div width="960px"><br><br><br>
 <h2 align="center">포인트 조회</h2>
 <hr width="960px" color="black">
-<center>총 적립금 :<%= pointamount %> 원 </center>
+<strong><center>총 적립금 :<%= pointamount %> 원 </center></strong>
 <hr width="960px" color="black">
 </div>
 <div><table border="1" summary="적립 내역 목록 입니다" class="point" align="center">

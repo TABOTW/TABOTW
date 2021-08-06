@@ -42,9 +42,9 @@ public class QnAService {
 		return listCount;
 	}
 
-	public ArrayList<QnA> selectList(int startRow, int endRow) {
+	public ArrayList<QnA> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<QnA> list = qdao.selectList(conn, startRow, endRow);
+		ArrayList<QnA> list = qdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}
@@ -85,32 +85,10 @@ public class QnAService {
 		return result;
 	}
 
-	public void updateReplySeq(QnA reply) {
+	
+	public int deleteQnA(int QnANo) {
 		Connection conn = getConnection();
-		int result = qdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
-
-	public int insertReplyQnA(QnA reply) {
-		Connection conn = getConnection();
-		int result = qdao.insertReplyQnA(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteQnA(int QnANo, int QnALevel) {
-		Connection conn = getConnection();
-		int result = qdao.deleteQnA(conn, QnANo, QnALevel);
+		int result = qdao.deleteQnA(conn, QnANo);
 		if(result > 0) {
 			commit(conn);
 		}else {

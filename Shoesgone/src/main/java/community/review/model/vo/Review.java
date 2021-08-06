@@ -1,119 +1,162 @@
 package community.review.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Review implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
-	private int ReviewNo;  //리뷰글 번호
-	private String ReviewTitle; //리뷰글 제목
-	private int ReviewWriterNo; //리뷰글 작성자 번호
-	private java.sql.Date ReviewDate; //리뷰글 작설 날짜
-	private String ReviewContent; //리뷰글 내용
-	private int ReviewItemNo; //리뷰글 상품 번호
-	private int ReviewStar; //리뷰글 별점
-	private int ReviewLike; //리뷰글 좋아요수
-	private int ReviewReadcount; //리뷰글 조회수
+	private int ReviewNo;  //게시글번호
+	private int ReviewWriter; //게시글 작성자 아이디
+	private String ReviewTitle;  //게시글 제목
+	private String ReviewContent;  //게시글 내용
+	private String ReviewOriginalFilename;  //첨부파일 원래이름
+	private String ReviewRenameFilename;  //변경된 첨부파일이름
+	private int ReviewReadCount; //읽은 조회수
+	private String ReviewDate;  //게시글 등록 날짜
+	private int ReviewItemNo; //리뷰하는 물품 번호
+	private int ReviewStar; //별점
+	private int ReviewLike; //추천수
 	
-	public Review() {
+	public Review() {}
+
+	public Review(int ReviewWriter, String ReviewTitle, String ReviewContent) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.ReviewWriter = ReviewWriter;
+		this.ReviewTitle = ReviewTitle;
+		this.ReviewContent = ReviewContent;
 	}
 
-	public Review(int reviewNo, String reviewTitle, int reviewWriterNo, Date reviewDate, String reviewContent,
-			int reviewItemNo, int reviewStar, int reviewLike, int reviewReadcount) {
+	public Review(int ReviewWriter, String ReviewTitle, 
+			String ReviewContent, String ReviewOriginalFilename,
+			String ReviewRenameFilename) {
 		super();
-		ReviewNo = reviewNo;
-		ReviewTitle = reviewTitle;
-		ReviewWriterNo = reviewWriterNo;
-		ReviewDate = reviewDate;
-		ReviewContent = reviewContent;
-		ReviewItemNo = reviewItemNo;
-		ReviewStar = reviewStar;
-		ReviewLike = reviewLike;
-		ReviewReadcount = reviewReadcount;
+		this.ReviewWriter = ReviewWriter;
+		this.ReviewTitle = ReviewTitle;
+		this.ReviewContent = ReviewContent;
+		this.ReviewOriginalFilename = ReviewOriginalFilename;
+		this.ReviewRenameFilename = ReviewRenameFilename;
+	}
+
+	public Review(int ReviewNo, int ReviewWriter, String ReviewTitle, String ReviewContent, String ReviewOriginalFilename,
+			String ReviewRenameFilename, int ReviewRef, int ReviewLevel, int ReviewReplyRef, int ReviewReplySeq,
+			int ReviewReadCount, String ReviewDate, int reviewItemNo, int reviewStar, int reviewLike) {
+		super();
+		this.ReviewNo = ReviewNo;
+		this.ReviewWriter = ReviewWriter;
+		this.ReviewTitle = ReviewTitle;
+		this.ReviewContent = ReviewContent;
+		this.ReviewOriginalFilename = ReviewOriginalFilename;
+		this.ReviewRenameFilename = ReviewRenameFilename;
+		this.ReviewReadCount = ReviewReadCount;
+		this.ReviewDate = ReviewDate;
+		this.ReviewItemNo = ReviewItemNo;
+		this.ReviewStar = ReviewStar;
+		this.ReviewLike = ReviewLike;
 	}
 
 	public int getReviewNo() {
 		return ReviewNo;
 	}
 
-	public void setReviewNo(int reviewNo) {
-		ReviewNo = reviewNo;
+	public void setReviewNo(int ReviewNo) {
+		this.ReviewNo = ReviewNo;
+	}
+
+	public int getReviewWriter() {
+		return ReviewWriter;
+	}
+
+	public void setReviewWriter(int ReviewWriter) {
+		this.ReviewWriter = ReviewWriter;
 	}
 
 	public String getReviewTitle() {
 		return ReviewTitle;
 	}
 
-	public void setReviewTitle(String reviewTitle) {
-		ReviewTitle = reviewTitle;
-	}
-
-	public int getReviewWriterNo() {
-		return ReviewWriterNo;
-	}
-
-	public void setReviewWriterNo(int reviewWriterNo) {
-		ReviewWriterNo = reviewWriterNo;
-	}
-
-	public java.sql.Date getReviewDate() {
-		return ReviewDate;
-	}
-
-	public void setReviewDate(java.sql.Date reviewDate) {
-		ReviewDate = reviewDate;
+	public void setReviewTitle(String ReviewTitle) {
+		this.ReviewTitle = ReviewTitle;
 	}
 
 	public String getReviewContent() {
 		return ReviewContent;
 	}
 
-	public void setReviewContent(String reviewContent) {
-		ReviewContent = reviewContent;
+	public void setReviewContent(String ReviewContent) {
+		this.ReviewContent = ReviewContent;
 	}
 
+	public String getReviewOriginalFilename() {
+		return ReviewOriginalFilename;
+	}
+
+	public void setReviewOriginalFilename(String ReviewOriginalFilename) {
+		this.ReviewOriginalFilename = ReviewOriginalFilename;
+	}
+
+	public String getReviewRenameFilename() {
+		return ReviewRenameFilename;
+	}
+
+	public void setReviewRenameFilename(String ReviewRenameFilename) {
+		this.ReviewRenameFilename = ReviewRenameFilename;
+	}
+	public int getReviewReadCount() {
+		return ReviewReadCount;
+	}
+
+	public void setReviewReadCount(int ReviewReadCount) {
+		this.ReviewReadCount = ReviewReadCount;
+	}
+
+	public String getReviewDate() {
+		return ReviewDate;
+	}
+
+	public void setReviewDate(String ReviewDate) {
+		this.ReviewDate = ReviewDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	public int getReviewItemNo() {
 		return ReviewItemNo;
 	}
 
 	public void setReviewItemNo(int reviewItemNo) {
-		ReviewItemNo = reviewItemNo;
+		this.ReviewItemNo = ReviewItemNo;
 	}
-
 	public int getReviewStar() {
 		return ReviewStar;
 	}
 
 	public void setReviewStar(int reviewStar) {
-		ReviewStar = reviewStar;
+		this.ReviewStar = ReviewStar;
 	}
-
 	public int getReviewLike() {
 		return ReviewLike;
 	}
 
 	public void setReviewLike(int reviewLike) {
-		ReviewLike = reviewLike;
-	}
-
-	public int getReviewReadcount() {
-		return ReviewReadcount;
-	}
-
-	public void setReviewReadcount(int reviewReadcount) {
-		ReviewReadcount = reviewReadcount;
+		this.ReviewLike = ReviewLike;
 	}
 
 	@Override
 	public String toString() {
-		return "Review [ReviewNo=" + ReviewNo + ", ReviewTitle=" + ReviewTitle + ", ReviewWriterNo=" + ReviewWriterNo
-				+ ", ReviewDate=" + ReviewDate + ", ReviewContent=" + ReviewContent + ", ReviewItemNo=" + ReviewItemNo
-				+ ", ReviewStar=" + ReviewStar + ", ReviewLike=" + ReviewLike + ", ReviewReadcount=" + ReviewReadcount
-				+ "]";
+		return "Review [ReviewNo=" + ReviewNo + ", ReviewWriter=" + ReviewWriter + ", ReviewTitle=" + ReviewTitle
+				+ ", ReviewContent=" + ReviewContent + ", ReviewOriginalFilename=" + ReviewOriginalFilename
+				+ ", ReviewRenameFilename=" + ReviewRenameFilename
+				+ ", ReviewReadCount=" + ReviewReadCount + ", ReviewDate=" + ReviewDate + ", ReviewItemNo="
+				+ ReviewItemNo + ", ReviewStar=" + ReviewStar + ", ReviewLike=" + ReviewLike + "]";
 	}
+
 	
+
+
+		
 	
 	
 }

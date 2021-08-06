@@ -44,42 +44,14 @@ public class FreeReplyInsertServlet extends HttpServlet {
 		Free reply = new Free();
 		
 		reply.setFreeTitle(request.getParameter("title"));
-		reply.setFreeWriter(request.getParameter("writer"));
+		reply.setFreeWriter(Integer.parseInt(request.getParameter("writer")));
 		reply.setFreeContent(request.getParameter("content"));
 		
 		//원글 조회
 		FreeService bservice = new FreeService();
 		Free origin = bservice.selectFree(FreeNo);
 		
-		//댓글에 Free_level(댓글레벨), Free_ref (참조 원글번호)
-		reply.setFreeLevel(origin.getFreeLevel() + 1);
-		reply.setFreeRef(origin.getFreeRef());
 		
-		//Free_reply_ref (참조하는 댓글번호)
-		//원글일 때 null, 원글의 댓글이면(level : 2) 자기번호,
-		//댓글의 댓글이면(level : 3) 참조하는 댓글번호
-		if(reply.getFreeLevel() == 3) {  //대댓글이면
-			reply.setFreeReplyRef(origin.getFreeReplyRef());
-		}
-		
-		//댓글의 순번 처리
-		//최신 댓글이 무조건 1이 되게 함
-		reply.setFreeReplySeq(1);
-		//이전 댓글의 순번을 모두 1증가 처리함
-		bservice.updateReplySeq(reply);  //update 로 1증가 처리
-		
-		//3.
-		int result = bservice.insertReplyFree(reply);
-		
-		if(result > 0) {
-			response.sendRedirect("/first/freelist?page=" + currentPage);
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher(
-					"views/common/error.jsp");
-			request.setAttribute("message", 
-					FreeNo + "번 게시글 댓글 등록 실패!");
-			view.forward(request, response);
-		}
 	}
 
 	/**

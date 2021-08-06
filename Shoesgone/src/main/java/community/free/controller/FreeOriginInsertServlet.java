@@ -73,16 +73,16 @@ public class FreeOriginInsertServlet extends HttpServlet {
 
 		// 5. 데이터베이스 Free 테이블에 기록할 값 추출
 		// mrequest 사용해야 함 (request 사용 못 함)
-		Free Free = new Free();
+		Free free = new Free();
 
-		Free.setFreeTitle(mrequest.getParameter("title"));
-		Free.setFreeWriter(mrequest.getParameter("writer"));
-		Free.setFreeContent(mrequest.getParameter("content"));
+		free.setFreeTitle(mrequest.getParameter("title"));
+		free.setFreeWriter(Integer.parseInt(mrequest.getParameter("writer")));
+		free.setFreeContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출
 		String originalFileName = mrequest
 				.getFilesystemName("upfile");
-		Free.setFreeOriginalFilename(originalFileName);
+		free.setFreeOriginalFilename(originalFileName);
 
 		// 저장된 원본 파일의 이름 바꾸기 하려면...
 		// 저장 폴더에 같은 이름의 파일이 있을 경우를 대비하기 위함
@@ -132,18 +132,18 @@ public class FreeOriginInsertServlet extends HttpServlet {
 				originFile.delete(); // 원본 파일 삭제함
 			} // 직접 이름바꾸기
 
-			Free.setFreeRenameFilename(renameFileName);
+			free.setFreeRenameFilename(renameFileName);
 		} // 업로드된 파일이 있다면...
 
 		// 6. 서비스 메소드로 전달하고 결과받기
-		int result = new FreeService().insertOriginFree(Free);
+		int result = new FreeService().insertOriginFree(free);
 
 		// 7. 받은 결과로 성공/실패 페이지 내보내기
 		if (result > 0) {
 			response.sendRedirect("freelist?page=1");
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "새 게시 원글 등록 실패!");
+			request.setAttribute("message", "새 게시글 원글 등록 실패!");
 			view.forward(request, response);
 		}
 	}

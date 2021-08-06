@@ -65,8 +65,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 						%>
 						<div>
 							<img class="img-fluid"
-								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>"
-								alt="">
+								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
 						</div>
 						<%
 						}
@@ -95,8 +94,8 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							</div>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">구매하기</a> <a class="primary-btn"
-								href="#">판매하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=buyaccept&itemno=<%= item.getItemNo() %>">구매하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=sellaccept&itemno=<%= item.getItemNo() %>">판매하기</a>
 							<!-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i]\ class="lnr lnr lnr-heart"></i></a> -->
 						</div>
@@ -208,7 +207,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 									<td><%= r.getReviewNo() %></td>
 									<td><%= r.getReviewTitle() %></td>
 									<td><%= r.getReviewStar() %>/10</td>
-									<td><%= r.getReviewReadcount() %></td>
+									<td><%= r.getReviewReadCount() %></td>
 								</tr>
 								<% } %>
 							</table>
@@ -223,11 +222,13 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	<!--================ Start Related Product Area =================-->
 	<div class="product_extra_area">
 		<div class="container">
-			<div class="slick-related">
+			<div class="slick-related" style="background:none;">
 			  	<% for (int i=0; i<rplist.size(); i++) { %>
 					<div>
+					<a href="/Shoesgone/menubarsearch?menu=item<%= rplist.get(i).getModelno() %>">
 						<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= rplist.get(i).getPicturepath() %>" alt="">
-						<p> <%= rpnames.get(i) %>
+						<p style="text-align:center; text-decoration: none; color: black;"> <%= rpnames.get(i) %></p>
+					</a>
 					</div>
 				<% } %>
 			</div>

@@ -34,10 +34,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
 		int ReviewNo = Integer.parseInt(request.getParameter("rNo"));
-		int ReviewLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new ReviewService().deleteReview(ReviewNo, ReviewLevel) > 0) {
+		if(new ReviewService().deleteReview(ReviewNo) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {

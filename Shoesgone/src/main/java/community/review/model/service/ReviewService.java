@@ -42,9 +42,9 @@ public class ReviewService {
 		return listCount;
 	}
 
-	public ArrayList<Review> selectList(int startRow, int endRow) {
+	public ArrayList<Review> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = rdao.selectList(conn, startRow, endRow);
+		ArrayList<Review> list = rdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}
@@ -85,32 +85,10 @@ public class ReviewService {
 		return result;
 	}
 
-	public void updateReplySeq(Review reply) {
+	
+	public int deleteReview(int ReviewNo) {
 		Connection conn = getConnection();
-		int result = rdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
-
-	public int insertReplyReview(Review reply) {
-		Connection conn = getConnection();
-		int result = rdao.insertReplyReview(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteReview(int ReviewNo, int ReviewLevel) {
-		Connection conn = getConnection();
-		int result = rdao.deleteReview(conn, ReviewNo, ReviewLevel);
+		int result = rdao.deleteReview(conn, ReviewNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

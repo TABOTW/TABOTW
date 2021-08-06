@@ -82,7 +82,7 @@ function requestDelete(){
 
 	<!--================Contact Area =================-->
 	<section><br><br><br>
-	<h2 align="center">고객센터</h2><hr>
+	<h2 align="center">공지사항</h2><hr>
 		<div class="container">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">

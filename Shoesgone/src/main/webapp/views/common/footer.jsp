@@ -151,7 +151,15 @@
 			</div>
 			<div class="right-side">
 				<h5>고객지원</h5><br>
-				<p><a id="grey-color" href="/Shoesgone/nlist">공지사항</a></p>
+				<% if(loginMember != null){ %>
+					<% if(loginMember.getMgr().toString().equals("Y")){ %>
+						<p><a id="grey-color" href="/Shoesgone/menubarsearch?menu=nlistadmin">공지사항</a></p>
+					<% }else{ %>
+						<p><a id="grey-color" href="/Shoesgone/menubarsearch?menu=nlistcustomer">공지사항</a></p>
+					<% } %>
+				<% }else{ %>
+					<p><a id="grey-color" href="/Shoesgone/menubarsearch?menu=nlistcustomer">공지사항</a></p>
+				<% } %>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/service_intro.jsp')">서비스 소개</a></p>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/showroom_guide.jsp')">쇼룸 안내</a></p>
 				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/seller_visit.jsp')">판매자 방문접수</a></p>
@@ -161,7 +169,7 @@
 				<p>운영시간 평일 11:00 - 18:00 (토 ∙ 일, 공휴일 휴무) 점심시간</p>
 				<p>점심시간 평일 13:00 - 14:00</p>
 				<h6>1:1 문의하기는 앱에서만 가능합니다.</h6><br>
-				<a href="/Shoesgone/flist" class="primary-btn">자주 묻는 질문</a>
+				<a href="/Shoesgone/menubarsearch?menu=faq" class="primary-btn">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div id="popUp_1" class="popCmmn">

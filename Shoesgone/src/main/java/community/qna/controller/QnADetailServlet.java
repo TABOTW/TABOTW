@@ -1,6 +1,7 @@
 package community.qna.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.qna.model.service.QnAService;
 import community.qna.model.vo.QnA;
+import community.reply.model.service.ReplyService;
+import community.reply.model.vo.Reply;
 
 /**
  * Servlet implementation class QnADetailServlet
@@ -49,12 +52,18 @@ public class QnADetailServlet extends HttpServlet {
 		
 		//해당 게시글 리턴 받음 : select
 		QnA QnA = bservice.selectQnA(QnANo);
+
+		ReplyService rservice = new ReplyService();
+
+		
+		List<Reply> reply = rservice.selectReplyList(QnANo);  
 		
 		RequestDispatcher view = null;
 		if(QnA != null) {
 			view = request.getRequestDispatcher(
 					"views/community/qna/qnaDetailView.jsp");
-			request.setAttribute("QnA", QnA);
+			request.setAttribute("qna", QnA);
+			request.setAttribute("replyList", reply);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {

@@ -52,8 +52,9 @@ public class GalleryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from Gallery "
-				+ "where Gallery_No = ?";
+		String query = "select gallery_no, gallery_title, gallery_content, gallery_writer, to_char(gallery_date, 'YYYY-MM-DD HH24:MI:SS') as gallery_date"
+				+ ", gallery_readcount from gallery "
+				+ "where Gallery_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -66,16 +67,13 @@ public class GalleryDao {
 				
 				Gallery.setGalleryNo(GalleryNo);
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
-				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
+				Gallery.setGalleryWriter(rset.getInt("Gallery_writer"));
 				Gallery.setGalleryContent(rset.getString("Gallery_content"));
 				Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
 				Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
-				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
-				Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
-				Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
-				Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
-				Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
+				Gallery.setGalleryDate(rset.getString("Gallery_date"));
 				Gallery.setGalleryReadCount(rset.getInt("Gallery_readcount"));
+				Gallery.setGalleryLike(rset.getInt("Gallery_like"));
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +134,31 @@ public class GalleryDao {
 	}
 
 	public ArrayList<Gallery> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Gallery> list = new ArrayList<Gallery>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_WRITER,  " +
+		 * "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  " +
+		 * "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
+		 * + "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content , Gallery_like" +
+		 * "        FROM (SELECT * FROM Gallery " +
+		 * "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, " +
+		 * "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Gallery_No, Gallery_TITLE, Gallery_WRITER,  "
-				+ "                Gallery_ORIGINAL_FILENAME, Gallery_RENAME_FILENAME,  "
-				+ "                Gallery_DATE, Gallery_LEVEL, Gallery_REF, Gallery_REPLY_REF,  "
-				+ "                Gallery_REPLY_SEQ, Gallery_READCOUNT, Gallery_content "
-				+ "        FROM (SELECT * FROM Gallery "
-				+ "                ORDER BY Gallery_REF DESC, Gallery_REPLY_REF DESC, "
-				+ "                          Gallery_LEVEL ASC, Gallery_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  Gallery_DATE, Gallery_READCOUNT, Gallery_content , Gallery_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM Gallery "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,15 +172,13 @@ public class GalleryDao {
 				
 				Gallery.setGalleryNo(rset.getInt("Gallery_No"));
 				Gallery.setGalleryTitle(rset.getString("Gallery_title"));
-				Gallery.setGalleryWriter(rset.getString("Gallery_writer"));
-				Gallery.setGalleryContent(rset.getString("Gallery_content"));				Gallery.setGalleryDate(rset.getDate("Gallery_date"));
-				Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
-				Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
-				Gallery.setGalleryRef(rset.getInt("Gallery_ref"));
-				Gallery.setGalleryLevel(rset.getInt("Gallery_level"));
-				Gallery.setGalleryReplyRef(rset.getInt("Gallery_reply_ref"));
-				Gallery.setGalleryReplySeq(rset.getInt("Gallery_reply_seq"));
+				Gallery.setGalleryWriter(rset.getInt("Gallery_writer"));
+				Gallery.setGalleryContent(rset.getString("Gallery_content"));				
+				Gallery.setGalleryDate(rset.getString("Gallery_date"));
+				//Gallery.setGalleryOriginalFilename(rset.getString("Gallery_original_filename"));
+				//Gallery.setGalleryRenameFilename(rset.getString("Gallery_rename_filename"));
 				Gallery.setGalleryReadCount(rset.getInt("Gallery_readcount"));
+				Gallery.setGalleryLike(rset.getInt("Gallery_like"));
 				
 				list.add(Gallery);
 			}
@@ -199,7 +206,7 @@ public class GalleryDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Gallery.getGalleryTitle());
-			pstmt.setString(2, Gallery.getGalleryWriter());
+			pstmt.setInt(2, Gallery.getGalleryWriter());
 			pstmt.setString(3, Gallery.getGalleryContent());
 			pstmt.setString(4, Gallery.getGalleryOriginalFilename());
 			pstmt.setString(5, Gallery.getGalleryRenameFilename());
@@ -269,116 +276,16 @@ public class GalleryDao {
 		return result;
 	}
 
-	public int updateReplySeq(Connection conn, Gallery reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = null;
-		
-		//새로 등록할 댓글이 원글의 댓글일 때
-		if(reply.getGalleryLevel() == 2) {
-			query = "update Gallery set "
-				+ "Gallery_reply_seq = Gallery_reply_seq + 1 "
-				+ "where Gallery_ref = ? and Gallery_level = ?";
-		}
-		
-		//새로 등록할 댓글이 댓글의 댓글일 때
-		if(reply.getGalleryLevel() == 3) {
-			query = "update Gallery set "
-					+ "Gallery_reply_seq = Gallery_reply_seq + 1 "
-					+ "where Gallery_ref = ? and Gallery_level = ? "
-					+ "and Gallery_reply_ref = ?";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reply.getGalleryRef());
-			pstmt.setInt(2, reply.getGalleryLevel());
-			
-			if(reply.getGalleryLevel() == 3) {
-				pstmt.setInt(3, reply.getGalleryReplyRef());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
 
-	public int insertReplyGallery(Connection conn, Gallery reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = null;
-		
-		if(reply.getGalleryLevel()  == 2) {
-			query = "insert into Gallery values ("
-				+ "(select max(Gallery_No) + 1 from Gallery), "
-				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Gallery_No) + 1 from Gallery), "
-				+ "?, default)";
-		}		
-		
-		if(reply.getGalleryLevel()  == 3) {
-			query = "insert into Gallery values ("
-					+ "(select max(Gallery_No) + 1 from Gallery), "
-					+ "?, ?, ?, null, null, sysdate, 3, ?, "
-					+ "?, ?, default)";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, reply.getGalleryTitle());
-			pstmt.setString(2, reply.getGalleryWriter());
-			pstmt.setString(3, reply.getGalleryContent());
-			pstmt.setInt(4, reply.getGalleryRef());
-			
-			if(reply.getGalleryLevel() == 2) {
-				pstmt.setInt(5, reply.getGalleryReplySeq());
-			}
-			
-			if(reply.getGalleryLevel() == 3) {
-				pstmt.setInt(5, reply.getGalleryReplyRef());
-				pstmt.setInt(6, reply.getGalleryReplySeq());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
 
 	public int deleteGallery(Connection conn, 
-			int GalleryNo, int GalleryLevel) {
+			int GalleryNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "delete from Gallery ";
-		
-		if(GalleryLevel == 1) {
-			//원글 삭제시에는 원글, 댓글, 대댓글 모두 삭제됨
-			query += "where Gallery_ref = ?";
-		}
-		
-		if(GalleryLevel == 2) {
-			//원글에 대한 댓글 삭제시, 대댓글 같이 삭제
-			query += "where Gallery_reply_ref = ?";
-		}
-		
-		if(GalleryLevel == 3) {
-			//대댓글은 자기글만 삭제
-			query += "where Gallery_No = ?";
-		}
+		String query = "delete from Gallery where gallery_no = ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

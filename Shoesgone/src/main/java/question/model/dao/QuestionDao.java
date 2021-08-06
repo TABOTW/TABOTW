@@ -59,7 +59,7 @@ public class QuestionDao {
 		return list;
 	}
 
-//		//공지글번호로 한 개 조회 : 공지사항 상세보기용
+//	공지글번호로 한 개 조회 : 공지사항 상세보기용
 	public Question selectOne(Connection conn, int questionNo) {
 		Question question = null;
 		PreparedStatement pstmt = null;
@@ -216,6 +216,88 @@ public class QuestionDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	public int adminReplyInsert(Connection conn, Question question) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into question "
+				+ "values ((select max(question_no) + 1 from question), '답변입니다.', '관리자', sysdate, ?, default, "
+				+ "?, 2, 1)";		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, question.getQuestionContent());
+			pstmt.setInt(2, question.getQuestionNo());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int adminDeleteQuestion(Connection conn, 
+			int questionNo, int questionLevel) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from question ";
+		
+		if(questionLevel == 1) {
+		
+			query += "where question_ref = ?";
+		}
+		
+		if(questionLevel == 2) {
+			
+			query += "where question_no = ?";
+		}
+		
+
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, questionNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int adminUpdateReply(Connection conn, Question question) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update question set "
+				+ "question_content = ? "
+				+ "where question_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+				
+			pstmt.setString(1, question.getQuestionContent());
+			pstmt.setInt(2, question.getQuestionNo());
+	
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 }

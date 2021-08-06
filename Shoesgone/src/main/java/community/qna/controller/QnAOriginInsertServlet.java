@@ -76,7 +76,7 @@ public class QnAOriginInsertServlet extends HttpServlet {
 		QnA QnA = new QnA();
 
 		QnA.setQnATitle(mrequest.getParameter("title"));
-		QnA.setQnAWriter(mrequest.getParameter("writer"));
+		QnA.setQnAWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		QnA.setQnAContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출

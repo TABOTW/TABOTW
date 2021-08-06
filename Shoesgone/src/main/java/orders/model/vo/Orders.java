@@ -20,6 +20,7 @@ public class Orders implements java.io.Serializable {
 	private String phone;
 	private int delFee;
 	private String payment;
+	private String etc;
 	
 	//Constructor
 	public Orders() {
@@ -28,7 +29,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	public Orders(int ordersNo, int sellerNo, int itemNo, int buyerNo, Date purDate, int count, String progress,
-			int price, String address, int size, String phone, int delFee, String payment) {
+			int price, String address, int size, String phone, int delFee, String payment, String etc) {
 		super();
 		this.ordersNo = ordersNo;
 		this.sellerNo = sellerNo;
@@ -43,6 +44,7 @@ public class Orders implements java.io.Serializable {
 		this.phone = phone;
 		this.delFee = delFee;
 		this.payment = payment;
+		this.etc = etc;
 	}
 	//Getter and Setters
 	public int getOrdersNo() {
@@ -147,6 +149,14 @@ public class Orders implements java.io.Serializable {
 
 	public void setPayment(String payment) {
 		this.payment = payment;
+	}
+	
+	public String getEtc() {
+		return etc;
+	}
+	
+	public void setEtc(String etc) {
+		this.etc = etc;
 	}
 
 	@Override

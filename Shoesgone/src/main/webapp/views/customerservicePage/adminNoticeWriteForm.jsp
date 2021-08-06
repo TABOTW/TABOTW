@@ -69,7 +69,7 @@
 
 			<div class="container" role="main">
 
-				<h2>1:1문의</h2>
+				<h2>공지사항</h2>
 
 				<div class="row">
 					<form action="/Shoesgone/ninsert.ad" method="post">

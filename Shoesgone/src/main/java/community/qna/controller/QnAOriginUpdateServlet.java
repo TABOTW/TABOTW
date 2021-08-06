@@ -24,7 +24,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAOriginUpdateServlet
  */
-@WebServlet("/qnaoriginupdate")
+@WebServlet("/qnaupdate")
 public class QnAOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -75,7 +75,7 @@ public class QnAOriginUpdateServlet extends HttpServlet {
 		QnA.setQnANo(Integer.parseInt(
 				mrequest.getParameter("qNo")));
 		QnA.setQnATitle(mrequest.getParameter("title"));
-		QnA.setQnAWriter(mrequest.getParameter("writer"));
+		QnA.setQnAWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		QnA.setQnAContent(mrequest.getParameter("content"));
 
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));

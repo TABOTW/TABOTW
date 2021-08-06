@@ -76,7 +76,7 @@ public class ReviewOriginInsertServlet extends HttpServlet {
 		Review Review = new Review();
 
 		Review.setReviewTitle(mrequest.getParameter("title"));
-		Review.setReviewWriter(mrequest.getParameter("writer"));
+		Review.setReviewWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Review.setReviewContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출

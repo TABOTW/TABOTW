@@ -1,33 +1,31 @@
 package community.qna.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class QnA implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
 	private int QnANo;  //게시글번호
-	private String QnAWriter; //게시글 작성자 아이디
+	private int QnAWriter; //게시글 작성자 아이디
 	private String QnATitle;  //게시글 제목
 	private String QnAContent;  //게시글 내용
 	private String QnAOriginalFilename;  //첨부파일 원래이름
 	private String QnARenameFilename;  //변경된 첨부파일이름
-	private int QnARef;  //원글은 자기번호, 댓글은 원글번호
-	private int QnALevel;  //원글 1, 댓글 2, 대댓글 3
-	private int QnAReplyRef;  //원글 0, 댓글은 자기번호, 대댓글은 참조하는 댓글번호
-	private int QnAReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int QnAReadCount; //읽은 조회수
-	private java.sql.Date QnADate;  //게시글 등록 날짜
+	private String QnADate;  //게시글 등록 날짜
+	private int QnALike; //추천수
 	
 	public QnA() {}
 
-	public QnA(String QnAWriter, String QnATitle, String QnAContent) {
+	public QnA(int QnAWriter, String QnATitle, String QnAContent) {
 		super();
 		this.QnAWriter = QnAWriter;
 		this.QnATitle = QnATitle;
 		this.QnAContent = QnAContent;
 	}
 
-	public QnA(String QnAWriter, String QnATitle, 
+	public QnA(int QnAWriter, String QnATitle, 
 			String QnAContent, String QnAOriginalFilename,
 			String QnARenameFilename) {
 		super();
@@ -38,9 +36,8 @@ public class QnA implements java.io.Serializable {
 		this.QnARenameFilename = QnARenameFilename;
 	}
 
-	public QnA(int QnANo, String QnAWriter, String QnATitle, String QnAContent, String QnAOriginalFilename,
-			String QnARenameFilename, int QnARef, int QnALevel, int QnAReplyRef, int QnAReplySeq,
-			int QnAReadCount, Date QnADate) {
+	public QnA(int QnANo, int QnAWriter, String QnATitle, String QnAContent, String QnAOriginalFilename,
+			String QnARenameFilename, int QnAReadCount, String QnADate, int QnALike) {
 		super();
 		this.QnANo = QnANo;
 		this.QnAWriter = QnAWriter;
@@ -48,12 +45,9 @@ public class QnA implements java.io.Serializable {
 		this.QnAContent = QnAContent;
 		this.QnAOriginalFilename = QnAOriginalFilename;
 		this.QnARenameFilename = QnARenameFilename;
-		this.QnARef = QnARef;
-		this.QnALevel = QnALevel;
-		this.QnAReplyRef = QnAReplyRef;
-		this.QnAReplySeq = QnAReplySeq;
 		this.QnAReadCount = QnAReadCount;
 		this.QnADate = QnADate;
+		this.QnALike = QnALike;
 	}
 
 	public int getQnANo() {
@@ -64,11 +58,11 @@ public class QnA implements java.io.Serializable {
 		this.QnANo = QnANo;
 	}
 
-	public String getQnAWriter() {
+	public int getQnAWriter() {
 		return QnAWriter;
 	}
 
-	public void setQnAWriter(String QnAWriter) {
+	public void setQnAWriter(int QnAWriter) {
 		this.QnAWriter = QnAWriter;
 	}
 
@@ -104,37 +98,6 @@ public class QnA implements java.io.Serializable {
 		this.QnARenameFilename = QnARenameFilename;
 	}
 
-	public int getQnARef() {
-		return QnARef;
-	}
-
-	public void setQnARef(int QnARef) {
-		this.QnARef = QnARef;
-	}
-
-	public int getQnALevel() {
-		return QnALevel;
-	}
-
-	public void setQnALevel(int QnALevel) {
-		this.QnALevel = QnALevel;
-	}
-
-	public int getQnAReplyRef() {
-		return QnAReplyRef;
-	}
-
-	public void setQnAReplyRef(int QnAReplyRef) {
-		this.QnAReplyRef = QnAReplyRef;
-	}
-
-	public int getQnAReplySeq() {
-		return QnAReplySeq;
-	}
-
-	public void setQnAReplySeq(int QnAReplySeq) {
-		this.QnAReplySeq = QnAReplySeq;
-	}
 
 	public int getQnAReadCount() {
 		return QnAReadCount;
@@ -144,12 +107,19 @@ public class QnA implements java.io.Serializable {
 		this.QnAReadCount = QnAReadCount;
 	}
 
-	public java.sql.Date getQnADate() {
+	public String getQnADate() {
 		return QnADate;
 	}
 
-	public void setQnADate(java.sql.Date QnADate) {
+	public void setQnADate(String QnADate) {
 		this.QnADate = QnADate;
+	}
+	public int getQnALike() {
+		return QnALike;
+	}
+
+	public void setQnALike(int QnALike) {
+		this.QnALike = QnALike;
 	}
 
 	public static long getSerialversionuid() {
@@ -160,10 +130,11 @@ public class QnA implements java.io.Serializable {
 	public String toString() {
 		return "QnA [QnANo=" + QnANo + ", QnAWriter=" + QnAWriter + ", QnATitle=" + QnATitle
 				+ ", QnAContent=" + QnAContent + ", QnAOriginalFilename=" + QnAOriginalFilename
-				+ ", QnARenameFilename=" + QnARenameFilename + ", QnARef=" + QnARef + ", QnALevel="
-				+ QnALevel + ", QnAReplyRef=" + QnAReplyRef + ", QnAReplySeq=" + QnAReplySeq
-				+ ", QnAReadCount=" + QnAReadCount + ", QnADate=" + QnADate + "]";
+				+ ", QnARenameFilename=" + QnARenameFilename + ", QnAReadCount=" + QnAReadCount 
+				+ ", QnADate=" + QnADate + ", QnALike=" + QnALike + "]";
 	}
+
 	
+
 }
 

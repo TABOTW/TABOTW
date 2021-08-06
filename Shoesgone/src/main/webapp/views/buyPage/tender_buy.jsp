@@ -1,5 +1,13 @@
+<%@page import="itemregsta.model.vo.ItemRegSta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList"
+%>
+<%
+Item item = (Item) request.getAttribute("item");
+ArrayList<Picture> plist = (ArrayList<Picture>) request.getAttribute("plist");
+ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,25 +35,30 @@
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="s_Product_carousel">
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
+					<div class="your-class">
+						<%
+						for (Picture p : plist) {
+						%>
+						<div>
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
 						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h3>구매 입찰하기</h3>
-						<h4>Faded SkyBlu Denim Jeans</h4>
-						<a class="primary-btn" href="/Shoesgone/views/buyPage/now_buy.jsp">즉시 구매가 : $149.99</a><br>
-						<a class="primary-btn">최저 판매가 : $159.99</a><br>
-						<a class="primary-btn"><span>Size</span> : 255</a>
+						<h3><%=item.getItemEngName()%></h3>
+						<h4><%=item.getItemKrName()%></h4>
+						<a class="primary-btn">즉시 판매가 : <%=item.getPrice() + "원"%></a><br>
+						<form action="/Shoesgone/tenderbuy">
+							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
+							<input type="hidden" name="size" value="<%= reg.getSize() %>">
+							<input class="primary-btn" type="submit" value="최저 구매가 : <%=item.getPrice() + "원"%>">
+						</form>
+						<br> <a class="primary-btn"><span>Size</span> : <%= reg.getSize() %></a>
 					</div>
 				</div>
 			</div>
@@ -80,94 +93,57 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>배송지 입력</h3>
-						<form class="row contact_form" action="#" method="post" novalidate="novalidate">
+						<form class="row contact_form" action="/Shoesgone/orderinsert" method="post" novalidate="novalidate">
+							<input type="hidden" name="userno" value="<%=loginMember.getUserNo()%>">
+							<input type="hidden" name="userid" value="<%=loginMember.getUserId()%>">
+							<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
+							<input type="hidden" name="price" value="<%= reg.getPrice() %>">
+							<input type="hidden" name="sellerno" value="<%= reg.getUserNo() %>">
+							<input type="hidden" name="size" value="<%= reg.getSize() %>">
 							<div class="col-md-6 form-group p_star">
-								<input type="text" class="form-control" id="name" name="name">
-								<span class="placeholder" data-placeholder="이름"></span>
-							</div>
-							<div class="col-md-6 form-group p_star">
-								<input type="text" class="form-control" id="number" name="number">
-								<span class="placeholder" data-placeholder="전화번호"></span>
-							</div>
-							<div class="col-md-6 form-group p_star">
-								<input type="text" class="form-control" id="email" name="email">
-								<span class="placeholder" data-placeholder="Email 주소"></span>
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<select class="country_select">
-									<option>-- 지역 --</option>
-									<option value="서울">서울</option>
-									<option value="경기">경기</option>
-									<option value="강원">강원</option>
-								</select>
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<select class="country_select">
-									<option>-- 시/군/구 --</option>
-									<option value="1">District</option>
-									<option value="2">District</option>
-									<option value="4">District</option>
-								</select>
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control" id="add1" name="add1">
-								<span class="placeholder" data-placeholder="상세주소 입력"></span>
+								<input type="number" class="form-control" id="size" name="size" placeholder="사이즈" value="<%= reg.getSize() %>" required readonly><br>
+								<input type="text" class="form-control" id="username" name="username" placeholder="이름" value="<%=loginMember.getUserName()%>" required readonly><br>
+								<input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호" value="<%=loginMember.getPhone()%>" required><br>
+								<input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="<%=loginMember.getEmail()%>" required><br>
+								<input type="text" class="form-control postcodify_postcode5" id="post" name="post" placeholder="우편번호" required>
+								<button type="button" id="postcodify_search_button" onclick="searchaddress();">검색</button><br><br>
+								<input type="text" class="form-control postcodify_address" id="address" name="address" placeholder="주소" required><br>
+								<input type="text" class="form-control postcodify_extra_info" id="detailaddress" name="detailaddress" placeholder="상세주소" required><br>
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<h3>배송 요청사항</h3>
 								</div>
-								<textarea class="form-control" name="message" id="message" rows="1" placeholder="배송시 요청사항(예:부재시 문 앞에 놓아주세요.)"></textarea>
+								<textarea class="form-control" name="etc" id="etc" rows="1" placeholder="배송시 요청사항(예:부재시 문 앞에 놓아주세요.)"></textarea>
 							</div>
-						</form>
 					</div>
 					<div class="col-lg-4">
 						<div class="order_box">
 							<h2>Your Order</h2>
 							<ul class="list">
-								<li><a href="#">Product <span>Total</span></a></li>
-								<li><a href="#">Fresh Blackberry <span class="middle">x 02</span>
-									<span class="last">$720.00</span></a></li>
-								<li><a href="#">Fresh Tomatoes <span class="middle">x 02</span>
-									<span class="last">$720.00</span></a></li>
-								<li><a href="#">Fresh Brocoli <span class="middle">x 02</span>
-									<span class="last">$720.00</span></a></li>
+								<li><a>제품명 <span>가격</span></a></li>
+								<li><a href="#">슈즈곤 신발 1 <span class="middle">x 01</span> <span class="last">150000</span></a></li>
 							</ul>
 							<ul class="list list_2">
-								<li><a href="#">Subtotal <span>$2160.00</span></a></li>
-								<li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-								<li><a href="#">Total <span>$2210.00</span></a></li>
+								<li><a href="#">제품 가격 총합 <span>150000</span></a></li>
+								<li><a href="#">배송비 <span>2500</span></a></li>
+								<li><a href="#">전체가격 <span>150000</span></a></li>
 							</ul>
-							<div class="payment_item">
-								<div class="radion_btn">
-									<input type="radio" id="f-option5" name="selector">
-									<label for="f-option5">Check payments</label>
-									<div class="check"></div>
-								</div>
-								<p>
-									Please send a check to Store Name, Store Street, Store
-									Town, Store State / County, Store Postcode.
-								</p>
-							</div>
-							<div class="payment_item active">
-								<div class="radion_btn">
-									<input type="radio" id="f-option6" name="selector">
-									<label for="f-option6">Paypal </label>
-									<img src="/Shoesgone/resources/img/product/card.jpg" alt="">
-									<div class="check"></div>
-								</div>
-								<p>
-									Pay via PayPal; you can pay with your credit card if you
-									don’t have a PayPal account.
-								</p>
-							</div>
+							<div class="default-select" id="default-select"">
+								<select name="payment" required>
+									<option value="무통장입금">무통장입금</option>
+									<option value="가상계좌">가상계좌</option>
+									<option value="신용카드">신용카드</option>
+									<option value="모바일결제">모바일결제</option>
+								</select>
+							</div><br>
 							<div class="creat_account">
-								<input type="checkbox" id="f-option4" name="selector">
-								<label for="f-option4">I’ve read and accept the </label>
-								<a href="#">terms & conditions*</a>
+								<input type="radio" id="f-option4" name="payment" value="account" required>
+								<label for="f-option4"><a href="#">검수 기준</a>과 <a href="#">개인 정보 정책</a>에 동의합니다. </label>
 							</div>
-							<a class="primary-btn" href="/Shoesgone/views/buyPage/buy_complete.jsp">결제하기</a>
-						</div>
+							<input type="submit" value="상품 등록하기"> &nbsp;
+							<input type="reset" value="등록취소">
+							</form>
 					</div>
 				</div>
 			</div>

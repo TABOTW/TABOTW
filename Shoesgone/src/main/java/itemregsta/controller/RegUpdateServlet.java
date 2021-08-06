@@ -15,7 +15,7 @@ import itemregsta.model.vo.ItemRegSta;
 /**
  * Servlet implementation class RegUpdateServlet
  */
-@WebServlet("/itemupdate")
+@WebServlet("/itemregupdate")
 public class RegUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class RegUpdateServlet extends HttpServlet {
 		// 4. 성공|실패 결과 출력
 		RequestDispatcher view = null;
 		if(result > 0) {
-			// 이후 수정
+			// 즉시 구매 화면으로 전달
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "판매 상품 수정 실패");

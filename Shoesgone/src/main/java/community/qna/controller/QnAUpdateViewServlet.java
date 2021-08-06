@@ -41,8 +41,8 @@ public class QnAUpdateViewServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(QnA != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityUpdateView.jsp");
-			request.setAttribute("QnA", QnA);
+					"views/community/qna/qnaUpdateView.jsp");
+			request.setAttribute("qna", QnA);
 			request.setAttribute("page", currentPage);
 			view.forward(request, response);
 		}else {

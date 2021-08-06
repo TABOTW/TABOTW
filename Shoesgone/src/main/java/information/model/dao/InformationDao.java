@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import information.model.vo.Information;
-import loginPage.model.vo.Login;
 
 public class InformationDao {
 	
@@ -164,123 +163,66 @@ public class InformationDao {
 	
 	}
 
-	public ArrayList<Login> adminselectAllMembers(Connection conn) {
-		ArrayList<Login> users = new ArrayList<Login>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+	// 관리자용 회원 정보 전체 리스트 출력용 메소드
+	public ArrayList<Information> adminSelectList(Connection conn) {
+		ArrayList<Information> userList = new ArrayList<Information>();
+		Statement stm = null;
+		ResultSet rs = null;
 		
-		String query = "select * from user_info order by mgr asc";		
+		String query = "select * from user_info";
 		
 		try {
-			pstmt = conn.prepareStatement(query);			
-			rset = pstmt.executeQuery();
+			stm = conn.createStatement();
+			rs = stm.executeQuery(query);
 			
-			while(rset.next()) {
-				Login user = new Login();
+			while(rs.next()) {
+				Information user = new Information();
 				
-				user.setUserNo(rset.getInt("USER_NO"));
-				user.setUserName(rset.getString("USER_NAME"));
-				user.setUserId(rset.getString("USER_ID"));
-				//비밀번호는 필요하지 않음
-				user.setEmail(rset.getString("EMAIL"));
-				user.setPhone(rset.getString("PHONE"));
-				user.setAddress(rset.getString("ADDRESS"));
-				user.setShoesSize(rset.getInt("SHOES_SIZE"));
-				user.setPoint(rset.getInt("POINT"));
-				user.setMgr(rset.getString("MGR"));
-				user.setBankName(rset.getString("BANK_NAME"));
-				//계좌번호 불필요
-				user.setLoginOk(rset.getString("LOGIN_OK"));
+				user.setUserNo(rs.getInt("user_no"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserId(rs.getString("user_id"));
+				user.setUserPwd(rs.getString("user_pwd"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phone"));
+				user.setAddress(rs.getString("address"));
+				user.setShoesSize(rs.getInt("shoes_size"));
+				user.setPoint(rs.getInt("point"));
+				user.setMgr(rs.getString("mgr"));
+				user.setBankName(rs.getString("bank_name"));
+				user.setAccountNo(rs.getString("account_no"));
+				user.setLoginOk(rs.getString("login_ok"));
 				
-				users.add(user);
+				userList.add(user);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
+		} finally {
+			close(rs);
+			close(stm);
 		}
 		
-		return users;
+		return userList;
 	}
 
-	public Login adminselectMGRLOKMember(Connection conn, int userno) {
-		Login user = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "select * from user_info where user_no = ?";				
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, userno);			
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				user = new Login();
-				
-				//컬럼값 꺼내서, 필드에 옮겨 기록하기 : 결과매핑
-				//두가지, MGR과 LOK값
-				user.setUserNo(rset.getInt("USER_NO"));
-				user.setMgr(rset.getString("MGR"));
-				user.setLoginOk(rset.getString("LOGIN_OK"));
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return user;
-	}
-
-	public int adminupdateMGR(Connection conn, int userno, String mgrstatus) {
+	// 관리자용 회원정보수정용 메소드
+	public int adminUserUpdate(Connection conn, Information userUp) {
 		int result = 0;
-		PreparedStatement pstmt = null;
+		PreparedStatement ps = null;
 		
-		String query = "UPDATE USER_INFO "
-				+ "SET "
-				+ "MGR = ? "
-				+ "WHERE USER_NO = ?";
+		String query = "update user_info set mgr = ?, loginok = ? where user_no = ?";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(2, userno);
-			pstmt.setString(1, mgrstatus);
+			ps = conn.prepareStatement(query);
 			
-			result = pstmt.executeUpdate();
+			ps.setString(1, userUp.getMgr());
+			ps.setString(2, userUp.getLoginOk());
+			ps.setInt(3, userUp.getUserNo());
+			
+			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public int adminupdateLOK(Connection conn, int userno, String lokstatus) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = "UPDATE USER_INFO "
-				+ "SET "
-				+ "LOGIN_OK = ? "
-				+ "WHERE USER_NO = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(2, userno);
-			pstmt.setString(1, lokstatus);
-			
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
+			close(ps);
 		}
 		
 		return result;

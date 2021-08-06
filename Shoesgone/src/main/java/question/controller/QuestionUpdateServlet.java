@@ -33,7 +33,7 @@ public class QuestionUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 게시글 원글 수정 처리용 컨트롤러
+
 		request.setCharacterEncoding("utf-8");
 		RequestDispatcher view = null;
 

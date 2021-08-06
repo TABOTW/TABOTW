@@ -18,15 +18,15 @@ public class WishlistDao {
 
 		String query = "select * from ( "
 				+ "select rownum rnum, w.wish_list_no, w.user_no, w.item_no, i.ITEM_ENG_NAME, i.item_kr_name, i.item_price "
-				+ "from wish_list w join item i " + "on w.item_no = i.item_no " + "order by w.wish_list_no desc)  "
-				+ "where rnum >= ? and rnum <= ? and user_no = ?";
+				+ "from wish_list w join item i " + "on w.item_no = i.item_no " + "where user_no = ?  order by w.wish_list_no desc )  "
+				+ "where rnum >= ? and rnum <= ? ";
 
 		try {
 			ps = conn.prepareStatement(query);
-			ps.setInt(1, startRow);
-			ps.setInt(2, endRow);
-			ps.setInt(3, userNo);
-
+			ps.setInt(1, userNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
+		
 			rs = ps.executeQuery();
 
 			while (rs.next()) {

@@ -22,15 +22,16 @@ public class OrderlistDao {
 		String query = "select * from ("
 				+ "select rownum rnum, o.orders_no, o.item_no, o.buyer_no, o.shoes_size, o.price, o.count, o.del_fee, o.progress, i.ITEM_ENG_NAME, i.item_kr_name "
 				+ "from orders o join item i "
-				+ "on o.item_no = i.item_no "
+				+ "on o.item_no = i.item_no where buyer_no = ? "
 				+ "order by o.orders_no desc) "
-				+ "where rnum >= ? and rnum <=? and buyer_no = ?";
+				+ "where rnum >= ? and rnum <= ? ";
 		
 		try {
 			ps = conn.prepareStatement(query);
-			ps.setInt(1, startRow);
-			ps.setInt(2, endRow);
-			ps.setInt(3, userNo);
+			ps.setInt(1, userNo);
+			ps.setInt(2, startRow);
+			ps.setInt(3, endRow);
+		
 			
 			rs = ps.executeQuery();
 			

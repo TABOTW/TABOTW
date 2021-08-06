@@ -34,10 +34,9 @@ public class GalleryDeleteServlet extends HttpServlet {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
 		int GalleryNo = Integer.parseInt(request.getParameter("gNo"));
-		int GalleryLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new GalleryService().deleteGallery(GalleryNo, GalleryLevel) > 0) {
+		if(new GalleryService().deleteGallery(GalleryNo) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {

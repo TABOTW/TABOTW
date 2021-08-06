@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, itemPage.model.service.ItemDetailService, java.util.ArrayList"
+%>
+<%
+int itemNo = Integer.parseInt(request.getParameter("itemno"));
+int size = Integer.parseInt(request.getParameter("size"));
+Item item = new ItemDetailService().selectOne(itemNo);
+ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,108 +36,27 @@
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
+						<div class="your-class">
+						<%
+						for (Picture p : plist) {
+						%>
+						<div>
+							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= p.getPicturepath() %>" alt="">
 						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="/Shoesgone/resources/img/category/s-p1.jpg" alt="">
+						<%
+						}
+						%>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text" style="margin-top: 0px">
 						<h1>결제가 완료되었습니다.</h1>
-						<h3>nike_dunk_low_black</h3>
-						<h2>$149.99</h2>
-						<ul class="list">
-							<li><a class="active" href="#"><span>카테고리</span> : nike_dunk_low</a></li>
-							<li><a href="#"><span>사이즈</span> : In 180mm</a></li>
-							<li><a href="#"><span>발매년도</span> : 2021-06-07</a></li>
-						</ul>
-						<p style="margin-bottom: 20px">
-							Mill Oil is an innovative oil
-							filled radiator with the most modern technology. If you are
-							looking for something that can make your interior look awesome,
-							and at the same time give you the pleasant warm feeling during
-							the winter.
-						</p>
-						<a class="primary-btn" href="/Shoesgone/index.html">계속 쇼핑 하기</a><br>
-
+						<h3><%= item.getItemEngName() %></h3>
+						<h4><%= item.getItemKrName() %></h4>
+						<h3>사이즈 : <%= size %></h3>
 						<div class="card_area d-flex align-items-center">
-							<div class="s_product_table">
-								<h3>Specifications</h3>
-								<table class="table">
-									<tbody>
-										<tr>
-											<td>
-												<h5>Width</h5>
-											</td>
-											<td>
-												<h5>128mm</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Height</h5>
-											</td>
-											<td>
-												<h5>508mm</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Depth</h5>
-											</td>
-											<td>
-												<h5>85mm</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Weight</h5>
-											</td>
-											<td>
-												<h5>52gm</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Quality checking</h5>
-											</td>
-											<td>
-												<h5>yes</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Freshness Duration</h5>
-											</td>
-											<td>
-												<h5>03days</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>When packeting</h5>
-											</td>
-											<td>
-												<h5>Without touch of hand</h5>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h5>Each Box contains</h5>
-											</td>
-											<td>
-												<h5>60pcs</h5>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							<a class="primary-btn" href="/Shoesgone/categoryitem">계속 쇼핑 하기</a>
 						</div>
 					</div>
 				</div>

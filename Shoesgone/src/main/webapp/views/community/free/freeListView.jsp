@@ -3,6 +3,7 @@
 <%@page import="community.free.model.vo.Free"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
 	//Free free = (Free)request.getAttribute("free");
 	ArrayList freeList = (ArrayList) request.getAttribute("list");
@@ -45,29 +46,9 @@
 	<!-- End Banner Area -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-md-5">
-				<div class="sidebar-categories">
-					<div class="head">커뮤니티</div>
-					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
-						</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>갤러리</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>자유게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Q&A</a>
-							</li>
-					</ul>
-				</div>
-				
-			</div>
+		
+			<%@ include file="/views/common/communityCategory.jsp" %>
+			
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
@@ -113,7 +94,9 @@
 							%>
 							<div class="table-row">
 								<div class="boardno"><%= free.getFreeNo() %></div>
-								<div class="boardtitle"><%= free.getFreeTitle() %></div>
+								<div class="boardtitle">
+									<a href="/Shoesgone/freedetail?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>"><%= free.getFreeTitle() %></a>
+								</div>
 								<div class="register"><%= free.getFreeWriter() %></div>
 								<div class="registdate"><%= free.getFreeDate()%></div>
 								<div class="hitcount"><%= free.getFreeReadCount() %></div>
@@ -161,26 +144,82 @@
 												
 					</div>
 					<div class="button-group-area mt-40 ml-auto">
-						<a href="#" class="genric-btn primary default circle">글쓰기</a>
+					<% if(loginMember != null){ %>
+						<a onclick="showWriteForm();" class="genric-btn primary default circle">글쓰기</a>
 					</div>
-					
+					<% } %>
 				</div>
+
+
+
+				<!-- 검색 -->
+
+
+				<div class="" id="mc_embed_signup">
+
+					<form target="_blank" novalidate="true"
+						action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+						method="get" class="form-inline">
+
+						<div class="d-flex flex-row">
+							<select class="country_select">
+									<option value="1">검색 기간</option>
+									<div></div>
+									<option value="2">1일</option>
+									<option value="3">7일</option>
+									<option value="4">1개월</option>
+									<option value="5" id="uenroll">직접 입력</option>
+							</select> &nbsp;
+							<select class="country_select">
+									<option value="1">검색 필터</option>
+									<div></div>
+									<option value="2">제목 + 내용</option>
+									<option value="3">제목</option>
+									<option value="4">내용</option>
+									<option value="5">작성자</option>
+							</select> &nbsp;
+
+							<input class="form-control" name="SEARCH"
+								placeholder="검색어를 입력하세요 " onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Search '" required=""
+								type="text">
+
+
+							<button class="click-btn btn btn-default">
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</button>
+							<div style="position: absolute; left: -5000px;">
+								<input name="b_36c4fd991d266f23781ded980_aefe40901a"
+									tabindex="-1" value="" type="text">
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
-<br><br><br><br><br>
+
+
+	<br><br><br><br><br>
  
 
 	<!-- start footer Area -->
 		<%@ include file="/views/common/footer.jsp" %>
-	
-
-									
-				
-
-
-
 	
 	<script type="text/javascript">
 	var limit = <%= limit %>;
@@ -234,6 +273,14 @@
 			movePage(currentPage + 1);	
 		}
 	}
-	</script>
+	function showWriteForm(){
+		location.href = "/Shoesgone/views/community/free/freeWriteForm.jsp";
+	}
+	</script>	
+
+									
+				
+
+	
 </body>
 </html>

@@ -63,7 +63,7 @@ public class EnrollServlet extends HttpServlet {
 		
 		// 회원가입 성공, 실패에 따른 화면 구현
 		if (result > 0) {
-			response.sendRedirect("/Shoesgone/views/loginPage/login.jsp");
+			response.sendRedirect("/Shoesgone/menubarsearch?menu=login");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 

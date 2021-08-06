@@ -42,9 +42,9 @@ public class GalleryService {
 		return listCount;
 	}
 
-	public ArrayList<Gallery> selectList(int startRow, int endRow) {
+	public ArrayList<Gallery> selectList(int startRow, int endRow, String orderBy) {
 		Connection conn = getConnection();
-		ArrayList<Gallery> list = gdao.selectList(conn, startRow, endRow);
+		ArrayList<Gallery> list = gdao.selectList(conn, startRow, endRow, orderBy);
 		close(conn);
 		return list;
 	}
@@ -85,32 +85,10 @@ public class GalleryService {
 		return result;
 	}
 
-	public void updateReplySeq(Gallery reply) {
+	
+	public int deleteGallery(int GalleryNo) {
 		Connection conn = getConnection();
-		int result = gdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
-
-	public int insertReplyGallery(Gallery reply) {
-		Connection conn = getConnection();
-		int result = gdao.insertReplyGallery(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteGallery(int GalleryNo, int GalleryLevel) {
-		Connection conn = getConnection();
-		int result = gdao.deleteGallery(conn, GalleryNo, GalleryLevel);
+		int result = gdao.deleteGallery(conn, GalleryNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

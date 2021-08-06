@@ -74,7 +74,7 @@ public class BestOriginUpdateServlet extends HttpServlet {
 		Best.setBestNo(Integer.parseInt(
 				mrequest.getParameter("bNo")));
 		Best.setBestTitle(mrequest.getParameter("title"));
-		Best.setBestWriter(mrequest.getParameter("writer"));
+		Best.setBestWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Best.setBestContent(mrequest.getParameter("content"));
 
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));
