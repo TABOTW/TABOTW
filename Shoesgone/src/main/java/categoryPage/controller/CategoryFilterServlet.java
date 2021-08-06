@@ -66,6 +66,7 @@ public class CategoryFilterServlet extends HttpServlet {
 			view = request.getRequestDispatcher("views/categoryPage/category.jsp");
 			
 			request.setAttribute("item", item);
+			request.setAttribute("sort", "");
 
 			view.forward(request, response);
 		} else {
