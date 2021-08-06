@@ -85,32 +85,10 @@ public class FreeService {
 		return result;
 	}
 
-	public void updateReplySeq(Free reply) {
-		Connection conn = getConnection();
-		int result = fdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
 
-	public int insertReplyFree(Free reply) {
+	public int deleteFree(int FreeNo) {
 		Connection conn = getConnection();
-		int result = fdao.insertReplyFree(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteFree(int FreeNo, int FreeLevel) {
-		Connection conn = getConnection();
-		int result = fdao.deleteFree(conn, FreeNo, FreeLevel);
+		int result = fdao.deleteFree(conn, FreeNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

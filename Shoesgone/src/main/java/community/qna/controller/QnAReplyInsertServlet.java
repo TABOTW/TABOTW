@@ -51,35 +51,7 @@ public class QnAReplyInsertServlet extends HttpServlet {
 		QnAService bservice = new QnAService();
 		QnA origin = bservice.selectQnA(QnANo);
 		
-		//댓글에 QnA_level(댓글레벨), QnA_ref (참조 원글번호)
-		reply.setQnALevel(origin.getQnALevel() + 1);
-		reply.setQnARef(origin.getQnARef());
 		
-		//QnA_reply_ref (참조하는 댓글번호)
-		//원글일 때 null, 원글의 댓글이면(level : 2) 자기번호,
-		//댓글의 댓글이면(level : 3) 참조하는 댓글번호
-		if(reply.getQnALevel() == 3) {  //대댓글이면
-			reply.setQnAReplyRef(origin.getQnAReplyRef());
-		}
-		
-		//댓글의 순번 처리
-		//최신 댓글이 무조건 1이 되게 함
-		reply.setQnAReplySeq(1);
-		//이전 댓글의 순번을 모두 1증가 처리함
-		bservice.updateReplySeq(reply);  //update 로 1증가 처리
-		
-		//3.
-		int result = bservice.insertReplyQnA(reply);
-		
-		if(result > 0) {
-			response.sendRedirect("/first/qnalist?page=" + currentPage);
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher(
-					"views/common/error.jsp");
-			request.setAttribute("message", 
-					QnANo + "번 게시글 댓글 등록 실패!");
-			view.forward(request, response);
-		}
 	}
 
 	/**

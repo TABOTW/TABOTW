@@ -3,6 +3,7 @@
 <%@page import="community.gallery.model.vo.Gallery"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
 	//Gallery gallery = (Gallery)request.getAttribute("gallery");
 	ArrayList galleryList = (ArrayList) request.getAttribute("list");
@@ -99,14 +100,11 @@
 						<!-- single product -->
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<!-- 나중에 Gallery.getGalleryRenameFilename() 부분을 이걸로 감싸면 될 듯 -->
 								<img class="img-fluid" src="/Shesgone/resources/community_upfiles/gallery/Gallery.getGalleryRenameFilename()" alt="">
 								<div class="product-details">
-									<h6>addidas New Hammer sole
-										for Sports person</h6>
-									<div class="price">
-										<h6>$150.00</h6>
-										<h6 class="l-through">$210.00</h6>
+									<h6><%-- <%= gallery.getGalleryTitle() %> --%></h6>
+									<div class="register">
+										<h6><%-- <%= gallery.getGalleryWriter() %> --%></h6>
 									</div>
 									
 								</div>
@@ -115,7 +113,7 @@
 						<!-- single product -->
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p5.jpg" alt="">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
 								<div class="product-details">
 									<h6>addidas New Hammer sole
 										for Sports person</h6>
@@ -123,14 +121,12 @@
 										<h6>$150.00</h6>
 										<h6 class="l-through">$210.00</h6>
 									</div>
-								
 								</div>
 							</div>
 						</div>
-						<!-- single product -->
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="/Shoesgone/resources/img/product/p6.jpg" alt="">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
 								<div class="product-details">
 									<h6>addidas New Hammer sole
 										for Sports person</h6>
@@ -138,10 +134,64 @@
 										<h6>$150.00</h6>
 										<h6 class="l-through">$210.00</h6>
 									</div>
-									
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>$150.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>$150.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>$150.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="/Shoesgone/resources/img/gallery/조던1 브레드.jpeg" alt="">
+								<div class="product-details">
+									<h6>addidas New Hammer sole
+										for Sports person</h6>
+									<div class="price">
+										<h6>$150.00</h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- single product -->
+						
 					</div>
 				</section>
 				<!-- End Best Seller -->

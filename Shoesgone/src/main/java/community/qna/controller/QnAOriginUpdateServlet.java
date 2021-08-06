@@ -24,7 +24,7 @@ import community.qna.model.vo.QnA;
 /**
  * Servlet implementation class QnAOriginUpdateServlet
  */
-@WebServlet("/qnaoriginupdate")
+@WebServlet("/qnaupdate")
 public class QnAOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

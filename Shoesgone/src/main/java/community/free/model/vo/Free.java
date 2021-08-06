@@ -12,10 +12,6 @@ public class Free implements java.io.Serializable {
 	private String FreeContent;  //게시글 내용
 	private String FreeOriginalFilename;  //첨부파일 원래이름
 	private String FreeRenameFilename;  //변경된 첨부파일이름
-	private int FreeRef;  //원글은 자기번호, 댓글은 원글번호
-	private int FreeLevel;  //원글 1, 댓글 2, 대댓글 3 -답글단계 -- 원글 : 0, 원글의 답글 : 1, 답글의 답글 : 2
-	private int FreeReplyRef;  //원글 0, 댓글은 자기번호, 대댓글은 참조하는 댓글번호 -참조답글번호';  -- 원글 : 0, 원글의 답글 : 자기번호, 답글의 답글 : 참조답글번호
-	private int FreeReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1 -답글순번 원글 : 0, 같은 원글의 답글일 때 : 1 ....... 순차처리
 	private int FreeReadCount; //읽은 조회수
 	private String FreeDate;  //게시글 등록 날짜
 	private int FreeLike; //추천수
@@ -41,8 +37,7 @@ public class Free implements java.io.Serializable {
 	}
 
 	public Free(int FreeNo, int FreeWriter, String FreeTitle, String FreeContent, String FreeOriginalFilename,
-			String FreeRenameFilename, int FreeRef, int FreeLevel, int FreeReplyRef, int FreeReplySeq,
-			int FreeReadCount, String FreeDate, int FreeLike) {
+			String FreeRenameFilename, int FreeReadCount, String FreeDate, int FreeLike) {
 		super();
 		this.FreeNo = FreeNo;
 		this.FreeWriter = FreeWriter;
@@ -50,10 +45,6 @@ public class Free implements java.io.Serializable {
 		this.FreeContent = FreeContent;
 		this.FreeOriginalFilename = FreeOriginalFilename;
 		this.FreeRenameFilename = FreeRenameFilename;
-		this.FreeRef = FreeRef;
-		this.FreeLevel = FreeLevel;
-		this.FreeReplyRef = FreeReplyRef;
-		this.FreeReplySeq = FreeReplySeq;
 		this.FreeReadCount = FreeReadCount;
 		this.FreeDate = FreeDate;
 		this.FreeLike = FreeLike;
@@ -107,38 +98,6 @@ public class Free implements java.io.Serializable {
 		this.FreeRenameFilename = FreeRenameFilename;
 	}
 
-	public int getFreeRef() {
-		return FreeRef;
-	}
-
-	public void setFreeRef(int FreeRef) {
-		this.FreeRef = FreeRef;
-	}
-
-	public int getFreeLevel() {
-		return FreeLevel;
-	}
-
-	public void setFreeLevel(int FreeLevel) {
-		this.FreeLevel = FreeLevel;
-	}
-
-	public int getFreeReplyRef() {
-		return FreeReplyRef;
-	}
-
-	public void setFreeReplyRef(int FreeReplyRef) {
-		this.FreeReplyRef = FreeReplyRef;
-	}
-
-	public int getFreeReplySeq() {
-		return FreeReplySeq;
-	}
-
-	public void setFreeReplySeq(int FreeReplySeq) {
-		this.FreeReplySeq = FreeReplySeq;
-	}
-
 	public int getFreeReadCount() {
 		return FreeReadCount;
 	}
@@ -170,9 +129,8 @@ public class Free implements java.io.Serializable {
 	public String toString() {
 		return "Free [FreeNo=" + FreeNo + ", FreeWriter=" + FreeWriter + ", FreeTitle=" + FreeTitle
 				+ ", FreeContent=" + FreeContent + ", FreeOriginalFilename=" + FreeOriginalFilename
-				+ ", FreeRenameFilename=" + FreeRenameFilename + ", FreeRef=" + FreeRef + ", FreeLevel="
-				+ FreeLevel + ", FreeReplyRef=" + FreeReplyRef + ", FreeReplySeq=" + FreeReplySeq
-				+ ", FreeReadCount=" + FreeReadCount + ", FreeDate=" + FreeDate + ", FreeLike=" + FreeLike + "]";
+				+ ", FreeRenameFilename=" + FreeRenameFilename + ", FreeReadCount=" + FreeReadCount  
+				+ ", FreeDate=" + FreeDate + ", FreeLike=" + FreeLike + "]";
 	}
 
 	

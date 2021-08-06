@@ -1,6 +1,7 @@
 package community.review.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import community.reply.model.service.ReplyService;
+import community.reply.model.vo.Reply;
 import community.review.model.service.ReviewService;
 import community.review.model.vo.Review;
 
@@ -49,12 +52,18 @@ public class ReviewDetailServlet extends HttpServlet {
 		
 		//해당 게시글 리턴 받음 : select
 		Review Review = bservice.selectReview(ReviewNo);
+
+		ReplyService rservice = new ReplyService();
+
+		
+		List<Reply> reply = rservice.selectReplyList(ReviewNo);  
 		
 		RequestDispatcher view = null;
 		if(Review != null) {
 			view = request.getRequestDispatcher(
 					"views/community/review/reviewDetailView.jsp");
-			request.setAttribute("Review", Review);
+			request.setAttribute("review", Review);
+			request.setAttribute("replyList", reply);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {

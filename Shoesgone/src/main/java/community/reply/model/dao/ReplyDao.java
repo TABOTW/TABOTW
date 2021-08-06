@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import community.free.model.vo.Free;
 import community.reply.model.vo.Reply;
 
 public class ReplyDao {
@@ -175,213 +177,267 @@ public class ReplyDao {
 	 * 
 	 * return list; }
 	 */
+//
+//	public int insertOriginReply(Connection conn, Reply Reply) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = "insert into Reply values (" 
+//				+ "(select max(Reply_NO) + 1 from Reply), "
+//				+ "?, ?, ?, ?, ?, sysdate, 1, " 
+//				+ "(select max(Reply_NO) + 1 from Reply), " 
+//				+ "null, default, default)";
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, Reply.getReplyTitle());
+//			pstmt.setInt(2, Reply.getReplyWriter());
+//			pstmt.setString(3, Reply.getReplyContent());
+//			pstmt.setString(4, Reply.getReply());
+//			pstmt.setString(5, Reply.getReply());
+//
+//			result = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
+//
+//	public int updateOrigin(Connection conn, Reply origin) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = "update Reply set " 
+//				+ "Reply_title = ?, " 
+//				+ "Reply_content = ?, "
+//				+ "Reply_original_filename = ?, " 
+//				+ "Reply_rename_filename = ? " 
+//				+ "where Reply_NO = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, origin.getReplyTitle());
+//			pstmt.setString(2, origin.getReplyContent());
+//			pstmt.setString(3, origin.getReplyOriginalFilename());
+//			pstmt.setString(4, origin.getReplyRenameFilename());
+//			pstmt.setInt(5, origin.getReplyNo());
+//
+//			result = pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
+//
+//	public int updateReply(Connection conn, Reply reply) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = "update Reply set " 
+//				+ "Reply_title = ?, " 
+//				+ "Reply_content = ? " 
+//				+ "where Reply_NO = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, reply.getReplyTitle());
+//			pstmt.setString(2, reply.getReplyContent());
+//			pstmt.setInt(3, reply.getReplyNo());
+//
+//			result = pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
+//
+//	public int updateReplySeq(Connection conn, Reply reply) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = null;
+//
+//		// 새로 등록할 댓글이 원글의 댓글일 때
+//		if (reply.getReplyLevel() == 2) {
+//			query = "update Reply set " 
+//					+ "Reply_reply_seq = Reply_reply_seq + 1 "
+//					+ "where Reply_ref = ? and Reply_level = ?";
+//		}
+//
+//		// 새로 등록할 댓글이 댓글의 댓글일 때
+//		if (reply.getReplyLevel() == 3) {
+//			query = "update Reply set " 
+//					+ "Reply_reply_seq = Reply_reply_seq + 1 "
+//					+ "where Reply_ref = ? and Reply_level = ? " 
+//					+ "and Reply_reply_ref = ?";
+//		}
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setInt(1, reply.getReplyRef());
+//			pstmt.setInt(2, reply.getReplyLevel());
+//
+//			if (reply.getReplyLevel() == 3) {
+//				pstmt.setInt(3, reply.getReplyReplyRef());
+//			}
+//
+//			result = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
+//
+//	public int insertReplyReply(Connection conn, Reply reply) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = null;
+//
+//		if (reply.getReplyLevel() == 2) {
+//			query = "insert into Reply values (" 
+//					+ "(select max(Reply_NO) + 1 from Reply), "
+//					+ "?, ?, ?, null, null, sysdate, 2, ?, " 
+//					+ "(select max(Reply_NO) + 1 from Reply), "
+//					+ "?, default)";
+//		}
+//
+//		if (reply.getReplyLevel() == 3) {
+//			query = "insert into Reply values (" 
+//					+ "(select max(Reply_NO) + 1 from Reply), "
+//					+ "?, ?, ?, null, null, sysdate, 3, ?, " 
+//					+ "?, ?, default)";
+//		}
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, reply.getReplyTitle());
+//			pstmt.setInt(2, reply.getReplyWriter());
+//			pstmt.setString(3, reply.getReplyContent());
+//			pstmt.setInt(4, reply.getReplyRef());
+//
+//			if (reply.getReplyLevel() == 2) {
+//				pstmt.setInt(5, reply.getReplySeq());
+//			}
+//
+//			if (reply.getReplyLevel() == 3) {
+//				pstmt.setInt(5, reply.getReplyRef());
+//				pstmt.setInt(6, reply.getReplySeq());
+//			}
+//
+//			result = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
+//
+//	public int deleteReply(Connection conn, int ReplyNO, int ReplyLevel) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//
+//		String query = "delete from Reply ";
+//
+//		if (ReplyLevel == 1) {
+//			// 원글 삭제시에는 원글, 댓글, 대댓글 모두 삭제됨
+//			query += "where Reply_ref = ?";
+//		}
+//
+//		if (ReplyLevel == 2) {
+//			// 원글에 대한 댓글 삭제시, 대댓글 같이 삭제
+//			query += "where Reply_reply_ref = ?";
+//		}
+//
+//		if (ReplyLevel == 3) {
+//			// 대댓글은 자기글만 삭제
+//			query += "where Reply_NO = ?";
+//		}
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setInt(1, ReplyNO);
+//
+//			result = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//
+//		return result;
+//	}
 
-	public int insertOriginReply(Connection conn, Reply Reply) {
-		int result = 0;
+	public List<Reply> selectReplyList(Connection conn, int freeNo) {
+		// TODO Auto-generated method stub
+		ArrayList<Reply> list = new ArrayList<Reply>();
 		PreparedStatement pstmt = null;
-
-		String query = "insert into Reply values (" 
-				+ "(select max(Reply_NO) + 1 from Reply), "
-				+ "?, ?, ?, ?, ?, sysdate, 1, " 
-				+ "(select max(Reply_NO) + 1 from Reply), " 
-				+ "null, default, default)";
-
+		ResultSet rset = null;
+	
+		String query = "SELECT "
+				+ "REPLY_NO"
+				+ ", PARENT_REPLY_NO"
+				+ ", REPLY_LEVEL"
+				+ ", REPLY_ORDER"
+				+ ", BOARD_TYPE"
+				+ ", BOARD_NO"
+				+ ", REPLY_WRITER"
+				+ ", TO_CHAR(REPLY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS REPLY_DATE"
+				+ ", REPLY_CONTENT"
+				+ ", REPLY_LIKE"
+	  		+ "  FROM REPLY A"
+	  		+ " WHERE A.BOARD_NO = ?"
+	  		+ "  ORDER BY REPLY_ORDER, REPLY_LEVEL";
+	 
+	
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, Reply.getReplyTitle());
-			pstmt.setInt(2, Reply.getReplyWriter());
-			pstmt.setString(3, Reply.getReplyContent());
-			pstmt.setString(4, Reply.getReply());
-			pstmt.setString(5, Reply.getReply());
-
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int updateOrigin(Connection conn, Reply origin) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = "update Reply set " 
-				+ "Reply_title = ?, " 
-				+ "Reply_content = ?, "
-				+ "Reply_original_filename = ?, " 
-				+ "Reply_rename_filename = ? " 
-				+ "where Reply_NO = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, origin.getReplyTitle());
-			pstmt.setString(2, origin.getReplyContent());
-			pstmt.setString(3, origin.getReplyOriginalFilename());
-			pstmt.setString(4, origin.getReplyRenameFilename());
-			pstmt.setInt(5, origin.getReplyNo());
-
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int updateReply(Connection conn, Reply reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = "update Reply set " 
-				+ "Reply_title = ?, " 
-				+ "Reply_content = ? " 
-				+ "where Reply_NO = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, reply.getReplyTitle());
-			pstmt.setString(2, reply.getReplyContent());
-			pstmt.setInt(3, reply.getReplyNo());
-
-			result = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int updateReplySeq(Connection conn, Reply reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = null;
-
-		// 새로 등록할 댓글이 원글의 댓글일 때
-		if (reply.getReplyLevel() == 2) {
-			query = "update Reply set " 
-					+ "Reply_reply_seq = Reply_reply_seq + 1 "
-					+ "where Reply_ref = ? and Reply_level = ?";
-		}
-
-		// 새로 등록할 댓글이 댓글의 댓글일 때
-		if (reply.getReplyLevel() == 3) {
-			query = "update Reply set " 
-					+ "Reply_reply_seq = Reply_reply_seq + 1 "
-					+ "where Reply_ref = ? and Reply_level = ? " 
-					+ "and Reply_reply_ref = ?";
-		}
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reply.getReplyRef());
-			pstmt.setInt(2, reply.getReplyLevel());
-
-			if (reply.getReplyLevel() == 3) {
-				pstmt.setInt(3, reply.getReplyReplyRef());
+			pstmt.setInt(1, freeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Reply reply  = new Reply();
+				
+				reply.setReplyNo(rset.getInt("REPLY_NO"));
+				reply.setParentReplyNo(rset.getInt("PARENT_REPLY_NO"));
+				reply.setReplyLevel(rset.getInt("REPLY_LEVEL"));
+				reply.setReplyOrder(rset.getInt("REPLY_ORDER"));
+				reply.setBoardNo(rset.getInt("BOARD_NO"));
+				reply.setReplyWriter(rset.getInt("REPLY_WRITER"));
+				reply.setReplyDate(rset.getString("REPLY_DATE"));
+				reply.setReplyContent(rset.getString("REPLY_CONTENT"));
+				reply.setReplyLike(rset.getInt("REPLY_LIKE"));
+				
+				list.add(reply);
 			}
-
-			result = pstmt.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 		}
-
-		return result;
-	}
-
-	public int insertReplyReply(Connection conn, Reply reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = null;
-
-		if (reply.getReplyLevel() == 2) {
-			query = "insert into Reply values (" 
-					+ "(select max(Reply_NO) + 1 from Reply), "
-					+ "?, ?, ?, null, null, sysdate, 2, ?, " 
-					+ "(select max(Reply_NO) + 1 from Reply), "
-					+ "?, default)";
-		}
-
-		if (reply.getReplyLevel() == 3) {
-			query = "insert into Reply values (" 
-					+ "(select max(Reply_NO) + 1 from Reply), "
-					+ "?, ?, ?, null, null, sysdate, 3, ?, " 
-					+ "?, ?, default)";
-		}
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, reply.getReplyTitle());
-			pstmt.setInt(2, reply.getReplyWriter());
-			pstmt.setString(3, reply.getReplyContent());
-			pstmt.setInt(4, reply.getReplyRef());
-
-			if (reply.getReplyLevel() == 2) {
-				pstmt.setInt(5, reply.getReplySeq());
-			}
-
-			if (reply.getReplyLevel() == 3) {
-				pstmt.setInt(5, reply.getReplyRef());
-				pstmt.setInt(6, reply.getReplySeq());
-			}
-
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int deleteReply(Connection conn, int ReplyNO, int ReplyLevel) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = "delete from Reply ";
-
-		if (ReplyLevel == 1) {
-			// 원글 삭제시에는 원글, 댓글, 대댓글 모두 삭제됨
-			query += "where Reply_ref = ?";
-		}
-
-		if (ReplyLevel == 2) {
-			// 원글에 대한 댓글 삭제시, 대댓글 같이 삭제
-			query += "where Reply_reply_ref = ?";
-		}
-
-		if (ReplyLevel == 3) {
-			// 대댓글은 자기글만 삭제
-			query += "where Reply_NO = ?";
-		}
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, ReplyNO);
-
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
+		
+		return list;
 	}
 
 }

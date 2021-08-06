@@ -41,8 +41,8 @@ public class FreeUpdateViewServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(Free != null) {
 			view = request.getRequestDispatcher(
-					"views/community/communityUpdateView.jsp");
-			request.setAttribute("Free", Free);
+					"views/community/free/freeUpdateView.jsp");
+			request.setAttribute("free", Free);
 			request.setAttribute("page", currentPage);
 			view.forward(request, response);
 		}else {

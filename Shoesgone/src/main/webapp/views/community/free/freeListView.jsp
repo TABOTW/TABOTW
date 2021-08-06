@@ -149,6 +149,66 @@
 					</div>
 					<% } %>
 				</div>
+
+
+
+				<!-- 검색 -->
+
+
+				<div class="" id="mc_embed_signup">
+
+					<form target="_blank" novalidate="true"
+						action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+						method="get" class="form-inline">
+
+						<div class="d-flex flex-row">
+							<select class="country_select">
+									<option value="1">검색 기간</option>
+									<div></div>
+									<option value="2">1일</option>
+									<option value="3">7일</option>
+									<option value="4">1개월</option>
+									<option value="5" id="uenroll">직접 입력</option>
+							</select> &nbsp;
+							<select class="country_select">
+									<option value="1">검색 필터</option>
+									<div></div>
+									<option value="2">제목 + 내용</option>
+									<option value="3">제목</option>
+									<option value="4">내용</option>
+									<option value="5">작성자</option>
+							</select> &nbsp;
+
+							<input class="form-control" name="SEARCH"
+								placeholder="검색어를 입력하세요 " onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Search '" required=""
+								type="text">
+
+
+							<button class="click-btn btn btn-default">
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</button>
+							<div style="position: absolute; left: -5000px;">
+								<input name="b_36c4fd991d266f23781ded980_aefe40901a"
+									tabindex="-1" value="" type="text">
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				<!-- End Filter Bar -->
 			</div>
 		</div>

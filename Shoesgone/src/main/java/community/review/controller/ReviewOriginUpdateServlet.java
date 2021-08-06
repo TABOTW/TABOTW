@@ -24,7 +24,7 @@ import community.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewOriginUpdateServlet
  */
-@WebServlet("/revieworiginupdate")
+@WebServlet("/reviewupdate")
 public class ReviewOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

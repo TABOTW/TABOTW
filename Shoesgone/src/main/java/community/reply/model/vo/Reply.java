@@ -4,11 +4,11 @@ public class Reply implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
 	private int ReplyNo; //댓글 번호
-	private int ChildReplyNo; //대댓글 번호
-	private int ReplySeq; //
-	private int ReplyLevel; //
-	private String BoardType; //
-	private int BoardNo; //
+	private int ParentReplyNo; //부모댓글 번호
+	private int ReplyLevel; // 댓글 깊이
+	private int ReplyOrder; // 댓글 정렬 순서
+	private String BoardType; // 댓글 달린 게시판 종류
+	private int BoardNo; // 댓글 달린 게시판 번호
 	private int ReplyWriter; //댓글작성자
 	private String ReplyDate; //댓글 등록 일자
 	private int ReplyLike; //추천수
@@ -16,22 +16,22 @@ public class Reply implements java.io.Serializable {
 	
 	public Reply() {}
 
-
-
-	public Reply(int replyNo, int childReplyNo, int replySeq, int replyLevel, String boardType, int boardNo,
+	public Reply(int replyNo, int parentReplyNo, int replyLevel, int replyOrder, String boardType, int boardNo,
 			int replyWriter, String replyDate, int replyLike, String replyContent) {
 		super();
-		this.ReplyNo = replyNo;
-		this.ChildReplyNo = childReplyNo;
-		this.ReplySeq = replySeq;
-		this.ReplyLevel = replyLevel;
-		this.BoardType = boardType;
-		this.BoardNo = boardNo;
-		this.ReplyWriter = replyWriter;
-		this.ReplyDate = replyDate;
-		this.ReplyLike = replyLike;
-		this.ReplyContent = replyContent;
+		ReplyNo = replyNo;
+		ParentReplyNo = parentReplyNo;
+		ReplyLevel = replyLevel;
+		ReplyOrder = replyOrder;
+		BoardType = boardType;
+		BoardNo = boardNo;
+		ReplyWriter = replyWriter;
+		ReplyDate = replyDate;
+		ReplyLike = replyLike;
+		ReplyContent = replyContent;
 	}
+
+
 
 
 
@@ -44,20 +44,12 @@ public class Reply implements java.io.Serializable {
 		ReplyNo = replyNo;
 	}
 
-	public int getChildReplyNo() {
-		return ChildReplyNo;
+	public int getParentReplyNo() {
+		return ParentReplyNo;
 	}
 
-	public void setChildReplyNo(int childReplyNo) {
-		ChildReplyNo = childReplyNo;
-	}
-
-	public int getReplySeq() {
-		return ReplySeq;
-	}
-
-	public void setReplySeq(int replySeq) {
-		ReplySeq = replySeq;
+	public void setParentReplyNo(int parentReplyNo) {
+		ParentReplyNo = parentReplyNo;
 	}
 
 	public int getReplyLevel() {
@@ -66,6 +58,14 @@ public class Reply implements java.io.Serializable {
 
 	public void setReplyLevel(int replyLevel) {
 		ReplyLevel = replyLevel;
+	}
+	
+	public int getReplyOrder() {
+		return ReplyOrder;
+	}
+
+	public void setReplyOrder(int replyOrder) {
+		ReplyOrder = replyOrder;
 	}
 
 	public String getBoardType() {
@@ -119,18 +119,14 @@ public class Reply implements java.io.Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Reply [ReplyNo=" + ReplyNo + ", ChildReplyNo=" + ChildReplyNo + ", ReplySeq=" + ReplySeq
-				+ ", ReplyLevel=" + ReplyLevel + ", BoardType=" + BoardType + ", BoardNo=" + BoardNo + ", ReplyWriter="
+		return "Reply [ReplyNo=" + ReplyNo + ", ParentReplyNo=" + ParentReplyNo + ", ReplyLevel=" + ReplyLevel
+				+ ", ReplyOrder=" + ReplyOrder + ", BoardType=" + BoardType + ", BoardNo=" + BoardNo + ", ReplyWriter="
 				+ ReplyWriter + ", ReplyDate=" + ReplyDate + ", ReplyLike=" + ReplyLike + ", ReplyContent="
 				+ ReplyContent + "]";
 	}
-
-
-
 
 }
 

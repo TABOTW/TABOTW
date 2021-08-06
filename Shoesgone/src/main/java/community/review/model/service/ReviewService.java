@@ -85,32 +85,10 @@ public class ReviewService {
 		return result;
 	}
 
-	public void updateReplySeq(Review reply) {
+	
+	public int deleteReview(int ReviewNo) {
 		Connection conn = getConnection();
-		int result = rdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
-
-	public int insertReplyReview(Review reply) {
-		Connection conn = getConnection();
-		int result = rdao.insertReplyReview(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteReview(int ReviewNo, int ReviewLevel) {
-		Connection conn = getConnection();
-		int result = rdao.deleteReview(conn, ReviewNo, ReviewLevel);
+		int result = rdao.deleteReview(conn, ReviewNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

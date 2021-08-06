@@ -1,6 +1,7 @@
 package community.gallery.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.gallery.model.service.GalleryService;
 import community.gallery.model.vo.Gallery;
+import community.reply.model.service.ReplyService;
+import community.reply.model.vo.Reply;
 
 /**
  * Servlet implementation class GalleryDetailServlet
@@ -49,12 +52,18 @@ public class GalleryDetailServlet extends HttpServlet {
 		
 		//해당 게시글 리턴 받음 : select
 		Gallery Gallery = bservice.selectGallery(GalleryNo);
+
+		ReplyService rservice = new ReplyService();
+
+		
+		List<Reply> reply = rservice.selectReplyList(GalleryNo);  
 		
 		RequestDispatcher view = null;
 		if(Gallery != null) {
 			view = request.getRequestDispatcher(
 					"views/community/gallery/galleryDetailView.jsp");
 			request.setAttribute("Gallery", Gallery);
+			request.setAttribute("replyList", reply);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {

@@ -4,6 +4,7 @@ import static common.JDBCTemp.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import community.reply.model.dao.ReplyDao;
 import community.reply.model.vo.Reply;
@@ -11,17 +12,6 @@ import community.reply.model.vo.Reply;
 public class ReplyService {
 private ReplyDao rpdao = new ReplyDao();
 	
-/*
- * public ArrayList<Reply> selectTop3(){ Connection conn = getConnection();
- * ArrayList<Reply> list = rpdao.selectTop3(conn); close(conn); return list; }
- * public Reply selectreply(int ReplyNo) { Connection conn = getConnection();
- * Reply FReplyree = rpdao.selectReply(conn, ReplyNo); close(conn); return
- * Reply; }
- * 
- * public void addReadCount(int ReplyNo) { Connection conn = getConnection();
- * int result = rpdao.updateReadCount(conn, ReplyNo); if(result > 0) {
- * commit(conn); }else { rollback(conn); } close(conn); }
- */
 
 	public int getListCount() {
 		Connection conn = getConnection();
@@ -37,6 +27,7 @@ private ReplyDao rpdao = new ReplyDao();
 	 * }
 	 */
 
+	/*
 	public int insertOriginreply(Reply Reply) {
 		Connection conn = getConnection();
 		int result = rpdao.insertOriginReply(conn, Reply);
@@ -106,6 +97,16 @@ private ReplyDao rpdao = new ReplyDao();
 		}
 		close(conn);
 		return result;
+	}
+
+	*/
+	public List<Reply> selectReplyList(int freeNo) {
+		Connection conn = getConnection();
+		
+		List<Reply> replyList = rpdao.selectReplyList(conn, freeNo);
+		
+		close(conn);
+		return replyList;
 	}
 
 }

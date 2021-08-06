@@ -24,7 +24,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeOriginUpdateServlet
  */
-@WebServlet("/freeoriginupdate")
+@WebServlet("/freeupdate")
 public class FreeOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

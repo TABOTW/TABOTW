@@ -85,32 +85,10 @@ public class GalleryService {
 		return result;
 	}
 
-	public void updateReplySeq(Gallery reply) {
+	
+	public int deleteGallery(int GalleryNo) {
 		Connection conn = getConnection();
-		int result = gdao.updateReplySeq(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);		
-	}
-
-	public int insertReplyGallery(Gallery reply) {
-		Connection conn = getConnection();
-		int result = gdao.insertReplyGallery(conn, reply);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int deleteGallery(int GalleryNo, int GalleryLevel) {
-		Connection conn = getConnection();
-		int result = gdao.deleteGallery(conn, GalleryNo, GalleryLevel);
+		int result = gdao.deleteGallery(conn, GalleryNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

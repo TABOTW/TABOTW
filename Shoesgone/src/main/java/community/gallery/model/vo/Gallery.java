@@ -12,12 +12,8 @@ public class Gallery implements java.io.Serializable {
 	private String GalleryContent;  //게시글 내용
 	private String GalleryOriginalFilename;  //첨부파일 원래이름
 	private String GalleryRenameFilename;  //변경된 첨부파일이름
-	private int GalleryRef;  //원글은 자기번호, 댓글은 원글번호
-	private int GalleryLevel;  //원글 1, 댓글 2, 대댓글 3
-	private int GalleryReplyRef;  //원글 0, 댓글은 자기번호, 대댓글은 참조하는 댓글번호
-	private int GalleryReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int GalleryReadCount; //읽은 조회수
-	private java.sql.Date GalleryDate;  //게시글 등록 날짜
+	private String GalleryDate;  //게시글 등록 날짜
 	private int GalleryLike; // 추천수
 	
 	public Gallery() {}
@@ -42,7 +38,7 @@ public class Gallery implements java.io.Serializable {
 
 	public Gallery(int GalleryNo, int GalleryWriter, String GalleryTitle, String GalleryContent, String GalleryOriginalFilename,
 			String GalleryRenameFilename, int GalleryRef, int GalleryLevel, int GalleryReplyRef, int GalleryReplySeq,
-			int GalleryReadCount, Date GalleryDate, int GalleryLike) {
+			int GalleryReadCount, String GalleryDate, int GalleryLike) {
 		super();
 		this.GalleryNo = GalleryNo;
 		this.GalleryWriter = GalleryWriter;
@@ -50,10 +46,6 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryContent = GalleryContent;
 		this.GalleryOriginalFilename = GalleryOriginalFilename;
 		this.GalleryRenameFilename = GalleryRenameFilename;
-		this.GalleryRef = GalleryRef;
-		this.GalleryLevel = GalleryLevel;
-		this.GalleryReplyRef = GalleryReplyRef;
-		this.GalleryReplySeq = GalleryReplySeq;
 		this.GalleryReadCount = GalleryReadCount;
 		this.GalleryDate = GalleryDate;
 		this.GalleryLike = GalleryLike;
@@ -107,38 +99,6 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryRenameFilename = GalleryRenameFilename;
 	}
 
-	public int getGalleryRef() {
-		return GalleryRef;
-	}
-
-	public void setGalleryRef(int GalleryRef) {
-		this.GalleryRef = GalleryRef;
-	}
-
-	public int getGalleryLevel() {
-		return GalleryLevel;
-	}
-
-	public void setGalleryLevel(int GalleryLevel) {
-		this.GalleryLevel = GalleryLevel;
-	}
-
-	public int getGalleryReplyRef() {
-		return GalleryReplyRef;
-	}
-
-	public void setGalleryReplyRef(int GalleryReplyRef) {
-		this.GalleryReplyRef = GalleryReplyRef;
-	}
-
-	public int getGalleryReplySeq() {
-		return GalleryReplySeq;
-	}
-
-	public void setGalleryReplySeq(int GalleryReplySeq) {
-		this.GalleryReplySeq = GalleryReplySeq;
-	}
-
 	public int getGalleryReadCount() {
 		return GalleryReadCount;
 	}
@@ -147,11 +107,11 @@ public class Gallery implements java.io.Serializable {
 		this.GalleryReadCount = GalleryReadCount;
 	}
 
-	public java.sql.Date getGalleryDate() {
+	public String getGalleryDate() {
 		return GalleryDate;
 	}
 
-	public void setGalleryDate(java.sql.Date GalleryDate) {
+	public void setGalleryDate(String GalleryDate) {
 		this.GalleryDate = GalleryDate;
 	}
 	public int getGalleryLike() {
@@ -170,8 +130,7 @@ public class Gallery implements java.io.Serializable {
 	public String toString() {
 		return "Gallery [GalleryNo=" + GalleryNo + ", GalleryWriter=" + GalleryWriter + ", GalleryTitle=" + GalleryTitle
 				+ ", GalleryContent=" + GalleryContent + ", GalleryOriginalFilename=" + GalleryOriginalFilename
-				+ ", GalleryRenameFilename=" + GalleryRenameFilename + ", GalleryRef=" + GalleryRef + ", GalleryLevel="
-				+ GalleryLevel + ", GalleryReplyRef=" + GalleryReplyRef + ", GalleryReplySeq=" + GalleryReplySeq
+				+ ", GalleryRenameFilename=" + GalleryRenameFilename 
 				+ ", GalleryReadCount=" + GalleryReadCount + ", GalleryDate=" + GalleryDate + ", GalleryLike=" + GalleryLike + "]";
 	}
 
