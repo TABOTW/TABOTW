@@ -15,6 +15,7 @@ import categoryPage.model.service.FreeService;
 import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
+import categoryPage.model.service.QnAService;
 import categoryPage.model.service.QuestionService;
 import categoryPage.model.service.ReviewService;
 import categoryPage.model.vo.Faq;
@@ -22,6 +23,7 @@ import categoryPage.model.vo.Free;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
+import categoryPage.model.vo.QnA;
 import categoryPage.model.vo.Question;
 import categoryPage.model.vo.Review;
 
@@ -58,6 +60,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		ArrayList<Question> question = new QuestionService().selectQuestionList();
 		ArrayList<Review> review = new ReviewService().selectReviewList();
 		ArrayList<Free> free = new FreeService().selectFreeList();
+		ArrayList<QnA> qna = new QnAService().selectQnaList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -73,8 +76,9 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
 				&& question.size() > 0 && review.size() > 0 && free.size() > 0
-				&& regItem.size() > 0 && hotItem.size() > 0 && recItem.size() > 0
-				&& newBuyPrice.size() > 0 && newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
+				&& qna.size() > 0 && regItem.size() > 0 && hotItem.size() > 0
+				&& recItem.size() > 0 && newBuyPrice.size() > 0 && newSellPrice.size() > 0
+				&& upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
@@ -285,6 +289,14 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("qnalist")) {
+				view = request.getRequestDispatcher("qnalist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.length() >= 3 && menu.substring(0, 3).equals("qna")) {
+				for (int i = 0; i < qna.size(); i++) {
+					if (menu.equals("qna" + (i + 1))) {
+						view = request.getRequestDispatcher("qnadetail?qNo=" + qna.get(i).getQnANo() + "&page=" + page);	
+					}
+				}
 			} else if (menu.equals("freelist")) {
 				view = request.getRequestDispatcher("freelist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
 			} else if (menu.length() >= 4 && menu.substring(0, 4).equals("free")) {
