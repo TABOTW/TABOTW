@@ -207,7 +207,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 									<td><%= r.getReviewNo() %></td>
 									<td><%= r.getReviewTitle() %></td>
 									<td><%= r.getReviewStar() %>/10</td>
-									<td><%= r.getReviewReadcount() %></td>
+									<td><%= r.getReviewReadCount() %></td>
 								</tr>
 								<% } %>
 							</table>
