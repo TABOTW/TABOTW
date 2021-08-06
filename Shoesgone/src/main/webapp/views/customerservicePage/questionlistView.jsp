@@ -257,9 +257,9 @@ border-top-right-radius: 10px;
 	<h2 align="center">고객센터</h2>
 	
 	<ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/nlist">공지사항</a></li>
-	<li><a href="/Shoesgone/flist">자주묻는질문</a></li>
-	<li><a href="/Shoesgone/qulist">1:1문의</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=nlistcustomer">공지사항</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=faq">자주묻는질문</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qulist">1:1문의</a></li>
 </ul>
 <br>
 <hr>
@@ -301,7 +301,7 @@ border-top-right-radius: 10px;
 	<% if(list.get(i).getQuestionLevel() == 2){  //원글의 답글 일 때 %>
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;☞
 		<% } %>
-		<a href="/Shoesgone/qudetail?qnum=<%= list.get(i).getQuestionNo() %>"><%= list.get(i).getQuestionTitle() %></a></td>
+		<a href="/Shoesgone/menubarsearch?menu=question<%= list.get(i).getQuestionNo() %>"><%= list.get(i).getQuestionTitle() %></a></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionWriter() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionDate() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionReadcount() %></td> 
@@ -323,12 +323,12 @@ border-top-right-radius: 10px;
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/qulist?page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/qulist?page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -339,13 +339,13 @@ border-top-right-radius: 10px;
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/qulist?page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=qulist<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/qulist?page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -353,7 +353,7 @@ border-top-right-radius: 10px;
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/qulist?page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 				<hr>

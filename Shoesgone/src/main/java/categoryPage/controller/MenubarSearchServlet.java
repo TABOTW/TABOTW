@@ -14,10 +14,12 @@ import categoryPage.model.service.FaqService;
 import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
+import categoryPage.model.service.QuestionService;
 import categoryPage.model.vo.Faq;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
+import categoryPage.model.vo.Question;
 
 /**
  * Servlet implementation class MenubarSearchServlet
@@ -46,6 +48,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
+		ArrayList<Question> question = new QuestionService().selectQuestionList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -272,17 +275,25 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
-			} else if (menu.substring(0, 5).equals("flist")) {
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("qulist")) {
+				view = request.getRequestDispatcher("qulist?page=" + menu.substring(6));
+			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("question")) {
+				for (int i = 0; i < question.size(); i++) {
+					if (menu.equals("question" + (i + 1))) {
+						view = request.getRequestDispatcher("qudetail?qnum=" + question.get(i).getQuestionNo());	
+					}
+				}
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("flist")) {
 				view = request.getRequestDispatcher("flist?page=" + menu.substring(5));
-			} else if (menu.substring(0, 3).equals("faq")) {
+			} else if (menu.length() >= 3 && menu.substring(0, 3).equals("faq")) {
 				for (int i = 0; i < faq.size(); i++) {
 					if (menu.equals("faq" + (i + 1))) {
 						view = request.getRequestDispatcher("fdetail?faqNo=" + faq.get(i).getFaqNo());	
 					}
 				}
-			} else if (menu.substring(0, 5).equals("nlist")) {
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("nlist")) {
 				view = request.getRequestDispatcher("nlist?page=" + menu.substring(5));
-			} else if (menu.substring(0, 6).equals("notice")) {
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("notice")) {
 				for (int i = 0; i < notice.size(); i++) {
 					if (menu.equals("notice" + (i + 1))) {
 						view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(i).getNoticeNo());
