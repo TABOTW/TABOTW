@@ -97,20 +97,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("searchpwd");
 			} else if (menu.equals("normallogin")) {
 				view = request.getRequestDispatcher("login");
-			} else if (menu.equals("notice1")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(0).getNoticeNo());
-			} else if (menu.equals("notice2")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(1).getNoticeNo());
-			} else if (menu.equals("notice3")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(2).getNoticeNo());
-			} else if (menu.equals("notice4")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(3).getNoticeNo());
-			} else if (menu.equals("notice5")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(4).getNoticeNo());
-			} else if (menu.equals("notice6")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(5).getNoticeNo());
-			} else if (menu.equals("notice7")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(6).getNoticeNo());
 			} else if (menu.equals("faq")) {
 				view = request.getRequestDispatcher("flist");
 			} else if (menu.equals("regitem1")) {
@@ -281,6 +267,16 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
 			} else if (menu.equals("regselect")) {
 				view = request.getRequestDispatcher("regselect");
+			} else if (menu.equals("qulist")) {
+				view = request.getRequestDispatcher("qulist");
+			} else if (menu.substring(0, 5).equals("nlist")) {
+				view = request.getRequestDispatcher("nlist?page=" + menu.substring(5));
+			} else if (menu.substring(0, 6).equals("notice")) {
+				for (int i = 0; i < notice.size(); i++) {
+					if (menu.equals("notice" + (i + 1))) {
+						view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(i).getNoticeNo());
+					}
+				}
 			} else {
 				for (int i = 0; i < search.size(); i++) {
 					if (menu.equals("item" + (i + 1))) {

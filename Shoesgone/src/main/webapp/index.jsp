@@ -117,10 +117,11 @@
 				<div class="col-lg-12">
 					<div class="active-banner-slider owl-carousel">
 						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice1';">
+						<% for (int i = notice.size() - 1; i >= notice.size() - 7; i--){ %>
+						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice<%= notice.get(i).getNoticeNo() %>';">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1><%= notice.get(0).getNoticeTitle() %></h1>
+									<h1><%= notice.get(i).getNoticeTitle() %></h1>
 									<div class="add-bag d-flex align-items-center">
 									</div>
 								</div>
@@ -131,92 +132,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice2';">
-							<div class="col-lg-5">
-								<div class="banner-content">
-									<h1><%= notice.get(1).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
-						<!-- single-slide -->
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice3';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1><%= notice.get(2).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice4';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1><%= notice.get(3).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice5';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1><%= notice.get(4).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice6';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1><%= notice.get(5).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row single-slide align-items-center d-flex" id="cursor-pointer" onclick="location.href='/Shoesgone/menubarsearch?menu=notice7';">
-							<div class="col-lg-5 col-md-6">
-								<div class="banner-content">
-									<h1><%= notice.get(6).getNoticeTitle() %></h1>
-									<div class="add-bag d-flex align-items-center">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="/Shoesgone/resources/img/banner-img.png" alt="">
-								</div>
-							</div>
-						</div>
+						<% } %>
 					</div><br><br><br>
 				</div>
 			</div>

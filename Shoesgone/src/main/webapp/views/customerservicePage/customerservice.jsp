@@ -255,9 +255,9 @@ border-top-right-radius: 10px;
 	<h2 align="center">고객센터</h2>
 	
 	<ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/nlist">공지사항</a></li>
-	<li><a href="/Shoesgone/flist">자주묻는질문</a></li>
-	<li><a href="/Shoesgone/qulist">1:1문의</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=nlistcustomer">공지사항</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=faq">자주묻는질문</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qulist">1:1문의</a></li>
 </ul>
 <br>
 <hr>
@@ -295,7 +295,7 @@ border-top-right-radius: 10px;
 					
 								<tr>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeNo() %></td>
-								 <td style = "text-align:center"><a href="/Shoesgone/ndetail?noticeNo=<%= list.get(i).getNoticeNo() %>"><%= list.get(i).getNoticeTitle() %></a></td>
+								 <td style = "text-align:center"><a href="/Shoesgone/menubarsearch?menu=notice<%= list.get(i).getNoticeNo() %>"><%= list.get(i).getNoticeTitle() %></a></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeWriter() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeDate() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getNoticeReadcount() %></td> 
@@ -315,12 +315,12 @@ border-top-right-radius: 10px;
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/nlist?page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=nlist1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/nlist?page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=nlist<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -331,13 +331,13 @@ border-top-right-radius: 10px;
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/nlist?page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=nlist<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/nlist?page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=nlist<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -345,7 +345,7 @@ border-top-right-radius: 10px;
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/nlist?page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=nlist<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 				<hr>
