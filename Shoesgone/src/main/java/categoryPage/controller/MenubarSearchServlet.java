@@ -15,11 +15,13 @@ import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
 import categoryPage.model.service.QuestionService;
+import categoryPage.model.service.ReviewService;
 import categoryPage.model.vo.Faq;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
 import categoryPage.model.vo.Question;
+import categoryPage.model.vo.Review;
 
 /**
  * Servlet implementation class MenubarSearchServlet
@@ -45,10 +47,14 @@ public class MenubarSearchServlet extends HttpServlet {
 		String menu = request.getParameter("menu");
 		String text = request.getParameter("text");
 		String itemno = request.getParameter("itemno");
+		String page = request.getParameter("page");
+		String limit = request.getParameter("limit");
+		String gsort = request.getParameter("gsort");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
 		ArrayList<Question> question = new QuestionService().selectQuestionList();
+		ArrayList<Review> review = new ReviewService().selectReviewList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -62,7 +68,8 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if (search.size() > 0 && notice.size() > 0 && regItem.size() > 0
+		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
+				&& question.size() > 0 && review.size() > 0 && regItem.size() > 0
 				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
 				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
@@ -275,6 +282,14 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("reviewlist")) {
+				view = request.getRequestDispatcher("reviewlist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("review")) {
+				for (int i = 0; i < review.size(); i++) {
+					if (menu.equals("review" + (i + 1))) {
+						view = request.getRequestDispatcher("reviewdetail?rNo=" + review.get(i).getReviewNo() + "&page=" + page);	
+					}
+				}
 			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("qulist")) {
 				view = request.getRequestDispatcher("qulist?page=" + menu.substring(6));
 			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("question")) {

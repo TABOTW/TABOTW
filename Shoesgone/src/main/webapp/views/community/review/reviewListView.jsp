@@ -92,7 +92,7 @@
 							<div class="table-row">
 								<div class="boardno"><%= review.getReviewNo() %></div>
 								<div class="boardtitle">
-								<a href="/Shoesgone/reviewdetail?rNo=<%= review.getReviewNo() %>&page=<%= currentPage %>"><%= review.getReviewTitle() %></a>
+								<a href="/Shoesgone/menubarsearch?menu=review<%= review.getReviewNo() %>&page=<%= currentPage %>"><%= review.getReviewTitle() %></a>
 								</div>
 								<div class="register"><%= review.getReviewWriter() %></div>
 								<div class="registdate"><%= review.getReviewDate()%></div>
@@ -241,7 +241,7 @@
     
 	function movePage(page) {
 		
-		location.href = "/Shoesgone/reviewlist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
+		location.href = "/Shoesgone/menubarsearch?menu=reviewlist&page=" + page + "&limit=" + limit + "&sort=" + gsort;
 	};
 	
 	function prev() {
@@ -263,8 +263,5 @@
 		location.href = "/Shoesgone/views/community/review/reviewWriteForm.jsp";
 	}
 	</script>
-
-
-	
 </body>
 </html>
