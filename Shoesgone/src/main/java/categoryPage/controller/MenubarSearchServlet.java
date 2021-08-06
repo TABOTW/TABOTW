@@ -289,6 +289,12 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("reviewpage")) {
+				view = request.getRequestDispatcher("reviewlist?page=" + page);
+			} else if (menu.equals("freepage")) {
+				view = request.getRequestDispatcher("freelist?page=" + page);
+			} else if (menu.equals("qnapage")) {
+				view = request.getRequestDispatcher("qnalist?page=" + page);
 			} else if (menu.equals("qnalist")) {
 				view = request.getRequestDispatcher("qnalist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
 			} else if (menu.length() >= 3 && menu.substring(0, 3).equals("qna")) {
