@@ -206,13 +206,12 @@ public class ItemDetailDao {
 				
 				review.setReviewNo(rset.getInt("REVIEW_NO"));
 				review.setReviewTitle(rset.getString("REVIEW_TITLE"));
-				review.setReviewWriterNo(rset.getInt("REVIEW_WRITER"));
-				review.setReviewDate(rset.getDate("REVIEW_DATE"));
+				review.setReviewWriter(rset.getInt("REVIEW_WRITER"));
 				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
 				review.setReviewItemNo(rset.getInt("REVIEW_ITEMNO"));
 				review.setReviewStar(rset.getInt("REVIEW_STAR"));
 				review.setReviewLike(rset.getInt("REVIEW_LIKE"));
-				review.setReviewReadcount(rset.getInt("REVIEW_READCOUNT"));
+				review.setReviewReadCount(rset.getInt("REVIEW_READCOUNT"));
 				rlist.add(review);
 			}
 		} catch (Exception e) {

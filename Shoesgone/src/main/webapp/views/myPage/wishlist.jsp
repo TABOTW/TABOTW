@@ -101,7 +101,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>위시리스트</h1>
+					<h1>마이페이지</h1>
 					<nav class="d-flex align-items-center">
 					</nav>
 				</div>
@@ -117,7 +117,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
         $login_url = /member/login.html
     -->
     <div class="title">
-        <h2 align="center">마이페이지</h2><hr><br>
+        <h2 align="center">위시리스트</h2><hr><br>
     </div>
 
     <table class="th" border="1" summary="" align="center" width="960px">

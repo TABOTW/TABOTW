@@ -348,7 +348,7 @@ border-top-right-radius: 10px;
 	<% } %>
 </div>
 				<hr>
-						<br><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center>
+						
 							 
 						
 						

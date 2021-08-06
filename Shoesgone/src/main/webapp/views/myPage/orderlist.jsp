@@ -125,7 +125,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 					
 								<tr>
 								 <td style = "text-align:center"><a href="/Shoesgone/odetail?orderNo=<%= list.get(i).getOrdersNo() %>"><%= list.get(i).getOrdersNo() %></a></td>
-								 <td style = "text-align:center"><a href="/Shoesgone/ItemDV?itemno=<%= list.get(i).getItemNo() %>"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %>&nbsp;(size: <%= list.get(i).getShoesSize() %>)</a></td>
+								 <td style = "text-align:center"><a href="/Shoesgone/ItemDV?itemno=<%= list.get(i).getItemNo() %>"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %>&nbsp;</a>(size: <%= list.get(i).getShoesSize() %>)</td>
 								 <td style = "text-align:center"><%= list.get(i).getPrice() %>(<%= list.get(i).getCount() %>)</td>
 								 <td style = "text-align:center"><%= list.get(i).getDelFee() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getProgress() %></td> 
