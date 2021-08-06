@@ -252,7 +252,7 @@
 					</div>
 					<div>		
 						<div class="sorting">
-							<select id="sort">
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
 								<option value="sort-hot">인기순</option>
 								<option value="sort-premium">프리미엄순</option>
 								<option value="sort-buy">즉시 구매가순</option>
@@ -299,7 +299,7 @@
 	
 	<%@ include file="../common/footer.jsp" %>
 	<!-- ajax로 정렬 기준 값을 서블릿으로 전달 -->
-	<script>
+	<!-- <script>
 		$(document).ready(function(){
 			$('#sort').change(function(){
 				var sortId = document.getElementById("sort");
@@ -312,6 +312,6 @@
 				});
 			});
 		});
-	</script>
+	</script> -->
 </body>
 </html>

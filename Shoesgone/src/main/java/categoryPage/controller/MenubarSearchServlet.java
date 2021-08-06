@@ -255,8 +255,16 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("categoryfilter?category=price2&priceone=300000&pricetwo=500000");
 			} else if (menu.equals("price4")) {
 				view = request.getRequestDispatcher("categoryfilter?category=price3&priceone=500000");
-			} else if (menu.equals("sort")) {
-				view = request.getRequestDispatcher("categorysort");
+			} else if (menu.equals("sort-hot")) {
+				view = request.getRequestDispatcher("categorysort?sortValue=sort-hot");
+			} else if (menu.equals("sort-premium")) {
+				view = request.getRequestDispatcher("categorysort?sortValue=sort-premium");
+			} else if (menu.equals("sort-buy")) {
+				view = request.getRequestDispatcher("categorysort?sortValue=sort-buy");
+			} else if (menu.equals("sort-sell")) {
+				view = request.getRequestDispatcher("categorysort?sortValue=sort-sell");
+			} else if (menu.equals("sort-drop")) {
+				view = request.getRequestDispatcher("categorysort?sortValue=sort-drop");
 			} else {
 				for (int i = 0; i < search.size(); i++) {
 					if (menu.equals("item" + (i + 1))) {
