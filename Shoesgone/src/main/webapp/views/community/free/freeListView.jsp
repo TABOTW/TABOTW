@@ -274,7 +274,7 @@
 		}
 	}
 	function showWriteForm(){
-		location.href = "/Shoesgone/views/community/free/freeWriteForm.jsp";
+		location.href = "/Shoesgone/menubarsearch?menu=freewrite";
 	}
 	</script>	
 

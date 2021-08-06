@@ -261,7 +261,7 @@
 		}
 	}
 	function showWriteForm(){
-		location.href = "/Shoesgone/views/community/qna/qnaWriteForm.jsp";
+		location.href = "/Shoesgone/menubarsearch?menu=qnawrite";
 	}
 	
 	</script>

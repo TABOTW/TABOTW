@@ -260,7 +260,7 @@
 		}
 	}
 	function showWriteForm(){
-		location.href = "/Shoesgone/views/community/review/reviewWriteForm.jsp";
+		location.href = "/Shoesgone/menubarsearch?menu=reviewwrite";
 	}
 	</script>
 </body>
