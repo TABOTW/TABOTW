@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import categoryPage.model.service.FaqService;
 import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
+import categoryPage.model.vo.Faq;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
@@ -43,6 +45,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		String itemno = request.getParameter("itemno");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
+		ArrayList<Faq> faq = new FaqService().selectFaqList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -269,6 +272,14 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.substring(0, 5).equals("flist")) {
+				view = request.getRequestDispatcher("flist?page=" + menu.substring(5));
+			} else if (menu.substring(0, 3).equals("faq")) {
+				for (int i = 0; i < faq.size(); i++) {
+					if (menu.equals("faq" + (i + 1))) {
+						view = request.getRequestDispatcher("fdetail?faqNo=" + faq.get(i).getFaqNo());	
+					}
+				}
 			} else if (menu.substring(0, 5).equals("nlist")) {
 				view = request.getRequestDispatcher("nlist?page=" + menu.substring(5));
 			} else if (menu.substring(0, 6).equals("notice")) {

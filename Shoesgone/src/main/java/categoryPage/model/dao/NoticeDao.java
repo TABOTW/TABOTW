@@ -19,8 +19,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 
 		String query = "select * "
-				+ "from notice "
-				+ "order by noticeno";
+				+ "from notice";
 
 		try {
 			stmt = conn.createStatement();
