@@ -62,6 +62,11 @@ public class CategorySortServlet extends HttpServlet {
 			view = request.getRequestDispatcher("views/categoryPage/category.jsp");
 			
 			request.setAttribute("item", item);
+			if (sortValue == null) {
+				request.setAttribute("sort", "");
+			} else {
+				request.setAttribute("sort", sortValue);
+			}
 			
 			view.forward(request, response);
 		} else {

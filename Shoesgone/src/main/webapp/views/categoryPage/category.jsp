@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="categoryPage.model.vo.ItemPicture, java.util.*" %>
 <%
+	String sort = request.getAttribute("sort").toString();
 	ArrayList<ItemPicture> item = (ArrayList<ItemPicture>)request.getAttribute("item");
 	Random random = new Random();
 %>
@@ -252,6 +253,7 @@
 					</div>
 					<div>		
 						<div class="sorting">
+							<% if(sort == "") { %>
 							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
 								<option value="sort-hot">인기순</option>
 								<option value="sort-premium">프리미엄순</option>
@@ -259,6 +261,47 @@
 								<option value="sort-sell">즉시 판매가순</option>
 								<option value="sort-drop">발매일순</option>
 							</select>
+							<% } else if(sort.equals("sort-hot")){ %>
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
+								<option value="sort-hot" selected>인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
+							</select>
+							<% } else if(sort.equals("sort-premium")){ %>
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium" selected>프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
+							</select>
+							<% } else if(sort.equals("sort-buy")){ %>
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy" selected>즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
+							</select>
+							<% } else if(sort.equals("sort-sell")){ %>
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell" selected>즉시 판매가순</option>
+								<option value="sort-drop">발매일순</option>
+							</select>
+							<% } else if(sort.equals("sort-drop")){ %>
+							<select id="sort" onchange="if(this.value) location.href='/Shoesgone/menubarsearch?menu=' + (this.value);">
+								<option value="sort-hot">인기순</option>
+								<option value="sort-premium">프리미엄순</option>
+								<option value="sort-buy">즉시 구매가순</option>
+								<option value="sort-sell">즉시 판매가순</option>
+								<option value="sort-drop" selected>발매일순</option>
+							</select>
+							<% } %>
 						</div>
 					</div>
 				</div>
