@@ -130,11 +130,11 @@
 		</div>
 		<div class="search_input" id="search_input_box">
 			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" onkeyup="filter()" placeholder="브랜드명, 모델명, 모델번호 등">
+				<a class="d-flex justify-content-between">
+					<input type="text" class="form-control" id="search_input" onkeyup="filter()" onKeypress="javascript:if(event.keyCode == 13) location.href='/Shoesgone/menubarsearch?menu=text&text=' + (this.value);" placeholder="브랜드명, 모델명, 모델번호 등">
 					<button type="submit" class="btn"></button>
 					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
+				</a>
 			</div>
 		    <div>
 		    	<div class="listBox">
@@ -171,6 +171,9 @@
           }
         }
       }
+    </script>
+    <script>
+    
     </script>
 </body>
 </html>

@@ -39,6 +39,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String menu = request.getParameter("menu");
+		String text = request.getParameter("text");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
@@ -265,6 +266,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("categorysort?sortValue=sort-sell");
 			} else if (menu.equals("sort-drop")) {
 				view = request.getRequestDispatcher("categorysort?sortValue=sort-drop");
+			} else if (menu.equals("text")) {
+				view = request.getRequestDispatcher("menubarsearchenter?text=" + text);
 			} else {
 				for (int i = 0; i < search.size(); i++) {
 					if (menu.equals("item" + (i + 1))) {

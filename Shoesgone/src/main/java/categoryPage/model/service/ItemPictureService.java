@@ -115,4 +115,11 @@ public class ItemPictureService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<ItemPicture> selectSearchList(String text) {
+		Connection conn = getConnection();
+		ArrayList<ItemPicture> list = ipdao.selectSearchList(conn, text);
+		close(conn);
+		return list;
+	}
 }
