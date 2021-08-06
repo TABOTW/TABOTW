@@ -36,7 +36,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 </script>
 <script type="text/javascript">
 function showWriteForm(){
-	location.href = "/Shoesgone/views/customerservicePage/questionWriteForm.jsp";
+	location.href = "/Shoesgone/menubarsearch?menu=questionwrite";
 }
 </script>
 <!--

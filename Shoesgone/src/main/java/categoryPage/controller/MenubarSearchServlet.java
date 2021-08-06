@@ -289,18 +289,24 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("quinsert")) {
+				view = request.getRequestDispatcher("quinsert");
 			} else if (menu.equals("reviewinsert")) {
 				view = request.getRequestDispatcher("reviewinsert");
 			} else if (menu.equals("qnainsert")) {
 				view = request.getRequestDispatcher("qnainsert");
 			} else if (menu.equals("freeinsert")) {
 				view = request.getRequestDispatcher("freeinsert");
-			} else if (menu.equals("reviewwrite")) {
+			} else if (menu.equals("questionwrite")) {
+				view = request.getRequestDispatcher("views/customerservicePage/questionWriteForm.jsp");
+			}else if (menu.equals("reviewwrite")) {
 				view = request.getRequestDispatcher("views/community/review/reviewWriteForm.jsp");
 			} else if (menu.equals("qnawrite")) {
 				view = request.getRequestDispatcher("views/community/qna/qnaWriteForm.jsp");
 			} else if (menu.equals("freewrite")) {
 				view = request.getRequestDispatcher("views/community/free/freeWriteForm.jsp");
+			} else if (menu.equals("questionpage")) {
+				view = request.getRequestDispatcher("qulist?page=" + page);
 			} else if (menu.equals("reviewpage")) {
 				view = request.getRequestDispatcher("reviewlist?page=" + page);
 			} else if (menu.equals("freepage")) {
