@@ -1,12 +1,13 @@
 package community.best.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Best implements java.io.Serializable {
 	private static final long serialVersionUID = 113L;
 	
 	private int BestNo;  //게시글번호
-	private String BestWriter; //게시글 작성자 아이디
+	private int BestWriter; //게시글 작성자 아이디
 	private String BestTitle;  //게시글 제목
 	private String BestContent;  //게시글 내용
 	private String BestOriginalFilename;  //첨부파일 원래이름
@@ -17,17 +18,18 @@ public class Best implements java.io.Serializable {
 	private int BestReplySeq;  //댓글과 대댓글의 순번, 최근 댓글을 1
 	private int BestReadCount; //읽은 조회수
 	private java.sql.Date BestDate;  //게시글 등록 날짜
+	private int BestLike; //추천수
 	
 	public Best() {}
 
-	public Best(String BestWriter, String BestTitle, String BestContent) {
+	public Best(int BestWriter, String BestTitle, String BestContent) {
 		super();
 		this.BestWriter = BestWriter;
 		this.BestTitle = BestTitle;
 		this.BestContent = BestContent;
 	}
 
-	public Best(String BestWriter, String BestTitle, 
+	public Best(int BestWriter, String BestTitle, 
 			String BestContent, String BestOriginalFilename,
 			String BestRenameFilename) {
 		super();
@@ -38,9 +40,9 @@ public class Best implements java.io.Serializable {
 		this.BestRenameFilename = BestRenameFilename;
 	}
 
-	public Best(int BestNo, String BestWriter, String BestTitle, String BestContent, String BestOriginalFilename,
+	public Best(int BestNo, int BestWriter, String BestTitle, String BestContent, String BestOriginalFilename,
 			String BestRenameFilename, int BestRef, int BestLevel, int BestReplyRef, int BestReplySeq,
-			int BestReadCount, Date BestDate) {
+			int BestReadCount, Date BestDate, int BestLike) {
 		super();
 		this.BestNo = BestNo;
 		this.BestWriter = BestWriter;
@@ -54,6 +56,7 @@ public class Best implements java.io.Serializable {
 		this.BestReplySeq = BestReplySeq;
 		this.BestReadCount = BestReadCount;
 		this.BestDate = BestDate;
+		this.BestLike = BestLike;
 	}
 
 	public int getBestNo() {
@@ -64,11 +67,11 @@ public class Best implements java.io.Serializable {
 		this.BestNo = BestNo;
 	}
 
-	public String getBestWriter() {
+	public int getBestWriter() {
 		return BestWriter;
 	}
 
-	public void setBestWriter(String BestWriter) {
+	public void setBestWriter(int BestWriter) {
 		this.BestWriter = BestWriter;
 	}
 
@@ -151,6 +154,13 @@ public class Best implements java.io.Serializable {
 	public void setBestDate(java.sql.Date BestDate) {
 		this.BestDate = BestDate;
 	}
+	public int getBestLike() {
+		return BestLike;
+	}
+
+	public void setBestLike(int BestLike) {
+		this.BestLike = BestLike;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -162,8 +172,10 @@ public class Best implements java.io.Serializable {
 				+ ", BestContent=" + BestContent + ", BestOriginalFilename=" + BestOriginalFilename
 				+ ", BestRenameFilename=" + BestRenameFilename + ", BestRef=" + BestRef + ", BestLevel="
 				+ BestLevel + ", BestReplyRef=" + BestReplyRef + ", BestReplySeq=" + BestReplySeq
-				+ ", BestReadCount=" + BestReadCount + ", BestDate=" + BestDate + "]";
+				+ ", BestReadCount=" + BestReadCount + ", BestDate=" + BestDate + ", BestLike=" + BestLike + "]";
 	}
+
+	
 	
 }
 

@@ -66,16 +66,13 @@ public class ReviewDao {
 				
 				Review.setReviewNo(ReviewNo);
 				Review.setReviewTitle(rset.getString("Review_title"));
-				Review.setReviewWriter(rset.getString("Review_writer"));
+				Review.setReviewWriter(rset.getInt("Review_writer"));
 				Review.setReviewContent(rset.getString("Review_content"));
 				Review.setReviewOriginalFilename(rset.getString("Review_original_filename"));
 				Review.setReviewRenameFilename(rset.getString("Review_rename_filename"));
-				Review.setReviewDate(rset.getDate("Review_date"));
-				Review.setReviewLevel(rset.getInt("Review_level"));
-				Review.setReviewRef(rset.getInt("Review_ref"));
-				Review.setReviewReplyRef(rset.getInt("Review_reply_ref"));
-				Review.setReviewReplySeq(rset.getInt("Review_reply_seq"));
+				Review.setReviewDate(rset.getString("Review_date"));
 				Review.setReviewReadCount(rset.getInt("Review_readcount"));
+				Review.setReviewLike(rset.getInt("Review_like"));			
 			}
 			
 		} catch (Exception e) {
@@ -136,20 +133,31 @@ public class ReviewDao {
 	}
 
 	public ArrayList<Review> selectList(Connection conn, 
-			int startRow, int endRow) {
+			int startRow, int endRow, String orderBy) {
 		ArrayList<Review> list = new ArrayList<Review>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT * "
+		/*
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Review_No, Review_TITLE, Review_WRITER,  " +
+		 * "                Review_ORIGINAL_FILENAME, Review_RENAME_FILENAME,  " +
+		 * "                Review_DATE, Review_LEVEL, Review_REF, Review_REPLY_REF,  "
+		 * + "                Review_REPLY_SEQ, Review_READCOUNT, Review_content , Review_like " +
+		 * "        FROM (SELECT * FROM Review " +
+		 * "                ORDER BY Review_REF DESC, Review_REPLY_REF DESC, " +
+		 * "                          Review_LEVEL ASC, Review_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		String query = "SELECT *"
 				+ "FROM (SELECT ROWNUM RNUM, Review_No, Review_TITLE, Review_WRITER,  "
-				+ "                Review_ORIGINAL_FILENAME, Review_RENAME_FILENAME,  "
-				+ "                Review_DATE, Review_LEVEL, Review_REF, Review_REPLY_REF,  "
-				+ "                Review_REPLY_SEQ, Review_READCOUNT, Review_content "
-				+ "        FROM (SELECT * FROM Review "
-				+ "                ORDER BY Review_REF DESC, Review_REPLY_REF DESC, "
-				+ "                          Review_LEVEL ASC, Review_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
+				+ "                  Review_DATE, Review_READCOUNT, Review_content , Review_like "
+				+ "            FROM (SELECT *"
+				+ "		               FROM Review "
+				+ "                   ORDER BY " + orderBy
+				+ "                 )"
+				+ "      )"
+				+ "WHERE RNUM >= ? AND RNUM <=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,15 +171,13 @@ public class ReviewDao {
 				
 				Review.setReviewNo(rset.getInt("Review_No"));
 				Review.setReviewTitle(rset.getString("Review_title"));
-				Review.setReviewWriter(rset.getString("Review_writer"));
-				Review.setReviewContent(rset.getString("Review_content"));				Review.setReviewDate(rset.getDate("Review_date"));
-				Review.setReviewOriginalFilename(rset.getString("Review_original_filename"));
-				Review.setReviewRenameFilename(rset.getString("Review_rename_filename"));
-				Review.setReviewRef(rset.getInt("Review_ref"));
-				Review.setReviewLevel(rset.getInt("Review_level"));
-				Review.setReviewReplyRef(rset.getInt("Review_reply_ref"));
-				Review.setReviewReplySeq(rset.getInt("Review_reply_seq"));
+				Review.setReviewWriter(rset.getInt("Review_writer"));
+				Review.setReviewContent(rset.getString("Review_content"));				
+				Review.setReviewDate(rset.getString("Review_date"));
+				//Review.setReviewOriginalFilename(rset.getString("Review_original_filename"));
+				//Review.setReviewRenameFilename(rset.getString("Review_rename_filename"));
 				Review.setReviewReadCount(rset.getInt("Review_readcount"));
+				Review.setReviewLike(rset.getInt("Review_like"));
 				
 				list.add(Review);
 			}
@@ -199,7 +205,7 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Review.getReviewTitle());
-			pstmt.setString(2, Review.getReviewWriter());
+			pstmt.setInt(2, Review.getReviewWriter());
 			pstmt.setString(3, Review.getReviewContent());
 			pstmt.setString(4, Review.getReviewOriginalFilename());
 			pstmt.setString(5, Review.getReviewRenameFilename());
@@ -269,116 +275,14 @@ public class ReviewDao {
 		return result;
 	}
 
-	public int updateReplySeq(Connection conn, Review reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = null;
-		
-		//새로 등록할 댓글이 원글의 댓글일 때
-		if(reply.getReviewLevel() == 2) {
-			query = "update Review set "
-				+ "Review_reply_seq = Review_reply_seq + 1 "
-				+ "where Review_ref = ? and Review_level = ?";
-		}
-		
-		//새로 등록할 댓글이 댓글의 댓글일 때
-		if(reply.getReviewLevel() == 3) {
-			query = "update Review set "
-					+ "Review_reply_seq = Review_reply_seq + 1 "
-					+ "where Review_ref = ? and Review_level = ? "
-					+ "and Review_reply_ref = ?";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reply.getReviewRef());
-			pstmt.setInt(2, reply.getReviewLevel());
-			
-			if(reply.getReviewLevel() == 3) {
-				pstmt.setInt(3, reply.getReviewReplyRef());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public int insertReplyReview(Connection conn, Review reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = null;
-		
-		if(reply.getReviewLevel()  == 2) {
-			query = "insert into Review values ("
-				+ "(select max(Review_No) + 1 from Review), "
-				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Review_No) + 1 from Review), "
-				+ "?, default)";
-		}		
-		
-		if(reply.getReviewLevel()  == 3) {
-			query = "insert into Review values ("
-					+ "(select max(Review_No) + 1 from Review), "
-					+ "?, ?, ?, null, null, sysdate, 3, ?, "
-					+ "?, ?, default)";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, reply.getReviewTitle());
-			pstmt.setString(2, reply.getReviewWriter());
-			pstmt.setString(3, reply.getReviewContent());
-			pstmt.setInt(4, reply.getReviewRef());
-			
-			if(reply.getReviewLevel() == 2) {
-				pstmt.setInt(5, reply.getReviewReplySeq());
-			}
-			
-			if(reply.getReviewLevel() == 3) {
-				pstmt.setInt(5, reply.getReviewReplyRef());
-				pstmt.setInt(6, reply.getReviewReplySeq());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
 
 	public int deleteReview(Connection conn, 
-			int ReviewNo, int ReviewLevel) {
+			int ReviewNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "delete from Review ";
-		
-		if(ReviewLevel == 1) {
-			//원글 삭제시에는 원글, 댓글, 대댓글 모두 삭제됨
-			query += "where Review_ref = ?";
-		}
-		
-		if(ReviewLevel == 2) {
-			//원글에 대한 댓글 삭제시, 대댓글 같이 삭제
-			query += "where Review_reply_ref = ?";
-		}
-		
-		if(ReviewLevel == 3) {
-			//대댓글은 자기글만 삭제
-			query += "where Review_No = ?";
-		}
+		String query = "delete from Review where review_no = ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

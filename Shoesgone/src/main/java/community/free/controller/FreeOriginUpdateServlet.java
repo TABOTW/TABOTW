@@ -24,7 +24,7 @@ import community.free.model.vo.Free;
 /**
  * Servlet implementation class FreeOriginUpdateServlet
  */
-@WebServlet("/freeoriginupdate")
+@WebServlet("/freeupdate")
 public class FreeOriginUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -75,7 +75,7 @@ public class FreeOriginUpdateServlet extends HttpServlet {
 		Free.setFreeNo(Integer.parseInt(
 				mrequest.getParameter("fNo")));
 		Free.setFreeTitle(mrequest.getParameter("title"));
-		Free.setFreeWriter(mrequest.getParameter("writer"));
+		Free.setFreeWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Free.setFreeContent(mrequest.getParameter("content"));
 
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));
@@ -173,12 +173,13 @@ public class FreeOriginUpdateServlet extends HttpServlet {
 		// 7. 받은 결과로 성공/실패 페이지 내보내기
 		if (result > 0) {
 			//수정 성공시 목록 보기의 해당 페이지 출력 요청
-			//response.sendRedirect("blist?page=" + currentPage);
+			//response.sendRedirect("freelist?page=" + currentPage);
 			
 			//수정 성공시 해당 글의 상세보기 페이지 출력 요청
 			response.sendRedirect("freedetail?fNo=" 
 						+ Free.getFreeNo()+ "&page="
 						+ currentPage);
+			
 			
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

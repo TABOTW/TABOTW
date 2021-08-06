@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="community.qna.model.vo.QnA"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+
+<%
+	//QnA qna = (QnA)request.getAttribute("qna");
+	ArrayList qnaList = (ArrayList) request.getAttribute("list");
+	int limit = Integer.parseInt(request.getAttribute("limit").toString());
+	int currentPage = Integer.parseInt(request.getAttribute("currentPage").toString());
+	int maxPage = Integer.parseInt(request.getAttribute("maxPage").toString());
+	int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
+	int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
+	int listCount = Integer.parseInt(request.getAttribute("listCount").toString());
+	String gSort = (String)request.getAttribute("sort");
+	if(gSort == null || "".equals(gSort)) {
+		gSort = "0";
+	}
+%>
 <!DOCTYPE html>
 <html>
 <body id="category">
@@ -24,43 +42,34 @@
 	<!-- End Banner Area -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-md-5">
-				<div class="sidebar-categories">
-					<div class="head">커뮤니티</div>
-					<ul class="main-categories">
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/best/bestListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Best 게시판</a>
-						</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/review/reviewListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>리뷰 게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/gallery/galleryListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>갤러리</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/free/freeListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>자유게시판</a>
-							</li>
-						<li class="main-nav-list"><a href="/Shoesgone/views/community/qna/qnaListView.jsp" aria-expanded="false" ><span
-								 class="lnr lnr-arrow-right"></span>Q&A</a>
-							</li>
-					</ul>
-				</div>
-				
-			</div>
+		
+			<%@ include file="/views/common/communityCategory.jsp" %>
+
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="mr-auto">
 					</div>
-					<div class="default-select" id="default-select">
-						<select style="display: none;">
-							<option value="1">정렬</option>
-							<option value="1">인기순↓</option>
-							<option value="1">인기순↑</option>
-							<option value="1">최신순↓</option>
-							<option value="1">최신순↑</option>
-							<option value="1">사진글</option>
-						</select><div class="nice-select" tabindex="0"><span class="current">정렬</span><ul class="list"><li data-value=" 1" class="option selected focus">정렬</li><li data-value="1" class="option">인기순↓</li><li data-value="1" class="option">인기순↑</li><li data-value="1" class="option">최신순↓</li><li data-value="1" class="option">최신순↑</li><li data-value="1" class="option">사진글</li></ul></div>
+					<div class="default-select" id="default-select" >
+						<select id="sort" style="display: none;">
+							<option value="0">정렬</option>
+							<option value="likedown">인기순↓</option>
+							<option value="likeup">인기순↑</option>
+							<option value="oldest">최신순↓</option>
+							<option value="newest">최신순↑</option>
+							<option value="picture">사진글</option>
+						</select>
+						<div class="nice-select" tabindex="0">
+							<span class="current">정렬</span>
+							<ul class="list">
+								<li data-value="0" class="option">정렬</li>
+								<li data-value="likedown" class="option">인기순↓</li>
+								<li data-value="likeup" class="option">인기순↑</li>
+								<li data-value="oldest" class="option">최신순↓</li>
+								<li data-value="newest" class="option">최신순↑</li>
+								<li data-value="picture" class="option">사진글</li>
+							</ul>
+						</div>		
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -75,14 +84,22 @@
 								<div class="registdate">작성일</div>
 								<div class="hitcount">조회수</div>
 							</div>
-
+							<%
+								for(int i = 0; i < qnaList.size(); i++) {
+									QnA qna = (QnA)qnaList.get(i);
+							%>
 							<div class="table-row">
-								<div class="boardno">1</div>
-								<div class="boardtitle">제목이 길어서 슬픈 밤</div>
-								<div class="register">작성식</div>
-								<div class="registdate">2021-07-11</div>
-								<div class="hitcount">645032</div>
+								<div class="boardno"><%= qna.getQnANo() %></div>
+								<div class="boardtitle">
+									<a href="/Shoesgone/qnadetail?qNo=<%= qna.getQnANo() %>&page=<%= currentPage %>"><%= qna.getQnATitle() %></a>
+								</div>
+								<div class="register"><%= qna.getQnAWriter() %></div>
+								<div class="registdate"><%= qna.getQnADate()%></div>
+								<div class="hitcount"><%= qna.getQnAReadCount() %></div>
 							</div>
+							<%
+								}
+							%>
 						</div>
 					</div>
 				</section>
@@ -91,37 +108,163 @@
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting mr-auto">
 						<select>
-							<option value="1">Show 5</option>
-							<option value="1">Show 10</option>
-							<option value="1">Show 20</option>
+							<option value="5">Show 5</option>
+							<option value="10">Show 10</option>
+							<option value="20">Show 20</option>
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
+						<a href="javascript:prev();" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+						<%
+							String currentDecorator = "";
+							for(int i = 1; i < maxPage + 1; i++) {
+								if(currentPage == i) {
+									currentDecorator = " class='active'";
+								} else {
+									currentDecorator = "";
+								}
+						%>
+						<a href="javascript:movePage(<%=i%>);" <%= currentDecorator%>><%=i%></a>
+						<%
+							}
+						%>
+						<%
+							if(maxPage > 5) {
+						%>
 						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">9</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="javascript:movePage(<%=endPage%>);"><%=endPage%></a>
+						<%
+							}
+						%>
+						<a href="javascript:next();" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+												
 					</div>
 					<div class="button-group-area mt-40 ml-auto">
-						<a href="#" class="genric-btn primary default circle">글쓰기</a>
+					<% if(loginMember != null){ %>
+						<a onclick="showWriteForm();" class="genric-btn primary default circle">글쓰기</a>
 					</div>
+					<% } %>
+					
+					
+
+					<!-- 검색 -->
+					<div class="" id="mc_embed_signup">
+
+					<form target="_blank" novalidate="true"
+						action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+						method="get" class="form-inline">
+
+						<div class="d-flex flex-row">
+							<select class="country_select">
+									<option value="1">검색 기간</option>
+									<div></div>
+									<option value="2">1일</option>
+									<option value="3">7일</option>
+									<option value="4">1개월</option>
+									<option value="5" id="uenroll">직접 입력</option>
+							</select> &nbsp;
+							<select class="country_select">
+									<option value="1">검색 필터</option>
+									<div></div>
+									<option value="2">제목 + 내용</option>
+									<option value="3">제목</option>
+									<option value="4">내용</option>
+									<option value="5">작성자</option>
+							</select> &nbsp;
+
+							<input class="form-control" name="SEARCH"
+								placeholder="검색어를 입력하세요 " onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Search '" required=""
+								type="text">
+
+
+							<button class="click-btn btn btn-default">
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</button>
+							<div style="position: absolute; left: -5000px;">
+								<input name="b_36c4fd991d266f23781ded980_aefe40901a"
+									tabindex="-1" value="" type="text">
+							</div>
+						</div>
+					</form>
+				</div>
+					
+					
+					
+					
 				</div>
 				<!-- End Filter Bar -->
 			</div>
 		</div>
 	</div>
+	
+	
+	<br><br><br><br><br>
 
-<br><br><br><br><br>
+	
 
 	<!-- start footer Area -->
 		<%@ include file="/views/common/footer.jsp" %>
-
 	<!-- End footer Area -->
+	
+	
+	<script type="text/javascript">
+	var limit = <%= limit %>;
+	var currentPage = <%= currentPage %>;
+	var maxPage = <%= maxPage %>;
+	var startPage = <%= startPage %>;
+	var endPage = <%= endPage %>;
+	var listCount = <%= listCount %>;
+	var gsort = "<%=gSort%>";
+	
+	$(document).ready(function(){
+		$('#limit').niceSelect();
+		$('#limit').val(limit).niceSelect('update');
+
+    	$('#limit').change(function() {
+    		$('#limit').niceSelect('update');
+    		//console.log($('#sort').val());	
+    		limit = $('#limit').val();
+    		movePage(1);
+    	});
+    	
+    	$('#sort').niceSelect();
+    	$('#sort').val(gsort).niceSelect('update');
+    	
+    	$('#sort').change(function() {
+    		$('#sort').niceSelect('update');
+    		//console.log($('#sort').val());	
+    		gsort = $('#sort').val();
+    		movePage(1);
+    	});
+   	
+    });
+    
+	function movePage(page) {
+		
+		location.href = "/Shoesgone/qnalist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
+	};
+	
+	function prev() {
+		if(currentPage > 1) {
+			movePage(currentPage - 1);
+		} else {
+			alert("이미 첫 페이지입니다.");
+		}
+	}
+	
+	function next() {
+		if(currentPage == maxPage) {
+			alert("이미 끝 페이지입니다.")
+		} else {
+			movePage(currentPage + 1);	
+		}
+	}
+	function showWriteForm(){
+		location.href = "/Shoesgone/views/community/qna/qnaWriteForm.jsp";
+	}
+	
+	</script>
 
 </body>
 </html>

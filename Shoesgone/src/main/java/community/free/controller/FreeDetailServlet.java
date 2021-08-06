@@ -1,6 +1,7 @@
 package community.free.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.free.model.service.FreeService;
 import community.free.model.vo.Free;
+import community.reply.model.service.ReplyService;
+import community.reply.model.vo.Reply;
 
 /**
  * Servlet implementation class FreeDetailServlet
@@ -50,12 +53,17 @@ public class FreeDetailServlet extends HttpServlet {
 		//해당 게시글 리턴 받음 : select
 		Free free = bservice.selectFree(FreeNo);
 		
+		ReplyService rservice = new ReplyService();
+
+		
+		List<Reply> reply = rservice.selectReplyList(FreeNo);  
+		
 		RequestDispatcher view = null;
 		if(free != null) {
 			view = request.getRequestDispatcher(
-					//"views/Free/FreeDetailView.jsp");
 					"views/community/free/freeDetailView.jsp");
 			request.setAttribute("free", free);
+			request.setAttribute("replyList", reply);
 			request.setAttribute("currentPage", currentPage);
 			view.forward(request, response);
 		}else {

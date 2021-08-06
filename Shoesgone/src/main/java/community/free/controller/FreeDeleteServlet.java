@@ -34,10 +34,9 @@ public class FreeDeleteServlet extends HttpServlet {
 		// 게시글(원글, 댓글, 대댓글) 삭제 처리용 컨트롤러
 		
 		int FreeNo = Integer.parseInt(request.getParameter("fNo"));
-		int FreeLevel = Integer.parseInt(request.getParameter("level"));
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
-		if(new FreeService().deleteFree(FreeNo, FreeLevel) > 0) {
+		if(new FreeService().deleteFree(FreeNo) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
 			String renameFileName = request.getParameter("rfile");
 			if(renameFileName != null) {
@@ -47,7 +46,7 @@ public class FreeDeleteServlet extends HttpServlet {
 				new File(savePath + "\\" + renameFileName).delete();
 			}
 			
-			response.sendRedirect("/Sheosgone/freelist?page=1");
+			response.sendRedirect("/Shoesgone/freelist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
@@ -55,6 +54,8 @@ public class FreeDeleteServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

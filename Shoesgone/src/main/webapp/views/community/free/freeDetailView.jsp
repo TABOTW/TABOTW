@@ -2,28 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@page import="community.free.model.vo.Free"%>
 <%@page import="loginPage.model.vo.Login"%>
+<%@page import="community.reply.model.vo.Reply"%>
+<%@page import="java.util.List"%>
 <%
 	Free free = (Free)request.getAttribute("free");
+	List<Reply> replyList = (List)request.getAttribute("replyList"); 
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 %> 
 
 <!DOCTYPE html>
 <html>
 <head>
-
 </head>
-
 <body id="category">
 
 	<%@ include file="/views/common/menubar.jsp" %>
 
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/freedetail?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/freeupview?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>";
 }
 
 function requestDelete(){
-	location.href = "/Shoesgone/freedetail?fNo=<%= free.getFreeNo() %>&level=<%= free.getFreeLevel() %>&rfile=<%= free.getFreeRenameFilename() %>";
+	location.href = "/Shoesgone/freedelete?fNo=<%= free.getFreeNo() %>&rfile=<%= free.getFreeRenameFilename() %>";
+	alert("삭제되었습니다.");
 }
 
 
@@ -36,11 +38,11 @@ function requestDelete(){
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>리뷰 게시판</h1>
+					<h1>자유 게시판</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.jsp">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Community Category<span class="lnr lnr-arrow-right"></span></a>
-						<a href="review.jsp">리뷰 게시판</a>
+						<a href="review.jsp">자유 게시판</a>
 					</nav>
 				</div>
 			</div>
@@ -89,7 +91,7 @@ function requestDelete(){
 							&nbsp;
 							<% Login loginMemberInfo = (Login)session.getAttribute("loginMember");
 							   if(loginMemberInfo != null &&
-								  free.getFreeWriter() == loginMember.getUserNo()) {
+									free.getFreeWriter() == loginMember.getUserNo()) {
 								   // out.println("작성자ID와 로그인한 사용자ID가 같음");
 							%>
 							<button onclick="moveUpdateView(); return false;" class="genric-btn primary-border small">수정</button>
@@ -104,81 +106,54 @@ function requestDelete(){
 			
 			<!-- 댓글 확인용 -->
 			<div class="comments-area ">
-                        <h4>댓글 : 3</h4>
-                        <div class="comment-list">
+                        <h4>댓글 : <%=replyList.size() %></h4>
+                        <%
+                        	for(int i = 0; i < replyList.size(); i++ ) {
+                        		Reply reply = replyList.get(i);
+                        		String leftPadding = "";
+                        		if(reply.getReplyLevel() == 2) {
+                        			leftPadding = "left-padding";
+                        		}
+                        %>
+                        <div class="comment-list <%=leftPadding %>" >
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
                                         <img src="img/blog/c1.jpg" alt="">
                                     </div>
                                     <div class="desc">
-                                        <h5><a href="#">작성자1</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
+                                        <h5><a href="#"><%= reply.getReplyWriter() %></a></h5>
+                                        <p class="date"><%= reply.getReplyDate() %></p>
                                         <p class="comment">
-                                            댓글내용 1
+                                            <%= reply.getReplyContent() %>
                                         </p>
                                     </div>
                                 </div>
+                                <% if(loginMember != null){ %>
                                 <div class="reply-btn">
                                 	<a href="" class="btn-reply text-uppercase">추천 </a>
                                 	<a href="" class="btn-reply text-uppercase">답글달기</a>
                                 	<a href="" class="btn-reply text-uppercase">신고 </a>
                                 </div>
+                                <% } %>
                             </div>
                         </div>
-                        <div class="comment-list left-padding">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="img/blog/c2.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">답글1</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            답글1
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                	<a href="" class="btn-reply text-uppercase">추천 </a>
-                                	<a href="" class="btn-reply text-uppercase">신고 </a>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                         
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="img/blog/c4.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">작성자2</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            댓글내용 2
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                	<a href="" class="btn-reply text-uppercase">추천 </a>
-                                	<a href="" class="btn-reply text-uppercase">답글달기</a>
-                                	<a href="" class="btn-reply text-uppercase">신고 </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 				
+							
+							
 				<!-- 댓글 남기기용 -->		
-				<div class="comment-form">
+				<% if(loginMember != null){ %>
+					<div class="comment-form">
                         <h4>댓글 남기기</h4>
                         <form>
                             <div class="form-group form-inline">
                                 <div class="form-group col-lg-6 col-md-6 name"> 
-                                    <input type="text" class="form-control" id="name" placeholder="작성자" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+                                    <input type="text" class="form-control" id="name" placeholder="작성자" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">                                     
                                 </div> &nbsp; &nbsp; &nbsp; &nbsp;
-                                <a href="#" class="primary-btn submit_btn">등록</a>
+                                <a href="#" class="genric-btn primary radius">등록</a>
                             </div>
                             
                             <div class="form-group">
@@ -187,6 +162,7 @@ function requestDelete(){
                             
                         </form>
                     </div>
+                <% } %>
                     
                     
                     

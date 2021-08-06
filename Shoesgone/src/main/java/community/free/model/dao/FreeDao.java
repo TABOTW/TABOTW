@@ -55,8 +55,6 @@ public class FreeDao {
 	/*
 	 * 게시판 번호(FreeNO)로 게시물 조회
 	 * SQL 쿼리 정상 작동
-	 * 제목, 작성자, 내용, 작성일자, 조회수만 가져오면 되나요?
-	 * 나머지는 아직 컬럼을 안만들어서 가져올수가 없어요 ㅇㅋ
 	 */
 	public Free selectFree(Connection conn, int FreeNO) {
 		Free Free = null;
@@ -64,7 +62,7 @@ public class FreeDao {
 		ResultSet rset = null;
 		
 		String query = "select free_no, free_title, free_content, free_writer, to_char(free_date, 'YYYY-MM-DD HH24:MI:SS') as free_date"
-				+ ", free_readcount from Free "
+				+ ", free_readcount, free_like from Free "
 				+ "where Free_NO = ?";
 		
 		try {
@@ -78,16 +76,13 @@ public class FreeDao {
 				
 				Free.setFreeNo(FreeNO);
 				Free.setFreeTitle(rset.getString("Free_title"));
-				Free.setFreeWriter(rset.getString("Free_writer"));
+				Free.setFreeWriter(rset.getInt("Free_writer"));
 				Free.setFreeContent(rset.getString("Free_content"));
-				//Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
-				//Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
+				Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
+				Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
 				Free.setFreeDate(rset.getString("Free_date"));
-				//Free.setFreeLevel(rset.getInt("Free_level"));
-				//Free.setFreeRef(rset.getInt("Free_ref"));
-				//Free.setFreeReplyRef(rset.getInt("Free_reply_ref"));
-				//Free.setFreeReplySeq(rset.getInt("Free_reply_seq"));
 				Free.setFreeReadCount(rset.getInt("Free_readcount"));
+				Free.setFreeLike(rset.getInt("Free_like"));
 			}
 			
 		} catch (Exception e) {
@@ -155,38 +150,37 @@ public class FreeDao {
 		return listCount;
 	}
 
-	/*
-	 * 게시판 목록 메소드인 것 같은데..
-	 * 컬럼이 빠진게 많네요? 얘는 테이블에 컬럼을 먼저 추가하던가 해야 할 것 같은데
-	 * 음.. 근데제가궁금한게 여기에 데이터를 추가하는 방법이 뭘까요?
-	 * 여기에 나타나게 하고싶어요
-	 */
 	public ArrayList<Free> selectList(Connection conn, 
 			int startRow, int endRow, String orderBy) {
 		ArrayList<Free> list = new ArrayList<Free>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
+		
 		/*
-		String query = "SELECT * "
+		 * String query = "SELECT * " +
+		 * "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  " +
+		 * "                Free_ORIGINAL_FILENAME, Free_RENAME_FILENAME,  " +
+		 * "                Free_DATE, Free_LEVEL, Free_REF, Free_REPLY_REF,  " +
+		 * "                Free_REPLY_SEQ, Free_READCOUNT, Free_content " +
+		 * "        FROM (SELECT * FROM Free " +
+		 * "                ORDER BY Free_REF DESC, Free_REPLY_REF DESC, " +
+		 * "                          Free_LEVEL ASC, Free_REPLY_SEQ ASC)) " +
+		 * "WHERE RNUM >= ? AND RNUM <= ?";
+		 */
+		
+		
+		String query = "SELECT *" 
 				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
 				+ "                Free_ORIGINAL_FILENAME, Free_RENAME_FILENAME,  "
-				+ "                Free_DATE, Free_LEVEL, Free_REF, Free_REPLY_REF,  "
-				+ "                Free_REPLY_SEQ, Free_READCOUNT, Free_content "
-				+ "        FROM (SELECT * FROM Free "
-				+ "                ORDER BY Free_REF DESC, Free_REPLY_REF DESC, "
-				+ "                          Free_LEVEL ASC, Free_REPLY_SEQ ASC)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
-		*/
-		String query = "SELECT *"
-				+ "FROM (SELECT ROWNUM RNUM, Free_NO, Free_TITLE, Free_WRITER,  "
-				+ "                  Free_DATE, Free_READCOUNT, Free_content , free_like"
-				+ "            FROM (SELECT *"
-				+ "		               FROM FREE "
-				+ "                   ORDER BY " + orderBy
-				+ "                 )"
-				+ "      )"
+				+ "                  Free_DATE, Free_READCOUNT, Free_Content , Free_like "
+				+ "            FROM (SELECT *" 
+				+ "		               FROM FREE " 
+				+ "                   ORDER BY "+ orderBy 
+				+ "                 )" 
+				+ "      )" 
 				+ "WHERE RNUM >= ? AND RNUM <=?";
+		 
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -200,16 +194,13 @@ public class FreeDao {
 				
 				Free.setFreeNo(rset.getInt("Free_no"));
 				Free.setFreeTitle(rset.getString("Free_title"));
-				Free.setFreeWriter(rset.getString("Free_writer"));
+				Free.setFreeWriter(rset.getInt("Free_writer"));
 				Free.setFreeContent(rset.getString("Free_content"));				
 				Free.setFreeDate(rset.getString("Free_date"));
-				//Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
-				//Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
-				//Free.setFreeRef(rset.getInt("Free_ref"));
-				//Free.setFreeLevel(rset.getInt("Free_level"));
-				//Free.setFreeReplyRef(rset.getInt("Free_reply_ref"));
-				//Free.setFreeReplySeq(rset.getInt("Free_reply_seq"));
+				Free.setFreeOriginalFilename(rset.getString("Free_original_filename"));
+				Free.setFreeRenameFilename(rset.getString("Free_rename_filename"));
 				Free.setFreeReadCount(rset.getInt("Free_readcount"));
+				Free.setFreeLike(rset.getInt("Free_like"));
 				
 				list.add(Free);
 			}
@@ -230,14 +221,14 @@ public class FreeDao {
 		
 		String query = "insert into Free values ("
 				+ "(select max(Free_NO) + 1 from Free), "
-				+ "?, ?, ?, ?, ?, sysdate, 1, "
-				+ "(select max(Free_NO) + 1 from Free), "
-				+ "null, default, default)";		
+				+ "?, ?,sysdate, ?, ?, ?,  1, "
+				+ " default)";		
+		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Free.getFreeTitle());
-			pstmt.setString(2, Free.getFreeWriter());
+			pstmt.setInt(2, Free.getFreeWriter());
 			pstmt.setString(3, Free.getFreeContent());
 			pstmt.setString(4, Free.getFreeOriginalFilename());
 			pstmt.setString(5, Free.getFreeRenameFilename());
@@ -307,117 +298,19 @@ public class FreeDao {
 		return result;
 	}
 
-	public int updateReplySeq(Connection conn, Free reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
+	
 		
-		String query = null;
 		
-		//새로 등록할 댓글이 원글의 댓글일 때
-		if(reply.getFreeLevel() == 2) {
-			query = "update Free set "
-				+ "Free_reply_seq = Free_reply_seq + 1 "
-				+ "where Free_ref = ? and Free_level = ?";
-		}
-		
-		//새로 등록할 댓글이 댓글의 댓글일 때
-		if(reply.getFreeLevel() == 3) {
-			query = "update Free set "
-					+ "Free_reply_seq = Free_reply_seq + 1 "
-					+ "where Free_ref = ? and Free_level = ? "
-					+ "and Free_reply_ref = ?";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reply.getFreeRef());
-			pstmt.setInt(2, reply.getFreeLevel());
-			
-			if(reply.getFreeLevel() == 3) {
-				pstmt.setInt(3, reply.getFreeReplyRef());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
 
-	public int insertReplyFree(Connection conn, Free reply) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = null;
-		
-		if(reply.getFreeLevel()  == 2) {
-			query = "insert into Free values ("
-				+ "(select max(Free_NO) + 1 from Free), "
-				+ "?, ?, ?, null, null, sysdate, 2, ?, "
-				+ "(select max(Free_NO) + 1 from Free), "
-				+ "?, default)";
-		}		
-		
-		if(reply.getFreeLevel()  == 3) {
-			query = "insert into Free values ("
-					+ "(select max(Free_NO) + 1 from Free), "
-					+ "?, ?, ?, null, null, sysdate, 3, ?, "
-					+ "?, ?, default)";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, reply.getFreeTitle());
-			pstmt.setString(2, reply.getFreeWriter());
-			pstmt.setString(3, reply.getFreeContent());
-			pstmt.setInt(4, reply.getFreeRef());
-			
-			if(reply.getFreeLevel() == 2) {
-				pstmt.setInt(5, reply.getFreeReplySeq());
-			}
-			
-			if(reply.getFreeLevel() == 3) {
-				pstmt.setInt(5, reply.getFreeReplyRef());
-				pstmt.setInt(6, reply.getFreeReplySeq());
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
 
 	public int deleteFree(Connection conn, 
-			int FreeNO, int FreeLevel) {
+			int FreeNO) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "delete from Free ";
-		
-		if(FreeLevel == 1) {
-			//원글 삭제시에는 원글, 댓글, 대댓글 모두 삭제됨
-			query += "where Free_ref = ?";
-		}
-		
-		if(FreeLevel == 2) {
-			//원글에 대한 댓글 삭제시, 대댓글 같이 삭제
-			query += "where Free_reply_ref = ?";
-		}
-		
-		if(FreeLevel == 3) {
-			//대댓글은 자기글만 삭제
-			query += "where Free_NO = ?";
-		}
-		
+		String query = "delete from Free where free_no = ? ";
+				
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, FreeNO);

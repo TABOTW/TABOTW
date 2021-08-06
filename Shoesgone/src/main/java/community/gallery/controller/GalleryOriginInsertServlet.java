@@ -76,7 +76,7 @@ public class GalleryOriginInsertServlet extends HttpServlet {
 		Gallery Gallery = new Gallery();
 
 		Gallery.setGalleryTitle(mrequest.getParameter("title"));
-		Gallery.setGalleryWriter(mrequest.getParameter("writer"));
+		Gallery.setGalleryWriter(Integer.parseInt(mrequest.getParameter("writer")));
 		Gallery.setGalleryContent(mrequest.getParameter("content"));
 
 		// 업로드된 원본 파일이름 추출

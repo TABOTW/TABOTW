@@ -71,15 +71,15 @@ public class MenubarSearchServlet extends HttpServlet {
 			} else if (menu.equals("nlistcustomer")) {
 				view = request.getRequestDispatcher("nlist");
 			} else if (menu.equals("best")) {
-				view = request.getRequestDispatcher("views/community/best/bestListView.jsp");
+				view = request.getRequestDispatcher("bestlist");
 			} else if (menu.equals("review")) {
-				view = request.getRequestDispatcher("views/community/review/reviewListView.jsp");
+				view = request.getRequestDispatcher("reviewlist");
 			} else if (menu.equals("gallery")) {
-				view = request.getRequestDispatcher("views/community/gallery/galleryListView.jsp");
+				view = request.getRequestDispatcher("gallerylist");
 			} else if (menu.equals("free")) {
 				view = request.getRequestDispatcher("freelist");
 			} else if (menu.equals("qna")) {
-				view = request.getRequestDispatcher("views/community/qna/qnaListView.jsp");
+				view = request.getRequestDispatcher("qnalist");
 			} else if (menu.equals("login")) {
 				view = request.getRequestDispatcher("views/loginPage/login.jsp");
 			} else if (menu.equals("logout")) {
