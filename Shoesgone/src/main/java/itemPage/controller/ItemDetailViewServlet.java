@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import community.review.model.vo.Review;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
-import review.model.vo.Review;
 
 /**
  * Servlet implementation class ItemDetailViewServlet
@@ -43,7 +43,7 @@ public class ItemDetailViewServlet extends HttpServlet {
 		//사이즈 어레이 가져오기
 		String[] ssizes = item.getShoesSizes().split(",");
 		ArrayList<Integer> isizes = new ArrayList<Integer>(ssizes.length);
-		for(String s : ssizes){
+		for(String s:ssizes){
 			isizes.add(Integer.parseInt(s));
 		}
 		//리뷰 목록 가져오기

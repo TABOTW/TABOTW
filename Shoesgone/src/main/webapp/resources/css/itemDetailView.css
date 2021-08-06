@@ -17,27 +17,6 @@
 	height: auto;
 	margin:  auto;
 }
-.detail_size {
-	padding-top: 30px;
-	padding-bottom: 40px;
-	border-bottom: 1px solid black;
-}
-.detail_size .title {
-	float: left;
-}
-.detail_size .size {
-	float: right;
-}
-.detail_price {
-	margin-top: 20px;
-	min-height: 44px;
-}
-.detail_price .title {
-	float: left;
-}
-.detail_price .price{
-	float: right;
-}
 .table_specification{
 	width: 100%;
     margin-bottom: 1rem;
@@ -49,10 +28,11 @@
     vertical-align: top;
     border-top: 1px solid #dee2e6
 }
-.graph_options{
+.graph_options {
 	float: right;
 }
-.sales_detail{
-	position: relative;
+.idpagereview {
+	width: 90%;
 	text-align: center;
+	margin: auto;
 }

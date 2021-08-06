@@ -36,7 +36,6 @@ public class OrderProgressUpdateServlet extends HttpServlet {
 		// 1. 배송현황 저장용 객체 생성 및 저장
 		Orders upProgress = new Orders();
 		upProgress.setProgress(request.getParameter("progress"));
-		upProgress.setOrdersNo(Integer.parseInt(request.getParameter("ordersno")));
 		
 		// 2. 서비스 메소드에 전달하고 결과받기
 		int result = new OrdersService().updateProgress(upProgress);

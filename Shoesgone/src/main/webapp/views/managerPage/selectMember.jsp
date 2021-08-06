@@ -14,6 +14,7 @@
 	<div class="card-body">
 		<h3>회원정보조회</h3>
 		<table style="text-align :left;">
+	
 				<tr>
 					<th>회원번호</th>
 					<td><%= information.getUserNo() %></td>

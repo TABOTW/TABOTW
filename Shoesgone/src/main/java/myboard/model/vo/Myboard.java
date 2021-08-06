@@ -10,6 +10,7 @@ public class Myboard implements java.io.Serializable {
 	private String title;
 	private String writer;
 	private java.sql.Date registDate;
+	private int textReadcount;
 	
 	public Myboard() {}
 
