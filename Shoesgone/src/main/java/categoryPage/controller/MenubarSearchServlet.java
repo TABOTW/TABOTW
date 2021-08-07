@@ -57,6 +57,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		String limit = request.getParameter("limit");
 		String gsort = request.getParameter("gsort");
 		String level = request.getParameter("level");
+		String wnum = request.getParameter("wnum");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
@@ -80,9 +81,9 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
 				&& question.size() > 0 && review.size() > 0 && free.size() > 0
-				&& qna.size() > 0 && gallery.size() > 0 && regItem.size() > 0
-				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
-				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
+				&& qna.size() > 0 && gallery.size() > 0
+				&& regItem.size() > 0 && hotItem.size() > 0 && recItem.size() > 0
+				&& newBuyPrice.size() > 0 && newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
@@ -325,6 +326,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fdelete.ad?faqNo=" + menu.substring(10));
 			} else if (menu.equals("finsert.ad")) {
 				view = request.getRequestDispatcher("finsert.ad");
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("wdelete")) {
+				view = request.getRequestDispatcher("wdelete?userNo=" + menu.substring(7) + "&wnum=" + wnum);
 			} else if (menu.length() >= 11 && menu.substring(0, 11).equals("qudelete.ad")) {
 				view = request.getRequestDispatcher("qudelete.ad?questionNo=" + menu.substring(11) + "&level=" + level);
 			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("qurepview.ad")) {

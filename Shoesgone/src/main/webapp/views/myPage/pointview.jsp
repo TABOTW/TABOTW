@@ -131,7 +131,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <tr class="first xans-record-">
 <td><%= list.get(i).getRegistDate() %></td>
 <td class="mileage"><%= list.get(i).getPoint() %></td>
-<td><a href="/Shoesgone/odetail?orderNo=<%= list.get(i).getOrderNo() %>""><%= list.get(i).getOrderNo() %></a></td>
+<td><a href="/Shoesgone/menubarsearch?menu=odetail<%= list.get(i).getOrderNo() %>"><%= list.get(i).getOrderNo() %></a></td>
 <td><%= list.get(i).getHistory() %></td>
             </tr>
             
