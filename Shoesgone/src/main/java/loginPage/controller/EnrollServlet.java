@@ -43,6 +43,7 @@ public class EnrollServlet extends HttpServlet {
 		Login login = new Login();
 		
 		login.setUserId(request.getParameter("userid"));
+		login.setEmail(request.getParameter("userid"));
 		userpwd = request.getParameter("userpwd");
 		
 		// 회원가입 비밀번호 SHA-512 적용

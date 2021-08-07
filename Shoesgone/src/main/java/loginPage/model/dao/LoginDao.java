@@ -57,13 +57,14 @@ public class LoginDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into user_info (user_no, user_id, user_pwd) "
-				+ "values (user_seq.nextval, ?, ?)";
-
+		String query = "insert into user_info (user_no, user_id, user_pwd, email) "
+				+ "values (user_seq.nextval, ?, ?, ?)";
+		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, login.getUserId());
 			pstmt.setString(2, login.getUserPwd());
+			pstmt.setString(3, login.getEmail());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
