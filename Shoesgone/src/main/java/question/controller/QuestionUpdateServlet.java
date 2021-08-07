@@ -59,8 +59,11 @@ public class QuestionUpdateServlet extends HttpServlet {
 					//response.sendRedirect("blist?page=" + currentPage);
 					
 					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-					response.sendRedirect("qudetail?qnum=" 
+					view = request.getRequestDispatcher("qudetail?qnum=" 
 								+ question.getQuestionNo());
+					view.forward(request, response);
+//					response.sendRedirect("qudetail?qnum=" 
+//								+ question.getQuestionNo());
 					
 				} else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
