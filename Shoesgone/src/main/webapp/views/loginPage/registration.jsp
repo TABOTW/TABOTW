@@ -56,7 +56,6 @@
 					<div class="login_form_inner">
 						<h1>회원가입</h1><br>
 						<form class="row login_form" action="/Shoesgone/enroll" method="post" id="contactForm" novalidate="novalidate">
-							
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">이메일 주소 *</h6>
 								<input type="email" class="form-control" id="userid" name="userid" placeholder="예) ShoesGone@shoes.co.kr" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) ShoesGone@shoes.co.kr'">
