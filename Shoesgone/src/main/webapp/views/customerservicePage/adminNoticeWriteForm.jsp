@@ -72,7 +72,7 @@
 				<h2>공지사항</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/ninsert.ad" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=ninsert.ad" method="post">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd; width: 1000px;">
 
@@ -104,7 +104,7 @@
 								type="reset" value="작성취소" class="genric-btn primary small">
 							&nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/nlist.ad?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=nlist.ad1'; return false;">
 						</center>
 					</form>
 				</div>

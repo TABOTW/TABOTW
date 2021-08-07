@@ -56,9 +56,12 @@ public class AdminQuestionReplyUpdateServlet extends HttpServlet {
 					//수정 성공시 목록 보기의 해당 페이지 출력 요청
 					//response.sendRedirect("blist?page=" + currentPage);
 					
-					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
-					response.sendRedirect("qudetail.ad?questionNo=" 
+					view = request.getRequestDispatcher("qudetail.ad?questionNo=" 
 								+ question.getQuestionNo());
+					view.forward(request, response);
+					//수정 성공시 해당 글의 상세보기 페이지 출력 요청
+//					response.sendRedirect("qudetail.ad?questionNo=" 
+//								+ question.getQuestionNo());
 					
 				} else {
 					view = request.getRequestDispatcher("views/common/error.jsp");

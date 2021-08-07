@@ -74,7 +74,7 @@ Notice notice = (Notice)request.getAttribute("notice");
 				<h2>공지사항</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/nupdate.ad" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=nupdate.ad" method="post">
 					<input type="hidden" name="noticeNo" value="<%= notice.getNoticeNo() %>">	
 					
 						<table class="table table-striped"
@@ -106,7 +106,7 @@ Notice notice = (Notice)request.getAttribute("notice");
 							<input type="submit" value="수정하기"
 								class="genric-btn primary small"> &nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/nlist.ad?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=nlist.ad1'; return false;">
 						</center>
 					</form>
 				</div>

@@ -138,7 +138,7 @@ Faq faq = (Faq)request.getAttribute("faq");
 				<h2>자주묻는질문</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/fupdate.ad" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=fupdate.ad" method="post">
 					<input type="hidden" name="faqNo" value="<%= faq.getFaqNo() %>">	
 					
 						<table class="table table-striped"
@@ -171,7 +171,7 @@ Faq faq = (Faq)request.getAttribute("faq");
 								class="genric-btn primary small"> &nbsp; 
 							&nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/flist.ad?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=flist.ad1'; return false;">
 						</center>
 					</form>
 				</div>

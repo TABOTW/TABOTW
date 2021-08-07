@@ -26,11 +26,11 @@ Faq faq = (Faq)request.getAttribute("faq");;
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/fupview.ad?faqNo=<%= faq.getFaqNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=fupview.ad<%= faq.getFaqNo() %>";
 } 
 function requestDelete(){
 	alert("삭제완료");
-	location.href = "/Shoesgone/fdelete.ad?faqNo=<%= faq.getFaqNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=fdelete.ad<%= faq.getFaqNo() %>";
 }
 
 </script>

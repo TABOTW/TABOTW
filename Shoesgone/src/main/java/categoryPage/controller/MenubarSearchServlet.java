@@ -56,6 +56,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		String page = request.getParameter("page");
 		String limit = request.getParameter("limit");
 		String gsort = request.getParameter("gsort");
+		String level = request.getParameter("level");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
@@ -300,6 +301,36 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("views/customerservicePage/adminFaqWriteForm.jsp");
 			} else if (menu.equals("adminNoticeWriteForm")) {
 				view = request.getRequestDispatcher("views/customerservicePage/adminNoticeWriteForm.jsp");
+			} else if (menu.equals("ninsert.ad")) {
+				view = request.getRequestDispatcher("ninsert.ad");
+			} else if (menu.equals("nupdate.ad")) {
+				view = request.getRequestDispatcher("nupdate.ad");
+			} else if (menu.equals("fupdate.ad")) {
+				view = request.getRequestDispatcher("fupdate.ad");
+			} else if (menu.equals("qurepinsert.ad")) {
+				view = request.getRequestDispatcher("qurepinsert.ad");
+			} else if (menu.length() >= 14 && menu.substring(0, 14).equals("qurepupdate.ad")) {
+				view = request.getRequestDispatcher("qurepupdate.ad?questionNo=" + menu.substring(14));
+			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qulist.ad")) {
+				view = request.getRequestDispatcher("qulist.ad?page=" + menu.substring(9));
+			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("flist.ad")) {
+				view = request.getRequestDispatcher("flist.ad?page=" + menu.substring(8));
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("nupview.ad")) {
+				view = request.getRequestDispatcher("nupview.ad?noticeNo=" + menu.substring(10));
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("ndelete.ad")) {
+				view = request.getRequestDispatcher("ndelete.ad?noticeNo=" + menu.substring(10));
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("fupview.ad")) {
+				view = request.getRequestDispatcher("fupview.ad?faqNo=" + menu.substring(10));
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("fdelete.ad")) {
+				view = request.getRequestDispatcher("fdelete.ad?faqNo=" + menu.substring(10));
+			} else if (menu.equals("finsert.ad")) {
+				view = request.getRequestDispatcher("finsert.ad");
+			} else if (menu.length() >= 11 && menu.substring(0, 11).equals("qudelete.ad")) {
+				view = request.getRequestDispatcher("qudelete.ad?questionNo=" + menu.substring(11) + "&level=" + level);
+			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("qurepview.ad")) {
+				view = request.getRequestDispatcher("qurepview.ad?questionNo=" + menu.substring(12));
+			} else if (menu.length() >= 14 && menu.substring(0, 14).equals("qurepupview.ad")) {
+				view = request.getRequestDispatcher("qurepupview.ad?questionNo=" + menu.substring(14));
 			} else if (menu.length() >= 11 && menu.substring(0, 11).equals("qudetail.ad")) {
 				for (int i = 0; i < question.size(); i++) {
 					if (menu.equals("qudetail.ad" + (i + 1))) {

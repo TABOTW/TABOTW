@@ -54,8 +54,10 @@ public class AdminFaqUpdateServlet extends HttpServlet {
 			// 수정 성공시 목록 보기의 해당 페이지 출력 요청
 			// response.sendRedirect("blist?page=" + currentPage);
 
+			view = request.getRequestDispatcher("fdetail.ad?faqNo=" + faq.getFaqNo());
+			view.forward(request, response);
 			// 수정 성공시 해당 글의 상세보기 페이지 출력 요청
-			response.sendRedirect("fdetail.ad?faqNo=" + faq.getFaqNo());
+			//response.sendRedirect("fdetail.ad?faqNo=" + faq.getFaqNo());
 
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

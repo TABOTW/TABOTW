@@ -37,9 +37,10 @@ public class AdminQuestionDeleteServlet extends HttpServlet {
 		//서비스 메소드로 삭제 실행하고 결과받기		
 		if(new QuestionService().adminDeleteQuestion(questionNo, questionLevel) > 0) {
 			//받은 결과가 성공일 때, 저장 폴더의 파일도 삭제 처리함
+			RequestDispatcher view = request.getRequestDispatcher("qulist.ad?page=1");
+			view.forward(request, response);
 			
-			
-			response.sendRedirect("/Shoesgone/qulist.ad?page=1");
+			//response.sendRedirect("/Shoesgone/qulist.ad?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

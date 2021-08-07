@@ -33,14 +33,14 @@ Question question = (Question)request.getAttribute("question");
 
 function requestDelete(){
 	alert("삭제완료");
-	location.href = "/Shoesgone/qudelete.ad?questionNo=<%= question.getQuestionNo() %>&level=<%= question.getQuestionLevel() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qudelete.ad<%= question.getQuestionNo() %>&level=<%= question.getQuestionLevel() %>";
 }
 function replyInsert(){
 	
-	location.href = "/Shoesgone/qurepview.ad?questionNo=<%= question.getQuestionNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qurepview.ad<%= question.getQuestionNo() %>";
 }
 function moveUpdateView(){
-	location.href = "/Shoesgone/qurepupview.ad?questionNo=<%= question.getQuestionNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qurepupview.ad<%= question.getQuestionNo() %>";
 	
 }
 </script>

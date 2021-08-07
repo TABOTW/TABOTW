@@ -36,8 +36,10 @@ public class AdminFaqDeleteServlet extends HttpServlet {
 
 		// 서비스 메소드로 삭제 실행하고 결과받기
 		if (new FaqService().adminDeleteFaq(faqNo) > 0) {
+			RequestDispatcher view = request.getRequestDispatcher("flist.ad?page=1");
+			view.forward(request, response);
 
-			response.sendRedirect("/Shoesgone/flist.ad?page=1");
+			//response.sendRedirect("/Shoesgone/flist.ad?page=1");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", faqNo + "번 글 삭제 실패.");

@@ -74,7 +74,7 @@ Question question = (Question)request.getAttribute("question");
 				<h2>1:1문의</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/qurepupdate.ad?questionNo=<%= question.getQuestionNo() %>" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=qurepupdate.ad<%= question.getQuestionNo() %>" method="post">
 					<input type="hidden" name="questionNo" value="<%= question.getQuestionNo() %>">	
 					
 						<table class="table table-striped"
@@ -108,7 +108,7 @@ Question question = (Question)request.getAttribute("question");
 								type="reset" value="작성취소" class="genric-btn primary small">
 							&nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/qulist.ad?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=qulist.ad1'; return false;">
 						</center>
 					</form>
 				</div>

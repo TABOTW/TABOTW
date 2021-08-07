@@ -27,11 +27,11 @@
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/nupview.ad?noticeNo=<%= notice.getNoticeNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=nupview.ad<%= notice.getNoticeNo() %>";
 } 
 function requestDelete(){
 	alert("삭제완료");
-	location.href = "/Shoesgone/ndelete.ad?noticeNo=<%= notice.getNoticeNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=ndelete.ad<%= notice.getNoticeNo() %>";
 }
 
 </script>

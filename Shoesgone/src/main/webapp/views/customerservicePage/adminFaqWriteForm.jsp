@@ -70,7 +70,7 @@
 				<h2>자주묻는질문</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/finsert.ad" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=finsert.ad" method="post">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd; width: 1000px;">
 
@@ -102,7 +102,7 @@
 								type="reset" value="작성취소" class="genric-btn primary small">
 							&nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/flist.ad?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=flist.ad1'; return false;">
 						</center>
 					</form>
 				</div>
