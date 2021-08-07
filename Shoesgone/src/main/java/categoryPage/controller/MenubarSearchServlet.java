@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import categoryPage.model.service.FaqService;
 import categoryPage.model.service.FreeService;
+import categoryPage.model.service.GalleryService;
 import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
@@ -20,6 +21,7 @@ import categoryPage.model.service.QuestionService;
 import categoryPage.model.service.ReviewService;
 import categoryPage.model.vo.Faq;
 import categoryPage.model.vo.Free;
+import categoryPage.model.vo.Gallery;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
@@ -61,6 +63,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		ArrayList<Review> review = new ReviewService().selectReviewList();
 		ArrayList<Free> free = new FreeService().selectFreeList();
 		ArrayList<QnA> qna = new QnAService().selectQnaList();
+		ArrayList<Gallery> gallery = new GalleryService().selectGalleryList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -76,9 +79,9 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
 				&& question.size() > 0 && review.size() > 0 && free.size() > 0
-				&& qna.size() > 0 && regItem.size() > 0 && hotItem.size() > 0
-				&& recItem.size() > 0 && newBuyPrice.size() > 0 && newSellPrice.size() > 0
-				&& upcomingRelease.size() > 0) {
+				&& qna.size() > 0 && gallery.size() > 0 && regItem.size() > 0
+				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
+				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
@@ -289,6 +292,15 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.length() >= 13 && menu.substring(0, 13).equals("gallerydetail")) {
+				for (int i = 0; i < gallery.size(); i++) {
+					if (menu.equals("gallerydetail" + (i + 1))) {
+						view = request.getRequestDispatcher("gallerydetail?gNo=" + gallery.get(i).getGalleryNo());
+						System.out.println(gallery.get(i).getGalleryNo());
+					}
+				}
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("glistmy")) {
+				view = request.getRequestDispatcher("glist.my?userid=" + menu.substring(7) + "&page=" + page);
 			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdetail")) {
 				for (int i = 0; i < review.size(); i++) {
 					if (menu.equals("reviewdetail" + (i + 1))) {
