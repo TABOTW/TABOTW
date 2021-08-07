@@ -40,10 +40,19 @@ public class EnrollServlet extends HttpServlet {
 		int result;
 		String userpwd;
 		String cryptoUserpwd = null;
+		String shoesSize = request.getParameter("shoesSize");
 		Login login = new Login();
 		
 		login.setUserId(request.getParameter("userid"));
 		login.setEmail(request.getParameter("userid"));
+		if (shoesSize == "") {
+			login.setShoesSize(0);
+		} else {
+			login.setShoesSize(Integer.parseInt(shoesSize));
+		}
+		login.setUserName(request.getParameter("username"));
+		login.setPhone(request.getParameter("phone"));
+		login.setAddress(request.getParameter("address1") + "," + request.getParameter("address2") + "," + request.getParameter("address3"));
 		userpwd = request.getParameter("userpwd");
 		
 		// 회원가입 비밀번호 SHA-512 적용

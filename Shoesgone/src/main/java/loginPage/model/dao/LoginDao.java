@@ -57,14 +57,18 @@ public class LoginDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into user_info (user_no, user_id, user_pwd, email) "
-				+ "values (user_seq.nextval, ?, ?, ?)";
+		String query = "insert into user_info (user_no, user_name, user_id, user_pwd, email, phone, address, shoes_size) "
+				+ "values (user_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, login.getUserId());
-			pstmt.setString(2, login.getUserPwd());
-			pstmt.setString(3, login.getEmail());
+			pstmt.setString(1, login.getUserName());
+			pstmt.setString(2, login.getUserId());
+			pstmt.setString(3, login.getUserPwd());
+			pstmt.setString(4, login.getEmail());
+			pstmt.setString(5, login.getPhone());
+			pstmt.setString(6, login.getAddress());
+			pstmt.setInt(7, login.getShoesSize());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

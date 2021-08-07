@@ -9,11 +9,7 @@
 	<title>회원가입</title>
 
 	<style>
-		#userid-error{
-			font-size:1px;
-			color: red;
-		}
-		#upwd-error{
+		.error-info{
 			font-size:1px;
 			color: red;
 		}
@@ -27,8 +23,17 @@
 			color: black;
 			margin-left: 5px;
 		}
-		details[open] > summary ~ * { animation:reveal 0.5s; margin-left: 45px;}
-		.tpt { color: black; }
+		details[open] > summary ~ * { 
+			animation:reveal 0.5s;
+			margin-left: 45px;
+		}
+		.tpt { 
+			color: black; 
+		}
+		
+		#postcodify_search_button {
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
@@ -70,6 +75,26 @@
 								<input type="text" class="form-control" id="shoesSize" name="shoesSize" placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
 							</div>
 							<div class="col-md-12 form-group">
+							<h6 class="register-info">이름 *</h6>
+								<input type="text" class="form-control" id="username" name="username" placeholder="예) 홍길동" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) 홍길동'">
+							</div>
+							<div class="col-md-12 form-group">
+							<h6 class="register-info">전화번호 *</h6>
+								<input type="text" class="form-control" id="phone" name="phone" placeholder="예) 01012345678" onfocus="this.placeholder = ''" onblur="this.placeholder = '예) 01012345678'">
+							</div>
+							<div class="col-md-12 form-group">
+							<h6 class="register-info">우편번호 *</h6>
+								<input type="text" class="form-control postcodify_postcode5" id="postcodify_search_button" name="address1" size="6" placeholder="우편번호(클릭하세요)" onfocus="this.placeholder = ''" onblur="this.placeholder = '우편번호(클릭하세요)'">
+							</div>
+							<div class="col-md-12 form-group">
+							<h6 class="register-info">도로명 주소 *</h6>
+								<input type="text" class="form-control postcodify_address" id="streetaddress" name="address2" placeholder="도로명 주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소'">
+							</div>
+							<div class="col-md-12 form-group">
+							<h6 class="register-info">상세 주소 *</h6>
+								<input type="text" class="form-control postcodify_extra_info" id="detailaddress" name="address3" placeholder="상세 주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '상세 주소'">
+							</div>
+							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<details>
 										<summary class="agree-check"><label><input type="checkbox" id="ageAgree" name="ageAgree" onclick="ageCheckAll();">[필수] 만14세 이상이며 모두 동의합니다.</label></summary>
@@ -98,6 +123,13 @@
 	<%@ include file="../common/footer.jsp" %>
 	
 	<script src="/Shoesgone/resources/js/jquery-validation-1.19.3/dist/jquery.validate.min.js"></script>
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script>
+		/*  검색 단추를 누르면 팝업 레이어가 열리도록 설정한다. */
+		$(function(){
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+	</script>
 	<script type="text/javascript">
 		$("#contactForm").validate({
 			rules : {
@@ -117,6 +149,22 @@
 				},
 				ageAgree : {
 					required : true
+				},
+				username : {
+					required : true
+				},
+				phone : {
+					required : true,
+					telnum : true
+				},
+				address1 : {
+					required : true
+				},
+				address2 : {
+					required : true
+				},
+				address3 : {
+					required : true
 				}
 			},
 			messages : {
@@ -133,6 +181,22 @@
 				},
 				ageAgree : {
 					required : ""
+				},
+				username : {
+					required : "이름을 입력해주세요."
+				},
+				phone : {
+					required : "전화번호를 정확히 입력해주세요.",
+					telnum : "전화번호를 정확히 입력해주세요."
+				},
+				address1 : {
+					required : ""
+				},
+				address2 : {
+					required : ""
+				},
+				address3 : {
+					required : ""
 				}
 			},
 			errorClass : "error-info"
@@ -142,6 +206,15 @@
 			return this.optional(element)
 					|| /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/
 							.test(value);
+		});
+		
+		$.validator.addMethod("telnum", function(telnum, element){
+		      var pattern = /^01[016789]{1}[0-9]{3,4}[0-9]{4}$/;
+
+		      if(!pattern.test(telnum)){
+		        return this.optional(element)||false;
+		      }
+		      return true;
 		});
 
 		function ageCheckAll() {
