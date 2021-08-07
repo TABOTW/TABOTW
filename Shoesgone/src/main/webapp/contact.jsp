@@ -35,7 +35,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/olist?userNo=<%= loginMember.getUserNo() %>"><img src="resources/img/joo.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=olist<%= loginMember.getUserNo() %>"><img src="resources/img/joo.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>주문내역조회</h6>
 						<p>주문하신 상품 내역을 <br>확인하실 수 있습니다.</p>
@@ -45,7 +45,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/ilist?userid=<%= loginMember.getUserId() %>"><img src="resources/img/soo.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=ilist<%= loginMember.getUserId() %>"><img src="resources/img/soo.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>회원정보수정</h6>
 						<p>개인정보를 수정하고<br> 관리할 수 있습니다.</p>
@@ -55,7 +55,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/plist?userNo=<%= loginMember.getUserNo() %>"><img src="resources/img/point.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=plist<%= loginMember.getUserNo() %>"><img src="resources/img/point.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>포인트조회</h6>
 						<p>보유하고 계신 포인트<br> 내역을 확인합니다.</p>
@@ -65,7 +65,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>"><img src="resources/img/heart.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=wlist<%= loginMember.getUserNo() %>"><img src="resources/img/heart.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>관심상품</h6>
 						<p>관심상품으로 등록하신<br> 상품을 확인합니다.</p>
@@ -76,7 +76,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<a href="/Shoesgone/rlist.my?userno=<%= loginMember.getUserNo() %>"><img src="resources/img/gg.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=rlist<%= loginMember.getUserNo() %>"><img src="resources/img/gg.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>나의글보기</h6>
 						<p>나의 질문,답변,게시글 등을<br>
@@ -86,7 +86,7 @@
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-features" style="border-right: none">
 						<div class="f-icon">
-							<a href="/Shoesgone/nlist"><img src="resources/img/goo.png" alt="" width="60px" height="60px"></a>
+							<a href="/Shoesgone/menubarsearch?menu=nlistcustomer"><img src="resources/img/goo.png" alt="" width="60px" height="60px"></a>
 						</div>
 						<h6>고객센터</h6>
 						<p>

@@ -289,6 +289,20 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("odetail")) {
+				view = request.getRequestDispatcher("odetail?orderNo=" + menu.substring(7));
+			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("orderlist")) {
+				view = request.getRequestDispatcher("olist?userNo=" + menu.substring(9) + "&page=" + page);
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("rlist")) {
+				view = request.getRequestDispatcher("rlist.my?userno=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("wlist")) {
+				view = request.getRequestDispatcher("wlist?userNo=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("plist")) {
+				view = request.getRequestDispatcher("plist?userNo=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("ilist")) {
+				view = request.getRequestDispatcher("ilist?userid=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("olist")) {
+				view = request.getRequestDispatcher("olist?userNo=" + menu.substring(5));
 			} else if (menu.equals("quupdate")) {
 				view = request.getRequestDispatcher("quupdate");
 			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("qudelete")) {
