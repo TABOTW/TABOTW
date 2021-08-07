@@ -289,6 +289,12 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdetail")) {
+				for (int i = 0; i < review.size(); i++) {
+					if (menu.equals("reviewdetail" + (i + 1))) {
+						view = request.getRequestDispatcher("reviewdetail?rNo=" + review.get(i).getReviewNo());	
+					}
+				}
 			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("walldelete")) {
 				view = request.getRequestDispatcher("walldelete?userNo=" + menu.substring(10));
 			} else if (menu.equals("iupdate")) {
@@ -297,6 +303,12 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("odetail?orderNo=" + menu.substring(7));
 			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("orderlist")) {
 				view = request.getRequestDispatcher("olist?userNo=" + menu.substring(9) + "&page=" + page);
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("qlistmy")) {
+				view = request.getRequestDispatcher("qlist.my?userno=" + menu.substring(7));
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("flistmy")) {
+				view = request.getRequestDispatcher("flist.my?userno=" + menu.substring(7));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("glist")) {
+				view = request.getRequestDispatcher("glist.my?userno=" + menu.substring(5));
 			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("rlist")) {
 				view = request.getRequestDispatcher("rlist.my?userno=" + menu.substring(5));
 			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("wlist")) {

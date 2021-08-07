@@ -92,10 +92,10 @@ ul#menubar li a:hover {
 <h2 align="center">나의 글 보기</h2>
 <center>
 <ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/rlist.my?userno=<%= loginMember.getUserNo() %>">리뷰게시판</a></li>
-	<li><a href="/Shoesgone/glist.my?userno=<%= loginMember.getUserNo() %>">갤러리</a></li>
-	<li><a href="/Shoesgone/flist.my?userno=<%= loginMember.getUserNo() %>">자유게시판</a></li>
-	<li><a href="/Shoesgone/qlist.my?userno=<%= loginMember.getUserNo() %>">QnA</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=rlist<%= loginMember.getUserNo() %>">리뷰게시판</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=glist<%= loginMember.getUserNo() %>">갤러리</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=flistmy<%= loginMember.getUserNo() %>">자유게시판</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qlistmy<%= loginMember.getUserNo() %>">QnA</a></li>
 </ul></center>
 <br>
 <hr>
@@ -134,7 +134,7 @@ ul#menubar li a:hover {
 								<tr>
 								
 									<td class="name" style = "text-align:center"><%= rlist.get(i).getTextNo() %></td>
-									<td class="title" style = "text-align:center"><a href="/Shoesgone/reviewdetail?rNo=<%= rlist.get(i).getTextNo() %>"><%= rlist.get(i).getTitle() %></td>
+									<td class="title" style = "text-align:center"><a href="/Shoesgone/menubarsearch?menu=reviewdetail<%= rlist.get(i).getTextNo() %>"><%= rlist.get(i).getTitle() %></td>
 									<td class="name" style = "text-align:center"><%= rlist.get(i).getWriter() %></td>
 									<td class="date" style = "text-align:center"><%= rlist.get(i).getRegistDate() %></td>
 									<td class="hit" style = "text-align:center"><%= rlist.get(i).getTextReadcount() %></td>
