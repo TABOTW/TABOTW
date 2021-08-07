@@ -32,6 +32,26 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	href="/Shoesgone/resources/plugins/slick/slick-theme.css">
 <link rel="stylesheet"
 	href="/Shoesgone/resources/css/itemDetailView.css?after">
+<style>
+	#related-style{
+		width: 100%;
+		margin: 3em auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	#related-style li{
+		width: 30%;
+		list-style: none;
+		padding: 5px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#related-style li img{
+		width: 100%;
+	}
+</style>
 </head>
 <body id="itemdetail">
 	
@@ -182,15 +202,8 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							</div>
 						</div>
 						<br>
-						<h5>거래기록</h5>
-						<br>
-						<div>
-							<img class="sales_record"
-								src="product_detail_example/resources/img/product_detail_example/yeezy_sales_record.png">
-						</div>
-						<br>
 					</div>
-					<div class="sales_detail">
+					<div class="sales_detail" style="padding-left: 25%;">
 						<a class="primary-btn" href="#"
 							style="text-align: center; margin: auto;">거래내역 자세히 보기</a>
 					</div>
@@ -213,6 +226,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							</table>
 						</div>
 					</div>
+					<div id="related-style"></div>
 				</div>
 			</div>
 		</div>
@@ -244,6 +258,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	<script type="text/javascript"
 		src="/Shoesgone/resources/plugins/slick/slick.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="/Shoesgone/resources/js/instafeed.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.your-class').slick({
@@ -317,6 +332,15 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 		
 		document.getElementById("iframecontext").src = "/Shoesgone/ItemDG?itemno="+itemno+"&option1="+option1+"&option2="+option2;
 	}
+	</script>
+	<script>
+		var feed3 = new Instafeed({
+	    	target: 'related-style',
+	    	template: '<li><a href="{{link}}"><img title="{{caption}}" src="{{image}}" /></a></li>',
+	    	limit: 6,
+	    	accessToken: 'IGQVJXcEVqbjRwMVB2a2VvcEZACY3Y3am5fX3h1bHMtdnJadjMtVHhNdnhoZAFdPS194clRqSTItWXQ1TE5hbG5xVWk1aThydVl0VmJCZAWFnRU9zdkwwcUFTVkZAGcEVsZAWFIZAW5nV2RvSVl2VDhOM0tDcwZDZD'
+	    });
+	    feed3.run();
 	</script>
 </body>
 </html>
