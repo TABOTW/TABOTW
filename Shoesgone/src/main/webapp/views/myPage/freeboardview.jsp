@@ -95,10 +95,10 @@ ul#menubar li a:hover {
 
 <center>
 <ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/rlist.my?userno=<%= loginMember.getUserNo() %>">리뷰게시판</a></li>
-	<li><a href="/Shoesgone/glist.my?userno=<%= loginMember.getUserNo() %>">갤러리</a></li>
-	<li><a href="/Shoesgone/flist.my?userno=<%= loginMember.getUserNo() %>">자유게시판</a></li>
-	<li><a href="/Shoesgone/qlist.my?userno=<%= loginMember.getUserNo() %>">QnA</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=rlist<%= loginMember.getUserNo() %>">리뷰게시판</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=glist<%= loginMember.getUserNo() %>">갤러리</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=flistmy<%= loginMember.getUserNo() %>">자유게시판</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qlistmy<%= loginMember.getUserNo() %>">QnA</a></li>
 </ul></center>
 <br>
 <hr>
@@ -137,7 +137,7 @@ ul#menubar li a:hover {
 								<tr>
 								
 									<td class="name" style = "text-align:center"><%= flist.get(i).getTextNo() %></td>
-									<td class="title" style = "text-align:center"><a href="/Shoesgone/freedetail?fNo=<%= flist.get(i).getTextNo() %>"><%= flist.get(i).getTitle() %></td>
+									<td class="title" style = "text-align:center"><a href="/Shoesgone/menubarsearch?menu=freedetail<%= flist.get(i).getTextNo() %>"><%= flist.get(i).getTitle() %></td>
 									<td class="name" style = "text-align:center"><%= flist.get(i).getWriter() %></td>
 									<td class="date" style = "text-align:center"><%= flist.get(i).getRegistDate() %></td>
 									<td class="hit" style = "text-align:center"><%= flist.get(i).getTextReadcount() %></td>
@@ -154,12 +154,12 @@ ul#menubar li a:hover {
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/flist.my?userid=<%= loginMember.getUserId() %>&page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=freelistmy<%= loginMember.getUserNo() %>&page=1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/flist.my?userid=<%= loginMember.getUserId() %>&page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=freelistmy<%= loginMember.getUserNo() %>&page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -170,13 +170,13 @@ ul#menubar li a:hover {
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/flist.my?userid=<%= loginMember.getUserId() %>&page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=freelistmy<%= loginMember.getUserNo() %>&page=<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/flist.my?userid=<%= loginMember.getUserId() %>&page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=freelistmy<%= loginMember.getUserNo() %>&page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -184,13 +184,13 @@ ul#menubar li a:hover {
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/flist.my?userid=<%= loginMember.getUserId() %>&page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=freelistmy<%= loginMember.getUserNo() %>&page=<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 					
 					<hr>
 					</div>
-					</div><br><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center>
+					</div><br><center><a href="/Shoesgone/menubarsearch?menu=mypage" class="genric-btn primary">목록보기</a></center>
 		</section>
 </section>
 	<!--================Contact Area =================-->

@@ -292,6 +292,17 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freelistmy")) {
+				view = request.getRequestDispatcher("flist.my?userno=" + menu.substring(10) + "&page=" + page);
+				System.out.println(menu.substring(10));
+				System.out.println(page);
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freedetail")) {
+				for (int i = 0; i < free.size(); i++) {
+					if (menu.equals("freedetail" + (i + 1))) {
+						view = request.getRequestDispatcher("freedetail?fNo=" + free.get(i).getFreeNo());
+						System.out.println(gallery.get(i).getGalleryNo());
+					}
+				}
 			} else if (menu.length() >= 13 && menu.substring(0, 13).equals("gallerydetail")) {
 				for (int i = 0; i < gallery.size(); i++) {
 					if (menu.equals("gallerydetail" + (i + 1))) {
