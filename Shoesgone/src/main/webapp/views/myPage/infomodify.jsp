@@ -73,7 +73,7 @@
 	
 <h2 align="center">회원정보수정</h2><br>
 <hr>
-<form id="iform" method="post" action="/Shoesgone/iupdate" >
+<form id="iform" method="post" action="/Shoesgone/menubarsearch?menu=iupdate" >
 <!-- 제출시(전송시 : submit 버튼 눌렀을 때)에 
 유효성검사 실행되도록 함 
 결과가 false 일 때 전송을 취소되게 해야 하므로 
@@ -179,7 +179,7 @@ onsubmit="return checkAll();"
 <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 	<center><input type="submit" value="수정하기" class="genric-btn primary small" >&nbsp;
-	<a href="/Shoesgone/contact.jsp" class="genric-btn primary small">목록보기</a></center>
+	<a href="/Shoesgone/menubarsearch?menu=mypage" class="genric-btn primary small">목록보기</a></center>
 	
 	
 </th></tr>
