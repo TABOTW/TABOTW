@@ -92,6 +92,10 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("contact.jsp");
 			} else if (menu.equals("nlistadmin")) {
 				view = request.getRequestDispatcher("nlist.ad");
+			} else if (menu.equals("flistadmin")) {
+				view = request.getRequestDispatcher("flist.ad");
+			} else if (menu.equals("qulistadmin")) {
+				view = request.getRequestDispatcher("qulist.ad");
 			} else if (menu.equals("nlistcustomer")) {
 				view = request.getRequestDispatcher("nlist");
 			} else if (menu.equals("best")) {
@@ -292,22 +296,28 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("regselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("adminNoticeWriteForm")) {
+				view = request.getRequestDispatcher("views/customerservicePage/adminNoticeWriteForm.jsp");
+			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("nlist.ad")) {
+				view = request.getRequestDispatcher("nlist.ad?page=" + menu.substring(8));
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("ndetail.ad")) {
+				for (int i = 0; i < notice.size(); i++) {
+					if (menu.equals("ndetail.ad" + (i + 1))) {
+						view = request.getRequestDispatcher("ndetail.ad?noticeNo=" + menu.substring(10));
+					}
+				}
 			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freelistmy")) {
 				view = request.getRequestDispatcher("flist.my?userno=" + menu.substring(10) + "&page=" + page);
-				System.out.println(menu.substring(10));
-				System.out.println(page);
 			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freedetail")) {
 				for (int i = 0; i < free.size(); i++) {
 					if (menu.equals("freedetail" + (i + 1))) {
 						view = request.getRequestDispatcher("freedetail?fNo=" + free.get(i).getFreeNo());
-						System.out.println(gallery.get(i).getGalleryNo());
 					}
 				}
 			} else if (menu.length() >= 13 && menu.substring(0, 13).equals("gallerydetail")) {
 				for (int i = 0; i < gallery.size(); i++) {
 					if (menu.equals("gallerydetail" + (i + 1))) {
 						view = request.getRequestDispatcher("gallerydetail?gNo=" + gallery.get(i).getGalleryNo());
-						System.out.println(gallery.get(i).getGalleryNo());
 					}
 				}
 			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("glistmy")) {
