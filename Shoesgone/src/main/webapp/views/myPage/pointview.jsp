@@ -182,7 +182,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	<% } %>
 </div>
    
-</div></div><hr><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center><br><br><br>
+</div></div><hr><center><a href="/Shoesgone/menubarsearch?menu=mypage" class="genric-btn primary">목록보기</a></center><br><br><br>
 </section>
 	<!--================Contact Area =================-->
 

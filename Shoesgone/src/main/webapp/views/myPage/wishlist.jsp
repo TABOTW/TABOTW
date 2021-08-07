@@ -151,7 +151,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
         </tbody>
     </table>
     <center>
-    <a href="/Shoesgone/walldelete?userNo=<%= loginMember.getUserNo() %>" onclick="alert('정말 삭제하시겠습니까?');return true;"><button type="button" class="genric-btn primary small">전체삭제</button></a></center>
+    <a href="/Shoesgone/menubarsearch?menu=walldelete<%= loginMember.getUserNo() %>" onclick="alert('정말 삭제하시겠습니까?');return true;"><button type="button" class="genric-btn primary small">전체삭제</button></a></center>
     
     <br>
 <%-- 페이징 처리 --%>
@@ -193,7 +193,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	<% } %>
 </div>
 
-    <hr><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center><br><br><br>
+    <hr><center><a href="/Shoesgone/menubarsearch?menu=mypage" class="genric-btn primary">목록보기</a></center><br><br><br>
 </div>
 </section>
 	<!--================Contact Area =================-->
