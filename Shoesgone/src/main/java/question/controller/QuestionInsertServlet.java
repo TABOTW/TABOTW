@@ -53,7 +53,9 @@ public class QuestionInsertServlet extends HttpServlet {
 
 		// 7. 받은 결과로 성공/실패 페이지 내보내기
 		if (result > 0) {
-			response.sendRedirect("qulist?page=1");
+			view = request.getRequestDispatcher("qulist?page=1");
+			view.forward(request, response);
+			//response.sendRedirect("qulist?page=1");
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "새 게시 원글 등록 실패!");

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, community.review.model.vo.Review"%>
+	import="itemPage.model.vo.Item, itemPage.model.vo.Picture, java.util.ArrayList, community.review.model.vo.Review, orders.model.vo.Orders"%>
 <%
 //Item 객체를 가져옴
 Item item = (Item) request.getAttribute("item");
@@ -9,7 +9,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 ArrayList<Review> rlist = (ArrayList<Review>) request.getAttribute("rlist");
 ArrayList<Picture> rplist = (ArrayList<Picture>) request.getAttribute("rplist");
 ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
-
+ArrayList<Orders> olist = (ArrayList<Orders>) request.getAttribute("olist");
 %>
 <!DOCTYPE html>
 <html>
@@ -33,30 +33,30 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 <link rel="stylesheet"
 	href="/Shoesgone/resources/css/itemDetailView.css?after">
 <style>
-	#related-style{
-		width: 100%;
-		margin: 3em auto;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	#related-style li{
-		width: 30%;
-		list-style: none;
-		padding: 5px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	
-	#related-style li img{
-		width: 100%;
-	}
+#related-style {
+	width: 100%;
+	margin: 3em auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#related-style li {
+	width: 30%;
+	list-style: none;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#related-style li img {
+	width: 100%;
+}
 </style>
 </head>
 <body id="itemdetail">
-	
-	<%@ include file="../common/menubar.jsp" %>
-	
+
+	<%@ include file="../common/menubar.jsp"%>
+
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -85,7 +85,8 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 						%>
 						<div>
 							<img class="img-fluid"
-								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
+								src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>"
+								alt="">
 						</div>
 						<%
 						}
@@ -97,25 +98,20 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 						<h3><%=item.getItemEngName()%></h3>
 						<h4><%=item.getItemKrName()%></h4>
 						<div class="detail_size lg">
-							<div class="title">
-								<span class="title_txt">사이즈</span>
-							</div>
-							<div class="size">
-								<a href="#" class="btn_size"> <span class="btn_text">모든사이즈</span>
-								</a>
-							</div>
+							<br> <br>
 						</div>
 						<div class="detail_price lg">
 							<div class="title">
-								<span class="title_txt">최근 거래가</span>
+								<span class="title_txt">최근 거래가</span> <span
+									style="float: right; font-size: large; margin-right: 30%;"><%=olist.get(1).getPrice()%>원</span>
 							</div>
-							<div class="price">
-								<span class="price_txt">minimum price</span>
-							</div>
+							<br> <br>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=buyaccept&itemno=<%= item.getItemNo() %>">구매하기</a>
-							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=sellaccept&itemno=<%= item.getItemNo() %>">판매하기</a>
+							<a class="primary-btn"
+								href="/Shoesgone/menubarsearch?menu=buyaccept&itemno=<%=item.getItemNo()%>">구매하기</a>
+							<a class="primary-btn"
+								href="/Shoesgone/menubarsearch?menu=sellaccept&itemno=<%=item.getItemNo()%>">판매하기</a>
 							<!-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i]\ class="lnr lnr lnr-heart"></i></a> -->
 						</div>
@@ -184,13 +180,19 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 							<h4>거래추이</h4>
 							<table class="graph_options">
 								<tr>
-									<td><select class="graph_size" id="graph_size" onchange=reloadPage()>
-											<option value = "0">사이즈별</option>
-											<% for(int i:isizes){ %>
-											<option value="<%= i %>"><%= i %></option>
-											<% } %>
+									<td><select class="graph_size" id="graph_size"
+										onchange=reloadPage()>
+											<option value="0">사이즈별</option>
+											<%
+											for (int i : isizes) {
+											%>
+											<option value="<%=i%>"><%=i%></option>
+											<%
+											}
+											%>
 									</select></td>
-									<td><select class="graph_days" id="graph_days" onchange=reloadPage()>
+									<td><select class="graph_days" id="graph_days"
+										onchange=reloadPage()>
 											<option value="1" selected>일별</option>
 											<option value="7">주별</option>
 											<option value="30">월별</option>
@@ -198,29 +200,79 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 								</tr>
 							</table>
 							<div>
-								<iframe id="iframecontext" src="" width="100%" height="280px" frameborder=0 framespacing=0></iframe>
+								<iframe id="iframecontext" src="" width="100%" height="280px"
+									frameborder=0 framespacing=0></iframe>
 							</div>
 						</div>
 						<br>
 					</div>
-					<div class="sales_detail" style="padding-left: 25%;">
-						<a class="primary-btn" href="#"
-							style="text-align: center; margin: auto;">거래내역 자세히 보기</a>
+					<div class="sales_detail" style="padding-left: 33%;">
+						<button class="primary-btn" data-bs-toggle="modal"
+							data-bs-target="#ItemADD"
+							style="text-align: center; margin: auto;">거래내역 자세히 보기</button>
+						<div class="modal fade" id="ItemADD" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div
+								class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+								role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="ItemADDTitle">판매기록</h5>
+										<button type="button" class="close rounded-pill"
+											data-bs-dismiss="modal" aria-label="Close"
+											style="background: white;">X</button>
+									</div>
+									<div class="modal-body">
+										<table class="table table-striped" id="table1">
+											<thead>
+												<tr>
+													<th>주문번호</th>
+													<th>사이즈</th>
+													<th>가격</th>
+													<th>판매날짜</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%
+												for (Orders o : olist) {
+												%>
+												<tr>
+													<td><%=o.getOrdersNo()%></td>
+													<td><%=o.getSize()%></td>
+													<td><%=o.getPrice()%></td>
+													<td><%=o.getPurDate() %></td>
+												</tr>
+												<%
+												}
+												%>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="size_recommend_box">
 						<strong>사이즈 추천</strong>
 						<p class="box_recommend_size">고객의 추천사이즈로 주관적입니다.</p>
-						<div class="size_recommend_table" style="overflow-y: scroll; height: 150px;">
+						<div class="size_recommend_table"
+							style="overflow-y: scroll; height: 150px;">
 							<table class="idpagereview" border="1" cellspacing="0">
-								<tr><th>번호</th><th>제목</th><th>별점</th><th>조회수</th></tr>
-								<% for(Review r : rlist){ %>
 								<tr>
-									<td><%= r.getReviewNo() %></td>
-									<td><%= r.getReviewTitle() %></td>
-									<td><%= r.getReviewStar() %>/10</td>
-									<td><%= r.getReviewReadCount() %></td>
+									<th>번호</th>
+									<th>제목</th>
+									<th>별점</th>
+									<th>조회수</th>
+								</tr>
+								<% for (Review r : rlist) { %>
+								<tr>
+
+									<td><a href="/Shoesgone/menubarsearch?menu=review<%=r.getReviewNo()%>&page=1"><%=r.getReviewNo()%></a></td>
+									<td><%=r.getReviewTitle()%></td>
+									<td><%=r.getReviewStar()%>/10</td>
+									<td><%=r.getReviewReadCount()%></td>
 								</tr>
 								<% } %>
 							</table>
@@ -236,22 +288,31 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	<!--================ Start Related Product Area =================-->
 	<div class="product_extra_area">
 		<div class="container">
-			<div class="slick-related" style="background:none;">
-			  	<% for (int i=0; i<rplist.size(); i++) { %>
-					<div>
-					<a href="/Shoesgone/menubarsearch?menu=item<%= rplist.get(i).getModelno() %>">
-						<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%= rplist.get(i).getPicturepath() %>" alt="">
-						<p style="text-align:center; text-decoration: none; color: black;"> <%= rpnames.get(i) %></p>
+			<div class="slick-related" style="background: none;">
+				<%
+				for (int i = 0; i < rplist.size(); i++) {
+				%>
+				<div>
+					<a
+						href="/Shoesgone/menubarsearch?menu=item<%=rplist.get(i).getModelno()%>">
+						<img class="img-fluid"
+						src="/Shoesgone/resources/img/shoes_images/<%=rplist.get(i).getPicturepath()%>"
+						alt="">
+						<p
+							style="text-align: center; text-decoration: none; color: black;">
+							<%=rpnames.get(i)%></p>
 					</a>
-					</div>
-				<% } %>
+				</div>
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</div>
 	<!--================ End Related Product Area =================-->
 	<!-- End related-product Area -->
 
-	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="../common/footer.jsp"%>
 
 	<script type="text/javascript"
 		src="/Shoesgone/resources/plugins/slick/slick.js"></script>
@@ -259,6 +320,13 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 		src="/Shoesgone/resources/plugins/slick/slick.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="/Shoesgone/resources/js/instafeed.min.js"></script>
+	<script
+		src="/Shoesgone/resources/plugins/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script
+		src="/Shoesgone/resources/plugins/assets/js/bootstrap.bundle.min.js"></script>
+
+	<script
+		src="/Shoesgone/resources/plugins/assets/vendors/simple-datatables/simple-datatables.js?after"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.your-class').slick({
@@ -313,7 +381,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var itemno = <%= item.getItemNo() %>
+			var itemno = <%=item.getItemNo()%>
 			var graphoption1 = document.getElementById("graph_size");
 			var graphoption2 = document.getElementById("graph_days");
 			graphoption1 = graphoption1.options[graphoption1.selectedIndex].value;
@@ -324,7 +392,7 @@ ArrayList<String> rpnames = (ArrayList<String>) request.getAttribute("rpnames");
 	</script>
 	<script>
 	function reloadPage() {
-		var itemno = <%= item.getItemNo() %>
+		var itemno = <%=item.getItemNo()%>
 		var option1 = document.getElementById("graph_size");
 		var option2 = document.getElementById("graph_days");
 		option1 = option1.options[option1.selectedIndex].value;

@@ -43,7 +43,7 @@ for(int i=0; i<endIndex; i++){
 	const data = {
 	  labels: labels,
 	  datasets: [{
-	    label: '거래기록',
+	    label: 'My Ffdfdst dataset',
 	    borderColor: 'rgb(255, 99, 132)',
 	    data: <%= ys %>
 	  }]

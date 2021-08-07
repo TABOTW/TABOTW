@@ -150,7 +150,7 @@ border-top-right-radius: 10px;
 				<h2>1:1문의</h2>
 
 				<div class="row">
-					<form action="/Shoesgone/quinsert" method="post">
+					<form action="/Shoesgone/menubarsearch?menu=quinsert" method="post">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd; width: 1000px;">
 
@@ -186,7 +186,7 @@ border-top-right-radius: 10px;
 								type="reset" value="작성취소" class="genric-btn primary small">
 							&nbsp; <input type="button" value="목록"
 								class="genric-btn primary small"
-								onclick="javascript:location.href='/Shoesgone/qulist?page=1'; return false;">
+								onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=questionpage&page=1'; return false;">
 						</center>
 					</form>
 				</div>

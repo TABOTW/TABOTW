@@ -31,11 +31,11 @@ Question question = (Question)request.getAttribute("question");
 </script>
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/qupview?qnum=<%= question.getQuestionNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qupview<%= question.getQuestionNo() %>";
 }
 function requestDelete(){
 	alert("삭제완료");
-	location.href = "/Shoesgone/qudelete?qnum=<%= question.getQuestionNo() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qudelete<%= question.getQuestionNo() %>";
 }
 
 </script>

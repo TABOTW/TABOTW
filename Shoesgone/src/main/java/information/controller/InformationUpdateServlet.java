@@ -80,8 +80,11 @@ public class InformationUpdateServlet extends HttpServlet {
 				// 4.
 				if (result > 0) {
 					// 서블릿에서 서블릿 호출 : myinfo 서블릿 호출
-					response.sendRedirect("/Shoesgone/ilist?userid=" 
+					RequestDispatcher view = request.getRequestDispatcher("ilist?userid=" 
 									+ information.getUserId());
+					view.forward(request, response);
+//					response.sendRedirect("/Shoesgone/ilist?userid=" 
+//									+ information.getUserId());
 				
 				} else {
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");

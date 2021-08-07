@@ -101,6 +101,7 @@
 .slick-initialized .slick-slide
 {
     display: block;
+    background:white;
 }
 .slick-loading .slick-slide
 {

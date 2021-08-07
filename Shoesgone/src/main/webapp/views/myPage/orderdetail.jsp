@@ -167,7 +167,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 			
 					<tr>
 						<th>주문상품</th>
-						<td colspan = 2><a href="/Shoesgone/ItemDV?itemno=<%= orderlist.getItemNo() %>"><%= orderlist.getItemEngName() %><br><%= orderlist.getItemKrName() %></a></td>
+						<td colspan = 2><a href="/Shoesgone/menubarsearch?menu=item<%= orderlist.getItemNo() %>"><%= orderlist.getItemEngName() %><br><%= orderlist.getItemKrName() %></a></td>
 					</tr>
 					<tr class="last">
 						<th>사이즈</th>

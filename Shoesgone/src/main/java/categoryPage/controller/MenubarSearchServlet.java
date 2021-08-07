@@ -10,12 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import categoryPage.model.service.FaqService;
+import categoryPage.model.service.FreeService;
 import categoryPage.model.service.ItemPictureService;
 import categoryPage.model.service.ItemService;
 import categoryPage.model.service.NoticeService;
+import categoryPage.model.service.QnAService;
+import categoryPage.model.service.QuestionService;
+import categoryPage.model.service.ReviewService;
+import categoryPage.model.vo.Faq;
+import categoryPage.model.vo.Free;
 import categoryPage.model.vo.Item;
 import categoryPage.model.vo.ItemPicture;
 import categoryPage.model.vo.Notice;
+import categoryPage.model.vo.QnA;
+import categoryPage.model.vo.Question;
+import categoryPage.model.vo.Review;
 
 /**
  * Servlet implementation class MenubarSearchServlet
@@ -41,8 +51,16 @@ public class MenubarSearchServlet extends HttpServlet {
 		String menu = request.getParameter("menu");
 		String text = request.getParameter("text");
 		String itemno = request.getParameter("itemno");
+		String page = request.getParameter("page");
+		String limit = request.getParameter("limit");
+		String gsort = request.getParameter("gsort");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
+		ArrayList<Faq> faq = new FaqService().selectFaqList();
+		ArrayList<Question> question = new QuestionService().selectQuestionList();
+		ArrayList<Review> review = new ReviewService().selectReviewList();
+		ArrayList<Free> free = new FreeService().selectFreeList();
+		ArrayList<QnA> qna = new QnAService().selectQnaList();
 		ArrayList<Item> regItem = new ItemService().selectRegList();
 		ArrayList<Item> hotItem = new ItemService().selectHotList();
 		ArrayList<Item> recItem = new ItemService().selectRecList();
@@ -56,9 +74,11 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if (search.size() > 0 && notice.size() > 0 && regItem.size() > 0
-				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
-				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
+		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
+				&& question.size() > 0 && review.size() > 0 && free.size() > 0
+				&& qna.size() > 0 && regItem.size() > 0 && hotItem.size() > 0
+				&& recItem.size() > 0 && newBuyPrice.size() > 0 && newSellPrice.size() > 0
+				&& upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
@@ -97,20 +117,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("searchpwd");
 			} else if (menu.equals("normallogin")) {
 				view = request.getRequestDispatcher("login");
-			} else if (menu.equals("notice1")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(0).getNoticeNo());
-			} else if (menu.equals("notice2")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(1).getNoticeNo());
-			} else if (menu.equals("notice3")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(2).getNoticeNo());
-			} else if (menu.equals("notice4")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(3).getNoticeNo());
-			} else if (menu.equals("notice5")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(4).getNoticeNo());
-			} else if (menu.equals("notice6")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(5).getNoticeNo());
-			} else if (menu.equals("notice7")) {
-				view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(6).getNoticeNo());
 			} else if (menu.equals("faq")) {
 				view = request.getRequestDispatcher("flist");
 			} else if (menu.equals("regitem1")) {
@@ -281,6 +287,118 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
 			} else if (menu.equals("regselect")) {
 				view = request.getRequestDispatcher("regselect");
+			} else if (menu.equals("qulist")) {
+				view = request.getRequestDispatcher("qulist");
+			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdetail")) {
+				for (int i = 0; i < review.size(); i++) {
+					if (menu.equals("reviewdetail" + (i + 1))) {
+						view = request.getRequestDispatcher("reviewdetail?rNo=" + review.get(i).getReviewNo());	
+					}
+				}
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("walldelete")) {
+				view = request.getRequestDispatcher("walldelete?userNo=" + menu.substring(10));
+			} else if (menu.equals("iupdate")) {
+				view = request.getRequestDispatcher("iupdate");
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("odetail")) {
+				view = request.getRequestDispatcher("odetail?orderNo=" + menu.substring(7));
+			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("orderlist")) {
+				view = request.getRequestDispatcher("olist?userNo=" + menu.substring(9) + "&page=" + page);
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("qlistmy")) {
+				view = request.getRequestDispatcher("qlist.my?userno=" + menu.substring(7));
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("flistmy")) {
+				view = request.getRequestDispatcher("flist.my?userno=" + menu.substring(7));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("glist")) {
+				view = request.getRequestDispatcher("glist.my?userno=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("rlist")) {
+				view = request.getRequestDispatcher("rlist.my?userno=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("wlist")) {
+				view = request.getRequestDispatcher("wlist?userNo=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("plist")) {
+				view = request.getRequestDispatcher("plist?userNo=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("ilist")) {
+				view = request.getRequestDispatcher("ilist?userid=" + menu.substring(5));
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("olist")) {
+				view = request.getRequestDispatcher("olist?userNo=" + menu.substring(5));
+			} else if (menu.equals("quupdate")) {
+				view = request.getRequestDispatcher("quupdate");
+			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("qudelete")) {
+				view = request.getRequestDispatcher("qudelete?qnum=" + menu.substring(8));
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("qupview")) {
+				view = request.getRequestDispatcher("qupview?qnum=" + menu.substring(7));
+			} else if (menu.equals("quinsert")) {
+				view = request.getRequestDispatcher("quinsert");
+			} else if (menu.equals("reviewinsert")) {
+				view = request.getRequestDispatcher("reviewinsert");
+			} else if (menu.equals("qnainsert")) {
+				view = request.getRequestDispatcher("qnainsert");
+			} else if (menu.equals("freeinsert")) {
+				view = request.getRequestDispatcher("freeinsert");
+			} else if (menu.equals("questionwrite")) {
+				view = request.getRequestDispatcher("views/customerservicePage/questionWriteForm.jsp");
+			}else if (menu.equals("reviewwrite")) {
+				view = request.getRequestDispatcher("views/community/review/reviewWriteForm.jsp");
+			} else if (menu.equals("qnawrite")) {
+				view = request.getRequestDispatcher("views/community/qna/qnaWriteForm.jsp");
+			} else if (menu.equals("freewrite")) {
+				view = request.getRequestDispatcher("views/community/free/freeWriteForm.jsp");
+			} else if (menu.equals("questionpage")) {
+				view = request.getRequestDispatcher("qulist?page=" + page);
+			} else if (menu.equals("reviewpage")) {
+				view = request.getRequestDispatcher("reviewlist?page=" + page);
+			} else if (menu.equals("freepage")) {
+				view = request.getRequestDispatcher("freelist?page=" + page);
+			} else if (menu.equals("qnapage")) {
+				view = request.getRequestDispatcher("qnalist?page=" + page);
+			} else if (menu.equals("qnalist")) {
+				view = request.getRequestDispatcher("qnalist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.length() >= 3 && menu.substring(0, 3).equals("qna")) {
+				for (int i = 0; i < qna.size(); i++) {
+					if (menu.equals("qna" + (i + 1))) {
+						view = request.getRequestDispatcher("qnadetail?qNo=" + qna.get(i).getQnANo() + "&page=" + page);	
+					}
+				}
+			} else if (menu.equals("freelist")) {
+				view = request.getRequestDispatcher("freelist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.length() >= 4 && menu.substring(0, 4).equals("free")) {
+				for (int i = 0; i < free.size(); i++) {
+					if (menu.equals("free" + (i + 1))) {
+						view = request.getRequestDispatcher("freedetail?fNo=" + free.get(i).getFreeNo() + "&page=" + page);	
+					}
+				}
+			} else if (menu.equals("gallerylist")) {
+				view = request.getRequestDispatcher("gallerylist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.equals("reviewlist")) {
+				view = request.getRequestDispatcher("reviewlist?page=" + page + "&limit=" + limit + "&sort=" + gsort);
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("review")) {
+				for (int i = 0; i < review.size(); i++) {
+					if (menu.equals("review" + (i + 1))) {
+						view = request.getRequestDispatcher("reviewdetail?rNo=" + review.get(i).getReviewNo() + "&page=" + page);	
+					}
+				}
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("qulist")) {
+				view = request.getRequestDispatcher("qulist?page=" + menu.substring(6));
+			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("question")) {
+				for (int i = 0; i < question.size(); i++) {
+					if (menu.equals("question" + (i + 1))) {
+						view = request.getRequestDispatcher("qudetail?qnum=" + question.get(i).getQuestionNo());	
+					}
+				}
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("flist")) {
+				view = request.getRequestDispatcher("flist?page=" + menu.substring(5));
+			} else if (menu.length() >= 3 && menu.substring(0, 3).equals("faq")) {
+				for (int i = 0; i < faq.size(); i++) {
+					if (menu.equals("faq" + (i + 1))) {
+						view = request.getRequestDispatcher("fdetail?faqNo=" + faq.get(i).getFaqNo());	
+					}
+				}
+			} else if (menu.length() >= 5 && menu.substring(0, 5).equals("nlist")) {
+				view = request.getRequestDispatcher("nlist?page=" + menu.substring(5));
+			} else if (menu.length() >= 6 && menu.substring(0, 6).equals("notice")) {
+				for (int i = 0; i < notice.size(); i++) {
+					if (menu.equals("notice" + (i + 1))) {
+						view = request.getRequestDispatcher("ndetail?noticeNo=" + notice.get(i).getNoticeNo());
+					}
+				}
 			} else {
 				for (int i = 0; i < search.size(); i++) {
 					if (menu.equals("item" + (i + 1))) {

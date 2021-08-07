@@ -14,6 +14,7 @@ import community.review.model.vo.Review;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import orders.model.vo.Orders;
 
 /**
  * Servlet implementation class ItemDetailViewServlet
@@ -57,6 +58,9 @@ public class ItemDetailViewServlet extends HttpServlet {
 			String rpname = rpitem.getItemEngName();
 			rpnames.add(rpname);
 		}
+		
+		//가장 최근 판매목록들 가져오기
+		ArrayList<Orders> olist = new ItemDetailService().selectOrders(itemNo);
 		//판매정보 가져오기
 		//페이지로 이동
 		RequestDispatcher view = null;
@@ -68,6 +72,7 @@ public class ItemDetailViewServlet extends HttpServlet {
 			request.setAttribute("rlist", rlist);
 			request.setAttribute("rplist", rplist);
 			request.setAttribute("rpnames", rpnames);
+			request.setAttribute("olist", olist);
 			view.forward(request, response);
 		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

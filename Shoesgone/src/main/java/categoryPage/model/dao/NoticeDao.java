@@ -19,10 +19,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 
 		String query = "select * "
-				+ "from(select rownum, notice.* "
-				+ "    from notice "
-				+ "    order by noticeno desc) "
-				+ "where rownum <= 7";
+				+ "from notice";
 
 		try {
 			stmt = conn.createStatement();

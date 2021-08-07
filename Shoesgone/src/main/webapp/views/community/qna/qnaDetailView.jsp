@@ -87,7 +87,7 @@ function requestDelete(){
 						<th colspan="6">
 							<button href="#" class="genric-btn primary small">신고 </button>
 							<button href="#" class="genric-btn primary small">추천 </button>
-							<button onclick="javascript:location.href='/Shoesgone/qnalist?page=<%= currentPage %>';" class="genric-btn primary small">목록</button>
+							<button onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=qnapage&page=<%= currentPage %>';" class="genric-btn primary small">목록</button>
 							&nbsp;
 							<% Login loginMemberInfo = (Login)session.getAttribute("loginMember");
 							   if(loginMemberInfo != null &&

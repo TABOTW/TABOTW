@@ -35,7 +35,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>글쓰기</h3>
-						<form class="row contact_form" action="/Shoesgone/qnainsert" method="post"
+						<form class="row contact_form" action="/Shoesgone/menubarsearch?menu=qnainsert" method="post"
 							novalidate="novalidate" enctype="multipart/form-data">
 							<div class="col-md-6 form-group p_star">
 								<select class="country_select">
@@ -51,7 +51,7 @@
 									<th colspan="2">
 										<input type="submit" value="등록하기"> &nbsp; 
 										<input type="reset" value="작성취소"> &nbsp; 
-										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/qnalist?page=1'; return false;">
+										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=qnapage&page=1'; return false;">
 									</th>
 								</tr>
 							</div>

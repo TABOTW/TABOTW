@@ -91,7 +91,7 @@
 							<div class="table-row">
 								<div class="boardno"><%= qna.getQnANo() %></div>
 								<div class="boardtitle">
-									<a href="/Shoesgone/qnadetail?qNo=<%= qna.getQnANo() %>&page=<%= currentPage %>"><%= qna.getQnATitle() %></a>
+									<a href="/Shoesgone/menubarsearch?menu=qna<%= qna.getQnANo() %>&page=<%= currentPage %>"><%= qna.getQnATitle() %></a>
 								</div>
 								<div class="register"><%= qna.getQnAWriter() %></div>
 								<div class="registdate"><%= qna.getQnADate()%></div>
@@ -242,7 +242,7 @@
     
 	function movePage(page) {
 		
-		location.href = "/Shoesgone/qnalist?page=" + page + "&limit=" + limit + "&sort=" + gsort;
+		location.href = "/Shoesgone/menubarsearch?menu=qnalist&page=" + page + "&limit=" + limit + "&sort=" + gsort;
 	};
 	
 	function prev() {
@@ -261,7 +261,7 @@
 		}
 	}
 	function showWriteForm(){
-		location.href = "/Shoesgone/views/community/qna/qnaWriteForm.jsp";
+		location.href = "/Shoesgone/menubarsearch?menu=qnawrite";
 	}
 	
 	</script>

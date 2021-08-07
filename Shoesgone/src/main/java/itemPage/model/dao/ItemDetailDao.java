@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import community.review.model.vo.Review;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import orders.model.vo.Orders;
 import orders.model.vo.SalesList;
 
 public class ItemDetailDao {
@@ -446,6 +447,69 @@ public class ItemDetailDao {
 		}
 		
 		return result;
+	}
+
+	public Orders selectrecentSold(Connection conn, int itemNo) {
+		// 제품 하나의 정보를 전달하는 메소드
+		Orders order = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from (select * from orders order by pur_date desc) "
+				+ "where item_no = ? "
+				+ "and rownum = 1";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				order = new Orders();
+				
+				order.setPrice(rset.getInt("price"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return order;
+	}
+
+	public ArrayList<Orders> selectOrders(Connection conn, int itemNo) {
+		ArrayList<Orders> olist = new ArrayList<Orders>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * FROM ORDERS WHERE ITEM_NO = ? ORDER BY PUR_DATE DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, itemNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Orders order = new Orders();
+				
+				order.setOrdersNo(rset.getInt("ORDERS_NO"));
+				order.setSize(rset.getInt("SHOES_SIZE"));
+				order.setPrice(rset.getInt("PRICE"));
+				order.setPurDate(rset.getDate("PUR_DATE"));
+				
+				olist.add(order);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return olist;
 	}
 
 	

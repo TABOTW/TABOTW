@@ -35,9 +35,9 @@ public class QuestionDeleteServlet extends HttpServlet {
 		
 		//서비스 메소드로 삭제 실행하고 결과받기		
 		if(new QuestionService().deleteQuestion(questionNo) > 0) {
-	
-			
-			response.sendRedirect("/Shoesgone/qulist?page=1");
+			RequestDispatcher view = request.getRequestDispatcher("qulist?page=1");
+			view.forward(request, response);
+			//response.sendRedirect("/Shoesgone/qulist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

@@ -12,6 +12,7 @@ import community.review.model.vo.Review;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import orders.model.vo.Orders;
 import orders.model.vo.SalesList;
 
 public class ItemDetailService {
@@ -113,6 +114,12 @@ public class ItemDetailService {
 			rollback(conn);
 		}
 		close(conn);
+	}
+
+	public ArrayList<Orders> selectOrders(int itemNo) {
+		Connection conn = getConnection();
+		ArrayList<Orders> olist = iddao.selectOrders(conn, itemNo);
+		return olist;
 	}
 
 }
