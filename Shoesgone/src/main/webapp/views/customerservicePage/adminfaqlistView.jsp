@@ -34,7 +34,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function showWriteForm(){
-	location.href = "/Shoesgone/views/customerservicePage/adminFaqWriteForm.jsp";
+	location.href = "/Shoesgone/menubarsearch?menu=adminFaqWriteForm";
 }
 </script>
 <!--
@@ -256,9 +256,9 @@ border-top-right-radius: 10px;
 	<h2 align="center">고객센터</h2>
 	
 	<ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/nlist.ad">공지사항</a></li>
-	<li><a href="/Shoesgone/flist.ad">자주묻는질문</a></li>
-	<li><a href="/Shoesgone/qulist.ad">1:1문의</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=nlistadmin">공지사항</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=flistadmin">자주묻는질문</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qulistadmin">1:1문의</a></li>
 </ul>
 <br>
 <hr>
@@ -296,7 +296,7 @@ border-top-right-radius: 10px;
 					
 								<tr>
 								 <td style = "text-align:center"><%= list.get(i).getFaqNo() %></td>
-								 <td style = "text-align:center"><a href="/Shoesgone/fdetail.ad?faqNo=<%= list.get(i).getFaqNo() %>"><%= list.get(i).getFaqTitle() %></td>
+								 <td style = "text-align:center"><a href="/Shoesgone/menubarsearch?menu=fdetail.ad<%= list.get(i).getFaqNo() %>"><%= list.get(i).getFaqTitle() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getFaqWriter() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getFaqDate() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getFaqReadcount() %></td> 

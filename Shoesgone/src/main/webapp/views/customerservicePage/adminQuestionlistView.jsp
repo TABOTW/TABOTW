@@ -130,9 +130,9 @@ ul#menubar li a:hover {
 	<h2 align="center">고객센터</h2>
 	
 	<ul id="menubar" style="align:center;">
-	<li><a href="/Shoesgone/nlist.ad">공지사항</a></li>
-	<li><a href="/Shoesgone/flist.ad">자주묻는질문</a></li>
-	<li><a href="/Shoesgone/qulist.ad">1:1문의</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=nlistadmin">공지사항</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=flistadmin">자주묻는질문</a></li>
+	<li><a href="/Shoesgone/menubarsearch?menu=qulistadmin">1:1문의</a></li>
 </ul>
 <br>
 <hr>
@@ -174,7 +174,7 @@ ul#menubar li a:hover {
 	<% if(list.get(i).getQuestionLevel() == 2){  //원글의 답글 일 때 %>
 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;☞
 		<% } %>
-		<a href="/Shoesgone/qudetail.ad?questionNo=<%= list.get(i).getQuestionNo() %>"><%= list.get(i).getQuestionTitle() %></a></td>
+		<a href="/Shoesgone/menubarsearch?menu=qudetail.ad<%= list.get(i).getQuestionNo() %>"><%= list.get(i).getQuestionTitle() %></a></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionWriter() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionDate() %></td>
 								 <td style = "text-align:center"><%= list.get(i).getQuestionReadcount() %></td> 
