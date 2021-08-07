@@ -36,8 +36,9 @@ public class WishlistAllDeleteServlet extends HttpServlet {
 
 		// 서비스 메소드로 삭제 실행하고 결과받기
 		if (new WishlistService().deleteAll(userNo) > 0) {
-
-			response.sendRedirect("/Shoesgone/wlist?userNo="+ userNo);
+			RequestDispatcher view = request.getRequestDispatcher("wlist?userNo="+ userNo);
+			view.forward(request, response);
+			//response.sendRedirect("/Shoesgone/wlist?userNo="+ userNo);
 		} else if(new WishlistService().getListCount(userNo) == 0){
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message",  "삭제할 위시리스트가 없습니다.");
