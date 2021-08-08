@@ -20,11 +20,11 @@
 
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/freeupview?fNo=<%= free.getFreeNo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/menubarsearch?menu=freeupview<%= free.getFreeNo() %>&page=<%= currentPage %>";
 }
 
 function requestDelete(){
-	location.href = "/Shoesgone/freedelete?fNo=<%= free.getFreeNo() %>&rfile=<%= free.getFreeRenameFilename() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=freedelete<%= free.getFreeNo() %>&rfile=<%= free.getFreeRenameFilename() %>";
 	alert("삭제되었습니다.");
 }
 

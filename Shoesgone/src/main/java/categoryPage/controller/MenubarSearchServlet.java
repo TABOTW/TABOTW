@@ -58,6 +58,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		String gsort = request.getParameter("gsort");
 		String level = request.getParameter("level");
 		String wnum = request.getParameter("wnum");
+		String rfile = request.getParameter("rfile");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
@@ -312,6 +313,10 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
 				view = request.getRequestDispatcher("qurepinsert.ad");
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freedelete")) {
+				view = request.getRequestDispatcher("freedelete?fNo=" + menu.substring(10) + "&rfile=" + rfile);
+			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freeupview")) {
+				view = request.getRequestDispatcher("freeupview?fNo=" + menu.substring(10) + "&page=" + page);
 			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("wishlist")) {
 				view = request.getRequestDispatcher("wlist?userNo=" + menu.substring(8) + "&page=" + page);
 			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("pointlist")) {
@@ -412,6 +417,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("qudelete?qnum=" + menu.substring(8));
 			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("qupview")) {
 				view = request.getRequestDispatcher("qupview?qnum=" + menu.substring(7));
+			} else if (menu.equals("freeupdate")) {
+				view = request.getRequestDispatcher("freeupdate");
 			} else if (menu.equals("quinsert")) {
 				view = request.getRequestDispatcher("quinsert");
 			} else if (menu.equals("reviewinsert")) {

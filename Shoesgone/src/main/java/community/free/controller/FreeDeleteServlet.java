@@ -45,8 +45,9 @@ public class FreeDeleteServlet extends HttpServlet {
 								"/resources/community_upfiles/free");
 				new File(savePath + "\\" + renameFileName).delete();
 			}
-			
-			response.sendRedirect("/Shoesgone/freelist?page=1");
+			RequestDispatcher view =request.getRequestDispatcher("freelist?page=1");
+			view.forward(request, response);
+			//response.sendRedirect("/Shoesgone/freelist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
