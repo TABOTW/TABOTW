@@ -50,6 +50,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 						<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
 						<input type="hidden" name="itemengname" value="<%= item.getItemEngName() %>">
 						<input type="hidden" name="itemkrname" value="<%= item.getItemKrName() %>">
+						<input type="hidden" name="menu" value="orlist">
 						<div class="s_product_text">
 							<h3>구매하시기 전에 꼭 확인하세요.</h3>
 							<h3><%=item.getItemEngName()%></h3>

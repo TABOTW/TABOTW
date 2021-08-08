@@ -144,7 +144,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
                 <td class="product"><strong><a href="/Shoesgone/menubarsearch?menu=item<%= list.get(i).getItemNo() %>"><%= list.get(i).getItemEngName() %><br><%= list.get(i).getItemKrName() %></a></strong> </td>
                 <td class="price"><strong><%= list.get(i).getPrice() %></strong></td>
                 
-                <td class="state"><button type="submit" class="genric-btn primary-border small">주문</button></td>
+                <td class="state"><a href="/Shoesgone/menubarsearch?menu=buyaccept&itemno=<%= list.get(i).getItemNo() %>"><button type="submit" class="genric-btn primary-border small">주문</button></a></td>
             </tr>
             <tr>
               <% }	%>   

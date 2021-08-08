@@ -288,6 +288,10 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("buyaccept?itemno=" + itemno);
 			} else if (menu.equals("sellaccept")) {
 				view = request.getRequestDispatcher("sellaccept?itemno=" + itemno);
+			} else if (menu.equals("reginsert")) {
+				view = request.getRequestDispatcher("reginsert");
+			} else if (menu.equals("tendersell")) {
+				view = request.getRequestDispatcher("tendersell");
 			} else if (menu.equals("check_buy_standard")) {
 				view = request.getRequestDispatcher("views/buyPage/check_buy_standard.jsp");
 			} else if (menu.equals("orlist")) {

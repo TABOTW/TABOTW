@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import information.model.dao.InformationDao;
 import information.model.vo.Information;
+import loginPage.model.vo.Login;
 
 public class InformationService {
 	private InformationDao idao = new InformationDao();
@@ -51,28 +52,40 @@ public class InformationService {
 		return information;
 	}
 	
-	// 관리자용 회원 정보 전체 리스트 출력용 메소드
-	public ArrayList<Information> adminSelectList(){
+	public ArrayList<Information> adminselectAllMembers() {
 		Connection conn = getConnection();
-		ArrayList<Information> userList = idao.adminSelectList(conn);
+		ArrayList<Information> users = idao.adminselectAllMembers(conn);
 		close(conn);
-		
-		return userList;
+		return users;
 	}
-	
-	// 관리자용 회원 정보 수정용 메소드
-	public int adminUserUpdate(Information userUp) {
+	public Information adminselectMGRLOKMember(int userno) {
 		Connection conn = getConnection();
-		int result = idao.adminUserUpdate(conn, userUp);
-		
+		Information user = idao.adminselectMGRLOKMember(conn, userno);
+		close(conn);
+		return user;
+	}
+	public int adminupdateMGR(int userno, String mgrstatus) {
+		Connection conn = getConnection();
+		int result = idao.adminupdateMGR(conn, userno, mgrstatus);
 		if(result > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		close(conn);
-		
 		return result;
 	}
-
+	public int adminupdateLOK(int userno, String lokstatus) {
+		Connection conn = getConnection();
+		int result = idao.adminupdateLOK(conn, userno, lokstatus);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
 }

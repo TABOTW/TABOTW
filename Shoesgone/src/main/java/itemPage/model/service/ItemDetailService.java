@@ -12,6 +12,8 @@ import community.review.model.vo.Review;
 import itemPage.model.dao.ItemDetailDao;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import itemregsta.model.vo.ItemRegSta;
+import orders.model.vo.Orders;
 import orders.model.vo.SalesList;
 
 public class ItemDetailService {
@@ -115,4 +117,18 @@ public class ItemDetailService {
 		close(conn);
 	}
 
+	// 해당 정보에 맞는 판매등록상품 출력용 메소드
+	public ArrayList<ItemRegSta> selectRegList(int itemNo, int size) {
+		Connection conn = getConnection();
+		ArrayList<ItemRegSta> regList = iddao.selectRegList(conn, itemNo, size);
+		close(conn);
+		
+		return regList;
+	}
+
+	public ArrayList<Orders> selectOrders(int itemNo) {
+	      Connection conn = getConnection();
+	      ArrayList<Orders> olist = iddao.selectOrders(conn, itemNo);
+	      return olist;
+	   }
 }

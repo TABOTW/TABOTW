@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import information.model.service.InformationService;
-import loginPage.model.vo.Login;
+import information.model.vo.Information;
 
 /**
  * Servlet implementation class AdminMemberUpdateMGRServlet
@@ -35,7 +35,7 @@ public class AdminMemberUpdateLOKServlet extends HttpServlet {
 		//넘어온 userno 로 원래 값 불러오기
 		int result = 0;
 		int userno = Integer.parseInt(request.getParameter("userno"));
-		Login user = new InformationService().adminselectMGRLOKMember(userno);
+		Information user = new InformationService().adminselectMGRLOKMember(userno);
 		//user의 값중에 MGR값 확인 후 변경
 		if(user.getLoginOk().equals("Y")) {
 			String lokstatus = "N";

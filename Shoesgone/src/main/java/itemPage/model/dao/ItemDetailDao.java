@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import community.review.model.vo.Review;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import itemregsta.model.vo.ItemRegSta;
+import orders.model.vo.Orders;
 import orders.model.vo.SalesList;
 
 public class ItemDetailDao {
@@ -448,6 +450,76 @@ public class ItemDetailDao {
 		return result;
 	}
 
-	
+	// 해당 정보에 맞는 판매등록상품 출력용 메소드
+	public ArrayList<ItemRegSta> selectRegList(Connection conn, int itemNo, int size) {
+		ArrayList<ItemRegSta> regList = new ArrayList<ItemRegSta>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String query = "select * from item_reg_sta where item_no = ? and shoes_size = ?";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, itemNo);
+			ps.setInt(2, size);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				ItemRegSta reg = new ItemRegSta();
+				
+				reg.setRegNo(rs.getInt("item_reg_sta_no"));
+				reg.setUserNo(rs.getInt("user_no"));
+				reg.setItemNo(rs.getInt("item_no"));
+				reg.setSize(rs.getInt("shoes_size"));
+				reg.setRegDate(rs.getDate("reg_date"));
+				reg.setPrice(rs.getInt("price"));
+				reg.setPenalty(rs.getString("penalty"));
+				reg.setAddress(rs.getString("address"));
+				
+				regList.add(reg);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return regList;
+	}
 
+	public ArrayList<Orders> selectOrders(Connection conn, int itemNo) {
+	      ArrayList<Orders> olist = new ArrayList<Orders>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String query = "SELECT * FROM ORDERS WHERE ITEM_NO = ? ORDER BY PUR_DATE DESC";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, itemNo);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            Orders order = new Orders();
+	            
+	            order.setOrdersNo(rset.getInt("ORDERS_NO"));
+	            order.setSize(rset.getInt("SHOES_SIZE"));
+	            order.setPrice(rset.getInt("PRICE"));
+	            order.setPurDate(rset.getDate("PUR_DATE"));
+	            
+	            olist.add(order);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return olist;
+	   }
 }

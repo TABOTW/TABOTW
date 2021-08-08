@@ -59,7 +59,8 @@ int size = Integer.parseInt(request.getParameter("size"));
 						<h3><%= item.getItemEngName() %></h3>
 						<h4><%= item.getItemKrName() %></h4>
 						<a class="primary-btn">즉시 판매가 : <%= item.getPrice() + "원" %></a><br>
-						<form action="/Shoesgone/tendersell">
+						<form action="/Shoesgone/menubarsearch?menu=tendersell">
+							<input type="hidden" name="menu" value="tendersell">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 							<input type="hidden" name="size" value="<%= size %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%= item.getPrice() + "원" %>">
@@ -75,7 +76,8 @@ int size = Integer.parseInt(request.getParameter("size"));
 			<div class="billing_details">
 				<div class="row">
 					<div class="col-lg-8">
-						<form class="row contact_form" action="/Shoesgone/reginsert" method="post" novalidate="novalidate">
+						<form class="row contact_form" action="/Shoesgone/menubarsearch?menu=reginsert" method="post" novalidate="novalidate">
+							<input type="hidden" name="menu" value="reginsert">
 							<input type="hidden" name="userno" value="<%= loginMember.getUserNo() %>">
 							<input type="hidden" name="userid" value="<%= loginMember.getUserId() %>">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">

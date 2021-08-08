@@ -35,7 +35,7 @@ public class AdminMemberListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//사용자들의 정보를 가져와 보여주는 페이지로 이동
 		//사용자들의 정보 가져오기
-		ArrayList<Information> users = new InformationService().adminSelectList();
+		ArrayList<Information> users = new InformationService().adminselectAllMembers();
 
 		RequestDispatcher view = null;
 		if(users != null) {

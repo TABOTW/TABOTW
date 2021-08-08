@@ -46,7 +46,8 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
-					<form action="/Shoesgone/menubarsearch?menu=regselect">
+					<form action="/Shoesgone/menubarsearch?menu=regselect" method="get">
+						<input type="hidden" name="menu" value="regselect">
 						<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 						<div class="s_product_text">
 							<h3>판매하시기 전에 꼭 확인하세요.</h3>
@@ -55,7 +56,7 @@ ArrayList<Integer> isizes = (ArrayList<Integer>) request.getAttribute("isizes");
 							<h2><%= item.getPrice() %> 원</h2>
 							<ul class="list">
 								<li>
-									<div class="default-select" id="default-select"">
+									<div class="default-select" id="default-select">
 										<select name="size" required>
 											<option selected="selected">-- Size --</option>
 											<% for(int size : isizes){ %>
