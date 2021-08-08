@@ -128,7 +128,7 @@
 						    	<div class="popHead">사이즈 선택
 							    	<span class="popCloseBtnCmmn" id="close-button" data-num="6">&times;</span>
 						    	</div>
-						    	<div class="popBody" id="size-select">
+						    	<div class="popBody">
 						    		<table id="size-table">
 										<tr>
 											<td><input class="cursor-pointer" type=button value="220" id="shoes-pants"></td>
@@ -309,12 +309,12 @@
 	</script>
 	
 	<script>
-		$('#shoes-pants').click(function(){
-			var value = document.getElementById("shoes-pants");
-			var div = document.getElementById('size-select');
-			console.log(value);
-			$('#shoesSize').val();
-			div.remove();
+		$('.cursor-pointer').click(function(){
+			var div = document.getElementById('popUp_6');
+
+			$('#shoesSize').val(this.value);
+			
+			div.style.display = 'none';
 		});
 	</script>
 </body>

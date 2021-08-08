@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		// 로그인 정보 데이터베이스에서 찾기
 		login = new LoginService().selectLogin(userid, cryptoUserpwd);
-		System.out.println(cryptoUserpwd);
+		
 		// 로그인 성공, 실패에 따른 화면 구현
 		if (login != null && login.getLoginOk().equals("Y")) {
 			HttpSession session = request.getSession();
