@@ -38,7 +38,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>글 수정하기</h3>
-						<form class="row contact_form" action="/Shoesgone/reviewupdate" method="post"
+						<form class="row contact_form" action="/Shoesgone/menubarsearch?menu=reviewupdate" method="post"
 							novalidate="novalidate" enctype="multipart/form-data">
 							<div class="col-md-6 form-group p_star">
 								<select class="country_select">
@@ -59,7 +59,7 @@
 										<input type="reset" value="수정취소"> &nbsp;
 										<input type="button" value="이전페이지로 이동" 
 												onclick="javascript:history.go(-1); return false;"> &nbsp;
-										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/reviewlist?page=1'; return false;">
+										<input type="button" value="목록" onclick="javascript:location.href='/Shoesgone/menubarsearch?menu=reviewpage&page=1'; return false;">
 									</th>
 								</tr>
 							</div>

@@ -20,11 +20,11 @@
 
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/reviewupview?rNo=<%= review.getReviewNo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/menubarsearch?menu=reviewupview<%= review.getReviewNo() %>&page=<%= currentPage %>";
 }
 
 function requestDelete(){
-	location.href = "/Shoesgone/reviewdelete?rNo=<%= review.getReviewNo() %>&rfile=<%= review.getReviewRenameFilename() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=reviewdelete<%= review.getReviewNo() %>&rfile=<%= review.getReviewRenameFilename() %>";
 	alert("삭제되었습니다.");
 }
 

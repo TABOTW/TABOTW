@@ -289,6 +289,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("sellaccept?itemno=" + itemno);
 			} else if (menu.equals("reginsert")) {
 				view = request.getRequestDispatcher("reginsert");
+			} else if (menu.equals("reviewupdate")) {
+				view = request.getRequestDispatcher("reviewupdate");
 			} else if (menu.equals("tendersell")) {
 				view = request.getRequestDispatcher("tendersell");
 			} else if (menu.equals("check_buy_standard")) {
@@ -313,6 +315,10 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
 				view = request.getRequestDispatcher("qurepinsert.ad");
+			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdelete")) {
+				view = request.getRequestDispatcher("reviewdelete?rNo=" + menu.substring(12) + "&rfile=" + rfile);
+			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewupview")) {
+				view = request.getRequestDispatcher("reviewupview?rNo=" + menu.substring(12) + "&page=" + page);
 			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freedelete")) {
 				view = request.getRequestDispatcher("freedelete?fNo=" + menu.substring(10) + "&rfile=" + rfile);
 			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freeupview")) {

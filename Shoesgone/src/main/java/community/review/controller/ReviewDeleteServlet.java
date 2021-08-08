@@ -45,8 +45,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 								"/resources/community_upfiles");
 				new File(savePath + "\\" + renameFileName).delete();
 			}
-			
-			response.sendRedirect("/Shoesgone/reviewlist?page=1");
+			RequestDispatcher view = request.getRequestDispatcher("reviewlist?page=1");
+			view.forward(request, response);
+			//response.sendRedirect("/Shoesgone/reviewlist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");
