@@ -159,12 +159,12 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>&page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=wishlist<%= loginMember.getUserNo() %>&page=1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>&page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=wishlist<%= loginMember.getUserNo() %>&page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -175,13 +175,13 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>&page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=wishlist<%= loginMember.getUserNo() %>&page=<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>&page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=wishlist<%= loginMember.getUserNo() %>&page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -189,7 +189,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/wlist?userNo=<%= loginMember.getUserNo() %>&page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=wishlist<%= loginMember.getUserNo() %>&page=<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 
