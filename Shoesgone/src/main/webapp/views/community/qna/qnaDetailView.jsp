@@ -20,11 +20,11 @@
 
 <script type="text/javascript">
 function moveUpdateView(){
-	location.href = "/Shoesgone/qnaupview?qNo=<%= qna.getQnANo() %>&page=<%= currentPage %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qnaupview<%= qna.getQnANo() %>&page=<%= currentPage %>";
 }
 
 function requestDelete(){
-	location.href = "/Shoesgone/qnadelete?qNo=<%= qna.getQnANo() %>&rfile=<%= qna.getQnARenameFilename() %>";
+	location.href = "/Shoesgone/menubarsearch?menu=qnadelete<%= qna.getQnANo() %>&rfile=<%= qna.getQnARenameFilename() %>";
 	alert("삭제되었습니다.");
 }
 

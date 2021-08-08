@@ -45,8 +45,9 @@ public class QnADeleteServlet extends HttpServlet {
 								"/resources/community_upfiles/qna");
 				new File(savePath + "\\" + renameFileName).delete();
 			}
-			
-			response.sendRedirect("/Shoesgone/qnalist?page=1");
+			RequestDispatcher view = request.getRequestDispatcher("qnalist?page=1");
+			view.forward(request, response);
+			//response.sendRedirect("/Shoesgone/qnalist?page=1");
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher(
 					"views/common/error.jsp");

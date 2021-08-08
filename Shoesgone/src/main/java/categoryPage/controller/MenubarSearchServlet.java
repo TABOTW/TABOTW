@@ -315,6 +315,10 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
 				view = request.getRequestDispatcher("qurepinsert.ad");
+			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qnadelete")) {
+				view = request.getRequestDispatcher("qnadelete?qNo=" + menu.substring(9) + "&rfile=" + rfile);
+			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qnaupview")) {
+				view = request.getRequestDispatcher("qnaupview?qNo=" + menu.substring(9) + "&page=" + page);
 			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdelete")) {
 				view = request.getRequestDispatcher("reviewdelete?rNo=" + menu.substring(12) + "&rfile=" + rfile);
 			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewupview")) {
@@ -433,9 +437,11 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("qnainsert");
 			} else if (menu.equals("freeinsert")) {
 				view = request.getRequestDispatcher("freeinsert");
+			} else if (menu.equals("qnaupdate")) {
+				view = request.getRequestDispatcher("qnaupdate");
 			} else if (menu.equals("questionwrite")) {
 				view = request.getRequestDispatcher("views/customerservicePage/questionWriteForm.jsp");
-			}else if (menu.equals("reviewwrite")) {
+			} else if (menu.equals("reviewwrite")) {
 				view = request.getRequestDispatcher("views/community/review/reviewWriteForm.jsp");
 			} else if (menu.equals("qnawrite")) {
 				view = request.getRequestDispatcher("views/community/qna/qnaWriteForm.jsp");
