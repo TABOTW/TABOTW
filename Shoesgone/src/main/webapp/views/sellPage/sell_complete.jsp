@@ -55,7 +55,7 @@ ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
 						<h4><%= item.getItemKrName() %></h4>
 						<h3>사이즈 : <%= size %></h3>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/Shoesgone/views/itemPage/category.jsp">계속 쇼핑 하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=shop">계속 쇼핑 하기</a>
 						</div>
 						<br>
 					</div>

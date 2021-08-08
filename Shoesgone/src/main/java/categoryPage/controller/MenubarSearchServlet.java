@@ -88,8 +88,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
 				view = request.getRequestDispatcher("categorysort");
-			} else if (menu.equals("admin")) {
-				view = request.getRequestDispatcher("views/managerPage/adminIndex.jsp");
 			} else if (menu.equals("mypage")) {
 				view = request.getRequestDispatcher("contact.jsp");
 			} else if (menu.equals("nlistadmin")) {

@@ -89,7 +89,7 @@
 							<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=shop">SHOP</a></li>
 							<% if(loginMember != null){ %>
 								<% if(loginMember.getMgr().toString().equals("Y")){ %>
-									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=admin">관리자페이지</a></li>
+									<li class="nav-item"><a class="nav-link" href="/Shoesgone/views/managerPage/adminIndex.jsp">관리자페이지</a></li>
 								<% }else{ %>
 									<li class="nav-item"><a class="nav-link" href="/Shoesgone/menubarsearch?menu=mypage">마이페이지</a></li>
 								<% } %>
