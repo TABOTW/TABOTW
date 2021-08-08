@@ -44,7 +44,7 @@ public class WishlistListServlet extends HttpServlet {
 		}
 		
 		// 한 페이지당 출력할 갯수 설정
-		int limit = 4;
+		int limit = 10;
 		
 		// 총 페이지 수 계산을 위한 목록 조회
 		WishlistService wservice = new WishlistService();
