@@ -30,9 +30,18 @@
 		.tpt { 
 			color: black; 
 		}
-		
-		#postcodify_search_button {
+		.cursor-pointer {
 			cursor: pointer;
+		}
+		#size-table{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#shoes-pants{
+			width: 70px;
+			height: 35px;
+			background-color: white;
+			border-color: grey;
 		}
 	</style>
 </head>
@@ -72,7 +81,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">신발 사이즈(선택)</h6>
-								<input type="text" class="form-control" id="shoesSize" name="shoesSize" placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
+								<input type="text" class="form-control popOpenBtnCmmn" id="shoesSize" name="shoesSize" data-num="6" readonly placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">이름 *</h6>
@@ -84,11 +93,11 @@
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">우편번호 *</h6>
-								<input type="text" class="form-control postcodify_postcode5" id="postcodify_search_button" name="address1" size="6" placeholder="우편번호(클릭하세요)" onfocus="this.placeholder = ''" onblur="this.placeholder = '우편번호(클릭하세요)'">
+								<input type="text" class="form-control postcodify_postcode5 cursor-pointer" id="postcodify_search_button" name="address1" size="6" readonly placeholder="우편번호(클릭하세요)" onfocus="this.placeholder = ''" onblur="this.placeholder = '우편번호(클릭하세요)'">
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">도로명 주소 *</h6>
-								<input type="text" class="form-control postcodify_address" id="streetaddress" name="address2" placeholder="도로명 주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소'">
+								<input type="text" class="form-control postcodify_address" id="streetaddress" name="address2" readonly placeholder="도로명 주소" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소'">
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">상세 주소 *</h6>
@@ -113,6 +122,47 @@
 								<button type="submit" value="submit" class="primary-btn">가입하기</button>
 							</div>
 						</form>
+						<div id="popUp_6" class="popCmmn">
+							<div class="popBg" data-num="6" ></div>
+							<div class="popInnerBox" style="overflow: auto;">
+						    	<div class="popHead">사이즈 선택
+							    	<span class="popCloseBtnCmmn" id="close-button" data-num="6">&times;</span>
+						    	</div>
+						    	<div class="popBody">
+						    		<table id="size-table">
+										<tr>
+											<td><input class="cursor-pointer" type=button value="220" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="225" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="230" id="shoes-pants"></td>
+										</tr>
+										<tr>
+											<td><input class="cursor-pointer" type=button value="235" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="240" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="245" id="shoes-pants"></td>
+										</tr>
+										<tr>
+											<td><input class="cursor-pointer" type=button value="250" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="255" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="260" id="shoes-pants"></td>
+										</tr>
+										<tr>
+											<td><input class="cursor-pointer" type=button value="265" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="270" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="275" id="shoes-pants"></td>
+										</tr>
+										<tr>
+											<td><input class="cursor-pointer" type=button value="280" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="285" id="shoes-pants"></td>
+											<td><input class="cursor-pointer" type=button value="290" id="shoes-pants"></td>
+										</tr>
+										<tr>
+											<td><input class="cursor-pointer" type=button value="295" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size16'"></td>
+											<td><input class="cursor-pointer" type=button value="300" id="shoes-pants" onclick="location.href='/Shoesgone/menubarsearch?menu=size17'"></td>
+										</tr>
+									</table>
+								</div>
+						    </div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -256,6 +306,14 @@
 				$("input[name=adAgree]").prop("checked", false);
 			}
 		}
+	</script>
+	
+	<script>
+		$('#shoes-pants').click(function(){
+			var value = document.getElementById("shoes-pants");
+			console.log(value);
+			$('#shoesSize').val();
+		});
 	</script>
 </body>
 </html>

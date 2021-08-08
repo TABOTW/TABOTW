@@ -314,12 +314,12 @@ border-top-right-radius: 10px;
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/flist.ad?page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=flist.ad1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/flist.ad?page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=flist.ad<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -330,13 +330,13 @@ border-top-right-radius: 10px;
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/flist.ad?page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=flist.ad<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/flist.ad?page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=flist.ad<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -344,7 +344,7 @@ border-top-right-radius: 10px;
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/flist.ad?page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=flist.ad<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 				<hr>

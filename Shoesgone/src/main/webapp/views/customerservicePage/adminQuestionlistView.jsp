@@ -193,12 +193,12 @@ ul#menubar li a:hover {
 	<% if(currentPage <= 1){ %>
 		[맨처음] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/qulist.ad?page=1">[맨처음]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist.ad1">[맨처음]</a> &nbsp;
 	<% } %>
 	<!-- 이전 페이지 그룹으로 이동 -->
 	<% if((currentPage - 10) < startPage && 
 			(currentPage - 10) > 1){ %>
-		<a href="/Shoesgone/qulist.ad?page=<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist.ad<%= startPage - 10 %>">[이전그룹]</a> &nbsp;
 	<% }else{ %>
 		[이전그룹] &nbsp;
 	<% } %>
@@ -209,13 +209,13 @@ ul#menubar li a:hover {
 	%>
 		 <font color="red" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
-			<a href="/Shoesgone/qulist.ad?page=<%= p %>"><%= p %></a>
+			<a href="/Shoesgone/menubarsearch?menu=qulist.ad<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	<!-- 다음 페이지 그룹으로 이동 -->
 	<% if((currentPage + 10) > endPage && 
 			(currentPage + 10) < maxPage){ %>
-		<a href="/Shoesgone/qulist.ad?page=<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist.ad<%= endPage + 10 %>">[다음그룹]</a> &nbsp;
 	<% }else{ %>
 		[다음그룹] &nbsp;
 	<% } %>
@@ -223,7 +223,7 @@ ul#menubar li a:hover {
 	<% if(currentPage >= maxPage){ %>
 		[맨끝] &nbsp;
 	<% }else{ %>
-		<a href="/Shoesgone/qulist.ad?page=<%= maxPage %>">[맨끝]</a> &nbsp;
+		<a href="/Shoesgone/menubarsearch?menu=qulist.ad<%= maxPage %>">[맨끝]</a> &nbsp;
 	<% } %>
 </div>
 				<hr>

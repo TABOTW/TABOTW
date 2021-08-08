@@ -114,7 +114,7 @@
 							<h1>슈즈곤 처음이지? <br>서비스 소개를 확인해보세요.</h1>
 						</div>
 					</div>
-					<a class="primary-btn" id="white-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/service_intro.jsp')">서비스 안내</a>
+					<a class="primary-btn" id="white-color" onclick="window.open('/Shoesgone/views/common/service_intro.jsp')">서비스 안내</a>
 				</div>
 				<div class="col-lg-6 no-padding exclusive-right">
 						<!-- single exclusive carousel -->
@@ -160,9 +160,9 @@
 				<% }else{ %>
 					<p><a id="grey-color" href="/Shoesgone/menubarsearch?menu=nlistcustomer">공지사항</a></p>
 				<% } %>
-				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/service_intro.jsp')">서비스 소개</a></p>
-				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/showroom_guide.jsp')">쇼룸 안내</a></p>
-				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('http://localhost:8080/Shoesgone/views/common/seller_visit.jsp')">판매자 방문접수</a></p>
+				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('/Shoesgone/views/common/service_intro.jsp')">서비스 소개</a></p>
+				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('/Shoesgone/views/common/showroom_guide.jsp')">쇼룸 안내</a></p>
+				<p><a class="cursor-pointer" id="grey-color" onclick="window.open('/Shoesgone/views/common/seller_visit.jsp')">판매자 방문접수</a></p>
 			</div>
 			<div class="right-0 right-side">
 				<h5>고객센터 1588-9999</h5><br>
