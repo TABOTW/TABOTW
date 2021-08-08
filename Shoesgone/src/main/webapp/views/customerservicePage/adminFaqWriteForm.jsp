@@ -19,7 +19,7 @@
 <!-- meta character set -->
 <meta charset="UTF-8">
 <!-- Site Title -->
-<title>주문상세보기</title>
+<title>고객센터</title>
 <!--
             CSS
             ============================================= -->
