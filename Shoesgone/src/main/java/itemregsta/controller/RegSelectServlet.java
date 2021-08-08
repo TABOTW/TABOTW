@@ -37,6 +37,7 @@ public class RegSelectServlet extends HttpServlet {
 		// 1. 상품 상세 페이지 -> 판매 동의 페이지에서 전달받은 Item 객체 저장
 		int itemNo = Integer.parseInt(request.getParameter("itemno"));
 		Item item = new ItemDetailService().selectOne(itemNo);
+		int userNo = Integer.parseInt(request.getParameter("userno"));
 		
 		// 2. 사진 어레이 가져오기
 		ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
@@ -46,7 +47,10 @@ public class RegSelectServlet extends HttpServlet {
 		
 		// 4. 판매 등록 페이지로 정보 전달
 		RequestDispatcher view = null;
-		if(item != null && plist != null) {
+		if(userNo == 0) {
+			view = request.getRequestDispatcher("views/loginPage/login.jsp");
+			view.forward(request, response);
+		} else if(item != null && plist != null) {
 			view = request.getRequestDispatcher("views/sellPage/now_sell.jsp");
 			
 			request.setAttribute("item", item);
@@ -54,7 +58,7 @@ public class RegSelectServlet extends HttpServlet {
 			request.setAttribute("size", size);
 			
 			view.forward(request, response);
-		}else {
+		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", itemNo + "번 아이템 판매 등록 실패");
 			view.forward(request, response);

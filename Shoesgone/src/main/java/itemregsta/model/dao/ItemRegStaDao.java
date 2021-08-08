@@ -127,7 +127,7 @@ public class ItemRegStaDao {
 			return list;
 		}
 	
-	// 새 상품 등록용 메소드
+	// 새 즉시 판매 상품 등록용 메소드
 	public int insertReg(Connection conn, ItemRegSta reg) {
 		int result = 0;
 		PreparedStatement ps = null;
@@ -225,5 +225,32 @@ public class ItemRegStaDao {
 		}
 		
 		return regListCount;
+	}
+
+	// 새 즉시 판매 상품 등록용 메소드
+	public int insertRegTen(Connection conn, ItemRegSta reg) {
+		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "insert into sell_bid values (ITEM_REG_STA_SEQ.NEXTVAL, ?, ?, ?, sysdate, ?, ?, ?)";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, reg.getUserNo());
+			ps.setInt(2, reg.getItemNo());
+			ps.setInt(3, reg.getSize());
+			ps.setInt(4, reg.getPrice());
+			ps.setString(5, reg.getPenalty());
+			ps.setString(6, reg.getAddress());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
 	}
 }

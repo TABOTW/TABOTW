@@ -43,6 +43,12 @@
 			background-color: white;
 			border-color: grey;
 		}
+		.hidden {
+			height:100%; 
+			min-height:100%; 
+			overflow:hidden !important; 
+			touch-action:none;
+		}
 	</style>
 </head>
 <body>
@@ -311,7 +317,7 @@
 	<script>
 		$('.cursor-pointer').click(function(){
 			var div = document.getElementById('popUp_6');
-
+			
 			$('#shoesSize').val(this.value);
 			
 			div.style.display = 'none';

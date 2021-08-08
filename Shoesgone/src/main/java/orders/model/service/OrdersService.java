@@ -31,7 +31,7 @@ public class OrdersService {
 		return order;
 	}
 	
-	// 새 주문용 메소드
+	// 새 즉시 구매 주문용 메소드
 	public int insertOrders(Orders orders) {
 		Connection conn = getConnection();
 		int result = odao.insertOrders(conn, orders);
@@ -86,5 +86,20 @@ public class OrdersService {
 		close(conn);
 		
 		return ordersListCount;
+	}
+
+	// 새 입찰 구매 주문용 메소드
+	public int insertOrdersTen(Orders orders) {
+		Connection conn = getConnection();
+		int result = odao.insertOrdersTen(conn, orders);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
 	}
 }

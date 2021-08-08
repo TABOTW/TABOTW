@@ -40,7 +40,7 @@ public class ItemRegStaService {
 		return list;
 	}
 
-	// 새 상품 등록용 메소드
+	// 새 즉시 판매 상품 등록용 메소드
 	public int insertReg(ItemRegSta reg) {
 		Connection conn = getConnection();
 		int result = regdao.insertReg(conn, reg);
@@ -92,5 +92,20 @@ public class ItemRegStaService {
 		close(conn);
 		
 		return regListCount;
+	}
+
+	// 새 입찰 판매 상품 등록용 메소드
+	public int insertRegTen(ItemRegSta reg) {
+		Connection conn = getConnection();
+		int result = regdao.insertRegTen(conn, reg);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
 	}
 }

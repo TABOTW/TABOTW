@@ -67,14 +67,14 @@ public class OrdersDao {
 		return null;
 	}
 	
-	// 새 주문용 메소드
+	// 새 즉시 구매 주문용 메소드
 	public int insertOrders(Connection conn, Orders orders) {
 		int result = 0;
 		PreparedStatement ps = null;
 		
 		String query = "insert into orders values("
 						+ "(SELECT MAX(ORDERS_NO)+1 FROM ORDERS), ?, ?, ?, sysdate, 1, '준비중', ?, "
-						+ "?, ?, ?, 2500, ?, ?)";
+						+ "?, ?, ?, 2500, ?)";
 		
 		try {
 			ps = conn.prepareStatement(query);
@@ -87,7 +87,6 @@ public class OrdersDao {
 			ps.setInt(6, orders.getSize());
 			ps.setString(7, orders.getPhone());
 			ps.setString(8, orders.getPayment());
-			ps.setString(9, orders.getEtc());
 			
 			result = ps.executeUpdate();
 			
@@ -176,5 +175,37 @@ public class OrdersDao {
 		}
 		
 		return ordersListCount;
+	}
+
+	// 새 입찰 구매 주문용 메소드
+	public int insertOrdersTen(Connection conn, Orders orders) {
+		int result = 0;
+		PreparedStatement ps = null;
+		
+		String query = "insert into buy_bid values("
+						+ "(SELECT MAX(ORDERS_NO)+1 FROM ORDERS), ?, ?, ?, sysdate, 1, '준비중', ?, "
+						+ "?, ?, ?, 2500, ?)";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, orders.getSellerNo());
+			ps.setInt(2, orders.getItemNo());
+			ps.setInt(3, orders.getBuyerNo());
+			ps.setInt(4, orders.getPrice());
+			ps.setString(5, orders.getAddress());
+			ps.setInt(6, orders.getSize());
+			ps.setString(7, orders.getPhone());
+			ps.setString(8, orders.getPayment());
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
 	}
 }

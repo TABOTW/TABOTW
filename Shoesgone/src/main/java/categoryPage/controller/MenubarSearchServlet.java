@@ -57,8 +57,6 @@ public class MenubarSearchServlet extends HttpServlet {
 		String limit = request.getParameter("limit");
 		String gsort = request.getParameter("gsort");
 		String level = request.getParameter("level");
-		String wnum = request.getParameter("wnum");
-		String rfile = request.getParameter("rfile");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
@@ -82,13 +80,15 @@ public class MenubarSearchServlet extends HttpServlet {
 		
 		if (search.size() > 0 && notice.size() > 0 && faq.size() > 0
 				&& question.size() > 0 && review.size() > 0 && free.size() > 0
-				&& qna.size() > 0 && gallery.size() > 0
-				&& regItem.size() > 0 && hotItem.size() > 0 && recItem.size() > 0
-				&& newBuyPrice.size() > 0 && newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
+				&& qna.size() > 0 && gallery.size() > 0 && regItem.size() > 0
+				&& hotItem.size() > 0 && recItem.size() > 0 && newBuyPrice.size() > 0
+				&& newSellPrice.size() > 0 && upcomingRelease.size() > 0) {
 			if (menu.equals("main")) {
 				view = request.getRequestDispatcher("mpageitem");
 			} else if (menu.equals("shop")) {
 				view = request.getRequestDispatcher("categorysort");
+			} else if (menu.equals("admin")) {
+				view = request.getRequestDispatcher("views/managerPage/adminIndex.jsp");
 			} else if (menu.equals("mypage")) {
 				view = request.getRequestDispatcher("contact.jsp");
 			} else if (menu.equals("nlistadmin")) {
@@ -287,12 +287,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("buyaccept?itemno=" + itemno);
 			} else if (menu.equals("sellaccept")) {
 				view = request.getRequestDispatcher("sellaccept?itemno=" + itemno);
-			} else if (menu.equals("reginsert")) {
-				view = request.getRequestDispatcher("reginsert");
-			} else if (menu.equals("reviewupdate")) {
-				view = request.getRequestDispatcher("reviewupdate");
-			} else if (menu.equals("tendersell")) {
-				view = request.getRequestDispatcher("tendersell");
 			} else if (menu.equals("check_buy_standard")) {
 				view = request.getRequestDispatcher("views/buyPage/check_buy_standard.jsp");
 			} else if (menu.equals("orlist")) {
@@ -301,6 +295,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
 			} else if (menu.equals("regselect")) {
 				view = request.getRequestDispatcher("regselect");
+			} else if(menu.equals("orderselect")) {
+				view = request.getRequestDispatcher("orderselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
 			} else if (menu.equals("adminFaqWriteForm")) {
@@ -315,22 +311,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
 				view = request.getRequestDispatcher("qurepinsert.ad");
-			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qnadelete")) {
-				view = request.getRequestDispatcher("qnadelete?qNo=" + menu.substring(9) + "&rfile=" + rfile);
-			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qnaupview")) {
-				view = request.getRequestDispatcher("qnaupview?qNo=" + menu.substring(9) + "&page=" + page);
-			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewdelete")) {
-				view = request.getRequestDispatcher("reviewdelete?rNo=" + menu.substring(12) + "&rfile=" + rfile);
-			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("reviewupview")) {
-				view = request.getRequestDispatcher("reviewupview?rNo=" + menu.substring(12) + "&page=" + page);
-			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freedelete")) {
-				view = request.getRequestDispatcher("freedelete?fNo=" + menu.substring(10) + "&rfile=" + rfile);
-			} else if (menu.length() >= 10 && menu.substring(0, 10).equals("freeupview")) {
-				view = request.getRequestDispatcher("freeupview?fNo=" + menu.substring(10) + "&page=" + page);
-			} else if (menu.length() >= 8 && menu.substring(0, 8).equals("wishlist")) {
-				view = request.getRequestDispatcher("wlist?userNo=" + menu.substring(8) + "&page=" + page);
-			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("pointlist")) {
-				view = request.getRequestDispatcher("plist?userNo=" + menu.substring(9) + "&page=" + page);
 			} else if (menu.length() >= 14 && menu.substring(0, 14).equals("qurepupdate.ad")) {
 				view = request.getRequestDispatcher("qurepupdate.ad?questionNo=" + menu.substring(14));
 			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qulist.ad")) {
@@ -347,8 +327,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fdelete.ad?faqNo=" + menu.substring(10));
 			} else if (menu.equals("finsert.ad")) {
 				view = request.getRequestDispatcher("finsert.ad");
-			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("wdelete")) {
-				view = request.getRequestDispatcher("wdelete?userNo=" + menu.substring(7) + "&wnum=" + wnum);
 			} else if (menu.length() >= 11 && menu.substring(0, 11).equals("qudelete.ad")) {
 				view = request.getRequestDispatcher("qudelete.ad?questionNo=" + menu.substring(11) + "&level=" + level);
 			} else if (menu.length() >= 12 && menu.substring(0, 12).equals("qurepview.ad")) {
@@ -427,8 +405,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("qudelete?qnum=" + menu.substring(8));
 			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("qupview")) {
 				view = request.getRequestDispatcher("qupview?qnum=" + menu.substring(7));
-			} else if (menu.equals("freeupdate")) {
-				view = request.getRequestDispatcher("freeupdate");
 			} else if (menu.equals("quinsert")) {
 				view = request.getRequestDispatcher("quinsert");
 			} else if (menu.equals("reviewinsert")) {
@@ -437,11 +413,9 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("qnainsert");
 			} else if (menu.equals("freeinsert")) {
 				view = request.getRequestDispatcher("freeinsert");
-			} else if (menu.equals("qnaupdate")) {
-				view = request.getRequestDispatcher("qnaupdate");
 			} else if (menu.equals("questionwrite")) {
 				view = request.getRequestDispatcher("views/customerservicePage/questionWriteForm.jsp");
-			} else if (menu.equals("reviewwrite")) {
+			}else if (menu.equals("reviewwrite")) {
 				view = request.getRequestDispatcher("views/community/review/reviewWriteForm.jsp");
 			} else if (menu.equals("qnawrite")) {
 				view = request.getRequestDispatcher("views/community/qna/qnaWriteForm.jsp");
