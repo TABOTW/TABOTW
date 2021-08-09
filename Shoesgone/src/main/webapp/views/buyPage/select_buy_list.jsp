@@ -85,7 +85,8 @@ String itemKrName = request.getParameter("itemkrname");
 											<td><%= itemEngName %></td>
 											<td><%= r.getRegDate() %></td>
 											<td><%= r.getPrice() %></td>
-											<td><form action="/Shoesgone/orderselect">
+											<td><form action="/Shoesgone/menubarsearch?menu=orderselect">
+												<input type="hidden" name="menu" value="orderselect">
 												<input type="hidden" name="itemno" value="<%= r.getItemNo() %>">
 												<input type="hidden" name="regno" value="<%= r.getRegNo() %>">
 												<input type="submit" value="구매하기">

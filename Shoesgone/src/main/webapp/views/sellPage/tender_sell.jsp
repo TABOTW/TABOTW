@@ -77,7 +77,7 @@ int size = Integer.parseInt(request.getParameter("size"));
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>배송지 입력</h3>
-						<form class="row contact_form" action="/Shoesgone/reginsert" method="post" novalidate="novalidate">
+						<form class="row contact_form" action="/Shoesgone/regteninsert" method="post" novalidate="novalidate">
 							<input type="hidden" name="userno" value="<%= loginMember.getUserNo() %>">
 							<input type="hidden" name="userid" value="<%= loginMember.getUserId() %>">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">

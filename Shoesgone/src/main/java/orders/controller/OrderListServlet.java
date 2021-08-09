@@ -44,6 +44,7 @@ public class OrderListServlet extends HttpServlet {
 		String itemEngName = request.getParameter("itemengname");
 		String itemKrName = request.getParameter("itemkrname");
 		System.out.println(itemNo + ", " + size);
+		int userNo = Integer.parseInt(request.getParameter("userno"));
 
 		ArrayList<ItemRegSta> rlist = new ItemDetailService().selectRegList(itemNo, size);
 
@@ -52,7 +53,10 @@ public class OrderListServlet extends HttpServlet {
 
 		// 3. 주문 등록 페이지로 정보 전달
 		RequestDispatcher view = null;
-		if (rlist != null || plist != null) {
+		if(userNo == 0) {
+			view = request.getRequestDispatcher("views/loginPage/login.jsp");
+			view.forward(request, response);
+		} else if (rlist != null || plist != null) {
 			view = request.getRequestDispatcher("views/buyPage/select_buy_list.jsp");
 
 			request.setAttribute("rlist", rlist);

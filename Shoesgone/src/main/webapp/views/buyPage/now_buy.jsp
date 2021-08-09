@@ -58,11 +58,12 @@ ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>즉시 판매하기</h3>
+						<h3>즉시 구매하기</h3>
 						<h3><%=item.getItemEngName()%></h3>
 						<h4><%=item.getItemKrName()%></h4>
-						<a class="primary-btn">즉시 판매가 : <%=item.getPrice() + "원"%></a><br>
-						<form action="/Shoesgone/tenderbuy">
+						<a class="primary-btn">즉시 구매가 : <%=item.getPrice() + "원"%></a><br>
+						<form action="/Shoesgone/menubarsearch?menu=tenderbuy">
+							<input type="hidden" name="menu" value="tenderbuy">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 							<input type="hidden" name="size" value="<%= reg.getSize() %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%=item.getPrice() + "원"%>">
@@ -88,7 +89,8 @@ ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 				<div class="row">
 					<div class="col-lg-8">
 						<h3>배송지 입력</h3>
-						<form class="row contact_form" action="/Shoesgone/orderinsert" method="post" novalidate="novalidate">
+						<form class="row contact_form" action="/Shoesgone/menubarsearch?menu=orderinsert" method="post" novalidate="novalidate">
+							<input type="hidden" name="menu" value="orderinsert">
 							<input type="hidden" name="userno" value="<%=loginMember.getUserNo()%>">
 							<input type="hidden" name="userid" value="<%=loginMember.getUserId()%>">
 							<input type="hidden" name="itemno" value="<%=item.getItemNo()%>">
@@ -136,7 +138,7 @@ ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 								<input type="radio" id="f-option4" name="payment" value="account" required>
 								<label for="f-option4"><a href="#">검수 기준</a>과 <a href="#">개인 정보 정책</a>에 동의합니다. </label>
 							</div>
-							<input type="submit" value="상품 등록하기"> &nbsp;
+							<input type="submit" value="주문하기"> &nbsp;
 							<input type="reset" value="등록취소">
 							</form>
 						</div>

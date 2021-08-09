@@ -51,12 +51,12 @@ ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text" style="margin-top: 0px">
-						<h1>결제가 완료되었습니다.</h1>
+						<h1>주문이 완료되었습니다.</h1>
 						<h3><%= item.getItemEngName() %></h3>
 						<h4><%= item.getItemKrName() %></h4>
 						<h3>사이즈 : <%= size %></h3>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/Shoesgone/categoryitem">계속 쇼핑 하기</a>
+							<a class="primary-btn" href="/Shoesgone/menubarsearch?menu=shop">계속 쇼핑 하기</a>
 						</div>
 					</div>
 				</div>

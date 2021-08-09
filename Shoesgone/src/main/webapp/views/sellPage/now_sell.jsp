@@ -59,8 +59,7 @@ int size = Integer.parseInt(request.getParameter("size"));
 						<h3><%= item.getItemEngName() %></h3>
 						<h4><%= item.getItemKrName() %></h4>
 						<a class="primary-btn">즉시 판매가 : <%= item.getPrice() + "원" %></a><br>
-						<form action="/Shoesgone/menubarsearch?menu=tendersell">
-							<input type="hidden" name="menu" value="tendersell">
+						<form action="/Shoesgone/tendersell">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 							<input type="hidden" name="size" value="<%= size %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%= item.getPrice() + "원" %>">

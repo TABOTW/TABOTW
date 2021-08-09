@@ -293,10 +293,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("orlist");
 			} else if (menu.equals("check_sell_standard")) {
 				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
-			} else if (menu.equals("regselect")) {
-				view = request.getRequestDispatcher("regselect");
-			} else if(menu.equals("orderselect")) {
-				view = request.getRequestDispatcher("orderselect");
 			} else if (menu.equals("qulist")) {
 				view = request.getRequestDispatcher("qulist");
 			} else if (menu.equals("adminFaqWriteForm")) {
@@ -307,6 +303,20 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("ninsert.ad");
 			} else if (menu.equals("nupdate.ad")) {
 				view = request.getRequestDispatcher("nupdate.ad");
+			} else if (menu.equals("regselect")) {
+				view = request.getRequestDispatcher("regselect");
+			} else if(menu.equals("orderselect")) {
+				view = request.getRequestDispatcher("orderselect");
+			} else if(menu.equals("orderinsert")) {
+				view = request.getRequestDispatcher("orderinsert");
+			} else if(menu.equals("orderteninsert")) {
+				view = request.getRequestDispatcher("orderteninsert");
+			} else if (menu.equals("reginsert")) {
+				view = request.getRequestDispatcher("reginsert");
+			} else if (menu.equals("tenderbuy")) {
+				view = request.getRequestDispatcher("tenderbuy");
+			} else if (menu.equals("regteninsert")) {
+				view = request.getRequestDispatcher("regteninsert");
 			} else if (menu.equals("fupdate.ad")) {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
