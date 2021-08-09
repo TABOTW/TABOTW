@@ -87,7 +87,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">신발 사이즈(선택)</h6>
-								<input type="text" class="form-control popOpenBtnCmmn" id="shoesSize" name="shoesSize" data-num="6" readonly placeholder="선택하세요" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요'">
+								<input type="text" class="form-control popOpenBtnCmmn" id="shoesSize" name="shoesSize" data-num="6" readonly placeholder="선택하세요(클릭)" onfocus="this.placeholder = ''" onblur="this.placeholder = '선택하세요(클릭)'">
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">이름 *</h6>
@@ -99,7 +99,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">우편번호 *</h6>
-								<input type="text" class="form-control postcodify_postcode5 cursor-pointer" id="postcodify_search_button" name="address1" size="6" readonly placeholder="우편번호(클릭하세요)" onfocus="this.placeholder = ''" onblur="this.placeholder = '우편번호(클릭하세요)'">
+								<input type="text" class="form-control postcodify_postcode5 cursor-pointer" id="postcodify_search_button" name="address1" size="6" readonly placeholder="우편번호(클릭)" onfocus="this.placeholder = ''" onblur="this.placeholder = '우편번호(클릭)'">
 							</div>
 							<div class="col-md-12 form-group">
 							<h6 class="register-info">도로명 주소 *</h6>
