@@ -382,7 +382,7 @@ ArrayList<Orders> olist = (ArrayList<Orders>) request.getAttribute("olist");
 			graphoption1 = graphoption1.options[graphoption1.selectedIndex].value;
 			graphoption2 = graphoption2.options[graphoption2.selectedIndex].value;
 			
-			document.getElementById("iframecontext").src = "/Shoesgone/ItemDG?itemno=1&option1=0&option2=1";
+			document.getElementById("iframecontext").src = "/Shoesgone/ItemDG?itemno=" + itemno + "&option1=" + graphoption1 + "&option2=" + graphoption2;
 		});
 	</script>
 	<script>
