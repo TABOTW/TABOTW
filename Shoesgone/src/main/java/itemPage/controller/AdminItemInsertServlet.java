@@ -95,7 +95,7 @@ public class AdminItemInsertServlet extends HttpServlet {
 				pictures.add(file_name);
 			}
 			if(pictures.isEmpty()) {
-				response.sendRedirect("views/managerPage/adminIndex.jsp");
+				response.sendRedirect("/Shoesgone/itemlist.ad");
 			}
 			System.out.println(pictures);
 			//파일들을 하나씩 insert 처리함
@@ -141,7 +141,7 @@ public class AdminItemInsertServlet extends HttpServlet {
 						request.setAttribute("message", i + "번째 사진 등록 실패!");
 						view.forward(request, response);
 					}else if(result2>0 && i==pictures.size()-1) {
-						response.sendRedirect("views/managerPage/adminIndex.jsp");
+						response.sendRedirect("/Shoesgone/itemlist.ad");
 					}
 				} 
 			}

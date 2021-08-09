@@ -61,7 +61,7 @@
                               <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                   <div class="modal-content">
                                       <div class="modal-header">
-                                          <h5 class="modal-title" id="ItemADDTitle">물품정보 수정</h5>
+                                          <h5 class="modal-title" id="ItemADDTitle">물품정보 추가</h5>
                                           <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close" style="background:black;">
                                               <i data-feather="x"></i>
                                           </button>
@@ -85,7 +85,9 @@
                                            	<label for="itemdropdate">발매일자</label>
                                            	<input type="date" class="form-control" name="itemdropdate" value="">
                                            	<label for="itempictures">첨부파일</label>
-                                           	<input type="file" class="form-control" name="itempictures" value="" multiple>
+                                           	<input type="button" id="additem" class="close rounded-pill" style="background:black;">추가
+                                           	<input type="button" id="removeitem" class="close rounded-pill" style="background:black;">제거
+                                           	<div id="inputfiles"></div>
                                            	<h5 class="card-title" style="font-size: 1rem; color: rgba(35,28,99,.7);">사이즈</h5>
                                            	<div class="card-content">
 	                                         	<div class="card-body" id="shoessizes" style="padding:0;">
@@ -123,6 +125,7 @@
                                         <th>가격 </th>
                                         <th>발매일자 </th>
                                         <th>수정하기</th>
+                                        <th>삭제하기</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -226,6 +229,9 @@
                                             </div>
                                         	</div>
                                     	</td>
+                                    	<td>
+                                    		<a type="button" class="btn btn-danger" href="/Shoesgone/itemdelete.ad?itemno=<%= i.getItemNo() %>">삭제하기</a>
+                                    	</td>
                                     </tr>
                                     <% } %>
                                 </tbody>
@@ -271,6 +277,25 @@
     		}
     	});
     }
+    
+    $(document).ready(function() {
+        $('#additem').click(function() {
+            const html = '<input type="file" value="" name="files' + filenum + '" />';
+            $('#inputfiles').append(html);
+            filenum += 1;
+        });
+        
+        $('#intreset').click(function() {
+            filenum = 0;
+        });
+        
+        $('#removeitem').click(function() {
+        	$("#inputfiles *").remove();
+        	filenum = 0;
+        });
+    });
+    
+    var filenum = 0;
     </script>
     <script src="/Shoesgone/resources/plugins/assets/js/main.js"></script>
 </body>

@@ -42,14 +42,13 @@ public class AdminItemDeleteServlet extends HttpServlet {
 			System.out.println("파일 존재하지 않음");
 			//파일 DB삭제
 			int result2 = new ItemDetailService().deletePhoto(itemNo);
-			System.out.println(result2);
 			int result1 = new ItemDetailService().deleteItem(itemNo);
 			if(result2==0 && result1==0) {
 				view = request.getRequestDispatcher("views/common/error.jsp");
 				request.setAttribute("message", "사진 삭제 실패!");
 				view.forward(request, response);
 			}else {
-				response.sendRedirect("views/managerPage/adminIndex.jsp");
+				response.sendRedirect("/Shoesgone/itemlist.ad");
 			}			
 		}else {
 			for(Picture pic : pictures) {
@@ -62,7 +61,7 @@ public class AdminItemDeleteServlet extends HttpServlet {
 			if(result2>0) {
 				int result1 = new ItemDetailService().deleteItem(itemNo);
 				if(result1>0) {
-					response.sendRedirect("views/managerPage/adminIndex.jsp");
+					response.sendRedirect("/Shoesgone/itemlist.ad");
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message", "물품 삭제 실패!");
