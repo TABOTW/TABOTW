@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import itemPage.model.service.ItemDetailService;
 import itemPage.model.vo.Item;
 import itemPage.model.vo.Picture;
+import itemregsta.model.service.ItemRegStaService;
+import itemregsta.model.vo.ItemRegSta;
 
 /**
  * Servlet implementation class ChangeToTenderBuy
@@ -37,6 +39,8 @@ public class ChangeToNowBuy extends HttpServlet {
 		// 1. 즉시 구매에서 객체 받아오기
 		int itemNo = Integer.parseInt(request.getParameter("itemno"));
 		Item item = new ItemDetailService().selectOne(itemNo);
+		int regNo = Integer.parseInt(request.getParameter("regno"));
+		ItemRegSta reg = new ItemRegStaService().selectOne(regNo);
 		
 		// 2. 사진 어레이 가져오기
 		ArrayList<Picture> plist = new ItemDetailService().selectPList(itemNo);
@@ -52,6 +56,7 @@ public class ChangeToNowBuy extends HttpServlet {
 			request.setAttribute("item", item);
 			request.setAttribute("plist", plist);
 			request.setAttribute("size", size);
+			request.setAttribute("reg", reg);
 					
 			view.forward(request, response);
 		}else {

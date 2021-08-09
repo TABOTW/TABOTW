@@ -254,7 +254,6 @@ String itemKrName = request.getParameter("itemkrname");
 	<script src="/Shoesgone/resources/plugins/assets/js/bootstrap.bundle.min.js"></script>
 
 	<script src="/Shoesgone/resources/plugins/assets/vendors/simple-datatables/simple-datatables.js?after"></script>
-	<script type="text/javascript" src="/Shoesgone/resources/js/jquery-3.6.0.min.js"></script>
 	<script>
         // Simple Datatable
         let table1 = document.querySelector('#table1');

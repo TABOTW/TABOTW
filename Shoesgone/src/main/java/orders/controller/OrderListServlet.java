@@ -43,7 +43,6 @@ public class OrderListServlet extends HttpServlet {
 		int size = Integer.parseInt(request.getParameter("size"));
 		String itemEngName = request.getParameter("itemengname");
 		String itemKrName = request.getParameter("itemkrname");
-		System.out.println(itemNo + ", " + size);
 		int userNo = Integer.parseInt(request.getParameter("userno"));
 
 		ArrayList<ItemRegSta> rlist = new ItemDetailService().selectRegList(itemNo, size);

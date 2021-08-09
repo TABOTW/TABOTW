@@ -66,6 +66,7 @@ ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 							<input type="hidden" name="menu" value="tenderbuy">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 							<input type="hidden" name="size" value="<%= reg.getSize() %>">
+							<input type="hidden" name="regno" value="<%= reg.getRegNo() %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%=item.getPrice() + "원"%>">
 						</form>
 						<br> <a class="primary-btn"><span>Size</span> : <%= reg.getSize() %></a>

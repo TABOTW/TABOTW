@@ -22,8 +22,8 @@ if(loginmember != null){
 <title>Shoe's Gone</title>
 
 <!-- CSS -->
-<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.css" />
-<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css" />
+<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.css"/>
+<link rel="stylesheet" href="/Shoesgone/resources/css/ion.rangeSlider.skinFlat.css"/>
 </head>
 <body>
 	<%-- Menubar --%>
@@ -39,15 +39,11 @@ if(loginmember != null){
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="your-class">
-						<%
-						for (Picture p : plist) {
-						%>
-						<div>
-							<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
-						</div>
-						<%
-						}
-						%>
+						<% for (Picture p : plist) { %>
+							<div>
+								<img class="img-fluid" src="/Shoesgone/resources/img/shoes_images/<%=p.getPicturepath()%>" alt="">
+							</div>
+						<% } %>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
