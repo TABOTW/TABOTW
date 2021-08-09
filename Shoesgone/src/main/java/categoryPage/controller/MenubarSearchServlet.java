@@ -51,13 +51,13 @@ public class MenubarSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String menu = request.getParameter("menu");
-		System.out.println(menu);
 		String text = request.getParameter("text");
 		String itemno = request.getParameter("itemno");
 		String page = request.getParameter("page");
 		String limit = request.getParameter("limit");
 		String gsort = request.getParameter("gsort");
 		String level = request.getParameter("level");
+		String wnum = request.getParameter("wnum");
 		ArrayList<ItemPicture> search = new ItemPictureService().selectLookupList();
 		ArrayList<Notice> notice = new NoticeService().selectNoticeList();
 		ArrayList<Faq> faq = new FaqService().selectFaqList();
@@ -72,7 +72,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		ArrayList<Item> newBuyPrice = new ItemService().selectNewBuyList();
 		ArrayList<Item> newSellPrice = new ItemService().selectNewSellList();
 		ArrayList<Item> upcomingRelease = new ItemService().selectUpcomingList();
-		
+
 		if (menu == null) {
 			menu = "main";
 		}
@@ -328,6 +328,8 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {
 				view = request.getRequestDispatcher("qurepinsert.ad");
+			} else if (menu.length() >= 7 && menu.substring(0, 7).equals("wdelete")) {
+				view = request.getRequestDispatcher("wdelete?userNo=" + menu.substring(7) + "&wnum=" + wnum);
 			} else if (menu.length() >= 14 && menu.substring(0, 14).equals("qurepupdate.ad")) {
 				view = request.getRequestDispatcher("qurepupdate.ad?questionNo=" + menu.substring(14));
 			} else if (menu.length() >= 9 && menu.substring(0, 9).equals("qulist.ad")) {
