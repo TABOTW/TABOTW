@@ -51,6 +51,7 @@ public class MenubarSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String menu = request.getParameter("menu");
+		System.out.println(menu);
 		String text = request.getParameter("text");
 		String itemno = request.getParameter("itemno");
 		String page = request.getParameter("page");
@@ -293,16 +294,6 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("orlist");
 			} else if (menu.equals("check_sell_standard")) {
 				view = request.getRequestDispatcher("views/sellPage/check_sell_standard.jsp");
-			} else if (menu.equals("qulist")) {
-				view = request.getRequestDispatcher("qulist");
-			} else if (menu.equals("adminFaqWriteForm")) {
-				view = request.getRequestDispatcher("views/customerservicePage/adminFaqWriteForm.jsp");
-			} else if (menu.equals("adminNoticeWriteForm")) {
-				view = request.getRequestDispatcher("views/customerservicePage/adminNoticeWriteForm.jsp");
-			} else if (menu.equals("ninsert.ad")) {
-				view = request.getRequestDispatcher("ninsert.ad");
-			} else if (menu.equals("nupdate.ad")) {
-				view = request.getRequestDispatcher("nupdate.ad");
 			} else if (menu.equals("regselect")) {
 				view = request.getRequestDispatcher("regselect");
 			} else if(menu.equals("orderselect")) {
@@ -313,10 +304,26 @@ public class MenubarSearchServlet extends HttpServlet {
 				view = request.getRequestDispatcher("orderteninsert");
 			} else if (menu.equals("reginsert")) {
 				view = request.getRequestDispatcher("reginsert");
-			} else if (menu.equals("tenderbuy")) {
-				view = request.getRequestDispatcher("tenderbuy");
 			} else if (menu.equals("regteninsert")) {
 				view = request.getRequestDispatcher("regteninsert");
+			} else if (menu.equals("tenderbuy")) {
+				view = request.getRequestDispatcher("tenderbuy");
+			} else if (menu.equals("nowbuy")) {
+				view = request.getRequestDispatcher("nowbuy");
+			} else if (menu.equals("tendersell")) {
+				view = request.getRequestDispatcher("tendersell");
+			} else if (menu.equals("nowsell")) {
+				view = request.getRequestDispatcher("nowsell");
+			} else if (menu.equals("qulist")) {
+				view = request.getRequestDispatcher("qulist");
+			} else if (menu.equals("adminFaqWriteForm")) {
+				view = request.getRequestDispatcher("views/customerservicePage/adminFaqWriteForm.jsp");
+			} else if (menu.equals("adminNoticeWriteForm")) {
+				view = request.getRequestDispatcher("views/customerservicePage/adminNoticeWriteForm.jsp");
+			} else if (menu.equals("ninsert.ad")) {
+				view = request.getRequestDispatcher("ninsert.ad");
+			} else if (menu.equals("nupdate.ad")) {
+				view = request.getRequestDispatcher("nupdate.ad");
 			} else if (menu.equals("fupdate.ad")) {
 				view = request.getRequestDispatcher("fupdate.ad");
 			} else if (menu.equals("qurepinsert.ad")) {

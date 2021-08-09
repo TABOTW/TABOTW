@@ -47,11 +47,17 @@ int size = Integer.parseInt(request.getParameter("size"));
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>판매 입찰하기</h3>
-						<h4>Faded SkyBlu Denim Jeans</h4>
-						<a class="primary-btn" href="/Shoesgone/views/sellPage/now_sell.jsp">즉시 판매가 : $149.99</a><br>
-						<a class="primary-btn">최저 구매가 : $159.99</a><br>
-						<a class="primary-btn"><span>Size</span> : 255</a>
+						<h3>입찰 판매하기</h3>
+						<h3><%= item.getItemEngName() %></h3>
+						<h4><%= item.getItemKrName() %></h4>
+						<a class="primary-btn">즉시 판매가 : <%= item.getPrice() + "원" %></a><br>
+						<form action="/Shoesgone/menubarsearch?menu=nowsell">
+							<input type="hidden" name="name" value="nowsell">
+							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
+							<input type="hidden" name="size" value="<%= size %>">
+							<input class="primary-btn" type="submit" value="최저 구매가 : <%= item.getPrice() + "원" %>">
+						</form><br>
+						<a class="primary-btn"><span>Size</span> : <%= size %></a>
 					</div>
 				</div>
 			</div>

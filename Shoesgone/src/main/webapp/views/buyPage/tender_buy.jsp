@@ -53,7 +53,8 @@ ItemRegSta reg = (ItemRegSta) request.getAttribute("reg");
 						<h3><%=item.getItemEngName()%></h3>
 						<h4><%=item.getItemKrName()%></h4>
 						<a class="primary-btn">즉시 구매가 : <%=item.getPrice() + "원"%></a><br>
-						<form action="/Shoesgone/tenderbuy">
+						<form action="/Shoesgone/menubarsearch?menu=nowbuy">
+							<input type="hidden" name="menu" value="nowbuy">
 							<input type="hidden" name="itemno" value="<%= item.getItemNo() %>">
 							<input type="hidden" name="size" value="<%= reg.getSize() %>">
 							<input class="primary-btn" type="submit" value="최저 구매가 : <%=item.getPrice() + "원"%>">
