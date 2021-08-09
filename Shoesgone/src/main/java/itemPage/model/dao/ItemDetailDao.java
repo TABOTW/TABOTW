@@ -335,7 +335,7 @@ public class ItemDetailDao {
 				+ "(SELECT MAX(ITEM_NO)+1 FROM ITEM), "
 				+ "?, ?, ?, ?, ?, ?, "
 				+ "SYSDATE, "
-				+ "?, ?)";		
+				+ "?, ?, default)";		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
