@@ -187,7 +187,7 @@ ul#menubar li a:hover {
 					
 					<hr>
 					</div>
-					</div><br><center><a href="/Shoesgone/contact.jsp" class="genric-btn primary">목록보기</a></center>
+					</div><br><center><a href="/Shoesgone/menubarsearch?menu=mypage" class="genric-btn primary">목록보기</a></center>
 		</section>
 </section>
 	<!--================Contact Area =================-->
